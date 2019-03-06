@@ -1,99 +1,38 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
+import DropdownList from 'react-widgets/lib/DropdownList'
 
-// Renders an information card using Bootstrap styles
-// Attributes: title
-export class Card extends Component {
-  render() {
-    return (
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">{this.props.title}</h5>
-          <div className="card-text">{this.props.children}</div>
-        </div>
-      </div>
-    );
-  }
+
+export class extends Card Component {
+render(){
+return (
+  <div clas></div>
+<Card></Card>
+
+)}
+}
+//Main title, to
+class Name extends Component {
+render() {
+return this.props.to ?(
+  <NavLink></NavLink>
+
+) }
 }
 
-// Renders a list group item using Bootstrap styles
-// Attributes: to
-class ListItem extends Component {
-  render() {
-    return this.props.to ? (
-      <NavLink className="list-group-item" activeClassName="active" to={this.props.to}>
-        {this.props.children}
-      </NavLink>
-    ) : (
-      <li className="list-group-item">{this.props.children}</li>
-    );
-  }
+class ListItems extends Component {
+render(){
+return(
+<div>
+  <ul>
+  <li></li>
+  </ul></div>
+)
+}
 }
 
-// Renders a list group using Bootstrap styles
-export class List extends Component {
-  static Item = ListItem;
-
-  render() {
-    return <ul className="list-group">{this.props.children}</ul>;
-  }
-}
-
-// Renders a row using Bootstrap styles
-export class Row extends Component {
-  render() {
-    return <div className="row">{this.props.children}</div>;
-  }
-}
-
-// Renders a column with specified width using Bootstrap styles
-// Properties: width, right
-export class Column extends Component {
-  render() {
-    return (
-      <div
-        className={'col' + (this.props.width ? '-' + this.props.width : '') + (this.props.right ? ' text-right' : '')}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-}
-
-// Renders a NavBar link using Bootstrap styles
-// Attributes: exact, to
-class NavBarLink extends Component {
-  render() {
-    return (
-      <NavLink className="nav-link" activeClassName="active" exact={this.props.exact} to={this.props.to}>
-        {this.props.children}
-      </NavLink>
-    );
-  }
-}
-
-// Renders a NavBar using Bootstrap styles
-// Attributes: brand
-export class NavBar extends Component {
-  static Link = NavBarLink;
-
-  render() {
-    return (
-      <nav className="navbar navbar-expand-sm bg-light navbar-light">
-        {
-          <NavLink className="navbar-brand" activeClassName="active" exact to="/">
-            {this.props.brand}
-          </NavLink>
-        }
-        <ul className="navbar-nav">{this.props.children}</ul>
-      </nav>
-    );
-  }
-}
-
-// Renders a success button using Bootstrap styles
-// Attributes: onClick
+//Green button, onClick
 class ButtonSuccess extends Component {
   render() {
     return (
@@ -116,8 +55,7 @@ class ButtonDanger extends Component {
   }
 }
 
-// Renders a light button using Bootstrap styles
-// Attributes: onClick
+//Light button, onClick
 class ButtonLight extends Component {
   render() {
     return (
