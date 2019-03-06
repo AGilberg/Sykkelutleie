@@ -2,42 +2,39 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
-import RegistrerKunde from './forms.js';
+import { Kunde, RegistrerKunde, Sykkel } from './forms.js';
+import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 
+import createHashHistory from 'history/createHashHistory';
+const history = createHashHistory();
+
+class Menu extends Component {
+  render() {
+    return (
+      <>
+        <NavBar brand="Sykkelutleie AS">
+          <NavBar.Link to="/kunde">Kunde</NavBar.Link>
+          <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
+        </NavBar>
+      </>
+    );
+  }
+}
 
 class Home extends Component {
   render() {
-    return (
-      <div>
-        <NavLink to="/">Home page</NavLink>{' '}
-        <NavLink to="/bestilling">Bestilling</NavLink>{' '}
-        <NavLink to="/registrerKunde">Registrer kunde</NavLink>{' '}
-      </div>
-    );
+    return <Card title="Hjem">Hovedside</Card>;
   }
 }
-
-class Bestilling extends Component {
-  /*
-  Skjema for bestilling. Kunden må først registreres i databasen
-  (om den ikke allerede er det), for at bestillingen skal kunne utføres.
-  */
-  render() {
-    return (
-      <div>
-
-      </div>
-    );
-  }
-}
-
 
 ReactDOM.render(
   <HashRouter>
     <div>
-      <Home />
-      <Route exact path="/bestilling" component={Bestilling} />
+      <Menu />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/kunde" component={Kunde} />
       <Route exact path="/registrerKunde" component={RegistrerKunde} />
+      <Route exact path="/sykkel" component={Sykkel} />
     </div>
   </HashRouter>,
   document.getElementById('root')
