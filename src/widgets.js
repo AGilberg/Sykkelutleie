@@ -4,32 +4,31 @@ import { NavLink } from 'react-router-dom';
 import DropdownList from 'react-widgets/lib/DropdownList'
 
 
-export class extends Card Component {
-render(){
-return (
-  <div clas></div>
-<Card></Card>
-
-)}
+export class Card extends Component {
+  render() {
+    return (
+      <div className="card">
+        <div className="card-body">
+          <h5 className="title">{this.props.title}</h5>
+          <div className="card-text">{this.props.children}</div>
+        </div>
+      </div>
+    );
+  }
 }
+
 //Main title, to
-class Name extends Component {
-render() {
-return this.props.to ?(
-  <NavLink></NavLink>
 
-) }
-}
-
-class ListItems extends Component {
-render(){
-return(
-<div>
-  <ul>
-  <li></li>
-  </ul></div>
-)
-}
+class Items extends Component {
+  render() {
+    return (
+      <div>
+        <ul>
+          <li />
+        </ul>
+      </div>
+    );
+  }
 }
 
 //Green button, onClick
