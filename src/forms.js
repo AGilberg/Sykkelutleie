@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
+import { handlekurv } from './index.js';
+
 
 class Kunde extends Component {
   render() {
@@ -386,4 +388,38 @@ class Ekstrautstyr extends Component {
   // }
 }
 
-export { Kunde, RegistrerKunde, Kundesøk, Sykkel, Ekstrautstyr };
+class Handlekurv extends Component {
+  render() {
+
+    return (
+      <>
+      <div>
+        <h1>Handlekurv</h1>
+      </div>
+      <div>
+        <table>
+          <tbody>
+            <tr className="row">
+              <th className="col">Nr.</th>
+              <th className="col">Produktnavn</th>
+              <th className="col">Antall</th>
+              <th className="col">Pris</th>
+              <th className="col">Endre</th>
+            </tr>
+              { handlekurv.map((prod, index) => (
+                <tr key={index} className="row">
+                  <td className="col">{prod.id}</td>
+                  <td className="col">{prod.navn}</td>
+                  <td className="col">{prod.antall}</td>
+                  <td className="col">{prod.pris}</td>
+                </tr>
+              )) }
+          </tbody>
+        </table>
+      </div>
+      </>
+    );
+  }
+}
+
+export { Kunde, RegistrerKunde, Kundesøk, Sykkel, Ekstrautstyr, Handlekurv };
