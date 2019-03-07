@@ -4,7 +4,12 @@ import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 
 class Kunde extends Component {
   render() {
-    return <NavBar.Link to="/registrerKunde">Registrer kunde</NavBar.Link>;
+    return (
+      <>
+        <NavBar.Link to="/registrerKunde">Registrer kunde</NavBar.Link>
+        <NavBar.Link to="/kundesøk">Kundesøk</NavBar.Link>
+      </>
+    );
   }
 }
 
@@ -48,6 +53,9 @@ class RegistrerKunde extends Component {
                   >
                     <option value={1}>Mann</option>
                     <option value={2}>Kvinne</option>
+                    <option value={3}>Ikke-binær</option>
+                    <option value={4}>Apachehelikopter</option>
+                    <option value={5}>Vil ikke si det:(</option>
                   </select>
                 </div>
               </div>
@@ -239,6 +247,32 @@ class RegistrerKunde extends Component {
   }
 }
 
+class Kundesøk extends Component {
+  render() {
+    return (
+      <>
+        {/* Søkefunksjon for å søke etter registrerte kunder */}
+        <div className="col-md-4">
+          <br />
+          <input type="text" name="sok" id="sok" placeholder="Søk i kundedatabasen" />
+          <button id="kundesok" name="kundesok" className="btn btn-light" onClick={this.sok}>
+            Søk
+          </button>
+        </div>
+        <div id="kunderesultat">{this.kunde}</div>
+      </>
+    );
+  }
+  // mounted() {
+  //   kundeService.getKunde(kunde => {
+  //     this.kunde = kunde;
+  //   });
+  // }
+  // sok() {
+  //rik fix
+  // }
+}
+
 class Sykkel extends Component {
   pris = '';
   typenavn = '';
@@ -299,4 +333,57 @@ class Sykkel extends Component {
   // }
 }
 
-export { Kunde, RegistrerKunde, Sykkel };
+class Ekstrautstyr extends Component {
+  evalg = '';
+
+  render() {
+    return (
+      <>
+        {/*
+    Skjema for valg av ekstrautstyr
+    */}
+        <div>
+          <div className="form-group">
+            <div className="col-sm-4">
+              <select
+                id="sorter"
+                name="sorter"
+                className="form-control"
+                onChange={event => (this.evalg = event.target.value)}
+              >
+                <option defaultValue="">Sorter etter</option>
+                <option value={1}>Alfabetisk</option>
+                <option value={2}>Pris</option>
+              </select>
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="col-sm-4">
+              <select
+                id="kompatibel"
+                name="kompatibel"
+                className="form-control"
+                onChange={event => (this.evalg = event.target.value)}
+              >
+                <option defaultValue="">Kompatibel med</option>
+                <option value={3}>Terrengsykler</option>
+                <option value={4}>Barnesykler</option>
+                <option value={5}>Bysykler</option>
+                <option value={6}>Racersykler</option>
+                <option value={7}>Damesykler</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="utstyrvisning">{this.evalg}</div>
+      </>
+    );
+  }
+  // mounted() {
+  //   utstyrService.getUtstyr(utstyr => {
+  //     this.utstyr = utstyr;
+  //   });
+  // }
+}
+
+export { Kunde, RegistrerKunde, Kundesøk, Sykkel, Ekstrautstyr };
