@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+
+>>>>>>> d131eba9e9adb2c6c66749a291797cd0d6a483fd
 
 export class Card extends Component {
   render() {
@@ -15,6 +19,7 @@ export class Card extends Component {
   }
 }
 
+<<<<<<< HEAD
 class ListItem extends Component {
   render() {
     return this.props.to ? (
@@ -46,6 +51,9 @@ export class Row extends Component {
 // Renders a column with specified width using Bootstrap styles
 // Properties: width, right
 export class Column extends Component {
+=======
+class Items extends Component {
+>>>>>>> d131eba9e9adb2c6c66749a291797cd0d6a483fd
   render() {
     return (
       <div
