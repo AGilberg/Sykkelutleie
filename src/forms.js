@@ -3,13 +3,17 @@ import { Component } from 'react-simplified';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 import { handlekurv } from './index.js';
 
-
 class Kunde extends Component {
   render() {
     return (
       <>
-        <NavBar.Link to="/registrerKunde">Registrer kunde</NavBar.Link>
-        <NavBar.Link to="/kundesøk">Kundesøk</NavBar.Link>
+        <br />
+        <Card>
+          <NavBar.Link to="/registrerKunde">Registrer kunde</NavBar.Link>
+        </Card>
+        <Card>
+          <NavBar.Link to="/kundesøk">Kundesøk</NavBar.Link>
+        </Card>
       </>
     );
   }
@@ -230,9 +234,18 @@ class RegistrerKunde extends Component {
               <div className="form-group">
                 <label className="col-md-4 control-label" htmlFor="submit" />
                 <div className="col-md-4">
-                  <button id="submit" name="submit" className="btn btn-success" onClick={this.add}>
-                    Registrer
-                  </button>
+                  <Row>
+                    <Column>
+                      <button id="submit" name="submit" className="btn btn-success" onClick={this.add}>
+                        Registrer
+                      </button>
+                    </Column>
+                    <Column right>
+                      <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.cancel}>
+                        Tilbake
+                      </button>
+                    </Column>
+                  </Row>
                 </div>
               </div>
             </fieldset>
@@ -247,9 +260,24 @@ class RegistrerKunde extends Component {
     Service for å legge til kunden i databasen. Rikard, U fix?
     */
   }
+  cancel() {
+    /*
+    Service for å gå tilbake til "kunde". Rikard, U fix?
+    */
+  }
 }
 
 class Kundesøk extends Component {
+  person = [];
+  fornavn = '';
+  etternavn = '';
+  mail = '';
+  mobil = '';
+  gateadresse = '';
+  post_nr = '';
+  by = '';
+  kommentar = '';
+
   render() {
     return (
       <>
@@ -262,6 +290,12 @@ class Kundesøk extends Component {
           </button>
         </div>
         <div id="kunderesultat">{this.kunde}</div>
+        <br />
+        <div className="col-md-4">
+          <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.cancel}>
+            Tilbake
+          </button>
+        </div>
       </>
     );
   }
@@ -273,6 +307,11 @@ class Kundesøk extends Component {
   // sok() {
   //rik fix
   // }
+  cancel() {
+    /*
+    Service for å gå tilbake til "kunde". Rikard, U fix?
+    */
+  }
 }
 
 class Sykkel extends Component {
@@ -284,6 +323,7 @@ class Sykkel extends Component {
   ramme_storrelse = '';
   girsystem = '';
   valg = '';
+  sykkel = [];
 
   render() {
     return (
@@ -324,7 +364,9 @@ class Sykkel extends Component {
             </div>
           </div>
         </div>
-        <div id="sykkelvisning">{this.valg}</div>
+        <div id="sykkelvisning">
+          <NavBar.Link to="/produkt">{this.valg}</NavBar.Link>
+        </div>
       </>
     );
   }
@@ -337,6 +379,10 @@ class Sykkel extends Component {
 
 class Ekstrautstyr extends Component {
   evalg = '';
+  unavn = '';
+  antall = '';
+  pris = '';
+  untstyr = [];
 
   render() {
     return (
@@ -377,7 +423,9 @@ class Ekstrautstyr extends Component {
             </div>
           </div>
         </div>
-        <div id="utstyrvisning">{this.evalg}</div>
+        <div id="utstyrvisning">
+          <NavBar.Link to="/produkt">{this.evalg}</NavBar.Link>
+        </div>
       </>
     );
   }
@@ -390,36 +438,60 @@ class Ekstrautstyr extends Component {
 
 class Handlekurv extends Component {
   render() {
-
     return (
       <>
-      <div>
-        <h1>Handlekurv</h1>
-      </div>
-      <div>
-        <table>
-          <tbody>
-            <tr className="row">
-              <th className="col">Nr.</th>
-              <th className="col">Produktnavn</th>
-              <th className="col">Antall</th>
-              <th className="col">Pris</th>
-              <th className="col">Endre</th>
-            </tr>
-              { handlekurv.map((prod, index) => (
+        <div>
+          <h1>Handlekurv</h1>
+        </div>
+        <div>
+          <table>
+            <tbody>
+              <tr className="row">
+                <th className="col">Nr.</th>
+                <th className="col">Produktnavn</th>
+                <th className="col">Antall</th>
+                <th className="col">Pris</th>
+                <th className="col">Endre</th>
+              </tr>
+              {handlekurv.map((prod, index) => (
                 <tr key={index} className="row">
                   <td className="col">{prod.id}</td>
                   <td className="col">{prod.navn}</td>
                   <td className="col">{prod.antall}</td>
                   <td className="col">{prod.pris}</td>
                 </tr>
-              )) }
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </>
     );
   }
 }
 
-export { Kunde, RegistrerKunde, Kundesøk, Sykkel, Ekstrautstyr, Handlekurv };
+class Aktivebestillinger extends Component {
+  innhold = [];
+  bestilling = [];
+  bestillingsdato = '';
+  leie_beskrivelse = '';
+  render() {
+    return (
+      <>
+        <div>
+          {this.bestilling.map(bestilling => (
+            <Card key={bestilling.id} to={'/bestilling/' + bestilling.id}>
+              {bestilling.leie_beskrivelse}
+            </Card>
+          ))}
+        </div>
+      </>
+    );
+  }
+}
+
+class Produkt extends Component {
+  render() {
+    return <div>produkt</div>;
+  }
+}
+export { Kunde, RegistrerKunde, Kundesøk, Sykkel, Ekstrautstyr, Handlekurv, Aktivebestillinger, Produkt };

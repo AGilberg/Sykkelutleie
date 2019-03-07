@@ -241,6 +241,11 @@ button,
 select {
   text-transform: none;
 }
+select option:first-child {
+  color: grey;
+  font-style: italic;
+}
+
 [type='reset'],
 [type='submit'],
 button,
