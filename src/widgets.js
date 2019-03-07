@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
-<<<<<<< HEAD
-=======
 
->>>>>>> d131eba9e9adb2c6c66749a291797cd0d6a483fd
-
+// Renders an information card using Bootstrap styles
+// Attributes: title
 export class Card extends Component {
   render() {
     return (
       <div className="card">
         <div className="card-body">
-          <h5 className="title">{this.props.title}</h5>
+          <h5 className="card-title">{this.props.title}</h5>
           <div className="card-text">{this.props.children}</div>
         </div>
       </div>
@@ -19,7 +17,8 @@ export class Card extends Component {
   }
 }
 
-<<<<<<< HEAD
+// Renders a list group item using Bootstrap styles
+// Attributes: to
 class ListItem extends Component {
   render() {
     return this.props.to ? (
@@ -51,9 +50,6 @@ export class Row extends Component {
 // Renders a column with specified width using Bootstrap styles
 // Properties: width, right
 export class Column extends Component {
-=======
-class Items extends Component {
->>>>>>> d131eba9e9adb2c6c66749a291797cd0d6a483fd
   render() {
     return (
       <div
@@ -96,7 +92,8 @@ export class NavBar extends Component {
   }
 }
 
-//Green button, onClick
+// Renders a success button using Bootstrap styles
+// Attributes: onClick
 class ButtonSuccess extends Component {
   render() {
     return (
@@ -119,7 +116,8 @@ class ButtonDanger extends Component {
   }
 }
 
-//Light button, onClick
+// Renders a light button using Bootstrap styles
+// Attributes: onClick
 class ButtonLight extends Component {
   render() {
     return (
