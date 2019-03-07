@@ -443,26 +443,23 @@ class Handlekurv extends Component {
         <div>
           <h1>Handlekurv</h1>
         </div>
-        <div>
-          <table>
-            <tbody>
-              <tr className="row">
-                <th className="col">Nr.</th>
-                <th className="col">Produktnavn</th>
-                <th className="col">Antall</th>
-                <th className="col">Pris</th>
-                <th className="col">Endre</th>
-              </tr>
-              {handlekurv.map((prod, index) => (
-                <tr key={index} className="row">
-                  <td className="col">{prod.id}</td>
-                  <td className="col">{prod.navn}</td>
-                  <td className="col">{prod.antall}</td>
-                  <td className="col">{prod.pris}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="container-fluid">
+          <div className="row" style={{backgroundColor:"lavender", fontWeight: "bold"}}>
+            <div className="col">Nr.</div>
+            <div className="col">Produktnavn</div>
+            <div className="col">Antall</div>
+            <div className="col">Pris</div>
+            <div className="col"></div>
+          </div>
+          {handlekurv.map((prod, index) => (
+            <div key={index} className="row" style={(index%2 != 0) ? {backgroundColor:"lavender"} : {}}>
+              <div className="col">{index+1}</div>
+              <div className="col">{prod.navn}</div>
+              <div className="col">{prod.antall}</div>
+              <div className="col">{prod.pris}</div>
+              <div className="col"><button>Slett</button></div>
+            </div>
+          ))}
         </div>
       </>
     );
