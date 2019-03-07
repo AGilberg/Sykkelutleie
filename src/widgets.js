@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
-import DropdownList from 'react-widgets/lib/DropdownList'
 
 
 export class Card extends Component {
@@ -16,8 +15,6 @@ export class Card extends Component {
     );
   }
 }
-
-//Main title, to
 
 class Items extends Component {
   render() {
