@@ -349,7 +349,7 @@ class Sykkel extends Component {
                 className="form-control"
                 onChange={event => (this.valg = event.target.value)}
               >
-                <option defaultValue="">Sorter etter</option>
+                <option value="">Sorter etter</option>
                 <option value={1}>Alfabetisk</option>
                 <option value={2}>Pris</option>
               </select>
@@ -363,7 +363,7 @@ class Sykkel extends Component {
                 className="form-control"
                 onChange={event => (this.valg = event.target.value)}
               >
-                <option defaultValue="">Sykkeltype</option>
+                <option value="">Sykkeltype</option>
                 <option value={3}>Terrengsykler</option>
                 <option value={4}>Barnesykler</option>
                 <option value={5}>Bysykler</option>
@@ -412,7 +412,7 @@ class Ekstrautstyr extends Component {
                 className="form-control"
                 onChange={event => (this.evalg = event.target.value)}
               >
-                <option defaultValue="">Sorter etter</option>
+                <option value="">Sorter etter</option>
                 <option value={1}>Alfabetisk</option>
                 <option value={2}>Pris</option>
               </select>
@@ -426,7 +426,7 @@ class Ekstrautstyr extends Component {
                 className="form-control"
                 onChange={event => (this.evalg = event.target.value)}
               >
-                <option defaultValue="">Kompatibel med</option>
+                <option value="">Kompatibel med</option>
                 <option value={3}>Terrengsykler</option>
                 <option value={4}>Barnesykler</option>
                 <option value={5}>Bysykler</option>
