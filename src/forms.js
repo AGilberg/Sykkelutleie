@@ -461,6 +461,8 @@ class Handlekurv extends Component {
             </div>
           ))}
         </div>
+        <br /><br />
+        <button className="btn btn-success" id="utsjekk">Utsjekk</button>
       </>
     );
   }

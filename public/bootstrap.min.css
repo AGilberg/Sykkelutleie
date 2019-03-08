@@ -233,6 +233,11 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
+#utsjekk {
+  position: absolute;
+  right: 0px;
+  margin-right: 50px;
+}
 button,
 input {
   overflow: visible;
