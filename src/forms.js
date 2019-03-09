@@ -26,9 +26,9 @@ class RegistrerKunde extends Component {
   fodt = '';
   mail = '';
   mobil = '';
-  gate = '';
-  postnr = '';
-  by = '';
+  adresse = '';
+  post_nr = '';
+  sted = '';
   kommentar = '';
   tilbud = true;
 
@@ -117,33 +117,33 @@ class RegistrerKunde extends Component {
                 </label>
                 <div className="col-sm-4">
                   <input
-                    id="gate"
-                    name="gate"
+                    id="adresse"
+                    name="adresse"
                     type="text"
                     placeholder="Gateadresse"
                     className="form-control input-md"
-                    value={this.gate}
-                    onChange={event => (this.gate = event.target.value)}
+                    value={this.adresse}
+                    onChange={event => (this.adresse = event.target.value)}
                     required
                   />
                   <input
-                    id="postnr"
-                    name="postnr"
+                    id="post_nr"
+                    name="post_nr"
                     type="number"
                     placeholder="Postnummer"
                     className="form-control input-md"
-                    value={this.postnr}
-                    onChange={event => (this.postnr = event.target.value)}
+                    value={this.post_nr}
+                    onChange={event => (this.post_nr = event.target.value)}
                     required
                   />
                   <input
-                    id="by"
-                    name="by"
+                    id="sted"
+                    name="sted"
                     type="text"
                     placeholder="Poststed"
                     className="form-control input-md"
-                    value={this.by}
-                    onChange={event => (this.by = event.target.value)}
+                    value={this.sted}
+                    onChange={event => (this.sted = event.target.value)}
                     required
                   />
                 </div>
@@ -273,15 +273,20 @@ class Kundesøk extends Component {
   etternavn = '';
   mail = '';
   mobil = '';
-  gateadresse = '';
+  adresse = '';
   post_nr = '';
-  by = '';
+  sted = '';
   kommentar = '';
 
   render() {
     return (
       <>
         {/* Søkefunksjon for å søke etter registrerte kunder */}
+        <br />
+        <div className="col-md-4">
+          <h4>Søk etter kunde</h4>
+        </div>
+
         <div className="col-md-4">
           <br />
           <input type="text" name="sok" id="sok" placeholder="Søk i kundedatabasen" />
@@ -331,6 +336,10 @@ class Sykkel extends Component {
         {/*
     Skjema for valg av sykkel
     */}
+        <br />
+        <div className="col-md-4">
+          <h4>Velg sykkel</h4>
+        </div>
         <div>
           <div className="form-group">
             <div className="col-sm-4">
@@ -340,7 +349,7 @@ class Sykkel extends Component {
                 className="form-control"
                 onChange={event => (this.valg = event.target.value)}
               >
-                <option defaultValue="">Sorter etter</option>
+                <option value="">Sorter etter</option>
                 <option value={1}>Alfabetisk</option>
                 <option value={2}>Pris</option>
               </select>
@@ -354,7 +363,7 @@ class Sykkel extends Component {
                 className="form-control"
                 onChange={event => (this.valg = event.target.value)}
               >
-                <option defaultValue="">Sykkeltype</option>
+                <option value="">Sykkeltype</option>
                 <option value={3}>Terrengsykler</option>
                 <option value={4}>Barnesykler</option>
                 <option value={5}>Bysykler</option>
@@ -390,6 +399,10 @@ class Ekstrautstyr extends Component {
         {/*
     Skjema for valg av ekstrautstyr
     */}
+        <br />
+        <div className="col-md-4">
+          <h4>Velg ekstrautstyr</h4>
+        </div>
         <div>
           <div className="form-group">
             <div className="col-sm-4">
@@ -399,7 +412,7 @@ class Ekstrautstyr extends Component {
                 className="form-control"
                 onChange={event => (this.evalg = event.target.value)}
               >
-                <option defaultValue="">Sorter etter</option>
+                <option value="">Sorter etter</option>
                 <option value={1}>Alfabetisk</option>
                 <option value={2}>Pris</option>
               </select>
@@ -413,7 +426,7 @@ class Ekstrautstyr extends Component {
                 className="form-control"
                 onChange={event => (this.evalg = event.target.value)}
               >
-                <option defaultValue="">Kompatibel med</option>
+                <option value="">Kompatibel med</option>
                 <option value={3}>Terrengsykler</option>
                 <option value={4}>Barnesykler</option>
                 <option value={5}>Bysykler</option>
@@ -444,20 +457,22 @@ class Handlekurv extends Component {
           <h1>Handlekurv</h1>
         </div>
         <div className="container-fluid">
-          <div className="row" style={{backgroundColor:"lavender", fontWeight: "bold"}}>
+          <div className="row" style={{ backgroundColor: 'lavender', fontWeight: 'bold' }}>
             <div className="col">Nr.</div>
             <div className="col">Produktnavn</div>
             <div className="col">Antall</div>
             <div className="col">Pris</div>
-            <div className="col"></div>
+            <div className="col" />
           </div>
           {handlekurv.map((prod, index) => (
-            <div key={index} className="row" style={(index%2 != 0) ? {backgroundColor:"lavender"} : {}}>
-              <div className="col">{index+1}</div>
+            <div key={index} className="row" style={index % 2 != 0 ? { backgroundColor: 'lavender' } : {}}>
+              <div className="col">{index + 1}</div>
               <div className="col">{prod.navn}</div>
               <div className="col">{prod.antall}</div>
               <div className="col">{prod.pris}</div>
-              <div className="col"><button>Slett</button></div>
+              <div className="col">
+                <button>Slett</button>
+              </div>
             </div>
           ))}
         </div>
@@ -478,6 +493,10 @@ class Aktivebestillinger extends Component {
   render() {
     return (
       <>
+        <br />
+        <div className="col-md-4">
+          <h4>Aktive bestillinger</h4>
+        </div>
         <div>
           {this.bestilling.map(bestilling => (
             <Card key={bestilling.id} to={'/bestilling/' + bestilling.id}>
