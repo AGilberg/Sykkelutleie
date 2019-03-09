@@ -462,7 +462,9 @@ class Handlekurv extends Component {
           ))}
         </div>
         <br /><br />
-        <button className="btn btn-success" id="utsjekk">Utsjekk</button>
+        <NavBar.Link to="/utsjekk">
+          <button className="btn btn-success" id="utsjekk">Utsjekk</button>
+        </NavBar.Link>
       </>
     );
   }
@@ -493,4 +495,16 @@ class Produkt extends Component {
     return <div>produkt</div>;
   }
 }
-export { Kunde, RegistrerKunde, Kundesøk, Sykkel, Ekstrautstyr, Handlekurv, Aktivebestillinger, Produkt };
+
+class Utsjekk extends Component {
+  render() {
+    return (
+      <Card>
+        <div>Utsjekk</div>
+      </Card>
+    );
+  }
+}
+
+
+export { Kunde, RegistrerKunde, Kundesøk, Sykkel, Ekstrautstyr, Handlekurv, Aktivebestillinger, Produkt, Utsjekk };
