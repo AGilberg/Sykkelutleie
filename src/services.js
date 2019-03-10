@@ -74,7 +74,7 @@ class OrderService{
       }
   }
 
-  alterOrder(orderArr){//endre på en bestilling // FIXME: LAG 
+  alterOrder(orderArr){//endre på en bestilling // FIXME: LAG
     //alter
   }
 
@@ -231,3 +231,15 @@ export let kundeService = new KundeService();
 export let sykkelService = new SykkelService();
 export let vareService = new VareService();
 export let cartService = new CartService();
+
+class BestillingService {
+  getAktiveBestillinger(success) {
+    connection.query('select * from BESTILLING', (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
+}
+
+export let bestillingService = new BestillingService();
