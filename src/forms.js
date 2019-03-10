@@ -2,11 +2,18 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 import { handlekurv } from './index.js';
+import { bestillingService } from './services';
+import ReactDOM from 'react-dom';
+import { NavLink, HashRouter, Route } from 'react-router-dom';
+
+import createHashHistory from 'history/createHashHistory';
+const history = createHashHistory();
 
 class Kunde extends Component {
   render() {
     return (
       <>
+        {/* Linker til å legge til/søke opp kunder */}
         <br />
         <Card>
           <NavBar.Link to="/registrerKunde">Registrer kunde</NavBar.Link>
@@ -37,8 +44,6 @@ class RegistrerKunde extends Component {
       <>
         {/*
   Skjema for registrering av kunde.
-  Tilpasset for å brukes med Bootstrap,
-  om vi velger å gjøre det.
   */}
         <div>
           <form className="form-horizontal">
@@ -241,7 +246,7 @@ class RegistrerKunde extends Component {
                       </button>
                     </Column>
                     <Column right>
-                      <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.cancel}>
+                      <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
                         Tilbake
                       </button>
                     </Column>
@@ -260,10 +265,8 @@ class RegistrerKunde extends Component {
     Service for å legge til kunden i databasen. Rikard, U fix?
     */
   }
-  cancel() {
-    /*
-    Service for å gå tilbake til "kunde". Rikard, U fix?
-    */
+  tilbake() {
+    history.push('/kunde');
   }
 }
 
@@ -297,7 +300,7 @@ class Kundesøk extends Component {
         <div id="kunderesultat">{this.kunde}</div>
         <br />
         <div className="col-md-4">
-          <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.cancel}>
+          <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
             Tilbake
           </button>
         </div>
@@ -312,10 +315,8 @@ class Kundesøk extends Component {
   // sok() {
   //rik fix
   // }
-  cancel() {
-    /*
-    Service for å gå tilbake til "kunde". Rikard, U fix?
-    */
+  tilbake() {
+    history.push('/kunde');
   }
 }
 
@@ -334,7 +335,7 @@ class Sykkel extends Component {
     return (
       <>
         {/*
-    Skjema for valg av sykkel
+    Skjema for søk og valg av sykkel
     */}
         <br />
         <div className="col-md-4">
@@ -351,7 +352,7 @@ class Sykkel extends Component {
               >
                 <option value="">Sorter etter</option>
                 <option value={1}>Alfabetisk</option>
-                <option value={2}>Pris</option>
+                <option value={2}>Pris (lavest først)</option>
               </select>
             </div>
           </div>
@@ -374,7 +375,7 @@ class Sykkel extends Component {
           </div>
         </div>
         <div id="sykkelvisning">
-          <NavBar.Link to="/produkt">{this.valg}</NavBar.Link>
+          <NavBar.Link to="/produktsykkel">{this.valg}</NavBar.Link>
         </div>
       </>
     );
@@ -397,7 +398,7 @@ class Ekstrautstyr extends Component {
     return (
       <>
         {/*
-    Skjema for valg av ekstrautstyr
+    Skjema for søk og valg av ekstrautstyr
     */}
         <br />
         <div className="col-md-4">
@@ -414,7 +415,7 @@ class Ekstrautstyr extends Component {
               >
                 <option value="">Sorter etter</option>
                 <option value={1}>Alfabetisk</option>
-                <option value={2}>Pris</option>
+                <option value={2}>Pris (lavest først)</option>
               </select>
             </div>
           </div>
@@ -437,7 +438,7 @@ class Ekstrautstyr extends Component {
           </div>
         </div>
         <div id="utstyrvisning">
-          <NavBar.Link to="/produkt">{this.evalg}</NavBar.Link>
+          <NavBar.Link to="/produktutstyr">{this.evalg}</NavBar.Link>
         </div>
       </>
     );
@@ -453,6 +454,7 @@ class Handlekurv extends Component {
   render() {
     return (
       <>
+        {/* Viser hva som er valgt til bestillingen */}
         <div>
           <h1>Handlekurv</h1>
         </div>
@@ -476,9 +478,12 @@ class Handlekurv extends Component {
             </div>
           ))}
         </div>
-        <br /><br />
+        <br />
+        <br />
         <NavBar.Link to="/utsjekk">
-          <button className="btn btn-success" id="utsjekk">Utsjekk</button>
+          <button className="btn btn-success" id="utsjekk">
+            Utsjekk
+          </button>
         </NavBar.Link>
       </>
     );
@@ -489,41 +494,94 @@ class Aktivebestillinger extends Component {
   innhold = [];
   bestilling = [];
   bestillingsdato = '';
-  leie_beskrivelse = '';
+  beskrivelse = '';
   render() {
     return (
       <>
+        {/* Visning av bestillinger som har status som aktiv (altså ikke tidligere gjennomførte leieforhold) */}
         <br />
-        <div className="col-md-4">
-          <h4>Aktive bestillinger</h4>
-        </div>
-        <div>
-          {this.bestilling.map(bestilling => (
-            <Card key={bestilling.id} to={'/bestilling/' + bestilling.id}>
-              {bestilling.leie_beskrivelse}
-            </Card>
-          ))}
-        </div>
+        <Card title="Aktive bestillinger">
+          <List>
+            {this.bestilling.map(bestilling => (
+              <List.Item key={bestilling.bestilling_id} to={'/aktivebestillinger/' + bestilling.bestilling_id}>
+                {bestilling.beskrivelse}
+              </List.Item>
+            ))}
+          </List>
+        </Card>
       </>
     );
   }
-}
-
-class Produkt extends Component {
-  render() {
-    return <div>produkt</div>;
+  mounted() {
+    bestillingService.getAktiveBestillinger(bestilling => {
+      this.bestilling = bestilling;
+    });
   }
 }
 
-class Utsjekk extends Component {
+class ProduktUtstyr extends Component {
   render() {
     return (
-      <Card>
-        <div>Utsjekk</div>
-      </Card>
+      <>
+        {/* Visning av et enkelt produkt (ekstrautstyr)*/}
+        <div>produkt</div>
+        <Row>
+          <Column right>
+            <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
+              Tilbake
+            </button>
+          </Column>
+        </Row>
+      </>
     );
+  }
+  tilbake() {
+    history.push('/ekstrautstyr');
   }
 }
 
+class ProduktSykkel extends Component {
+  render() {
+    return (
+      <>
+        {/* Visning av et enkelt produkt (sykler)*/}
+        <div>produkt</div>
+        <Row>
+          <Column right>
+            <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
+              Tilbake
+            </button>
+          </Column>
+        </Row>
+      </>
+    );
+  }
+  tilbake() {
+    history.push('/sykkel');
+  }
+}
 
-export { Kunde, RegistrerKunde, Kundesøk, Sykkel, Ekstrautstyr, Handlekurv, Aktivebestillinger, Produkt, Utsjekk };
+export {
+  Kunde,
+  RegistrerKunde,
+  Kundesøk,
+  Sykkel,
+  Ekstrautstyr,
+  Handlekurv,
+  Aktivebestillinger,
+  ProduktUtstyr,
+  ProduktSykkel
+};
+
+ReactDOM.render(
+  <HashRouter>
+    <div>
+      <Route exact path="/produktutstyr" component={ProduktUtstyr} />
+      <Route exact path="/produktsykkel" component={ProduktSykkel} />
+      <Route exact path="/sykkel" component={Sykkel} />
+      <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
+      <Route exact path="/kunde" component={Kunde} />
+    </div>
+  </HashRouter>,
+  document.getElementById('root')
+);

@@ -10,8 +10,8 @@ import {
   Ekstrautstyr,
   Handlekurv,
   Aktivebestillinger,
-  Produkt,
-  Utsjekk
+  ProduktUtstyr,
+  ProduktSykkel
 } from './forms.js';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 
@@ -59,8 +59,8 @@ ReactDOM.render(
       <Route exact path="/sykkel" component={Sykkel} />
       <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
       <Route exact path="/handlekurv" component={Handlekurv} />
-      <Route exact path="/produkt" component={Produkt} />
-      <Route exact path="/utsjekk" component={Utsjekk} />
+      <Route exact path="/produktutstyr" component={ProduktUtstyr} />
+      <Route exact path="/produktsykkel" component={ProduktSykkel} />
     </div>
   </HashRouter>,
   document.getElementById('root')
