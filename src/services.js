@@ -38,7 +38,7 @@ class LogService{
   }
 }
 
-class OrderService{
+class BestillingService{
   addOrder(cartArr, ansvarlig, status, leieStart, leieSlutt, beskrivelse){//legg til en ny bestilling i databasen
     let sum = 0;//regn ut summen, ønskelig fordi priser kan endre seg
     let d = new Date();
@@ -116,14 +116,20 @@ class OrderService{
   getOrder(){//søk etter en ordre
     //dato, ansvarlig
   }
+  getAktiveBestillinger(success) {
+    connection.query('select * from BESTILLING', (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
 }
 
 class KundeService{
-    addNewKunde(fornavn, etternavn, mail, tlf, adresse, post_nr, sted, fodt, kommentar){//legg til en ny kunde
+    addNewKunde(fornavn, etternavn, mail, tlf, adresse, postnr, sted, fodt, kommentar){//legg til en ny kunde
       connection.query(
-      'insert into PERSON (person_id, fornavn, etternavn, mail, tlf, adresse, post_nr, sted, fodt, kommentar)
-      values (?,?,?,?,?,?,?,?,?,?)',
-      [null, fornavn, etternavn, mail, tlf, adresse, post_nr, sted, fodt, kommentar],
+      'insert into PERSON (person_id, fornavn, etternavn, mail, tlf, adresse, post_nr, sted, fodt, kommentar) values (?,?,?,?,?,?,?,?,?,?)',
+      [null, fornavn, etternavn, mail, tlf, adresse, postnr, sted, fodt, kommentar],
       (error, results) => {
       if(error) return console.error(error);
 
@@ -168,6 +174,7 @@ class KundeService{
             success(results);
           });
       }
+    }
 }
 
 class SykkelService{
@@ -191,6 +198,7 @@ class SykkelService{
           success(results);
         });
     }
+  }
 }
 
 class VareService{
@@ -210,8 +218,8 @@ class CartService{
 
   }
   */
-  constructor(cart){
-    this.cart = cart[];
+  constructor(){
+    this.cart = [];
   }
   removeCart(){
     cart = [];
@@ -226,20 +234,8 @@ class CartService{
 
 /*EXPORT DATA HERE*/
 export let logService = new LogService();
-export let orderService = new OrderService();
+export let bestillingService = new BestillingService();
 export let kundeService = new KundeService();
 export let sykkelService = new SykkelService();
 export let vareService = new VareService();
 export let cartService = new CartService();
-
-class BestillingService {
-  getAktiveBestillinger(success) {
-    connection.query('select * from BESTILLING', (error, results) => {
-      if (error) return console.error(error);
-
-      success(results);
-    });
-  }
-}
-
-export let bestillingService = new BestillingService();
