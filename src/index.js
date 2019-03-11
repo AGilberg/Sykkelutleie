@@ -2,17 +2,15 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
-import {
-  Kunde,
-  RegistrerKunde,
-  Kundesøk,
-  Sykkel,
-  Ekstrautstyr,
-  Handlekurv,
-  Aktivebestillinger,
-  ProduktUtstyr,
-  ProduktSykkel
-} from './forms.js';
+import { AktiveBestillinger } from './components/aktiveBestillinger.js';
+import { Ekstrautstyr } from './components/ekstrautstyr.js';
+import { Handlekurv } from './components/handlekurv.js';
+import { Kunde } from './components/kunde.js';
+import { Kundesøk } from './components/kundesok.js';
+import { ProduktSykkel } from './components/produktSykkel.js';
+import { ProduktUtstyr } from './components/produktUtstyr.js';
+import { RegistrerKunde } from './components/registrerKunde.js';
+import { Sykkel } from './components/sykkel.js';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 
 import createHashHistory from 'history/createHashHistory';
@@ -52,7 +50,7 @@ ReactDOM.render(
     <div>
       <Menu />
       <Route exact path="/" component={Home} />
-      <Route exact path="/aktivebestillinger" component={Aktivebestillinger} />
+      <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
       <Route exact path="/kunde" component={Kunde} />
       <Route exact path="/kundesøk" component={Kundesøk} />
       <Route exact path="/registrerKunde" component={RegistrerKunde} />
