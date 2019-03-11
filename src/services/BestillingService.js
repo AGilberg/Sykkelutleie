@@ -1,4 +1,4 @@
-import { connection } from './mysql_connection';
+import { connection } from '../mysql_connection';
 
 class BestillingService{
   addOrder(cartArr, ansvarlig, status, leieStart, leieSlutt, beskrivelse){//legg til en ny bestilling i databasen

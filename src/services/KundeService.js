@@ -1,4 +1,4 @@
-import { connection } from './mysql_connection';
+import { connection } from '../mysql_connection';
 
 class KundeService{
     addNewKunde(fornavn, etternavn, mail, tlf, adresse, postnr, sted, fodt, kommentar, success){//legg til en ny kunde

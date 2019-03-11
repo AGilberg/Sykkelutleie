@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Card, List } from '../widgets';
 import { NavLink } from 'react-router-dom';
-import { bestillingService } from '../services';
+import { bestillingService } from '../services/BestillingService.js';
 
 class AktiveBestillinger extends Component {
   innhold = [];

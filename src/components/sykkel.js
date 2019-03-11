@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { sykkelService } from '../services';
+import { sykkelService } from '../services/SykkelService.js';
 
 class Sykkel extends Component {
   pris = '';

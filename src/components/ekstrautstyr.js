@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
-import { sykkelService, vareService } from '../services';
+import { sykkelService } from '../services/SykkelService.js';
+import { vareService } from '../services/VareService.js';
 
 class Ekstrautstyr extends Component {
   unavn = '';

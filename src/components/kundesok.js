@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { kundeService } from '../services';
+import { kundeService } from '../services/KundeService.js';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
