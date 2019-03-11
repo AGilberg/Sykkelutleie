@@ -126,26 +126,40 @@ class BestillingService{
 }
 
 class KundeService{
-    addNewKunde(fornavn, etternavn, mail, tlf, adresse, postnr, sted, fodt, kommentar){//legg til en ny kunde
+    addNewKunde(fornavn, etternavn, mail, tlf, adresse, postnr, sted, fodt, kommentar, success){//legg til en ny kunde
       connection.query(
-      'insert into PERSON (person_id, fornavn, etternavn, mail, tlf, adresse, post_nr, sted, fodt, kommentar) values (?,?,?,?,?,?,?,?,?,?)',
-      [null, fornavn, etternavn, mail, tlf, adresse, postnr, sted, fodt, kommentar],
+      'insert into PERSON values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [fornavn, etternavn, mail, tlf, adresse, postnr, sted, fodt, kommentar],
       (error, results) => {
       if(error) return console.error(error);
 
       success("Registrering vellykket");
     });
-    }//legg til ekstrainfo pga kunde?
+    }
 
-    addKundeToOrder(){//legg til en kunde som ansvarlig for et kjøp
+    removeKunde(kundeId){
 
     }
+
+    addKundeToOrder(kundeId){//legg til en kunde som ansvarlig for et kjøp
+    }
+    //egentlig en lokal funksjon?
 
     removeKundeFromOrder(){//fjern en kunde som ansvarlig for et kjøp
-
+      //egentlig en lokal funksjon?
     }
 
-    getKunde(metode,fornavn, etternavn, mobilnr, mail){
+    getKunder(success){
+      connection.query(
+        'select * from PERSON',
+          (error, results) => {
+          if(error) return console.error(error);
+
+          success(results);
+        });
+    }
+
+    getKunde(metode, fornavn, etternavn, mobilnr, mail){
       switch (metode) {
         case "navn":
         connection.query(
@@ -178,7 +192,16 @@ class KundeService{
 }
 
 class SykkelService{
-  getSykkel(metode, navn, type){
+  getSykler(success){
+    connection.query(
+      'select * from SYKKELTYPE',
+        (error, results) => {
+        if(error) return console.error(error);
+        success(results);
+      });
+  }
+
+  getSykkel(metode, navn, type, success){
     switch (metode) {
       case "navn":
       connection.query(
@@ -199,11 +222,63 @@ class SykkelService{
         });
     }
   }
+  sortSykkelSok(metode, sykkelArr){//retuner en sortert array
+    switch (metode) {
+      case "alfAZ":
+
+        break;
+      case "alfZA":
+        break;
+      case "prisLH":
+        break;
+      case "prisHL":
+        break;
+      default:// FIXME: FJERN FØR FERDIG?
+        console.log("ingen metode valgt");
+    }
+      return sykkelArr;
+  }
+
+  getSykkelSorteringer(){
+    let options = [];
+      options[0] = ["Alfabetisk A-Z", "alfAZ"];
+      options[1] = ["Alfabetisk Z-A", "alfZA"];
+      options[2] = ["Pris, lav-høy", "prisLH"];
+      options[3] = ["Pris, høy-lav", "prisHL"];
+    return options;
+  }
+
+  getSykkelklasser(success){
+    connection.query(
+      'select * from KLASSE',
+        (error, results) => {
+        if(error) return console.error(error);
+
+        success(results);
+      });
+  }
 }
 
 class VareService{
-  getVare(){//søk etter en vare
+  getVarer(success){
+    connection.query(
+      'select * from UTSTYR',
+        (error, results) => {
+        if(error) return console.error(error);
 
+        success(results);
+      });
+  }
+  getVare(metode, navn, sykkeltype){//søk etter en vare
+
+  }
+  getSorteringer(){
+    let options = [];
+    options[0] = ["Alfabetisk A-Z", "alfAZ"];
+    options[1] = ["Alfabetisk Z-A", "alfZA"];
+    options[2] = ["Pris, lav-høy", "prisLH"];
+    options[3] = ["Pris, høy-lav", "prisHL"];
+    return options;
   }
 }
 

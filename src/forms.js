@@ -2,12 +2,19 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 import { handlekurv } from './index.js';
-import { bestillingService } from './services';
 import ReactDOM from 'react-dom';
-import { NavLink, HashRouter, Route } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
+import {
+  logService,
+  bestillingService,
+  kundeService,
+  sykkelService,
+  vareService,
+  cartService,
+} from './services';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
+
 
 class Kunde extends Component {
   render() {
@@ -42,34 +49,11 @@ class RegistrerKunde extends Component {
   render() {
     return (
       <>
-        {/*
-  Skjema for registrering av kunde.
-  */}
+        {/*  Skjema for registrering av kunde.*/}
         <div>
           <form className="form-horizontal">
             <fieldset>
               <legend>Registrer kunde</legend>
-              {/* Kjønn */}
-              <div className="form-group">
-                <label className="col-sm-4 control-label" htmlFor="kjonn">
-                  Kjønn
-                </label>
-                <div className="col-sm-4">
-                  <select
-                    id="kjonn"
-                    name="kjonn"
-                    className="form-control"
-                    value={this.kjonn}
-                    onChange={event => (this.kjonn = event.target.value)}
-                  >
-                    <option value={1}>Mann</option>
-                    <option value={2}>Kvinne</option>
-                    <option value={3}>Ikke-binær</option>
-                    <option value={4}>Apachehelikopter</option>
-                    <option value={5}>Vil ikke si det:(</option>
-                  </select>
-                </div>
-              </div>
               {/* Navn */}
               <div className="form-group">
                 <label className="col-sm-4 control-label" htmlFor="navn">
@@ -262,8 +246,10 @@ class RegistrerKunde extends Component {
 
   add() {
     /*
-    Service for å legge til kunden i databasen. Rikard, U fix?
+    // FIXME: valiedering av data før innsending
     */
+    kundeService.addNewKunde(this.fornavn, this.etternavn, this.mail, this.mobil, this.adresse, this.post_nr, this.sted, this.fodt, this.kommentar, () => {
+   });
   }
   tilbake() {
     history.push('/kunde');
@@ -271,7 +257,7 @@ class RegistrerKunde extends Component {
 }
 
 class Kundesøk extends Component {
-  person = [];
+  kunder = [];
   fornavn = '';
   etternavn = '';
   mail = '';
@@ -297,7 +283,22 @@ class Kundesøk extends Component {
             Søk
           </button>
         </div>
-        <div id="kunderesultat">{this.kunde}</div>
+        <div id="kunderesultat">
+          <div>
+          {this.kunder.map(kunde => (
+            <div key={kunde.person_id}>
+              <ul>
+                <li>Navn: {kunde.fornavn + " " + kunde.etternavn}</li>
+                <li>Mail: {kunde.mail}</li>
+                <li>Telefon: {kunde.tlf}</li>
+                <li>Adresse: {kunde.adresse + " " + kunde.post_nr + " " + kunde.sted}</li>
+                <li>Født: {kunde.fodt.toString()}</li>{/* FIXME:TRENGER FORMATERING */}
+                <li>Kommentar: {kunde.kommentar}</li>
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
         <br />
         <div className="col-md-4">
           <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
@@ -307,13 +308,13 @@ class Kundesøk extends Component {
       </>
     );
   }
-  // mounted() {
-  //   kundeService.getKunde(kunde => {
-  //     this.kunde = kunde;
-  //   });
-  // }
+  mounted() {
+    kundeService.getKunder(kunder => {
+      this.kunder = kunder;
+    });
+  }
   // sok() {
-  //rik fix
+  //// FIXME: rik fix
   // }
   tilbake() {
     history.push('/kunde');
@@ -328,15 +329,16 @@ class Sykkel extends Component {
   hjul_storrelse = '';
   ramme_storrelse = '';
   girsystem = '';
-  valg = '';
-  sykkel = [];
+  valgtSortering = '';
+  valgtKlasse = '';
+  sykler = [];
+  sorteringer = [];
+  sykkelklasser = [];
 
   render() {
     return (
       <>
-        {/*
-    Skjema for søk og valg av sykkel
-    */}
+        {/*Skjema for søk og valg av sykkel*/}
         <br />
         <div className="col-md-4">
           <h4>Velg sykkel</h4>
@@ -348,11 +350,12 @@ class Sykkel extends Component {
                 id="sorter"
                 name="sorter"
                 className="form-control"
-                onChange={event => (this.valg = event.target.value)}
-              >
-                <option value="">Sorter etter</option>
-                <option value={1}>Alfabetisk</option>
-                <option value={2}>Pris (lavest først)</option>
+                onChange={event => (this.valgtSortering = event.target.value)}
+              >{this.sorteringer.map(metode => (
+                  <option key={metode[1]}>
+                    {metode[0]}
+                  </option>
+              ))}
               </select>
             </div>
           </div>
@@ -362,37 +365,55 @@ class Sykkel extends Component {
                 id="typenavn"
                 name="typenavn"
                 className="form-control"
-                onChange={event => (this.valg = event.target.value)}
+                onChange={event => (this.valgtKlasse = event.target.value)}
               >
-                <option value="">Sykkeltype</option>
-                <option value={3}>Terrengsykler</option>
-                <option value={4}>Barnesykler</option>
-                <option value={5}>Bysykler</option>
-                <option value={6}>Racersykler</option>
-                <option value={7}>Damesykler</option>
+                {this.sykkelklasser.map(klasse => (
+                <option key={klasse.klasse_id}>
+                  {klasse.klassenavn}
+                </option>
+              ))}
               </select>
             </div>
           </div>
         </div>
         <div id="sykkelvisning">
-          <NavBar.Link to="/produktsykkel">{this.valg}</NavBar.Link>
+          {this.sykler.map(sykkel => (
+            <div key={sykkel.type_id}>
+              <ul>
+                <li><b>Navn: {sykkel.typenavn}</b></li>
+                <li>Hjulstørrelse: {sykkel.hjul_storrelse}</li>
+                <li>Rammestørrelse: {sykkel.ramme_storrelse}</li>
+                <li>Girsystem: {sykkel.girsystem}</li>
+                <li>Klasse: {sykkel.klasse_id}</li>
+              </ul>
+            </div>
+          ))}
         </div>
       </>
     );
   }
-  // mounted() {
-  //   sykkelService.getSykler(sykkel => {
-  //     this.sykkel = sykkel;
-  //   });
-  // }
+  mounted() {//de to kallene med SQL gir feilmeldingen
+    this.sorteringer = sykkelService.getSykkelSorteringer();
+
+    sykkelService.getSykler(sykler => {
+      this.sykler = sykler;
+    });
+
+    sykkelService.getSykkelklasser(klasser =>{
+      this.sykkelklasser = klasser;
+    });
+  }
 }
 
 class Ekstrautstyr extends Component {
-  evalg = '';
   unavn = '';
   antall = '';
   pris = '';
-  untstyr = [];
+  valgtKlasse = '';
+  valgtSortering = '';
+  utstyr = [];
+  sorteringer = [];
+  sykkelklasser = [];
 
   render() {
     return (
@@ -411,11 +432,14 @@ class Ekstrautstyr extends Component {
                 id="sorter"
                 name="sorter"
                 className="form-control"
-                onChange={event => (this.evalg = event.target.value)}
+                onChange={event => (this.valgtSortering = event.target.value)}
               >
                 <option value="">Sorter etter</option>
-                <option value={1}>Alfabetisk</option>
-                <option value={2}>Pris (lavest først)</option>
+                {this.sorteringer.map(metode => (
+                    <option key={metode[1]}>
+                      {metode[0]}
+                    </option>
+                ))}
               </select>
             </div>
           </div>
@@ -425,29 +449,44 @@ class Ekstrautstyr extends Component {
                 id="kompatibel"
                 name="kompatibel"
                 className="form-control"
-                onChange={event => (this.evalg = event.target.value)}
+                onChange={event => (this.valgtKlasse = event.target.value)}
               >
                 <option value="">Kompatibel med</option>
-                <option value={3}>Terrengsykler</option>
-                <option value={4}>Barnesykler</option>
-                <option value={5}>Bysykler</option>
-                <option value={6}>Racersykler</option>
-                <option value={7}>Damesykler</option>
+                {this.sykkelklasser.map(klasse => (
+                <option key={klasse.klasse_id}>
+                  {klasse.klassenavn}
+                </option>
+              ))}
               </select>
             </div>
           </div>
         </div>
         <div id="utstyrvisning">
-          <NavBar.Link to="/produktutstyr">{this.evalg}</NavBar.Link>
+          {this.utstyr.map(utstyr => (
+          <div key={utstyr.utstyr_id}>
+            <ul>
+              <li><b>Navn: {utstyr.navn}</b></li>
+              <li>Pris: {utstyr.pris}</li>
+              <li>Antall:{utstyr.antall} </li>
+            </ul>
+          </div>
+        ))}
+          {/*<NavBar.Link to="/produktutstyr"></NavBar.Link>*/}
         </div>
       </>
     );
   }
-  // mounted() {
-  //   utstyrService.getUtstyr(utstyr => {
-  //     this.utstyr = utstyr;
-  //   });
-  // }
+  mounted() {
+    vareService.getVarer(utstyr => {
+      this.utstyr = utstyr;
+    });
+
+    sykkelService.getSykkelklasser(result => {
+      this.sykkelklasser = result;
+    })
+
+    this.sorteringer = vareService.getSorteringer();
+  }
 }
 
 class Handlekurv extends Component {
@@ -572,16 +611,3 @@ export {
   ProduktUtstyr,
   ProduktSykkel
 };
-
-ReactDOM.render(
-  <HashRouter>
-    <div>
-      <Route exact path="/produktutstyr" component={ProduktUtstyr} />
-      <Route exact path="/produktsykkel" component={ProduktSykkel} />
-      <Route exact path="/sykkel" component={Sykkel} />
-      <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
-      <Route exact path="/kunde" component={Kunde} />
-    </div>
-  </HashRouter>,
-  document.getElementById('root')
-);
