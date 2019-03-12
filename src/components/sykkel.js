@@ -32,11 +32,11 @@ class Sykkel extends Component {
                 name="sorter"
                 className="form-control"
                 onChange={event => (this.valgtSortering = event.target.value)}
-              >{this.sorteringer.map(metode => (
-                  <option key={metode[1]}>
-                    {metode[0]}
-                  </option>
-              ))}
+              >
+                <option>Sorter etter</option>
+                {this.sorteringer.map(metode => (
+                  <option key={metode[1]}>{metode[0]}</option>
+                ))}
               </select>
             </div>
           </div>
@@ -48,11 +48,10 @@ class Sykkel extends Component {
                 className="form-control"
                 onChange={event => (this.valgtKlasse = event.target.value)}
               >
+                <option>Sykkeltype</option>
                 {this.sykkelklasser.map(klasse => (
-                <option key={klasse.klasse_id}>
-                  {klasse.klassenavn}
-                </option>
-              ))}
+                  <option key={klasse.klasse_id}>{klasse.klassenavn}</option>
+                ))}
               </select>
             </div>
           </div>
@@ -61,7 +60,9 @@ class Sykkel extends Component {
           {this.sykler.map(sykkel => (
             <div key={sykkel.type_id}>
               <ul>
-                <li><b>Navn: {sykkel.typenavn}</b></li>
+                <li>
+                  <b>Navn: {sykkel.typenavn}</b>
+                </li>
                 <li>Hjulstørrelse: {sykkel.hjul_storrelse}</li>
                 <li>Rammestørrelse: {sykkel.ramme_storrelse}</li>
                 <li>Girsystem: {sykkel.girsystem}</li>
@@ -73,14 +74,15 @@ class Sykkel extends Component {
       </>
     );
   }
-  mounted() {//de to kallene med SQL gir feilmeldingen
+  mounted() {
+    //de to kallene med SQL gir feilmeldingen
     this.sorteringer = sykkelService.getSykkelSorteringer();
 
     sykkelService.getSykler(sykler => {
       this.sykler = sykler;
     });
 
-    sykkelService.getSykkelklasser(klasser =>{
+    sykkelService.getSykkelklasser(klasser => {
       this.sykkelklasser = klasser;
     });
   }

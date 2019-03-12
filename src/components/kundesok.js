@@ -33,20 +33,21 @@ class Kundesøk extends Component {
         </div>
         <div id="kunderesultat">
           <div>
-          {this.kunder.map(kunde => (
-            <div key={kunde.person_id}>
-              <ul>
-                <li>Navn: {kunde.fornavn + " " + kunde.etternavn}</li>
-                <li>Mail: {kunde.mail}</li>
-                <li>Telefon: {kunde.tlf}</li>
-                <li>Adresse: {kunde.adresse + " " + kunde.post_nr + " " + kunde.sted}</li>
-                <li>Født: {kunde.fodt.toString()}</li>{/* FIXME:TRENGER FORMATERING */}
-                <li>Kommentar: {kunde.kommentar}</li>
-              </ul>
-            </div>
-          ))}
+            {this.kunder.map(kunde => (
+              <div key={kunde.person_id}>
+                <ul>
+                  <li>Navn: {kunde.fornavn + ' ' + kunde.etternavn}</li>
+                  <li>Mail: {kunde.mail}</li>
+                  <li>Telefon: {kunde.tlf}</li>
+                  <li>Adresse: {kunde.adresse + ' ' + kunde.post_nr + ' ' + kunde.sted}</li>
+                  <li>Født: {kunde.fodt.toString()}</li>
+                  {/* FIXME:TRENGER FORMATERING */}
+                  <li>Kommentar: {kunde.kommentar}</li>
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
         <br />
         <div className="col-md-4">
           <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
