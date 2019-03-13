@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { AktiveBestillinger } from './components/aktiveBestillinger.js';
+import { BestillingDetails } from './components/bestillingdetails.js';
 import { Ekstrautstyr } from './components/ekstrautstyr.js';
 import { Handlekurv } from './components/handlekurv.js';
 import { Kunde } from './components/kunde.js';
@@ -51,6 +52,7 @@ ReactDOM.render(
       <Menu />
       <Route exact path="/" component={Home} />
       <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
+      <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
       <Route exact path="/kunde" component={Kunde} />
       <Route exact path="/kundesøk" component={Kundesøk} />
       <Route exact path="/registrerKunde" component={RegistrerKunde} />
