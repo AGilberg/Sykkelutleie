@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
+import Button from 'react-bootstrap/Button'
 
 class Sykkel extends Component {
   pris = '';
@@ -56,21 +59,26 @@ class Sykkel extends Component {
             </div>
           </div>
         </div>
-        <div id="sykkelvisning">
+        <CardDeck id="sykkelvisning">
           {this.sykler.map(sykkel => (
             <div key={sykkel.type_id}>
-              <ul>
-                <li>
-                  <b>Navn: {sykkel.typenavn}</b>
-                </li>
-                <li>Hjulstørrelse: {sykkel.hjul_storrelse}</li>
-                <li>Rammestørrelse: {sykkel.ramme_storrelse}</li>
-                <li>Girsystem: {sykkel.girsystem}</li>
-                <li>Klasse: {sykkel.klasse_id}</li>
-              </ul>
+              <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src="images/test.png" />
+                <Card.Body>
+                  <Card.Title>{sykkel.typenavn}</Card.Title>
+                  <Card.Text>
+                    Hjulstørrelse: {sykkel.hjul_storrelse}<br />
+                    Rammestørrelse: {sykkel.ramme_storrelse}<br />
+                    Girsystem: {sykkel.girsystem}<br />
+                    Klasse: {sykkel.klasse_id}
+                  </Card.Text>
+                  <Button variant="primary">Legg til i handlekurv</Button>
+                </Card.Body>
+              </Card>
+              <br />
             </div>
           ))}
-        </div>
+        </CardDeck>
       </>
     );
   }
