@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
+import { Row, Column } from '../widgets';
 import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck';
 import Button from 'react-bootstrap/Button';
