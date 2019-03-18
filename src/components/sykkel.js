@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
-import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
+import Button from 'react-bootstrap/Button';
 
 class Sykkel extends Component {
   pris = '';
@@ -67,9 +67,12 @@ class Sykkel extends Component {
                 <Card.Body>
                   <Card.Title>{sykkel.typenavn}</Card.Title>
                   <Card.Text>
-                    Hjulstørrelse: {sykkel.hjul_storrelse}<br />
-                    Rammestørrelse: {sykkel.ramme_storrelse}<br />
-                    Girsystem: {sykkel.girsystem}<br />
+                    Hjulstørrelse: {sykkel.hjul_storrelse}
+                    <br />
+                    Rammestørrelse: {sykkel.ramme_storrelse}
+                    <br />
+                    Girsystem: {sykkel.girsystem}
+                    <br />
                     Klasse: {sykkel.klasse_id}
                   </Card.Text>
                   <Button variant="primary">Legg til i handlekurv</Button>
@@ -79,6 +82,46 @@ class Sykkel extends Component {
             </div>
           ))}
         </CardDeck>
+        <Row>
+          <Column>
+            <div id="img">
+              <ul className="flex-container wrap">
+                <li className="flex-item">
+                  <img src="lbike.jpg" alt="bike" />
+                  Voksen
+                </li>
+                <li className="flex-item">
+                  <img src="bbike.jpg" alt="bike" />
+                  Barnesykkel
+                </li>
+                <li className="flex-item">
+                  <img src="sbike.jpg" alt="bike" />
+                  Sykkel
+                </li>
+                <li className="flex-item">
+                  <img src="lbike.jpg" alt="bike" />
+                  Voksen
+                </li>
+                <li className="flex-item">
+                  <img src="lbike.jpg" alt="bike" />
+                  Tandem
+                </li>
+                <li className="flex-item">
+                  <img src="sbike.jpg" alt="bike" />
+                  Racer
+                </li>
+                <li className="flex-item">
+                  <img src="lbike.jpg" alt="bike" />
+                  Trehjul
+                </li>
+                <li className="flex-item">
+                  <img src="bbike.jpg" alt="bike" />
+                  Vanlig
+                </li>
+              </ul>
+            </div>
+          </Column>
+        </Row>
       </>
     );
   }

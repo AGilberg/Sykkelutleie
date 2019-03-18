@@ -128,11 +128,22 @@ class ButtonLight extends Component {
   }
 }
 
+class Img extends Component {
+  render() {
+    return (
+      <button type="button" classname="img" src={this.props.src} onclick={this.props.onClick}>
+        {this.props.children}
+      </button>
+    );
+  }
+}
+
 // Renders a button using Bootstrap styles
 export class Button {
   static Success = ButtonSuccess;
   static Danger = ButtonDanger;
   static Light = ButtonLight;
+  static Img = Img;
 }
 
 // Renders a form label using Bootstrap styles
