@@ -40,18 +40,12 @@ class BestillingDetails extends Component {
   render() {
     if (!this.bestill) return null;
 
-    let dag = getDate();
-    let mnd = getMonth();
-    let aar = getYear();
-
-    let dato = dag + mnd + aar;
-
     return (
       <div>
         <Card title="Om bestillingen">
           <Row>
             <Column width={3}>Startdato:</Column>
-            <Column>{this.bestill.leie_start.toString(dato)}</Column>
+            <Column>{this.bestill.leie_start.toString()}</Column>
           </Row>
           <Row>
             <Column width={3}>Sluttdato:</Column>
