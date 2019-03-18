@@ -57,55 +57,42 @@ class Ekstrautstyr extends Component {
           </div>
         </div>
         <div id="img">
-          bilde[] bilde[0]
           <ul className="flex-container wrap">
             <li className="flex-item">
-              <img src="bhelmet.jpg" alt="helmet" width="150px" height="150px" />
-              Voksen
+              <img src="images/SmåbarnsHjelm.jpg" alt="helmet" width="150px" height="150px" />
+              Småbarnshjelm
             </li>
             <li className="flex-item">
-              <img src="lhelmet.jpg" alt="helmet" width="150px" height="150px" />
-              Barn
+              <img src="images/BarneHjelm.jpg" alt="helmet" width="150px" height="150px" />
+              Barnehjelm
             </li>
             <li className="flex-item">
-              <img src="vhelmet.jpg" alt="helmet" width="150px" height="150px" />
-              Vanlig
+              <img src="images/VoksenHjelm.jpg" alt="helmet" width="150px" height="150px" />
+              Voksenhjelm
             </li>
             <li className="flex-item">
-              <img src="lhelmet.jpg" alt="helmet" width="150px" height="150px" />
-              Voksen
+              <img src="images/HengeLås.jpg" alt="helmet" width="150px" height="150px" />
+              Hengelås
             </li>
             <li className="flex-item">
-              <img src="bhelmet.jpg" alt="helmet" width="150px" height="150px" />
-              Tandem
+              <img src="images/SykkelLås.jpg" alt="helmet" width="150px" height="150px" />
+              Sykkellås
             </li>
             <li className="flex-item">
-              <img src="vhelmet.jpg" alt="helmet" width="150px" height="150px" />
-              Racer
+              <img src="images/TauLås.jpg" alt="helmet" width="150px" height="150px" />
+              Taulås
             </li>
             <li className="flex-item">
-              <img src="lhelmet.jpg" alt="helmet" width="150px" height="150px" />
-              Trehjul
+              <img src="images/FritidsLykt.jpg" alt="helmet" width="150px" height="150px" />
+              Fritidslykt
             </li>
             <li className="flex-item">
-              <img src="vhelmet.jpg" alt="helmet" width="150px" height="150px" />
-              Vanlig
+              <img src="images/SportsLykt.jpg" alt="helmet" width="150px" height="150px" />
+              Sportslykt
             </li>
             <li className="flex-item">
-              <img src="lkey.jpg" alt="key" width="150px" height="150px" />
-              Racer
-            </li>
-            <li className="flex-item">
-              <img src="mkey.jpg" alt="key" width="150px" height="150px" />
-              Trehjul
-            </li>
-            <li className="flex-item">
-              <img src="skey.jpg" alt="key" width="150px" height="150px" />
-              Vanlig
-            </li>
-            <li className="flex-item">
-              <img src="llight.jpg" alt="light" width="150px" height="150px" />
-              Vanlig
+              <img src="images/SolcelleLykt.jpg" alt="key" width="150px" height="150px" />
+              Solcellelykt
             </li>
           </ul>
         </div>

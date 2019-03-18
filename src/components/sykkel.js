@@ -63,36 +63,36 @@ class Sykkel extends Component {
             <div id="img">
               <ul className="flex-container wrap">
                 <li className="flex-item">
-                  <img src="lbike.jpg" alt="bike" />
-                  Voksen
+                  <img src="images/VoksenSykkel.jpg" alt="bike" />
+                  Voksensykkel
                 </li>
                 <li className="flex-item">
-                  <img src="bbike.jpg" alt="bike" />
+                  <img src="images/FamilieSykkel.jpg" alt="bike" width="150px" height="150px" />
+                  Familiesykkel
+                </li>
+                <li className="flex-item">
+                  <img src="images/BarneSykkel.jpg" alt="bike" width="150px" height="150px" />
                   Barnesykkel
                 </li>
                 <li className="flex-item">
-                  <img src="sbike.jpg" alt="bike" />
-                  Sykkel
+                  <img src="images/RacingSykkel.jpg" alt="bike" width="150px" height="150px" />
+                  Racingsykkel
                 </li>
                 <li className="flex-item">
-                  <img src="lbike.jpg" alt="bike" />
-                  Voksen
+                  <img src="images/Terrengssykkel.jpg" alt="bike" width="150px" height="150px" />
+                  Terrengssykkel
                 </li>
                 <li className="flex-item">
-                  <img src="lbike.jpg" alt="bike" />
-                  Tandem
+                  <img src="images/BySykkel.jpg" alt="bike" width="150px" height="150px" />
+                  Bysykkel
                 </li>
                 <li className="flex-item">
-                  <img src="sbike.jpg" alt="bike" />
-                  Racer
+                  <img src="images/ElSykkel.jpg" alt="bike" width="150px" height="150px" />
+                  Elsykkel
                 </li>
                 <li className="flex-item">
-                  <img src="lbike.jpg" alt="bike" />
-                  Trehjul
-                </li>
-                <li className="flex-item">
-                  <img src="bbike.jpg" alt="bike" />
-                  Vanlig
+                  <img src="images/TrehjulSykkel.jpg" alt="bike" width="150px" height="150px" />
+                  Trehjulsykkel
                 </li>
               </ul>
             </div>

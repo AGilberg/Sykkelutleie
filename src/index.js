@@ -45,6 +45,19 @@ class Home extends Component {
   }
 }
 
+class SideNav extends Component {
+  render() {
+    return (
+      <>
+        <NavBar.Link to="/kunde">Kunde</NavBar.Link>
+        <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
+        <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
+        <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
+      </>
+    );
+  }
+}
+
 ReactDOM.render(
   <HashRouter>
     <div>
