@@ -77,7 +77,6 @@ class Sykkel extends Component {
                     </li>
                   </Column>
                 </Row>
-
                 <li className="flex-item">
                   <img
                     src="images/FamilieSykkel.jpg"
@@ -166,16 +165,6 @@ class Sykkel extends Component {
 
     sykkelService.getSykkelklasser(klasser => {
       this.sykkelklasser = klasser;
-    });
-  }
-  // Img() {
-  //   sykkelService.getSykler(this.sykler, () => {
-  //     history.push('/SykkelDetails/' + this.props.match.params.id);
-  //   });
-  // }
-  getSykler() {
-    sykkelService.getSykler(this.sykler, () => {
-      history.push('/');
     });
   }
 }

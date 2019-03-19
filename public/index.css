@@ -22,7 +22,7 @@
   flex-wrap: wrap;
 }
 .wrap li {
-  background: #b0e0e6;
+  background: lavender;
 }
 
 .flex-item {
@@ -45,7 +45,7 @@ img:hover {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  border: 3px solid lightgrey;
+  border: 3px solid lavender;
 }
 
 #kunderesultat {
@@ -80,7 +80,7 @@ ol-md-4 {
   padding-top: 20px;
 }
 
-.sidenav {
+.SideNav {
   height: 100%;
   width: 200px;
   position: fixed;
@@ -92,7 +92,7 @@ ol-md-4 {
   padding-top: 20px;
 }
 
-.Sidenav a {
+.SideNav a {
   padding: 6px 6px 6px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -100,7 +100,7 @@ ol-md-4 {
   display: block;
 }
 
-.Sidenav a:hover {
+.SideNav a:hover {
   color: #f1f1f1;
 }
 
@@ -109,10 +109,10 @@ ol-md-4 {
 }
 
 @media screen and (max-height: 450px) {
-  .Sidenav {
+  .SideNav {
     padding-top: 15px;
   }
-  .Sidenav a {
+  .SideNav a {
     font-size: 18px;
   }
 }

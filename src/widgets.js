@@ -134,7 +134,7 @@ class ButtonLight extends Component {
 //       <li className="flex-item">
 //         <img type="img" className="img" src={this.props.src} onClick={this.props.onClick}>
 //           {this.props.children}
-//           Style={{ width: 150, heigth: 150 }}
+//           style={{ width: '150px', height: '150px' }}
 //         </img>
 //       </li>
 //     );

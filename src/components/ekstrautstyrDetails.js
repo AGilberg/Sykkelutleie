@@ -127,5 +127,3 @@ class EkstrautstyrDetails extends Component {
 }
 
 export { EkstrautstyrDetails };
-// <Route exacr path="/ekstrautstyrDetails/:ekstrautstyrDetails" component={EkstrautstyrDetails} />
-// <Route exacr path="/sykkel/:klasse_id" component={SykkelDetails} />
