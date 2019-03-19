@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { Card, List, Row, Column } from '../widgets';
+import Button from 'react-bootstrap/Button';
+import createHashHistory from 'history/createHashHistory';
+const history = createHashHistory();
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 
@@ -36,6 +39,7 @@ class AktiveBestillinger extends Component {
 
 class BestillingDetails extends Component {
   bestill = null;
+  kunde = null;
 
   render() {
     if (!this.bestill) return null;
@@ -57,7 +61,7 @@ class BestillingDetails extends Component {
           </Row>
           <Row>
             <Column width={3}>Samlet pris:</Column>
-            <Column />
+            <Column>{this.bestill.sum},-</Column>
           </Row>
           <Row>
             <Column width={3}>Beskrivelse:</Column>
@@ -67,7 +71,32 @@ class BestillingDetails extends Component {
             <Column width={3}>Bestilte varer:</Column>
             <Column />
           </Row>
+          <div>
+            <br />
+            <Row>
+              <Column right>
+                <Button id="slett" variant="danger">
+                  Slett bestilling
+                </Button>
+              </Column>
+              <Column left>
+                <Button id="endre" variant="success">
+                  Endre bestilling
+                </Button>
+              </Column>
+            </Row>
+          </div>
         </Card>
+        <div>
+          <br />
+          <Row>
+            <Column right>
+              <Button id="tilbake" variant="light" onClick={this.tilbake}>
+                Tilbake
+              </Button>
+            </Column>
+          </Row>
+        </div>
       </div>
     );
   }
@@ -75,6 +104,9 @@ class BestillingDetails extends Component {
     bestillingService.getOrder(this.props.match.params.bestilling_id, bestill => {
       this.bestill = bestill;
     });
+  }
+  tilbake() {
+    history.push('/aktivebestillinger');
   }
 }
 

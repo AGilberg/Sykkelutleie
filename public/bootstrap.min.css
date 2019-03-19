@@ -238,6 +238,12 @@ textarea {
   right: 0px;
   margin-right: 50px;
 }
+
+#addbestilling {
+  position: absolute;
+  right: 0px;
+  margin-right: 50px;
+}
 button,
 input {
   overflow: visible;

@@ -3,7 +3,7 @@ import { Component } from 'react-simplified';
 import { kundeService } from '../services/KundeService.js';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
 
 class Kundesøk extends Component {
   kunder = [];
@@ -70,18 +70,18 @@ class Kundesøk extends Component {
 
   sok() {
     var input, filter, type, div, ul, i, li, txt;
-    input = document.getElementById("sok");
+    input = document.getElementById('sok');
     filter = input.value.toUpperCase();
-    type = document.getElementById("kategori").value;
-    div = document.getElementById("kunderesultat").children[0];
-    ul = div.getElementsByTagName("ul");
+    type = document.getElementById('kategori').value;
+    div = document.getElementById('kunderesultat').children[0];
+    ul = div.getElementsByTagName('ul');
     for (i = 0; i < this.kunder.length; i++) {
-      li = ul[i].getElementsByTagName("li");
+      li = ul[i].getElementsByTagName('li');
       txt = li[type].textContent || li[type].innerText;
       if (txt.toUpperCase().indexOf(filter) > -1) {
-        ul[i].style.display = "";
+        ul[i].style.display = '';
       } else {
-        ul[i].style.display = "none";
+        ul[i].style.display = 'none';
       }
     }
   }
