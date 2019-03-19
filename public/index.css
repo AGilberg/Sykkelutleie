@@ -22,7 +22,7 @@
   flex-wrap: wrap;
 }
 .wrap li {
-  background: lightgrey;
+  background: #b0e0e6;
 }
 
 .flex-item {
@@ -35,11 +35,6 @@
 img:hover {
   opacity: 0.7;
   filter: alpha(opacity=1); /* For IE8 and earlier */
-}
-
-.img {
-  width: 150px;
-  height: 150px;
 }
 
 .form-horizontal {
@@ -85,7 +80,19 @@ ol-md-4 {
   padding-top: 20px;
 }
 
-.SideNav a {
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.Sidenav a {
   padding: 6px 6px 6px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -93,7 +100,7 @@ ol-md-4 {
   display: block;
 }
 
-.SideNav a:hover {
+.Sidenav a:hover {
   color: #f1f1f1;
 }
 
@@ -102,10 +109,10 @@ ol-md-4 {
 }
 
 @media screen and (max-height: 450px) {
-  .SideNav {
+  .Sidenav {
     padding-top: 15px;
   }
-  .SideNav a {
+  .Sidenav a {
     font-size: 18px;
   }
 }

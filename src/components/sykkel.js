@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
-import { Row, Column } from '../widgets';
+import { Row, Column, Button, Img } from '../widgets';
+import createHashHistory from 'history/createHashHistory';
+const history = createHashHistory();
 
 class Sykkel extends Component {
   pris = '';
@@ -57,41 +59,93 @@ class Sykkel extends Component {
             </div>
           </div>
         </div>
-
         <Row>
           <Column>
-            <div id="img">
+            <div className="img">
               <ul className="flex-container wrap">
+                <Row>
+                  <Column>
+                    <li className="flex-item">
+                      <img
+                        src="images/VoksenSykkel.jpg"
+                        onClick={() => history.push('/SykkelDetails')}
+                        alt="bike"
+                        width="150px"
+                        height="150px"
+                      />
+                      Voksensykkel
+                    </li>
+                  </Column>
+                </Row>
+
                 <li className="flex-item">
-                  <img src="images/VoksenSykkel.jpg" alt="bike" />
-                  Voksensykkel
-                </li>
-                <li className="flex-item">
-                  <img src="images/FamilieSykkel.jpg" alt="bike" width="150px" height="150px" />
+                  <img
+                    src="images/FamilieSykkel.jpg"
+                    onClick={() => history.push('/SykkelDetails')}
+                    alt="bike"
+                    width="150px"
+                    height="150px"
+                  />
                   Familiesykkel
                 </li>
                 <li className="flex-item">
-                  <img src="images/BarneSykkel.jpg" alt="bike" width="150px" height="150px" />
+                  <img
+                    src="images/BarneSykkel.jpg"
+                    onClick={() => history.push('/SykkelDetails')}
+                    alt="bike"
+                    width="150px"
+                    height="150px"
+                  />
                   Barnesykkel
                 </li>
                 <li className="flex-item">
-                  <img src="images/RacingSykkel.jpg" alt="bike" width="150px" height="150px" />
+                  <img
+                    src="images/RacingSykkel.jpg"
+                    onClick={() => history.push('/SykkelDetails')}
+                    alt="bike"
+                    width="150px"
+                    height="150px"
+                  />
                   Racingsykkel
                 </li>
                 <li className="flex-item">
-                  <img src="images/Terrengssykkel.jpg" alt="bike" width="150px" height="150px" />
+                  <img
+                    src="images/Terrengssykkel.jpg"
+                    onClick={() => history.push('/SykkelDetails')}
+                    alt="bike"
+                    width="150px"
+                    height="150px"
+                  />
                   Terrengssykkel
                 </li>
                 <li className="flex-item">
-                  <img src="images/BySykkel.jpg" alt="bike" width="150px" height="150px" />
+                  <img
+                    src="images/BySykkel.jpg"
+                    onClick={() => history.push('/SykkelDetails')}
+                    alt="bike"
+                    width="150px"
+                    height="150px"
+                  />
                   Bysykkel
                 </li>
                 <li className="flex-item">
-                  <img src="images/ElSykkel.jpg" alt="bike" width="150px" height="150px" />
+                  <img
+                    src="images/ElSykkel.jpg"
+                    onClick={() => history.push('/SykkelDetails')}
+                    alt="bike"
+                    width="150px"
+                    height="150px"
+                  />
                   Elsykkel
                 </li>
                 <li className="flex-item">
-                  <img src="images/TrehjulSykkel.jpg" alt="bike" width="150px" height="150px" />
+                  <img
+                    src="images/TrehjulSykkel.jpg"
+                    onClick={() => history.push('/SykkelDetails')}
+                    alt="bike"
+                    width="150px"
+                    height="150px"
+                  />
                   Trehjulsykkel
                 </li>
               </ul>
@@ -101,6 +155,7 @@ class Sykkel extends Component {
       </>
     );
   }
+
   mounted() {
     //de to kallene med SQL gir feilmeldingen
     this.sorteringer = sykkelService.getSykkelSorteringer();
@@ -111,6 +166,16 @@ class Sykkel extends Component {
 
     sykkelService.getSykkelklasser(klasser => {
       this.sykkelklasser = klasser;
+    });
+  }
+  // Img() {
+  //   sykkelService.getSykler(this.sykler, () => {
+  //     history.push('/SykkelDetails/' + this.props.match.params.id);
+  //   });
+  // }
+  getSykler() {
+    sykkelService.getSykler(this.sykler, () => {
+      history.push('/');
     });
   }
 }

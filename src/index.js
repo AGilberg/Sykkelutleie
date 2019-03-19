@@ -45,14 +45,16 @@ class Home extends Component {
   }
 }
 
-class SideNav extends Component {
+class Sidenav extends Component {
   render() {
     return (
       <>
-        <NavBar.Link to="/kunde">Kunde</NavBar.Link>
-        <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
-        <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
-        <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
+        <NavBar>
+          <NavBar.Link to="/kunde">Kunde</NavBar.Link>
+          <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
+          <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
+          <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
+        </NavBar>
       </>
     );
   }
@@ -69,6 +71,7 @@ ReactDOM.render(
       <Route exact path="/kundesøk" component={Kundesøk} />
       <Route exact path="/registrerKunde" component={RegistrerKunde} />
       <Route exact path="/sykkel" component={Sykkel} />
+
       <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
       <Route exact path="/handlekurv" component={Handlekurv} />
       <Route exact path="/produktutstyr" component={ProduktUtstyr} />
