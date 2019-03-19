@@ -3,11 +3,8 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { sykkelService } from '../services/SykkelService.js';
 import { vareService } from '../services/VareService.js';
-import { Row, Column, Button, Img } from '../widgets';
-import createHashHistory from 'history/createHashHistory';
-const history = createHashHistory();
 
-class Ekstrautstyr extends Component {
+class EkstrautstyrDetails extends Component {
   unavn = '';
   antall = '';
   pris = '';
@@ -59,97 +56,42 @@ class Ekstrautstyr extends Component {
             </div>
           </div>
         </div>
-        <div className="img">
+        <div id="img">
           <ul className="flex-container wrap">
             <li className="flex-item">
-              <img
-                src="images/SmåbarnsHjelm.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
-                alt="hjelm"
-                width="150px"
-                height="150px"
-              />
+              <img src="images/SmåbarnsHjelm.jpg" alt="helmet" width="150px" height="150px" />
               Småbarnshjelm
             </li>
             <li className="flex-item">
-              <img
-                src="images/BarneHjelm.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
-                alt="hjelm"
-                width="150px"
-                height="150px"
-              />
+              <img src="images/BarneHjelm.jpg" alt="helmet" width="150px" height="150px" />
               Barnehjelm
             </li>
             <li className="flex-item">
-              <img
-                src="images/VoksenHjelm.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
-                alt="hjelm"
-                width="150px"
-                height="150px"
-              />
+              <img src="images/VoksenHjelm.jpg" alt="helmet" width="150px" height="150px" />
               Voksenhjelm
             </li>
             <li className="flex-item">
-              <img
-                src="images/HengeLås.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
-                alt="laas"
-                width="150px"
-                height="150px"
-              />
+              <img src="images/HengeLås.jpg" alt="helmet" width="150px" height="150px" />
               Hengelås
             </li>
             <li className="flex-item">
-              <img
-                src="images/SykkelLås.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
-                alt="laas"
-                width="150px"
-                height="150px"
-              />
+              <img src="images/SykkelLås.jpg" alt="helmet" width="150px" height="150px" />
               Sykkellås
             </li>
             <li className="flex-item">
-              <img
-                src="images/TauLås.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
-                alt="laas"
-                width="150px"
-                height="150px"
-              />
+              <img src="images/TauLås.jpg" alt="helmet" width="150px" height="150px" />
               Taulås
             </li>
-
             <li className="flex-item">
-              <img
-                src="images/FritidsLykt.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
-                alt="lykt"
-                width="150px"
-                height="150px"
-              />
+              <img src="images/FritidsLykt.jpg" alt="helmet" width="150px" height="150px" />
               Fritidslykt
             </li>
             <li className="flex-item">
-              <img
-                src="images/SportsLykt.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
-                alt="lykt"
-                width="150px"
-                height="150px"
-              />
+              <img src="images/SportsLykt.jpg" alt="helmet" width="150px" height="150px" />
               Sportslykt
             </li>
             <li className="flex-item">
-              <img
-                src="images/SolcelleLykt.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
-                alt="lykt"
-                width="150px"
-                height="150px"
-              />
+              <img src="images/SolcelleLykt.jpg" alt="key" width="150px" height="150px" />
               Solcellelykt
             </li>
           </ul>
@@ -184,4 +126,4 @@ class Ekstrautstyr extends Component {
   }
 }
 
-export { Ekstrautstyr };
+export { EkstrautstyrDetails };

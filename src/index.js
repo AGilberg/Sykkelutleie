@@ -2,8 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
-import { AktiveBestillinger } from './components/aktiveBestillinger.js';
-import { BestillingDetails } from './components/bestillingdetails.js';
+import { AktiveBestillinger, BestillingDetails } from './components/aktiveBestillinger.js';
 import { Ekstrautstyr } from './components/ekstrautstyr.js';
 import { Handlekurv } from './components/handlekurv.js';
 import { Kunde } from './components/kunde.js';
@@ -46,6 +45,21 @@ class Home extends Component {
   }
 }
 
+class Sidenav extends Component {
+  render() {
+    return (
+      <>
+        <NavBar>
+          <NavBar.Link to="/kunde">Kunde</NavBar.Link>
+          <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
+          <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
+          <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
+        </NavBar>
+      </>
+    );
+  }
+}
+
 ReactDOM.render(
   <HashRouter>
     <div>
@@ -57,6 +71,7 @@ ReactDOM.render(
       <Route exact path="/kundesøk" component={Kundesøk} />
       <Route exact path="/registrerKunde" component={RegistrerKunde} />
       <Route exact path="/sykkel" component={Sykkel} />
+
       <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
       <Route exact path="/handlekurv" component={Handlekurv} />
       <Route exact path="/produktutstyr" component={ProduktUtstyr} />
