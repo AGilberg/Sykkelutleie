@@ -78,7 +78,6 @@ class Kundesøk extends Component {
     for (i = 0; i < this.kunder.length; i++) {
       li = ul[i].getElementsByTagName("li");
       txt = li[type].textContent || li[type].innerText;
-      console.log(ul, txt);
       if (txt.toUpperCase().indexOf(filter) > -1) {
         ul[i].style.display = "";
       } else {
