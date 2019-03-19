@@ -68,7 +68,7 @@ ol-md-4 {
   left: 5px;
 }
 
-.SideNav {
+.sidenav {
   height: 100%;
   width: 200px;
   position: fixed;
@@ -80,7 +80,7 @@ ol-md-4 {
   padding-top: 20px;
 }
 
-.SideNav {
+.sidenav {
   height: 100%;
   width: 200px;
   position: fixed;
@@ -92,7 +92,7 @@ ol-md-4 {
   padding-top: 20px;
 }
 
-.SideNav a {
+.sidenav a {
   padding: 6px 6px 6px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -100,7 +100,7 @@ ol-md-4 {
   display: block;
 }
 
-.SideNav a:hover {
+.sidenav a:hover {
   color: #f1f1f1;
 }
 
@@ -109,10 +109,10 @@ ol-md-4 {
 }
 
 @media screen and (max-height: 450px) {
-  .SideNav {
+  .sidenav {
     padding-top: 15px;
   }
-  .SideNav a {
+  .sidenav a {
     font-size: 18px;
   }
 }

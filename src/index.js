@@ -29,6 +29,7 @@ class Menu extends Component {
       <>
         <NavBar brand="Sykkelutleie AS">
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
+
           <NavBar.Link to="/kunde">Kunde</NavBar.Link>
           <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
           <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
@@ -49,7 +50,7 @@ class Sidenav extends Component {
   render() {
     return (
       <>
-        <NavBar>
+        <NavBar className="sidenav">
           <NavBar.Link to="/kunde">Kunde</NavBar.Link>
           <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
           <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
