@@ -89,7 +89,7 @@ class Sykkel extends Component {
                 </li>
                 <li className="flex-item">
                   <img
-                    src="images/BarneSykkel.jpg"
+                    src="images/Barnesykkel.jpg"
                     onClick={() => history.push('/SykkelDetails')}
                     alt="bike"
                     width="150px"
@@ -109,7 +109,7 @@ class Sykkel extends Component {
                 </li>
                 <li className="flex-item">
                   <img
-                    src="images/Terrengssykkel.jpg"
+                    src="images/TerrengsSykkel.jpg"
                     onClick={() => history.push('/SykkelDetails')}
                     alt="bike"
                     width="150px"
@@ -129,7 +129,7 @@ class Sykkel extends Component {
                 </li>
                 <li className="flex-item">
                   <img
-                    src="images/ElSykkel.jpg"
+                    src="images/Elsykkel.jpg"
                     onClick={() => history.push('/SykkelDetails')}
                     alt="bike"
                     width="150px"
