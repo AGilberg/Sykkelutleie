@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 export class Card extends Component {
   render() {
     return (
-      <div className="card">
+      <div className="card" style={{ margin: '10px' }}>
         <div className="card-body">
           <h5 className="card-title">{this.props.title}</h5>
           <div className="card-text">{this.props.children}</div>

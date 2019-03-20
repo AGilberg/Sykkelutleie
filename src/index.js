@@ -35,7 +35,6 @@ class Menu extends Component {
             width="256.4px"
             height="70px"
           />
-          className="home"
         >
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
         </NavBar>
@@ -58,7 +57,7 @@ class Sidenav extends Component {
   render() {
     return (
       <div className="col-2">
-        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/kunde">
+        <NavBar.Link className="emner" activeStyle={{ color: 'black' }} to="/kunde">
           Kunde
         </NavBar.Link>
         <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/sykkel">
@@ -82,14 +81,14 @@ ReactDOM.render(
       style={{ overflow: 'hidden', position: 'fixed', bottom: '0', left: '0', height: '100%' }}
     >
       <div className="row">
-        <div className="col-12">
+        <div className="col-12" style={{ width: '100%', paddingLeft: '0px', paddingRight: '0px' }}>
           <Menu />
         </div>
       </div>
 
       <div className="row" style={{ height: '100%', paddingBottom: '96px' }}>
         <Sidenav />
-        <div class="col-10" style={{ overflowY: 'scroll' }}>
+        <div class="col-10" style={{ overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
           <Route exact path="/" component={Home} />
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
           <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
