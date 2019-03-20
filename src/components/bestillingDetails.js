@@ -3,8 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { Card, List, Row, Column } from '../widgets';
 import Button from 'react-bootstrap/Button';
-import createHashHistory from 'history/createHashHistory';
-const history = createHashHistory();
+import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
@@ -96,19 +95,19 @@ class BestillingDetails extends Component {
     history.push('/aktivebestillinger');
   }
 
-  formateDate(date){
+  formateDate(date) {
     let day = date.getDate();
-    if(day < 10){
-      day = "0" + day.toString();
+    if (day < 10) {
+      day = '0' + day.toString();
     }
     let month = date.getMonth() + 1;
-    if(month < 10){
-      month = "0" + month.toString();
+    if (month < 10) {
+      month = '0' + month.toString();
     }
     let year = date.getFullYear();
 
-    return day + "/" + month + "/" + year;
+    return day + '/' + month + '/' + year;
   }
 }
 
-export { BestillingDetails }
+export { BestillingDetails };

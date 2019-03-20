@@ -4,8 +4,7 @@ import ReactDOM from 'react-dom';
 import { sykkelService } from '../services/SykkelService.js';
 import { vareService } from '../services/VareService.js';
 import { Row, Column, Button, Img } from '../widgets';
-import createHashHistory from 'history/createHashHistory';
-const history = createHashHistory();
+import { history } from '../index.js';
 
 class Ekstrautstyr extends Component {
   valgtKlasse = '';

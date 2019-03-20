@@ -2,8 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Row, Column } from '../widgets';
 import { kundeService } from '../services/KundeService.js';
-import createHashHistory from 'history/createHashHistory';
-const history = createHashHistory();
+import { history } from '../index.js';
 
 class RegistrerKunde extends Component {
   kjonn = 1;

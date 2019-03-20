@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { kundeService } from '../services/KundeService.js';
-import createHashHistory from 'history/createHashHistory';
-const history = createHashHistory();
+import { history } from '../index.js';
 import Card from 'react-bootstrap/Card';
 
 class Kundesøk extends Component {
@@ -80,18 +79,18 @@ class Kundesøk extends Component {
   tilbake() {
     history.push('/kunde');
   }
-  formatDate(date){
+  formatDate(date) {
     let day = date.getDate();
-    if(day < 10){
-      day = "0" + day.toString();
+    if (day < 10) {
+      day = '0' + day.toString();
     }
     let month = date.getMonth() + 1;
-    if(month < 10){
-      month = "0" + month.toString();
+    if (month < 10) {
+      month = '0' + month.toString();
     }
     let year = date.getFullYear();
 
-    return day + "/" + month + "/" + year;
+    return day + '/' + month + '/' + year;
   }
 }
 

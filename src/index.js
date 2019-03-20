@@ -15,7 +15,7 @@ import { Sykkel } from './components/sykkel.js';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 
 import createHashHistory from 'history/createHashHistory';
-const history = createHashHistory();
+export const history = createHashHistory();
 
 export var handlekurv = [
   { id: 2, navn: 'hjelm', antall: 1, pris: 150 },

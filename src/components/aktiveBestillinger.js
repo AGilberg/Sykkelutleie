@@ -3,8 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { Card, List, Row, Column } from '../widgets';
 import Button from 'react-bootstrap/Button';
-import createHashHistory from 'history/createHashHistory';
-const history = createHashHistory();
+import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
@@ -35,7 +34,5 @@ class AktiveBestillinger extends Component {
     });
   }
 }
-
-
 
 export { AktiveBestillinger };
