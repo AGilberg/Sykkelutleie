@@ -9,9 +9,10 @@ class Handlekurv extends Component {
     return (
       <div style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
         {/* Viser hva som er valgt til bestillingen */}
-        <div>
-          <h2>Handlekurv</h2>
+        <div className="col-md-4">
+          <h4>Handlekurv</h4>
         </div>
+        <br />
         <div className="container-fluid">
           <div className="row" style={{ backgroundColor: 'lavender', fontWeight: 'bold' }}>
             <div className="col">Nr.</div>
