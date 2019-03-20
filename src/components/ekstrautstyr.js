@@ -64,7 +64,7 @@ class Ekstrautstyr extends Component {
             <li className="flex-item">
               <img
                 src="images/SmåbarnsHjelm.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
+                onClick={() => history.push('/ProduktUtstyr')}
                 alt="hjelm"
                 width="150px"
                 height="150px"
@@ -74,7 +74,7 @@ class Ekstrautstyr extends Component {
             <li className="flex-item">
               <img
                 src="images/BarneHjelm.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
+                onClick={() => history.push('/ProduktUtstyr')}
                 alt="hjelm"
                 width="150px"
                 height="150px"
@@ -84,7 +84,7 @@ class Ekstrautstyr extends Component {
             <li className="flex-item">
               <img
                 src="images/VoksenHjelm.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
+                onClick={() => history.push('/ProduktUtstyr')}
                 alt="hjelm"
                 width="150px"
                 height="150px"
@@ -94,7 +94,7 @@ class Ekstrautstyr extends Component {
             <li className="flex-item">
               <img
                 src="images/HengeLås.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
+                onClick={() => history.push('/ProduktUtstyr')}
                 alt="laas"
                 width="150px"
                 height="150px"
@@ -104,7 +104,7 @@ class Ekstrautstyr extends Component {
             <li className="flex-item">
               <img
                 src="images/SykkelLås.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
+                onClick={() => history.push('/ProduktUtstyr')}
                 alt="laas"
                 width="150px"
                 height="150px"
@@ -114,7 +114,7 @@ class Ekstrautstyr extends Component {
             <li className="flex-item">
               <img
                 src="images/TauLås.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
+                onClick={() => history.push('/ProduktUtstyr')}
                 alt="laas"
                 width="150px"
                 height="150px"
@@ -125,7 +125,7 @@ class Ekstrautstyr extends Component {
             <li className="flex-item">
               <img
                 src="images/FritidsLykt.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
+                onClick={() => history.push('/ProduktUtstyr')}
                 alt="lykt"
                 width="150px"
                 height="150px"
@@ -135,7 +135,7 @@ class Ekstrautstyr extends Component {
             <li className="flex-item">
               <img
                 src="images/SportsLykt.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
+                onClick={() => history.push('/ProduktUtstyr')}
                 alt="lykt"
                 width="150px"
                 height="150px"
@@ -145,7 +145,7 @@ class Ekstrautstyr extends Component {
             <li className="flex-item">
               <img
                 src="images/SolcelleLykt.jpg"
-                onClick={() => history.push('/EkstrautstyrDetails')}
+                onClick={() => history.push('/ProduktUtstyr')}
                 alt="lykt"
                 width="150px"
                 height="150px"

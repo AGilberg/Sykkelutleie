@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { AktiveBestillinger, BestillingDetails } from './components/aktiveBestillinger.js';
 import { Ekstrautstyr } from './components/ekstrautstyr.js';
-import { EkstrautstyrDetails } from './components/ekstrautstyrDetails.js';
 import { Handlekurv } from './components/handlekurv.js';
 import { Kunde } from './components/kunde.js';
 import { Kundesøk } from './components/kundesok.js';
@@ -12,7 +11,6 @@ import { ProduktSykkel } from './components/produktSykkel.js';
 import { ProduktUtstyr } from './components/produktUtstyr.js';
 import { RegistrerKunde } from './components/registrerKunde.js';
 import { Sykkel } from './components/sykkel.js';
-import { SykkelDetails } from './components/sykkelDetails.js';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 
 import createHashHistory from 'history/createHashHistory';
@@ -28,7 +26,7 @@ export var handlekurv = [
 class Menu extends Component {
   render() {
     return (
-      <>
+      <div className="col bg-light">
         <NavBar
           brand=<img
             src="images/sykkelutleie.jpg"
@@ -37,61 +35,73 @@ class Menu extends Component {
             width="256.4px"
             height="70px"
           />
+          className="home"
         >
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
         </NavBar>
-      </>
+      </div>
     );
   }
 }
 
 class Home extends Component {
   render() {
-    return <Card title="Hjem">Hovedside</Card>;
+    return (
+      <div className="main">
+        <Card title="Hjem">Hovedside</Card>
+      </div>
+    );
   }
 }
 
 class Sidenav extends Component {
   render() {
     return (
-      <>
-        <div className="sidenav">
-          <NavBar.Link className="emner" to="/kunde">
-            Kunde
-          </NavBar.Link>
-          <NavBar.Link className="emner" to="/sykkel">
-            Sykkel
-          </NavBar.Link>
-          <NavBar.Link className="emner" to="/ekstrautstyr">
-            Ekstrautstyr
-          </NavBar.Link>
-          <NavBar.Link className="emner" to="/handlekurv">
-            Handlekurv
-          </NavBar.Link>
-        </div>
-      </>
+      <div className="col-3">
+        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/kunde">
+          Kunde
+        </NavBar.Link>
+        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/sykkel">
+          Sykkel
+        </NavBar.Link>
+        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/ekstrautstyr">
+          Ekstrautstyr
+        </NavBar.Link>
+        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/handlekurv">
+          Handlekurv
+        </NavBar.Link>
+      </div>
     );
   }
 }
 
 ReactDOM.render(
   <HashRouter>
-    <div>
-      <Menu />
-      <Sidenav />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
-      <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
-      <Route exact path="/kunde" component={Kunde} />
-      <Route exact path="/kundesøk" component={Kundesøk} />
-      <Route exact path="/registrerKunde" component={RegistrerKunde} />
-      <Route exact path="/sykkel" component={Sykkel} />
-      <Route exact path="sykkel/:klasse_id" component={SykkelDetails} />
-      <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
-      <Route exact path="/ekstrautstyr/:utstyr_id" component={EkstrautstyrDetails} />
-      <Route exact path="/handlekurv" component={Handlekurv} />
-      <Route exact path="/produktutstyr" component={ProduktUtstyr} />
-      <Route exact path="/produktsykkel" component={ProduktSykkel} />
+    <div
+      className="container-fluid"
+      style={{ overflow: 'hidden', position: 'fixed', bottom: '0', left: '0', height: '100%' }}
+    >
+      <div className="row">
+        <div className="col-12">
+          <Menu />
+        </div>
+      </div>
+      <div className="row" style={{ height: '100%', paddingBottom: '96px' }}>
+        <div class="col-9" style={{ overflow: 'scroll' }}>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
+          <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
+          <Route exact path="/kunde" component={Kunde} />
+          <Route exact path="/kundesøk" component={Kundesøk} />
+          <Route exact path="/registrerKunde" component={RegistrerKunde} />
+          <Route exact path="/sykkel" component={Sykkel} />
+          <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
+          <Route exact path="/handlekurv" component={Handlekurv} />
+          <Route exact path="/produktutstyr" component={ProduktUtstyr} />
+          <Route exact path="/produktsykkel" component={ProduktSykkel} />
+        </div>
+        <Sidenav />
+      </div>
     </div>
   </HashRouter>,
   document.getElementById('root')

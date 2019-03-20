@@ -15,7 +15,7 @@ class AktiveBestillinger extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div>
         {/* Visning av bestillinger som har status som aktiv (altså ikke tidligere gjennomførte leieforhold) */}
         <br />
         <Card title="Aktive bestillinger">

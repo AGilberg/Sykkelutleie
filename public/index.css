@@ -8,7 +8,6 @@
   padding: 10;
   margin: 10;
   list-style: none;
-  border: 2px solid silver;
   -ms-box-orient: horizontal;
   display: -webkit-box;
   display: -moz-box;
@@ -23,7 +22,7 @@
   flex-wrap: wrap;
 }
 .wrap li {
-  background: lavender;
+  background: #d1e0e0;
 }
 
 .flex-item {
@@ -38,6 +37,12 @@ img:hover {
   filter: alpha(opacity=1);
 }
 
+NavLink:hover {
+  opacity: 0.7;
+  filter: alpha(opacity=1);
+}
+
+/* KUNDESKJEMA */
 .form-horizontal {
   width: 90%;
   padding: 12px 30px;
@@ -46,7 +51,7 @@ img:hover {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  border: 3px solid lavender;
+  border: 2px solid #d1e0e0;
 }
 
 /* KUNDESØK */
@@ -65,19 +70,12 @@ form-control input-md {
   box-sizing: border-box;
 }
 
-col-md-4 {
-  position: absolute;
-  left: 1900px;
-}
-
 /* SIDENAV */
 .emner {
+  /* HOVER  */
 }
 
-.sidenav {
-  height: 100%;
-  width: 300px;
-  position: fixed;
+.col-3 {
   z-index: 1;
   top: 2;
   right: 0;
@@ -87,11 +85,11 @@ col-md-4 {
   border: 1px solid #c9dbdb;
 }
 
-.sidenav a {
+.col-3 a {
   padding: 10px 6px 6px 32px;
   text-decoration: none;
-  font-size: 20px;
   color: grey;
+  font-size: 20px;
   display: block;
 }
 
@@ -99,15 +97,7 @@ col-md-4 {
   color: #f1f1f1;
 }
 
-.main {
-  margin-right: 300px; /* Same as the width of the sidenav */
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 30px;
-  }
-  .sidenav a {
-    font-size: 18px;
-  }
+.link {
+  text-decoration: none;
+  color: grey;
 }

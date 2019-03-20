@@ -21,7 +21,7 @@ class Sykkel extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div>
         {/*Skjema for søk og valg av sykkel*/}
         <br />
         <div className="col-md-4">
@@ -68,7 +68,7 @@ class Sykkel extends Component {
                     <li className="flex-item">
                       <img
                         src="images/VoksenSykkel.jpg"
-                        onClick={() => history.push('/SykkelDetails')}
+                        onClick={() => history.push('/ProduktSykkel')}
                         alt="bike"
                         width="150px"
                         height="150px"
@@ -80,7 +80,7 @@ class Sykkel extends Component {
                 <li className="flex-item">
                   <img
                     src="images/FamilieSykkel.jpg"
-                    onClick={() => history.push('/SykkelDetails')}
+                    onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
                     width="150px"
                     height="150px"
@@ -90,7 +90,7 @@ class Sykkel extends Component {
                 <li className="flex-item">
                   <img
                     src="images/Barnesykkel.jpg"
-                    onClick={() => history.push('/SykkelDetails')}
+                    onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
                     width="150px"
                     height="150px"
@@ -100,7 +100,7 @@ class Sykkel extends Component {
                 <li className="flex-item">
                   <img
                     src="images/RacingSykkel.jpg"
-                    onClick={() => history.push('/SykkelDetails')}
+                    onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
                     width="150px"
                     height="150px"
@@ -110,7 +110,7 @@ class Sykkel extends Component {
                 <li className="flex-item">
                   <img
                     src="images/TerrengsSykkel.jpg"
-                    onClick={() => history.push('/SykkelDetails')}
+                    onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
                     width="150px"
                     height="150px"
@@ -120,7 +120,7 @@ class Sykkel extends Component {
                 <li className="flex-item">
                   <img
                     src="images/BySykkel.jpg"
-                    onClick={() => history.push('/SykkelDetails')}
+                    onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
                     width="150px"
                     height="150px"
@@ -130,7 +130,7 @@ class Sykkel extends Component {
                 <li className="flex-item">
                   <img
                     src="images/Elsykkel.jpg"
-                    onClick={() => history.push('/SykkelDetails')}
+                    onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
                     width="150px"
                     height="150px"
@@ -140,7 +140,7 @@ class Sykkel extends Component {
                 <li className="flex-item">
                   <img
                     src="images/TrehjulSykkel.jpg"
-                    onClick={() => history.push('/SykkelDetails')}
+                    onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
                     width="150px"
                     height="150px"
