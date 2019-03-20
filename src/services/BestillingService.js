@@ -83,11 +83,26 @@ class BestillingService {
   }
 
   getOrder(bestilling_id, success) {
-    connection.query('select * from BESTILLING where bestilling_id=?', [bestilling_id], (error, results) => {
-      if (error) return console.error(error);
+    connection.query(
+      'select * from BESTILLING, PERSON where bestilling_id=? and BESTILLING.person_id=PERSON.person_id',
+      [bestilling_id],
+      (error, results) => {
+        if (error) return console.error(error);
 
-      success(results[0]);
-    });
+        success(results[0]);
+      }
+    );
+  }
+  getOrderContents(bestilling_id, success) {
+    connection.query(
+      'select * from INNHOLD, SYKKEL, SYKKELTYPE, UTSTYR where INNHOLD.bestilling_id=? and INNHOLD.sykkel_id = SYKKEL.sykkel_id and SYKKEL.type_id = SYKKELTYPE.type_id and UTSTYR.utstyr_id = INNHOLD.utstyr_id',
+      [bestilling_id],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    );
   }
 
   getAktiveBestillinger(success) {
