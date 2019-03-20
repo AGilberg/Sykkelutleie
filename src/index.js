@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { AktiveBestillinger, BestillingDetails } from './components/aktiveBestillinger.js';
 import { Ekstrautstyr } from './components/ekstrautstyr.js';
+import { EkstrautstyrDetails } from './components/ekstrautstyrDetails.js';
 import { Handlekurv } from './components/handlekurv.js';
 import { Kunde } from './components/kunde.js';
 import { Kundesøk } from './components/kundesok.js';
@@ -11,6 +12,7 @@ import { ProduktSykkel } from './components/produktSykkel.js';
 import { ProduktUtstyr } from './components/produktUtstyr.js';
 import { RegistrerKunde } from './components/registrerKunde.js';
 import { Sykkel } from './components/sykkel.js';
+import { SykkelDetails } from './components/sykkelDetails.js';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 
 import createHashHistory from 'history/createHashHistory';
@@ -29,11 +31,6 @@ class Menu extends Component {
       <>
         <NavBar brand="Sykkelutleie AS">
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
-
-          <NavBar.Link to="/kunde">Kunde</NavBar.Link>
-          <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
-          <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
-          <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
         </NavBar>
       </>
     );
@@ -50,12 +47,12 @@ class Sidenav extends Component {
   render() {
     return (
       <>
-        <NavBar className="sidenav">
+        <div className="sidenav">
           <NavBar.Link to="/kunde">Kunde</NavBar.Link>
           <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
           <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
           <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
-        </NavBar>
+        </div>
       </>
     );
   }
@@ -65,6 +62,7 @@ ReactDOM.render(
   <HashRouter>
     <div>
       <Menu />
+      <Sidenav />
       <Route exact path="/" component={Home} />
       <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
       <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
@@ -72,8 +70,9 @@ ReactDOM.render(
       <Route exact path="/kundesøk" component={Kundesøk} />
       <Route exact path="/registrerKunde" component={RegistrerKunde} />
       <Route exact path="/sykkel" component={Sykkel} />
-
+      <Route exact path="sykkel/:klasse_id" component={SykkelDetails} />
       <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
+      <Route exact path="/ekstrautstyr/:utstyr_id" component={EkstrautstyrDetails} />
       <Route exact path="/handlekurv" component={Handlekurv} />
       <Route exact path="/produktutstyr" component={ProduktUtstyr} />
       <Route exact path="/produktsykkel" component={ProduktSykkel} />

@@ -74,20 +74,8 @@ ol-md-4 {
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-.sidenav {
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
+  right: 0;
+  background-color: lavender;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -96,7 +84,7 @@ ol-md-4 {
   padding: 6px 6px 6px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: grey;
   display: block;
 }
 
@@ -110,7 +98,7 @@ ol-md-4 {
 
 @media screen and (max-height: 450px) {
   .sidenav {
-    padding-top: 15px;
+    padding-top: 30px;
   }
   .sidenav a {
     font-size: 18px;

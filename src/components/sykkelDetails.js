@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
 import { Row, Column, Img } from '../widgets';
-import { Sykkel } from 'sykkel.js';
 
 class SykkelDetails extends Component {
   pris = '';

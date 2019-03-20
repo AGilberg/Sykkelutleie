@@ -183,5 +183,4 @@ class Ekstrautstyr extends Component {
     this.sorteringer = vareService.getSorteringer();
   }
 }
-
 export { Ekstrautstyr };
