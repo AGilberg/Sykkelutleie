@@ -7,6 +7,7 @@ import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
+import { kundeService } from '../services/KundeService.js';
 
 class AktiveBestillinger extends Component {
   bestilling = [];
@@ -39,14 +40,14 @@ class AktiveBestillinger extends Component {
 
 class BestillingDetails extends Component {
   bestill = null;
-  kunde = null;
+  innhold = null;
 
   render() {
-    if (!this.bestill) return null;
+    if (!this.bestill || !this.innhold) return null;
 
     return (
       <div className="main">
-        <Card title="Om bestillingen">
+        <Card title="Om bestillingen:">
           <Row>
             <Column width={3}>Startdato:</Column>
             <Column>{this.bestill.leie_start.toString()}</Column>
@@ -57,7 +58,7 @@ class BestillingDetails extends Component {
           </Row>
           <Row>
             <Column width={3}>Kunde:</Column>
-            <Column />
+            <Column>{this.bestill.fornavn}</Column>
           </Row>
           <Row>
             <Column width={3}>Samlet pris:</Column>
@@ -69,7 +70,18 @@ class BestillingDetails extends Component {
           </Row>
           <Row>
             <Column width={3}>Bestilte varer:</Column>
-            <Column />
+            <Column>
+              {this.innhold.map(innhold => (
+                <Row key={innhold.innhold_id}>
+                  <ul>
+                    <li>{innhold.typenavn}</li>
+                    <li>
+                      {innhold.navn} ({innhold.ant_utstyr})
+                    </li>
+                  </ul>
+                </Row>
+              ))}
+            </Column>
           </Row>
           <div>
             <br />
@@ -103,6 +115,9 @@ class BestillingDetails extends Component {
   mounted() {
     bestillingService.getOrder(this.props.match.params.bestilling_id, bestill => {
       this.bestill = bestill;
+    });
+    bestillingService.getOrderContents(this.props.match.params.bestilling_id, innhold => {
+      this.innhold = innhold;
     });
   }
   tilbake() {
