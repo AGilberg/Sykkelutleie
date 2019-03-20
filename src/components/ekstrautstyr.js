@@ -29,7 +29,7 @@ class Ekstrautstyr extends Component {
           <br />
 
           <div className="container-fluid">
-            <div className="row justify-content-start">
+            <div className="row" style={{ marginLeft: '27px', marginRight: '50px' }}>
               <div className="col-6">
                 <div className="form-group">
                   <select
