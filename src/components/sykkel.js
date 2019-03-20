@@ -6,16 +6,9 @@ import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
 class Sykkel extends Component {
-  pris = '';
-  typenavn = '';
-  info = '';
-  tilstand = '';
-  hjul_storrelse = '';
-  ramme_storrelse = '';
-  girsystem = '';
   valgtSortering = '';
   valgtKlasse = '';
-  sykler = [];
+  sykler = [];// FIXME: fjern dersom denne siden kun skal være til sykkelklasser
   sorteringer = [];
   sykkelklasser = [];
 
@@ -62,94 +55,25 @@ class Sykkel extends Component {
 
         <div className="img">
           <ul className="flex-container wrap">
-            <li className="flex-item">
+          {this.sykkelklasser.map(klasse => (
+            <li className="flex-item" key={klasse.klasse_id}>
               <img
-                src="images/VoksenSykkel.jpg"
+                src={"images/sykler/"+ klasse.klassenavn +".jpg"}
                 onClick={() => history.push('/ProduktSykkel')}
-                alt="bike"
+                alt={klasse.klassenavn}
                 width="180px"
                 height="180px"
               />
-              Voksensykkel
+              {klasse.klassenavn}
             </li>
-
-            <li className="flex-item">
-              <img
-                src="images/FamilieSykkel.jpg"
-                onClick={() => history.push('/ProduktSykkel')}
-                alt="bike"
-                width="180px"
-                height="180px"
-              />
-              Familiesykkel
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/Barnesykkel.jpg"
-                onClick={() => history.push('/ProduktSykkel')}
-                alt="bike"
-                width="180px"
-                height="180px"
-              />
-              Barnesykkel
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/RacingSykkel.jpg"
-                onClick={() => history.push('/ProduktSykkel')}
-                alt="bike"
-                width="180px"
-                height="180px"
-              />
-              Racingsykkel
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/TerrengsSykkel.jpg"
-                onClick={() => history.push('/ProduktSykkel')}
-                alt="bike"
-                width="180px"
-                height="180px"
-              />
-              Terrengssykkel
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/BySykkel.jpg"
-                onClick={() => history.push('/ProduktSykkel')}
-                alt="bike"
-                width="180px"
-                height="180px"
-              />
-              Bysykkel
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/Elsykkel.jpg"
-                onClick={() => history.push('/ProduktSykkel')}
-                alt="bike"
-                width="180px"
-                height="180px"
-              />
-              Elsykkel
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/TrehjulSykkel.jpg"
-                onClick={() => history.push('/ProduktSykkel')}
-                alt="bike"
-                width="180px"
-                height="180px"
-              />
-              Trehjulsykkel
-            </li>
+          ))}
           </ul>
         </div>
       </div>
     );
   }
 
-  mounted() {
+  mounted() {// FIXME: vi må bli enige om hvordan denne visningen skal være
     //de to kallene med SQL gir feilmeldingen
     this.sorteringer = sykkelService.getSykkelSorteringer();
 
@@ -157,9 +81,15 @@ class Sykkel extends Component {
       this.sykler = sykler;
     });
 
+
+
     sykkelService.getSykkelklasser(klasser => {
       this.sykkelklasser = klasser;
     });
+  }
+
+  goToSykkel(id){
+    history.push("/ProduktSykkel/" + id);
   }
 }
 

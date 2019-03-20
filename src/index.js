@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
-import { AktiveBestillinger, BestillingDetails } from './components/aktiveBestillinger.js';
+import { AktiveBestillinger } from './components/aktiveBestillinger.js';
+import { BestillingDetails } from './components/bestillingDetails.js';
 import { Ekstrautstyr } from './components/ekstrautstyr.js';
 import { Handlekurv } from './components/handlekurv.js';
 import { Kunde } from './components/kunde.js';
@@ -89,7 +90,7 @@ ReactDOM.render(
 
       <div className="row" style={{ height: '100%', paddingBottom: '96px' }}>
         <Sidenav />
-        <div class="col-10" style={{ overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
+        <div className="col-10" style={{ overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
           <Route exact path="/" component={Home} />
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
           <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />

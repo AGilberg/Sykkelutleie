@@ -7,14 +7,6 @@ import Card from 'react-bootstrap/Card';
 
 class Kundesøk extends Component {
   kunder = [];
-  fornavn = '';
-  etternavn = '';
-  mail = '';
-  mobil = '';
-  adresse = '';
-  post_nr = '';
-  sted = '';
-  kommentar = '';
 
   render() {
     return (
@@ -45,8 +37,7 @@ class Kundesøk extends Component {
                   <li>Mail: {kunde.mail}</li>
                   <li>Telefon: {kunde.tlf}</li>
                   <li>Adresse: {kunde.adresse + ' ' + kunde.post_nr + ' ' + kunde.sted}</li>
-                  <li>Født: {kunde.fodt.toString()}</li>
-                  {/* FIXME:TRENGER FORMATERING */}
+                  <li>Født: {this.formatDate(kunde.fodt)}</li>
                   <li>Kommentar: {kunde.kommentar}</li>
                 </ul>
               </Card>
@@ -88,6 +79,13 @@ class Kundesøk extends Component {
 
   tilbake() {
     history.push('/kunde');
+  }
+  formatDate(date){
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    return day + "/" + month + "/" + year;
   }
 }
 

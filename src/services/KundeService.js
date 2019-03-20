@@ -14,7 +14,33 @@ class KundeService {
     );
   }
 
-  removeKunde(kundeId) {}
+  removeKunde(kundeId, success){// FIXME: FUNKSJON IKKE TESTET I PROGRAMMET
+    connection.query(
+      'UPDATE `BESTILLING` SET `person_id` = NULL WHERE `person_id` = ?', [kundeId],
+        (error, results) => {
+        if(error) return console.error(error);
+
+        connection.query(
+          'DELETE FROM `GRUPPELEDER` WHERE `person_id` = ?',[kundeId],
+          (error, results) => {
+            if(error) return console.error(error);
+
+            connection.query(
+              'DELETE FROM `KUNDE` WHERE `person_id` = ?',[kundeId],
+              (error, results) => {
+                if(error) return console.error(error);
+
+                connection.query(
+                  'DELETE FROM `PERSON` WHERE `person_id` = ?',[kundeId],
+                  (error, results) => {
+                    if(error) return console.error(error);
+
+                    success(results);
+                  });
+              });
+          });
+      });
+  }
 
   addKundeToOrder(kundeId) {
     //legg til en kunde som ansvarlig for et kjøp
