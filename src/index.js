@@ -29,7 +29,15 @@ class Menu extends Component {
   render() {
     return (
       <>
-        <NavBar brand="Sykkelutleie AS">
+        <NavBar
+          brand=<img
+            src="images/sykkelutleie.jpg"
+            onClick={() => history.push('/')}
+            alt="logo"
+            width="256.4px"
+            height="70px"
+          />
+        >
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
         </NavBar>
       </>
