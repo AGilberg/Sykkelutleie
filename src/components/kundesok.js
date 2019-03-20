@@ -18,7 +18,7 @@ class Kundesøk extends Component {
 
   render() {
     return (
-      <>
+      <div className="main">
         {/* Søkefunksjon for å søke etter registrerte kunder */}
         <br />
         <div className="col-md-4">
@@ -59,7 +59,7 @@ class Kundesøk extends Component {
             Tilbake
           </button>
         </div>
-      </>
+      </div>
     );
   }
   mounted() {

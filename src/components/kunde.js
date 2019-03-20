@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 class Kunde extends Component {
   render() {
     return (
-      <>
+      <div className="main">
         {/* Linker til å legge til/søke opp kunder */}
         <br />
         <Card>
@@ -15,7 +15,7 @@ class Kunde extends Component {
         <Card>
           <NavBar.Link to="/kundesøk">Kundesøk</NavBar.Link>
         </Card>
-      </>
+      </div>
     );
   }
 }

@@ -19,7 +19,7 @@ class Ekstrautstyr extends Component {
 
   render() {
     return (
-      <>
+      <div className="main">
         {/*
     Skjema for søk og valg av ekstrautstyr
     */}
@@ -168,7 +168,7 @@ class Ekstrautstyr extends Component {
           ))}
           {/*<NavBar.Link to="/produktutstyr"></NavBar.Link>*/}
         </div>
-      </>
+      </div>
     );
   }
   mounted() {

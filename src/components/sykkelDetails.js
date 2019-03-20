@@ -19,7 +19,7 @@ class SykkelDetails extends Component {
 
   render() {
     return (
-      <>
+      <div className="main">
         {/*Skjema for søk og valg av sykkel*/}
         <br />
         <div className="col-md-4">
@@ -98,7 +98,7 @@ class SykkelDetails extends Component {
             </div>
           </Column>
         </Row>
-      </>
+      </div>
     );
   }
   mounted() {

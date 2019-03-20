@@ -1,3 +1,4 @@
+/* FLEXBOX */
 .container {
   display: flex; /* or inline-flex */
 }
@@ -34,7 +35,7 @@
 
 img:hover {
   opacity: 0.7;
-  filter: alpha(opacity=1); /* For IE8 and earlier */
+  filter: alpha(opacity=1);
 }
 
 .form-horizontal {
@@ -48,6 +49,7 @@ img:hover {
   border: 3px solid lavender;
 }
 
+/* KUNDESØK */
 #kunderesultat {
   padding: 12px;
   margin: 5px;
@@ -63,27 +65,32 @@ form-control input-md {
   box-sizing: border-box;
 }
 
-ol-md-4 {
+col-md-4 {
   position: absolute;
-  left: 5px;
+  left: 1900px;
+}
+
+/* SIDENAV */
+.emner {
 }
 
 .sidenav {
   height: 100%;
-  width: 200px;
+  width: 300px;
   position: fixed;
   z-index: 1;
-  top: 0;
+  top: 2;
   right: 0;
-  background-color: lavender;
+  background-color: #f8f9fa !important;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 60px;
+  border: 1px solid #c9dbdb;
 }
 
 .sidenav a {
-  padding: 6px 6px 6px 32px;
+  padding: 10px 6px 6px 32px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 20px;
   color: grey;
   display: block;
 }
@@ -93,7 +100,7 @@ ol-md-4 {
 }
 
 .main {
-  margin-left: 200px; /* Same as the width of the sidenav */
+  margin-right: 300px; /* Same as the width of the sidenav */
 }
 
 @media screen and (max-height: 450px) {

@@ -7,7 +7,7 @@ const history = createHashHistory();
 class ProduktUtstyr extends Component {
   render() {
     return (
-      <>
+      <div className="main">
         {/* Visning av et enkelt produkt (ekstrautstyr)*/}
         <div>produkt</div>
         <Row>
@@ -17,7 +17,7 @@ class ProduktUtstyr extends Component {
             </button>
           </Column>
         </Row>
-      </>
+      </div>
     );
   }
   tilbake() {

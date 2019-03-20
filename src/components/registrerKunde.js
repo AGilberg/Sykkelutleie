@@ -20,7 +20,7 @@ class RegistrerKunde extends Component {
 
   render() {
     return (
-      <>
+      <div className="main">
         {/*  Skjema for registrering av kunde.*/}
         <div>
           <form className="form-horizontal">
@@ -212,7 +212,7 @@ class RegistrerKunde extends Component {
             </fieldset>
           </form>
         </div>
-      </>
+      </div>
     );
   }
 
@@ -220,8 +220,18 @@ class RegistrerKunde extends Component {
     /*
     // FIXME: valiedering av data før innsending
     */
-    kundeService.addNewKunde(this.fornavn, this.etternavn, this.mail, this.mobil, this.adresse, this.post_nr, this.sted, this.fodt, this.kommentar, () => {
-   });
+    kundeService.addNewKunde(
+      this.fornavn,
+      this.etternavn,
+      this.mail,
+      this.mobil,
+      this.adresse,
+      this.post_nr,
+      this.sted,
+      this.fodt,
+      this.kommentar,
+      () => {}
+    );
   }
   tilbake() {
     history.push('/kunde');

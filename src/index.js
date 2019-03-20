@@ -56,10 +56,18 @@ class Sidenav extends Component {
     return (
       <>
         <div className="sidenav">
-          <NavBar.Link to="/kunde">Kunde</NavBar.Link>
-          <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
-          <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
-          <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
+          <NavBar.Link className="emner" to="/kunde">
+            Kunde
+          </NavBar.Link>
+          <NavBar.Link className="emner" to="/sykkel">
+            Sykkel
+          </NavBar.Link>
+          <NavBar.Link className="emner" to="/ekstrautstyr">
+            Ekstrautstyr
+          </NavBar.Link>
+          <NavBar.Link className="emner" to="/handlekurv">
+            Handlekurv
+          </NavBar.Link>
         </div>
       </>
     );

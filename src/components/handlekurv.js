@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 class Handlekurv extends Component {
   render() {
     return (
-      <>
+      <div className="main">
         {/* Viser hva som er valgt til bestillingen */}
         <div>
           <h1>Handlekurv</h1>
@@ -39,7 +39,7 @@ class Handlekurv extends Component {
             Utsjekk
           </button>
         </NavBar.Link>
-      </>
+      </div>
     );
   }
 }
