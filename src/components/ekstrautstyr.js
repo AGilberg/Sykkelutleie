@@ -8,9 +8,6 @@ import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
 class Ekstrautstyr extends Component {
-  unavn = '';
-  antall = '';
-  pris = '';
   valgtKlasse = '';
   valgtSortering = '';
   utstyr = [];
@@ -69,112 +66,19 @@ class Ekstrautstyr extends Component {
 
         <div className="img">
           <ul className="flex-container wrap">
-            <li className="flex-item">
-              <img
-                src="images/SmåbarnsHjelm.jpg"
-                onClick={() => history.push('/ProduktUtstyr')}
-                alt="hjelm"
-                width="180px"
-                height="180px"
-              />
-              Småbarnshjelm
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/BarneHjelm.jpg"
-                onClick={() => history.push('/ProduktUtstyr')}
-                alt="hjelm"
-                width="180px"
-                height="180px"
-              />
-              Barnehjelm
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/VoksenHjelm.jpg"
-                onClick={() => history.push('/ProduktUtstyr')}
-                alt="hjelm"
-                width="180px"
-                height="180px"
-              />
-              Voksenhjelm
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/HengeLås.jpg"
-                onClick={() => history.push('/ProduktUtstyr')}
-                alt="laas"
-                width="180px"
-                height="180px"
-              />
-              Hengelås
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/SykkelLås.jpg"
-                onClick={() => history.push('/ProduktUtstyr')}
-                alt="laas"
-                width="180px"
-                height="180px"
-              />
-              Sykkellås
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/TauLås.jpg"
-                onClick={() => history.push('/ProduktUtstyr')}
-                alt="laas"
-                width="180px"
-                height="180px"
-              />
-              Taulås
-            </li>
-
-            <li className="flex-item">
-              <img
-                src="images/FritidsLykt.jpg"
-                onClick={() => history.push('/ProduktUtstyr')}
-                alt="lykt"
-                width="180px"
-                height="180px"
-              />
-              Fritidslykt
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/SportsLykt.jpg"
-                onClick={() => history.push('/ProduktUtstyr')}
-                alt="lykt"
-                width="180px"
-                height="180px"
-              />
-              Sportslykt
-            </li>
-            <li className="flex-item">
-              <img
-                src="images/SolcelleLykt.jpg"
-                onClick={() => history.push('/ProduktUtstyr')}
-                alt="lykt"
-                width="180px"
-                height="180px"
-              />
-              Solcellelykt
-            </li>
+            {this.utstyr.map(utstyr => (
+              <li key={utstyr.utstyr_id} className="flex-item">
+                <img
+                  src={'images/utstyr/' + utstyr.navn + '.jpg'}
+                  onClick={() => history.push('/ProduktUtstyr')}
+                  alt={utstyr.navn}
+                  width="180px"
+                  height="180px"
+                />
+                {utstyr.navn}
+              </li>
+            ))}
           </ul>
-        </div>
-        <div id="utstyrvisning">
-          {this.utstyr.map(utstyr => (
-            <div key={utstyr.utstyr_id}>
-              <ul>
-                <li>
-                  <b>Navn: {utstyr.navn}</b>
-                </li>
-                <li>Pris: {utstyr.pris}</li>
-                <li>Antall:{utstyr.antall} </li>
-              </ul>
-            </div>
-          ))}
-          {/*<NavBar.Link to="/produktutstyr"></NavBar.Link>*/}
         </div>
       </div>
     );
