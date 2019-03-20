@@ -57,7 +57,7 @@ class Home extends Component {
 class Sidenav extends Component {
   render() {
     return (
-      <div className="col-3">
+      <div className="col-2">
         <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/kunde">
           Kunde
         </NavBar.Link>
@@ -86,8 +86,10 @@ ReactDOM.render(
           <Menu />
         </div>
       </div>
+
       <div className="row" style={{ height: '100%', paddingBottom: '96px' }}>
-        <div class="col-9" style={{ overflow: 'scroll' }}>
+        <Sidenav />
+        <div class="col-10" style={{ overflowY: 'scroll' }}>
           <Route exact path="/" component={Home} />
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
           <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
@@ -100,7 +102,6 @@ ReactDOM.render(
           <Route exact path="/produktutstyr" component={ProduktUtstyr} />
           <Route exact path="/produktsykkel" component={ProduktSykkel} />
         </div>
-        <Sidenav />
       </div>
     </div>
   </HashRouter>,

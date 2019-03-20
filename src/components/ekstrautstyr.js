@@ -66,8 +66,8 @@ class Ekstrautstyr extends Component {
                 src="images/SmåbarnsHjelm.jpg"
                 onClick={() => history.push('/ProduktUtstyr')}
                 alt="hjelm"
-                width="150px"
-                height="150px"
+                width="180px"
+                height="180px"
               />
               Småbarnshjelm
             </li>
@@ -76,8 +76,8 @@ class Ekstrautstyr extends Component {
                 src="images/BarneHjelm.jpg"
                 onClick={() => history.push('/ProduktUtstyr')}
                 alt="hjelm"
-                width="150px"
-                height="150px"
+                width="180px"
+                height="180px"
               />
               Barnehjelm
             </li>
@@ -86,8 +86,8 @@ class Ekstrautstyr extends Component {
                 src="images/VoksenHjelm.jpg"
                 onClick={() => history.push('/ProduktUtstyr')}
                 alt="hjelm"
-                width="150px"
-                height="150px"
+                width="180px"
+                height="180px"
               />
               Voksenhjelm
             </li>
@@ -96,8 +96,8 @@ class Ekstrautstyr extends Component {
                 src="images/HengeLås.jpg"
                 onClick={() => history.push('/ProduktUtstyr')}
                 alt="laas"
-                width="150px"
-                height="150px"
+                width="180px"
+                height="180px"
               />
               Hengelås
             </li>
@@ -106,8 +106,8 @@ class Ekstrautstyr extends Component {
                 src="images/SykkelLås.jpg"
                 onClick={() => history.push('/ProduktUtstyr')}
                 alt="laas"
-                width="150px"
-                height="150px"
+                width="180px"
+                height="180px"
               />
               Sykkellås
             </li>
@@ -116,8 +116,8 @@ class Ekstrautstyr extends Component {
                 src="images/TauLås.jpg"
                 onClick={() => history.push('/ProduktUtstyr')}
                 alt="laas"
-                width="150px"
-                height="150px"
+                width="180px"
+                height="180px"
               />
               Taulås
             </li>
@@ -127,8 +127,8 @@ class Ekstrautstyr extends Component {
                 src="images/FritidsLykt.jpg"
                 onClick={() => history.push('/ProduktUtstyr')}
                 alt="lykt"
-                width="150px"
-                height="150px"
+                width="180px"
+                height="180px"
               />
               Fritidslykt
             </li>
@@ -147,8 +147,8 @@ class Ekstrautstyr extends Component {
                 src="images/SolcelleLykt.jpg"
                 onClick={() => history.push('/ProduktUtstyr')}
                 alt="lykt"
-                width="150px"
-                height="150px"
+                width="180px"
+                height="180px"
               />
               Solcellelykt
             </li>

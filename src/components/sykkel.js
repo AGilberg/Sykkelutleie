@@ -70,8 +70,8 @@ class Sykkel extends Component {
                         src="images/VoksenSykkel.jpg"
                         onClick={() => history.push('/ProduktSykkel')}
                         alt="bike"
-                        width="150px"
-                        height="150px"
+                        width="180px"
+                        height="180px"
                       />
                       Voksensykkel
                     </li>
@@ -82,8 +82,8 @@ class Sykkel extends Component {
                     src="images/FamilieSykkel.jpg"
                     onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
-                    width="150px"
-                    height="150px"
+                    width="180px"
+                    height="180px"
                   />
                   Familiesykkel
                 </li>
@@ -92,8 +92,8 @@ class Sykkel extends Component {
                     src="images/Barnesykkel.jpg"
                     onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
-                    width="150px"
-                    height="150px"
+                    width="180px"
+                    height="180px"
                   />
                   Barnesykkel
                 </li>
@@ -102,8 +102,8 @@ class Sykkel extends Component {
                     src="images/RacingSykkel.jpg"
                     onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
-                    width="150px"
-                    height="150px"
+                    width="180px"
+                    height="180px"
                   />
                   Racingsykkel
                 </li>
@@ -112,8 +112,8 @@ class Sykkel extends Component {
                     src="images/TerrengsSykkel.jpg"
                     onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
-                    width="150px"
-                    height="150px"
+                    width="180px"
+                    height="180px"
                   />
                   Terrengssykkel
                 </li>
@@ -122,8 +122,8 @@ class Sykkel extends Component {
                     src="images/BySykkel.jpg"
                     onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
-                    width="150px"
-                    height="150px"
+                    width="180px"
+                    height="180px"
                   />
                   Bysykkel
                 </li>
@@ -132,8 +132,8 @@ class Sykkel extends Component {
                     src="images/Elsykkel.jpg"
                     onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
-                    width="150px"
-                    height="150px"
+                    width="180px"
+                    height="180px"
                   />
                   Elsykkel
                 </li>
@@ -142,8 +142,8 @@ class Sykkel extends Component {
                     src="images/TrehjulSykkel.jpg"
                     onClick={() => history.push('/ProduktSykkel')}
                     alt="bike"
-                    width="150px"
-                    height="150px"
+                    width="180px"
+                    height="180px"
                   />
                   Trehjulsykkel
                 </li>
