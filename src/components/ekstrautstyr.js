@@ -23,42 +23,50 @@ class Ekstrautstyr extends Component {
         {/*
     Skjema for søk og valg av ekstrautstyr
     */}
+
         <br />
         <div className="col-md-4">
           <h4>Velg ekstrautstyr</h4>
         </div>
         <div>
-          <div className="form-group">
-            <div className="col-sm-4">
-              <select
-                id="sorter"
-                name="sorter"
-                className="form-control"
-                onChange={event => (this.valgtSortering = event.target.value)}
-              >
-                <option value="">Sorter etter</option>
-                {this.sorteringer.map(metode => (
-                  <option key={metode[1]}>{metode[0]}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-4">
-              <select
-                id="kompatibel"
-                name="kompatibel"
-                className="form-control"
-                onChange={event => (this.valgtKlasse = event.target.value)}
-              >
-                <option value="">Kompatibel med</option>
-                {this.sykkelklasser.map(klasse => (
-                  <option key={klasse.klasse_id}>{klasse.klassenavn}</option>
-                ))}
-              </select>
+          <br />
+
+          <div className="container-fluid">
+            <div className="row justify-content-start">
+              <div className="col-6">
+                <div className="form-group">
+                  <select
+                    id="sorter"
+                    name="sorter"
+                    className="form-control"
+                    onChange={event => (this.valgtSortering = event.target.value)}
+                  >
+                    <option value="">Sorter etter</option>
+                    {this.sorteringer.map(metode => (
+                      <option key={metode[1]}>{metode[0]}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="col-6">
+                <div className="form-group">
+                  <select
+                    id="kompatibel"
+                    name="kompatibel"
+                    className="form-control"
+                    onChange={event => (this.valgtKlasse = event.target.value)}
+                  >
+                    <option value="">Kompatibel med</option>
+                    {this.sykkelklasser.map(klasse => (
+                      <option key={klasse.klasse_id}>{klasse.klassenavn}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
         <div className="img">
           <ul className="flex-container wrap">
             <li className="flex-item">
@@ -137,8 +145,8 @@ class Ekstrautstyr extends Component {
                 src="images/SportsLykt.jpg"
                 onClick={() => history.push('/ProduktUtstyr')}
                 alt="lykt"
-                width="150px"
-                height="150px"
+                width="180px"
+                height="180px"
               />
               Sportslykt
             </li>

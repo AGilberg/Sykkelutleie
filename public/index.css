@@ -76,13 +76,8 @@ form-control input-md {
 }
 
 .col-2 {
-  z-index: 1;
-  top: 2;
-  right: 0;
   background-color: #f8f9fa !important;
-  overflow-x: hidden;
   padding-top: 10px;
-
   border: 1px solid #c9dbdb;
   border-top: none;
 }
@@ -99,7 +94,7 @@ form-control input-md {
   color: #9cbdbd;
 }
 
-.link {
+/* .link {
   text-decoration: none;
   color: grey;
-}
+} */
