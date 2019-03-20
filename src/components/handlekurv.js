@@ -7,10 +7,10 @@ import { NavLink } from 'react-router-dom';
 class Handlekurv extends Component {
   render() {
     return (
-      <div className="main">
+      <div style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
         {/* Viser hva som er valgt til bestillingen */}
         <div>
-          <h1>Handlekurv</h1>
+          <h2>Handlekurv</h2>
         </div>
         <div className="container-fluid">
           <div className="row" style={{ backgroundColor: 'lavender', fontWeight: 'bold' }}>

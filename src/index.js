@@ -53,11 +53,12 @@ class Home extends Component {
   }
 }
 
+//activeStyle funk ikkje
 class Sidenav extends Component {
   render() {
     return (
       <div className="col-2">
-        <NavBar.Link className="emner" activeStyle={{ color: 'black' }} to="/kunde">
+        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/kunde">
           Kunde
         </NavBar.Link>
         <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/sykkel">

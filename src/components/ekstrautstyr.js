@@ -19,7 +19,7 @@ class Ekstrautstyr extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div>
         {/*
     Skjema for søk og valg av ekstrautstyr
     */}

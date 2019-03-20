@@ -46,7 +46,7 @@ class BestillingDetails extends Component {
     if (!this.bestill || !this.innhold) return null;
 
     return (
-      <div className="main">
+      <div className="hoved">
         <Card title="Om bestillingen:">
           <Row>
             <Column width={3}>Startdato:</Column>

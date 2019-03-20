@@ -59,98 +59,92 @@ class Sykkel extends Component {
             </div>
           </div>
         </div>
-        <Row>
-          <Column>
-            <div className="img">
-              <ul className="flex-container wrap">
-                <Row>
-                  <Column>
-                    <li className="flex-item">
-                      <img
-                        src="images/VoksenSykkel.jpg"
-                        onClick={() => history.push('/ProduktSykkel')}
-                        alt="bike"
-                        width="180px"
-                        height="180px"
-                      />
-                      Voksensykkel
-                    </li>
-                  </Column>
-                </Row>
-                <li className="flex-item">
-                  <img
-                    src="images/FamilieSykkel.jpg"
-                    onClick={() => history.push('/ProduktSykkel')}
-                    alt="bike"
-                    width="180px"
-                    height="180px"
-                  />
-                  Familiesykkel
-                </li>
-                <li className="flex-item">
-                  <img
-                    src="images/Barnesykkel.jpg"
-                    onClick={() => history.push('/ProduktSykkel')}
-                    alt="bike"
-                    width="180px"
-                    height="180px"
-                  />
-                  Barnesykkel
-                </li>
-                <li className="flex-item">
-                  <img
-                    src="images/RacingSykkel.jpg"
-                    onClick={() => history.push('/ProduktSykkel')}
-                    alt="bike"
-                    width="180px"
-                    height="180px"
-                  />
-                  Racingsykkel
-                </li>
-                <li className="flex-item">
-                  <img
-                    src="images/TerrengsSykkel.jpg"
-                    onClick={() => history.push('/ProduktSykkel')}
-                    alt="bike"
-                    width="180px"
-                    height="180px"
-                  />
-                  Terrengssykkel
-                </li>
-                <li className="flex-item">
-                  <img
-                    src="images/BySykkel.jpg"
-                    onClick={() => history.push('/ProduktSykkel')}
-                    alt="bike"
-                    width="180px"
-                    height="180px"
-                  />
-                  Bysykkel
-                </li>
-                <li className="flex-item">
-                  <img
-                    src="images/Elsykkel.jpg"
-                    onClick={() => history.push('/ProduktSykkel')}
-                    alt="bike"
-                    width="180px"
-                    height="180px"
-                  />
-                  Elsykkel
-                </li>
-                <li className="flex-item">
-                  <img
-                    src="images/TrehjulSykkel.jpg"
-                    onClick={() => history.push('/ProduktSykkel')}
-                    alt="bike"
-                    width="180px"
-                    height="180px"
-                  />
-                  Trehjulsykkel
-                </li>
-              </ul>
-            </div>
-          </Column>
-        </Row>
+
+        <div className="img">
+          <ul className="flex-container wrap">
+            <li className="flex-item">
+              <img
+                src="images/VoksenSykkel.jpg"
+                onClick={() => history.push('/ProduktSykkel')}
+                alt="bike"
+                width="180px"
+                height="180px"
+              />
+              Voksensykkel
+            </li>
+
+            <li className="flex-item">
+              <img
+                src="images/FamilieSykkel.jpg"
+                onClick={() => history.push('/ProduktSykkel')}
+                alt="bike"
+                width="180px"
+                height="180px"
+              />
+              Familiesykkel
+            </li>
+            <li className="flex-item">
+              <img
+                src="images/Barnesykkel.jpg"
+                onClick={() => history.push('/ProduktSykkel')}
+                alt="bike"
+                width="180px"
+                height="180px"
+              />
+              Barnesykkel
+            </li>
+            <li className="flex-item">
+              <img
+                src="images/RacingSykkel.jpg"
+                onClick={() => history.push('/ProduktSykkel')}
+                alt="bike"
+                width="180px"
+                height="180px"
+              />
+              Racingsykkel
+            </li>
+            <li className="flex-item">
+              <img
+                src="images/TerrengsSykkel.jpg"
+                onClick={() => history.push('/ProduktSykkel')}
+                alt="bike"
+                width="180px"
+                height="180px"
+              />
+              Terrengssykkel
+            </li>
+            <li className="flex-item">
+              <img
+                src="images/BySykkel.jpg"
+                onClick={() => history.push('/ProduktSykkel')}
+                alt="bike"
+                width="180px"
+                height="180px"
+              />
+              Bysykkel
+            </li>
+            <li className="flex-item">
+              <img
+                src="images/Elsykkel.jpg"
+                onClick={() => history.push('/ProduktSykkel')}
+                alt="bike"
+                width="180px"
+                height="180px"
+              />
+              Elsykkel
+            </li>
+            <li className="flex-item">
+              <img
+                src="images/TrehjulSykkel.jpg"
+                onClick={() => history.push('/ProduktSykkel')}
+                alt="bike"
+                width="180px"
+                height="180px"
+              />
+              Trehjulsykkel
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }
