@@ -1,16 +1,16 @@
 import { connection } from '../mysql_connection';
 
 class SykkelService{
-  getSykler(success){
+  getSykkeltyper(success){
     connection.query(
-      'select * from SYKKELTYPE',
+      'SELECT * FROM KLASSE INNER JOIN SYKKELTYPE ON KLASSE.klasse_id=SYKKELTYPE.klasse_id',
         (error, results) => {
         if(error) return console.error(error);
         success(results);
       });
   }
 
-  getSykkel(metode, navn, type, success){
+  getSykler(metode, navn, type, success){
     switch (metode) {
       case "navn":
       connection.query(

@@ -8,7 +8,7 @@ class ProduktSykkel extends Component {
     return (
       <div className="main">
         {/* Visning av et enkelt produkt (sykler)*/}
-        <div>produkt</div>
+        <div>produkt {this.klasse_id}</div>
         <Row>
           <Column right>
             <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
