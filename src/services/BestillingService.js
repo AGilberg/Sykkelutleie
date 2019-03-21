@@ -84,7 +84,7 @@ class BestillingService {
 
   getOrder(bestilling_id, success) {
     connection.query(
-      'select * from BESTILLING, PERSON where bestilling_id=? and BESTILLING.person_id=PERSON.person_id',
+      'select * from BESTILLING, PERSON, STATUS where bestilling_id=? and BESTILLING.person_id=PERSON.person_id and STATUS.status_id = BESTILLING.status_id',
       [bestilling_id],
       (error, results) => {
         if (error) return console.error(error);
