@@ -22,7 +22,19 @@ class RegistrerKunde extends Component {
       <div className="main">
         {/*  Skjema for registrering av kunde.*/}
         <div>
-          <form className="form-horizontal">
+          <form
+            className="form-horizontal"
+            style={{
+              width: '90%',
+              padding: '12px 30px',
+              margin: '14px',
+              display: 'inline-block',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              boxSizing: 'border-box',
+              border: '2px solid #d1e0e0'
+            }}
+          >
             <fieldset>
               <legend>Registrer kunde</legend>
               {/* Navn */}

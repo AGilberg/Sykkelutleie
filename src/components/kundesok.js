@@ -27,7 +27,7 @@ class Kundesøk extends Component {
             <option value="4">Fødselsdato</option>
           </select>
         </div>
-        <div id="kunderesultat">
+        <div id="kunderesultat" style={{ padding: '12px', margin: '5px' }}>
           <div>
             {this.kunder.map(kunde => (
               <Card key={kunde.person_id}>

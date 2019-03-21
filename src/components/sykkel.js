@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
 import { Row, Column, Button, Img } from '../widgets';
 import { history } from '../index.js';
+import ReactLoading from 'react-loading';
 
 class Sykkel extends Component {
   valgtSortering = '';
@@ -15,6 +16,12 @@ class Sykkel extends Component {
     return (
       <div>
         {/*Skjema for søk og valg av sykkel*/}
+        <ReactLoading
+          type="bubbles"
+          color="violet, indigo, blue, green, yellow, orange, red,"
+          height={'20%'}
+          width={'20%'}
+        />
         <br />
         <div className="col-md-4">
           <h4>Velg sykkel</h4>

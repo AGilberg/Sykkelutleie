@@ -55,7 +55,7 @@ class Sidenav extends Component {
         <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/kunde">
           Kunde
         </NavBar.Link>
-        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/sykkel">
+        <NavBar.Link className="emner" activeStyle={{ textColor: 'white' }} to="/sykkel">
           Sykkel
         </NavBar.Link>
         <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/ekstrautstyr">
