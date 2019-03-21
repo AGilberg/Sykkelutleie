@@ -9,9 +9,11 @@ import { history } from '../index.js';
 class Ekstrautstyr extends Component {
   valgtKlasse = '';
   valgtSortering = '';
+  valgtAvdeling = '';
   utstyr = [];
   sorteringer = [];
   sykkelklasser = [];
+  avdeling = [];
 
   render() {
     return (
@@ -59,6 +61,21 @@ class Ekstrautstyr extends Component {
                   </select>
                 </div>
               </div>
+              <div className="col-6">
+                <div className="form-group">
+                  <select
+                    id="avdeling"
+                    name="avdeling"
+                    className="form-control"
+                    onChange={event => (this.valgtAvdeling = event.target.value)}
+                  >
+                    <option value="">Avdeling</option>
+                    {this.avdeling.map(avdeling => (
+                      <option key={avdeling.avdeling_id}>{avdeling.navn}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -89,6 +106,9 @@ class Ekstrautstyr extends Component {
 
     sykkelService.getSykkelklasser(result => {
       this.sykkelklasser = result;
+    });
+    vareService.getAvdeling(result => {
+      this.avdeling = result;
     });
 
     this.sorteringer = vareService.getSorteringer();
