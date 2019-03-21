@@ -11,7 +11,7 @@ class Kunde extends Component {
         <br />
         <Card>
           <NavBar.Link className="link" to="/registrerKunde">
-            Registrer kunde reeeeeee
+            Registrer kunde
           </NavBar.Link>
         </Card>
         <Card>

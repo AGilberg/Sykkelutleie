@@ -47,18 +47,20 @@ class BestillingService {
     //alter
   }
 
-  removeOrder(orderId) {
+  deleteOrder(id) {
     //fjern en bestilling
     //delete INNHOLD
-    connection.query('delete from INNHOLD where bestilling_id = ?', [orderId], (error, results) => {
+    connection.query('delete from INNHOLDUTSTYR where bestilling_id = ?', [id], (error, results) => {
       if (error) return console.error(error);
-      success();
+      connection.query('delete from INNHOLDSYKKEL where bestilling_id = ?', [id], (error, results) => {
+        if (error) return console.error(error);
+        connection.query('delete from BESTILLING where bestilling_id = ?', [id], (error, results) => {
+          if (error) return console.error(error);
+        });
+      });
     });
+
     //delete BESTILLING
-    connection.query('delete from BESTILLING where bestilling_id = ?', [orderId], (error, results) => {
-      if (error) return console.error(error);
-      success();
-    });
   }
 
   updateStatus(orderId, status) {
