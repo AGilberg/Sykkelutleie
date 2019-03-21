@@ -58,7 +58,7 @@ class Home extends Component {
 class Sidenav extends Component {
   render() {
     return (
-      <div className="col-2" style={{ position: 'relative' }}>
+      <div className="col-md-2" style={{ textPosition: 'relative' }}>
         <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/kunde">
           Kunde
         </NavBar.Link>
@@ -90,7 +90,7 @@ ReactDOM.render(
 
       <div className="row" style={{ height: '100%', paddingBottom: '96px' }}>
         <Sidenav />
-        <div className="col-10" style={{ overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
+        <div className="col-md-10" style={{ overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
           <Route exact path="/" component={Home} />
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
           <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />

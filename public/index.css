@@ -41,21 +41,12 @@ img:hover {
 .form-horizontal {
   width: 90%;
   padding: 12px 30px;
-  margin: 10px;
+  margin: 14px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   border: 2px solid #d1e0e0;
-}
-form-control input-md {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
 }
 
 /* KUNDESØK */
@@ -75,14 +66,15 @@ form-control input-md {
   margin-right: 0px;
 }
 
-.col-2 {
+.col-md-2 {
   background-color: #f8f9fa !important;
   padding-top: 10px;
   border: 1px solid #c9dbdb;
   border-top: none;
+  font-size: 1rem;
 }
 
-.col-2 a {
+.col-md-2 a {
   padding: 6px 6px 6px 32px;
   text-decoration: none;
   color: grey;
@@ -90,11 +82,28 @@ form-control input-md {
   display: block;
 }
 
-.col-2 a:hover {
+.col-md-2 a:hover {
   color: #9cbdbd;
 }
 
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 2rem;
+  }
+}
+/* .openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+} */
+
 /* .link {
-  text-decoration: none;
   color: grey;
 } */
