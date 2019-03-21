@@ -84,7 +84,7 @@ class BestillingService {
 
   getOrder(bestilling_id, success) {
     connection.query(
-      'select * from BESTILLING, PERSON where bestilling_id=? and BESTILLING.person_id=PERSON.person_id',
+      'select * from BESTILLING, PERSON, STATUS where bestilling_id=? and BESTILLING.person_id=PERSON.person_id and STATUS.status_id = BESTILLING.status_id',
       [bestilling_id],
       (error, results) => {
         if (error) return console.error(error);
@@ -93,14 +93,29 @@ class BestillingService {
       }
     );
   }
-  getOrderContents(bestilling_id, success) {
+
+  getOrderContentsSykler(bestilling_id, success) {
     connection.query(
-      'select * from INNHOLD, SYKKEL, SYKKELTYPE, UTSTYR where INNHOLD.bestilling_id=? and INNHOLD.sykkel_id = SYKKEL.sykkel_id and SYKKEL.type_id = SYKKELTYPE.type_id and UTSTYR.utstyr_id = INNHOLD.utstyr_id',
+      'select * from INNHOLDSYKKEL, SYKKEL, SYKKELTYPE where INNHOLDSYKKEL.bestilling_id=? and INNHOLDSYKKEL.sykkel_id = SYKKEL.sykkel_id and SYKKEL.type_id = SYKKELTYPE.type_id',
       [bestilling_id],
       (error, results) => {
         if (error) return console.error(error);
 
         success(results);
+        console.log(results);
+      }
+    );
+  }
+
+  getOrderContentsUtstyr(bestilling_id, success) {
+    connection.query(
+      'select * from INNHOLDUTSTYR, UTSTYR where INNHOLDUTSTYR.bestilling_id=? and UTSTYR.utstyr_id = INNHOLDUTSTYR.utstyr_id',
+      [bestilling_id],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+        console.log(results);
       }
     );
   }
