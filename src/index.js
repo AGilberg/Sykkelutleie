@@ -17,13 +17,6 @@ import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 import createHashHistory from 'history/createHashHistory';
 export const history = createHashHistory();
 
-export var handlekurv = [
-  { id: 2, navn: 'hjelm', antall: 1, pris: 150 },
-  { id: 3, navn: 'sykkel', antall: 1, pris: 900 },
-  { id: 1, navn: 'vannflaske', antall: 3, pris: 75 },
-  { id: 2, navn: 'luftpumpe', antall: 1, pris: 150 }
-];
-
 class Menu extends Component {
   render() {
     return (

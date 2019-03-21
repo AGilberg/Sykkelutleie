@@ -1,30 +1,36 @@
 import { connection } from '../mysql_connection';
 
 class CartService{
-  /*tableHome => hvor produktet hører hjemme, SYKKEL, UTSTYR, ...
-  cart[0] = [tableHome, colum1, colum2, colum3, colum4, colum5, ...];
-  switch (tableHome) {
-    case "tableName":
-      correctRefister(cart[0][1],cart[0][2],cart[0][3],cart[0][4],...);
-      break;
-    default:
-
-  }
-  */
   constructor(){
-
+    this.handlekurv = [
+      { id: 2, navn: 'hjelm', antall: 1, pris: 150 },
+      { id: 3, navn: 'sykkel', antall: 1, pris: 900 },
+      { id: 1, navn: 'vannflaske', antall: 3, pris: 75 },
+      { id: 2, navn: 'luftpumpe', antall: 1, pris: 150 }
+    ];
   }
+
 
   removeCart(){
+    this.handlekurv = [];
+  }
+
+  alterCart(){//index i arrayen,
 
   }
 
-  alterCart(){
-
+  dropItem(start){//index i arrayen,
+    console.log(this.handlekurv);
+        this.handlekurv.slice(start,1);
+        console.log(this.handlekurv);
   }
 
   addItem(item){
+    this.handlekurv.push(item);
+  }
 
+  getHandlekurv(){
+    return this.handlekurv;
   }
 }
 

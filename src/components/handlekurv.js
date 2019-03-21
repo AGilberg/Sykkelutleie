@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavBar } from '../widgets';
-import { handlekurv } from '../index.js';
 import { NavLink } from 'react-router-dom';
+import { cartService } from '../services/CartService';
 
 class Handlekurv extends Component {
+  handlekurv = [];
+
   render() {
     return (
       <div style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
@@ -21,14 +23,14 @@ class Handlekurv extends Component {
             <div className="col">Pris</div>
             <div className="col" />
           </div>
-          {handlekurv.map((prod, index) => (
+          {this.handlekurv.map((prod, index) => (
             <div key={index} className="row" style={index % 2 != 0 ? { backgroundColor: 'lavender' } : {}}>
               <div className="col">{index + 1}</div>
               <div className="col">{prod.navn}</div>
               <div className="col">{prod.antall}</div>
               <div className="col">{prod.pris}</div>
               <div className="col">
-                <button>Slett</button>
+                <button onClick={()=>cartService.dropItem(index)}>Slett</button>
               </div>
             </div>
           ))}
@@ -42,6 +44,10 @@ class Handlekurv extends Component {
         </NavBar.Link>
       </div>
     );
+  }
+
+  mounted(){
+    this.handlekurv = cartService.getHandlekurv();
   }
 }
 
