@@ -5,7 +5,19 @@ import { NavLink } from 'react-router-dom';
 import { cartService } from '../services/CartService';
 
 class Handlekurv extends Component {
-  handlekurv = [];
+  constructor(props){
+    super(props);
+    this.state = {
+        handlekurv: []
+    }
+  }
+
+
+
+  delItem(index){
+    cartService.dropItem(index);
+    this.setState({handlekurv : cartService.getHandlekurv() })
+  }
 
   render() {
     return (
@@ -23,14 +35,14 @@ class Handlekurv extends Component {
             <div className="col">Pris</div>
             <div className="col" />
           </div>
-          {this.handlekurv.map((prod, index) => (
+          {this.state.handlekurv.map((prod, index) => (
             <div key={index} className="row" style={index % 2 != 0 ? { backgroundColor: 'lavender' } : {}}>
               <div className="col">{index + 1}</div>
               <div className="col">{prod.navn}</div>
               <div className="col">{prod.antall}</div>
               <div className="col">{prod.pris}</div>
               <div className="col">
-                <button onClick={()=>cartService.dropItem(index)}>Slett</button>
+                <button onClick={()=>this.delItem(index)}>Slett</button>
               </div>
             </div>
           ))}
@@ -47,7 +59,7 @@ class Handlekurv extends Component {
   }
 
   mounted(){
-    this.handlekurv = cartService.getHandlekurv();
+    this.setState({handlekurv : cartService.getHandlekurv() });
   }
 }
 

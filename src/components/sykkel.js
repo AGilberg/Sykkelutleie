@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
 import { Row, Column, Button, Img } from '../widgets';
 import { history } from '../index.js';
+import { cartService } from '../services/CartService';
 
 class Sykkel extends Component {
   valgtSortering = '';
