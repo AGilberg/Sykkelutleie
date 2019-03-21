@@ -10,10 +10,11 @@ import { kundeService } from '../services/KundeService.js';
 
 class BestillingDetails extends Component {
   bestill = null;
-  innhold = null;
+  sykkel = null;
+  utstyr = null;
 
   render() {
-    if (!this.bestill || !this.innhold) return null;
+    if (!this.bestill || !this.sykkel || !this.utstyr) return null;
 
     return (
       <div className="hoved">
@@ -50,15 +51,24 @@ class BestillingDetails extends Component {
             </Row>
 
             <br />
+            <br />
             <Row>
               <Column width={3}>Bestilte varer:</Column>
               <Column>
-                {this.innhold.map(innhold => (
-                  <Row key={innhold.innhold_id}>
+                {this.sykkel.map(sykkel => (
+                  <Row key={sykkel.innholdsykkel_id}>
                     <ul>
-                      <li>{innhold.typenavn}</li>
+                      <li>{sykkel.typenavn}</li>
+                    </ul>
+                  </Row>
+                ))}
+              </Column>
+              <Column>
+                {this.utstyr.map(utstyr => (
+                  <Row key={utstyr.innholdutstyr_id}>
+                    <ul>
                       <li>
-                        {innhold.navn} ({innhold.ant_utstyr})
+                        {utstyr.navn} ({utstyr.ant_utstyr})
                       </li>
                     </ul>
                   </Row>
@@ -99,8 +109,11 @@ class BestillingDetails extends Component {
     bestillingService.getOrder(this.props.match.params.bestilling_id, bestill => {
       this.bestill = bestill;
     });
-    bestillingService.getOrderContents(this.props.match.params.bestilling_id, innhold => {
-      this.innhold = innhold;
+    bestillingService.getOrderContentsSykler(this.props.match.params.bestilling_id, sykkel => {
+      this.sykkel = sykkel;
+    });
+    bestillingService.getOrderContentsUtstyr(this.props.match.params.bestilling_id, utstyr => {
+      this.utstyr = utstyr;
     });
   }
 
