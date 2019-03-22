@@ -51,7 +51,7 @@ class Home extends Component {
 class Sidenav extends Component {
   render() {
     return (
-      <div className="col-md-2" style={{ textPosition: 'relative' }}>
+      <div className="col-md-2">
         <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/kunde">
           Kunde
         </NavBar.Link>

@@ -8,9 +8,9 @@ import { cartService } from '../services/CartService';
 
 class Sykkel extends Component {
   state = {
-      alleSykkeltyper : [],//denne holder alle sykkeltypene
-      sykkeltyper : []//denne holder alle sykkeltypene som skal vises
-  }
+    alleSykkeltyper: [], //denne holder alle sykkeltypene
+    sykkeltyper: null //denne holder alle sykkeltypene som skal vises
+  };
 
   sorterMetode = [];
   sorterSykkelklasse = [];
@@ -18,14 +18,9 @@ class Sykkel extends Component {
   render() {
     let sykler = null;
     let sykkelklasser = null;
-    if (!sykler && !sykkelklasser)
+    if (!this.state.sykkeltyper)
       return (
-        <ReactLoading
-          type="bubbles"
-          color="violet, indigo, blue, green, yellow, orange, red,"
-          height={'20%'}
-          width={'20%'}
-        />
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
     return (
       <div>
@@ -87,8 +82,8 @@ class Sykkel extends Component {
                   height="180px"
                 />
                 {sykkel.typenavn}
-                <br/>
-                {"Pris: " + sykkel.pris}
+                <br />
+                {'Pris: ' + sykkel.pris}
               </li>
             ))}
           </ul>
@@ -101,8 +96,8 @@ class Sykkel extends Component {
     this.sorterMetode = sykkelService.getSykkelSorteringer();
 
     sykkelService.getSykkeltyper(typer => {
-      this.setState({alleSykkeltyper : typer });
-      this.setState({sykkeltyper : typer });
+      this.setState({ alleSykkeltyper: typer });
+      this.setState({ sykkeltyper: typer });
     });
 
     sykkelService.getSykkelklasser(klasser => {
@@ -114,19 +109,16 @@ class Sykkel extends Component {
     history.push('/ProduktSykkel/' + id);
   }
 
-  changeOrder(event){
-    sykkelService.sortSykkelsok(event.target.value, this.state.sykkeltyper, sortert =>{
-      this.setState({sykkeltyper: sortert});
+  changeOrder(event) {
+    sykkelService.sortSykkelsok(event.target.value, this.state.sykkeltyper, sortert => {
+      this.setState({ sykkeltyper: sortert });
     });
-
   }
 
-  changeContent(event){
-    sykkelService.visKlasse(event.target.value, this.state.alleSykkeltyper, nyVisning =>{
-        this.setState({sykkeltyper: nyVisning});
+  changeContent(event) {
+    sykkelService.visKlasse(event.target.value, this.state.alleSykkeltyper, nyVisning => {
+      this.setState({ sykkeltyper: nyVisning });
     });
-
-
   }
 }
 

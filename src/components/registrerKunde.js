@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import { Row, Column } from '../widgets';
 import { kundeService } from '../services/KundeService.js';
 import { history } from '../index.js';
+import ReactLoading from 'react-loading';
 
 class RegistrerKunde extends Component {
   kjonn = 1;
@@ -18,6 +19,10 @@ class RegistrerKunde extends Component {
   tilbud = true;
 
   render() {
+    if (!this.fornavn == '')
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
     return (
       <div className="main">
         {/*  Skjema for registrering av kunde.*/}
