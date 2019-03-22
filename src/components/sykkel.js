@@ -14,15 +14,21 @@ class Sykkel extends Component {
   sykkelklasser = [];
 
   render() {
-    return (
-      <div>
-        {/*Skjema for søk og valg av sykkel*/}
+    let sykler = null;
+    let sykkelklasser = null;
+    if (!sykler && !sykkelklasser)
+      return (
         <ReactLoading
           type="bubbles"
           color="violet, indigo, blue, green, yellow, orange, red,"
           height={'20%'}
           width={'20%'}
         />
+      );
+    return (
+      <div>
+        {/*Skjema for søk og valg av sykkel*/}
+
         <br />
         <div className="col-md-4">
           <h4>Velg sykkel</h4>
