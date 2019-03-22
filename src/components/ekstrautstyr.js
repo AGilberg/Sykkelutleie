@@ -54,7 +54,7 @@ class Ekstrautstyr extends Component {
                     id="kompatibel"
                     name="kompatibel"
                     className="form-control"
-                    onChange={event => (this.changeContentKomp(event))}
+                    onChange={event => (this.changeContent(event))}
                   >
                     <option value="">Kompatibel med</option>
                     {this.sykkelklasser.map(klasse => (
@@ -69,7 +69,7 @@ class Ekstrautstyr extends Component {
                     id="avdeling"
                     name="avdeling"
                     className="form-control"
-                    onChange={event => (this.changeContentAvdeling(event))}
+                    onChange={event => (this.changeContent(event))}
                   >
                     <option value="">Avdeling</option>
                     {this.avdelinger.map(avdeling => (
@@ -127,15 +127,20 @@ class Ekstrautstyr extends Component {
     });
   }
 
-  changeContentKomp(event){
-    utstyrService.visKompatibel(event.target.value, this.state.altUtstyr, utvalg =>{
-      this.setState({utstyr: utvalg});
-    });
-  }
+  changeContent(event){
+    switch (event.target.name) {
+      case "kompatibel":
+        this.valgtKomp = event.target.value;
+        break;
+      case "avdeling":
+        this.valgtAvdeling = event.target.value
+    }
 
-  changeContentAvdeling(event){
-    utstyrService.visAvdeling(event.target.value, this.state.altUtstyr, utvalg =>{
-      this.setState({utstyr: utvalg});
+    utstyrService.visKompatibel(this.valgtKomp, this.state.altUtstyr, utvalg1 =>{
+
+      utstyrService.visAvdeling(this.valgtAvdeling, utvalg1, utvalg2 =>{
+        this.setState({utstyr: utvalg2});
+      });
     });
   }
 }

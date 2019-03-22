@@ -9,6 +9,15 @@ class UtstyrService {
       success(results);
     });
   }
+
+  getKompUtstyrliste(klasse, success){
+    connection.query('select opp.utstyr_id from OPPSETT opp, KLASSE kl where kl.klasse_id = opp.klasse_id and kl.klassenavn = ? ',
+    [klasse], (error, results) => {
+      if (error) return console.error(error);
+      success(results);
+    });
+  }
+
   getAvdelinger(success) {
     connection.query('select * from AVDELING', (error, results) => {
       if (error) return console.error(error);
@@ -84,21 +93,29 @@ class UtstyrService {
     success(arr);
   }
 
-  visKompatibel(klasse, arrInn, success){// FIXME: trenger testdata i databasen, spørring for å få oppsettet og teste utstyret opp mot den
-    success(arrInn);
-    return;
-/*------------IKKE BRUK--------------------*/
+  visKompatibel(klasse, arrInn, success){
     if(klasse.length == 0){
       success(arrInn);
       return;
     }
-    let arr = arrInn.slice();//lager en klone av arrayen for ikke å endre den originale
+
+    let arr = arrInn.slice();//lager en klone av arrInn
+
+    this.getKompUtstyrliste(klasse, liste =>{//gir en liste med alt kompatibelt utstyr
+
     for(let i = arr.length-1; i >= 0; i--){
-      if(arr[i].avdelingsnavn !== avdeling){
+      let found = false;
+      for(let k = liste.length-1; k >= 0; k--){
+          if(arr[i].utstyr_id === liste[k].utstyr_id){
+            found = true;
+          }
+      }
+      if(!found){
         arr.splice(i,1);
       }
     }
     success(arr);
+    });
   }
 }
 
