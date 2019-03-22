@@ -19,7 +19,7 @@ class RegistrerKunde extends Component {
   tilbud = true;
 
   render() {
-    if (this.fornavn == '')
+    if (!this.fornavn == '')
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
