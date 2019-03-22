@@ -3,7 +3,10 @@ import { connection } from '../mysql_connection';
 class CartService{
   constructor(){
     this.handlekurv = [
-
+      { id: 2, navn: 'test-1', antall: 1, pris: 150 },
+      { id: 3, navn: 'test-2', antall: 1, pris: 900 },
+      { id: 1, navn: 'test-3', antall: 3, pris: 75 },
+      { id: 2, navn: 'test-4', antall: 1, pris: 150 }
     ];
   }
 /*
