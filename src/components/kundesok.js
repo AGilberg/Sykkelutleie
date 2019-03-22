@@ -3,11 +3,16 @@ import { Component } from 'react-simplified';
 import { kundeService } from '../services/KundeService.js';
 import { history } from '../index.js';
 import Card from 'react-bootstrap/Card';
+import ReactLoading from 'react-loading';
 
 class Kundesøk extends Component {
-  kunder = [];
+  kunder = null;
 
   render() {
+    if (!this.kunder)
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
     return (
       <div className="main">
         {/* Søkefunksjon for å søke etter registrerte kunder */}

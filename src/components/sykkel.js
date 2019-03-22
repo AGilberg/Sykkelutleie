@@ -20,12 +20,7 @@ class Sykkel extends Component {
     let sykkelklasser = null;
     if (!this.state.sykkeltyper)
       return (
-        <ReactLoading
-          type="bubbles"
-          color="violet, indigo, blue, green, yellow, orange, red,"
-          height={'20%'}
-          width={'20%'}
-        />
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
     return (
       <div>

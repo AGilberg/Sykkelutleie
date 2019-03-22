@@ -3,23 +3,26 @@ import { Component } from 'react-simplified';
 import { NavBar } from '../widgets';
 import { NavLink } from 'react-router-dom';
 import { cartService } from '../services/CartService';
+import ReactLoading from 'react-loading';
 
 class Handlekurv extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-        handlekurv: []
-    }
+      handlekurv: null
+    };
   }
 
-
-
-  delItem(index){
+  delItem(index) {
     cartService.dropItem(index);
-    this.setState({handlekurv : cartService.getHandlekurv() })
+    this.setState({ handlekurv: cartService.getHandlekurv() });
   }
 
   render() {
+    if (!this.state.handlekurv)
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
     return (
       <div style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
         {/* Viser hva som er valgt til bestillingen */}
@@ -42,7 +45,7 @@ class Handlekurv extends Component {
               <div className="col">{prod.antall}</div>
               <div className="col">{prod.pris}</div>
               <div className="col">
-                <button onClick={()=>this.delItem(index)}>Slett</button>
+                <button onClick={() => this.delItem(index)}>Slett</button>
               </div>
             </div>
           ))}
@@ -58,8 +61,8 @@ class Handlekurv extends Component {
     );
   }
 
-  mounted(){
-    this.setState({handlekurv : cartService.getHandlekurv() });
+  mounted() {
+    this.setState({ handlekurv: cartService.getHandlekurv() });
   }
 }
 

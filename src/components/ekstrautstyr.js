@@ -5,11 +5,12 @@ import { sykkelService } from '../services/SykkelService.js';
 import { utstyrService } from '../services/UtstyrService.js';
 import { Row, Column, Button, Img } from '../widgets';
 import { history } from '../index.js';
+import ReactLoading from 'react-loading';
 
 class Ekstrautstyr extends Component {
   state = {
     altUtstyr: [],
-    utstyr: []
+    utstyr: null
   };
   valgtAvdeling = ''; // FIXME: ikke i bruk, men kan kanskje brukes for å kunne søke med flere parameter
   valgtKomp = ''; // FIXME: ikke i bruk, men kan kanskje brukes for å kunne søke med flere parameter
@@ -18,6 +19,10 @@ class Ekstrautstyr extends Component {
   avdelinger = [];
 
   render() {
+    if (!this.state.utstyr)
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
     return (
       <div>
         {/*
