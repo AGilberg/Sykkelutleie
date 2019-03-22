@@ -36,7 +36,9 @@ class BestillingDetails extends Component {
             <br />
             <Row>
               <Column width={3}>Kunde:</Column>
-              <Column>{this.bestill.fornavn}</Column>
+              <Column>
+                {this.bestill.fornavn} {this.bestill.etternavn}
+              </Column>
             </Row>
             <br />
             <Row>
@@ -88,7 +90,7 @@ class BestillingDetails extends Component {
                   </Button>
                 </Column>
                 <Column left>
-                  <Button id="endre" variant="success">
+                  <Button id="endre" variant="success" onClick={this.edit}>
                     Endre bestilling
                   </Button>
                 </Column>
@@ -143,6 +145,9 @@ class BestillingDetails extends Component {
     {
       history.push('/aktivebestillinger');
     }
+  }
+  edit() {
+    history.push('/aktivebestillinger/' + this.bestill.bestilling_id + '/edit');
   }
 }
 

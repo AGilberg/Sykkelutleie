@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { AktiveBestillinger } from './components/aktiveBestillinger.js';
 import { BestillingDetails } from './components/bestillingDetails.js';
+import { BestillingEdit } from './components/editBestilling.js';
 import { Ekstrautstyr } from './components/ekstrautstyr.js';
 import { Handlekurv } from './components/handlekurv.js';
 import { Kunde } from './components/kunde.js';
@@ -87,6 +88,7 @@ ReactDOM.render(
           <Route exact path="/" component={Home} />
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
           <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
+          <Route exact path="/aktivebestillinger/:bestilling_id/edit" component={BestillingEdit} />
           <Route exact path="/kunde" component={Kunde} />
           <Route exact path="/kundesøk" component={Kundesøk} />
           <Route exact path="/registrerKunde" component={RegistrerKunde} />
