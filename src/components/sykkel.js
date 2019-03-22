@@ -13,6 +13,7 @@ class Sykkel extends Component {
   };
 
   sorterMetode = [];
+  valgtSortering = '';
   sorterSykkelklasse = [];
 
   render() {
@@ -110,14 +111,18 @@ class Sykkel extends Component {
   }
 
   changeOrder(event) {
-    sykkelService.sortSykkelsok(event.target.value, this.state.sykkeltyper, sortert => {
+    this.valgtSortering = event.target.value;
+    sykkelService.sortSykkelsok(this.valgtSortering, this.state.sykkeltyper, sortert => {
       this.setState({ sykkeltyper: sortert });
     });
   }
 
   changeContent(event) {
     sykkelService.visKlasse(event.target.value, this.state.alleSykkeltyper, nyVisning => {
-      this.setState({ sykkeltyper: nyVisning });
+      sykkelService.sortSykkelsok(this.valgtSortering, nyVisning, sortert => {
+          this.setState({ sykkeltyper: sortert });
+      });
+
     });
   }
 }

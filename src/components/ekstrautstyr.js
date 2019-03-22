@@ -12,8 +12,9 @@ class Ekstrautstyr extends Component {
     altUtstyr: [],
     utstyr: null
   };
-  valgtAvdeling = ''; // FIXME: ikke i bruk, men kan kanskje brukes for å kunne søke med flere parameter
-  valgtKomp = ''; // FIXME: ikke i bruk, men kan kanskje brukes for å kunne søke med flere parameter
+  valgtAvdeling = '';
+  valgtKomp = '';
+  valgtSortering = '';
   sorteringer = [];
   sykkelklasser = [];
   avdelinger = [];
@@ -126,9 +127,9 @@ class Ekstrautstyr extends Component {
     this.sorteringer = utstyrService.getSorteringer();
   }
 
-  changeOrder(event) {
-    //endre rekkefølgen på utstyret
-    utstyrService.sortUtstyrsok(event.target.value, this.state.utstyr, sortert => {
+  changeOrder(event) {  //endre rekkefølgen på utstyret
+    this.valgtSortering = event.target.value;
+    utstyrService.sortUtstyrsok(this.valgtSortering, this.state.utstyr, sortert => {
       this.setState({ utstyr: sortert });
     });
   }
@@ -144,7 +145,9 @@ class Ekstrautstyr extends Component {
 
     utstyrService.visKompatibel(this.valgtKomp, this.state.altUtstyr, utvalg1 => {
       utstyrService.visAvdeling(this.valgtAvdeling, utvalg1, utvalg2 => {
-        this.setState({ utstyr: utvalg2 });
+        utstyrService.sortUtstyrsok(this.valgtSortering, utvalg2, sortert => {
+            this.setState({ utstyr: sortert });
+        });
       });
     });
   }

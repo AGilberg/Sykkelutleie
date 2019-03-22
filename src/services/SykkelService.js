@@ -52,6 +52,10 @@ class SykkelService{
   }
 
   sortSykkelsok(metode, arr, success){//retuner en sortert array
+    if(metode == "Sorter etter"){//sender arr tilbake dersom ingen metode er valgt
+      success(arr);
+      return;
+    }
     let index, r1, r2;
     let mulighet = this.getSykkelSorteringer();
     let nyArr = [];
@@ -92,7 +96,6 @@ class SykkelService{
   }
 
   visKlasse(klasse, arrInn, success){
-    console.log(klasse);
     if(klasse == "Sykkeltype"){
       success(arrInn);
       return;
