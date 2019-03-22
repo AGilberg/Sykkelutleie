@@ -37,7 +37,10 @@ class UtstyrService {
 
 
   sortUtstyrsok(metode, arr, success){
-    console.log(arr[0]);
+    if(metode.length == 0){
+      success(arr);
+      return;
+    }
     let index, r1, r2;
     let mulighet = this.getSorteringer();
     let nyArr = [];
@@ -61,7 +64,6 @@ class UtstyrService {
         index = "pris";
         r1 = 1;
         r2 = -1;
-
     }
       nyArr =  arr.sort(sorteringfunk);
       success(nyArr);
@@ -77,10 +79,7 @@ class UtstyrService {
   }
 
   visAvdeling(avdeling, arrInn, success){
-    avdeling = avdeling.toString();
-    console.log(avdeling);
-    console.log(arrInn[0]);
-    if(avdeling == ""){
+    if(avdeling.length == 0){
       success(arrInn);
       return;
     }
@@ -103,7 +102,7 @@ class UtstyrService {
 
     this.getKompUtstyrliste(klasse, liste =>{//gir en liste med alt kompatibelt utstyr
 
-    for(let i = arr.length-1; i >= 0; i--){
+    for(let i = arr.length-1; i >= 0; i--){//sjekker utstyret i arr opp mot listen
       let found = false;
       for(let k = liste.length-1; k >= 0; k--){
           if(arr[i].utstyr_id === liste[k].utstyr_id){
