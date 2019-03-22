@@ -37,17 +37,14 @@ img:hover {
   filter: alpha(opacity=1);
 }
 
-/* SIDENAV */
-.emner {
-  /* HOVER  */
-}
-
+/* GENERELL POSISJON TIL DE ULIKE BOADER */
 .main {
   margin: 24px;
   margin-left: 0px;
   margin-right: 0px;
 }
 
+/* SIDENAV */
 .col-md-2 {
   background-color: #f8f9fa !important;
   padding-top: 10px;
@@ -89,19 +86,6 @@ img:hover {
   }
 }
 
-/* .openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
+.active {
+  color: black;
 }
-
-.openbtn:hover {
-  background-color: #444;
-} */
-
-/* .link {
-  color: grey;
-} */

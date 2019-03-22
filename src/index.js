@@ -52,16 +52,16 @@ class Sidenav extends Component {
   render() {
     return (
       <div className="col-md-2">
-        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/kunde">
+        <NavBar.Link className="link" to="/kunde">
           Kunde
         </NavBar.Link>
-        <NavBar.Link className="emner" activeStyle={{ textColor: 'white' }} to="/sykkel">
+        <NavBar.Link className="link" to="/sykkel">
           Sykkel
         </NavBar.Link>
-        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/ekstrautstyr">
+        <NavBar.Link className="link" to="/ekstrautstyr">
           Ekstrautstyr
         </NavBar.Link>
-        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/handlekurv">
+        <NavBar.Link className="link" to="/handlekurv">
           Handlekurv
         </NavBar.Link>
       </div>
