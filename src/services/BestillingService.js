@@ -42,14 +42,53 @@ class BestillingService {
     }
   }
 
-  alterOrder(orderArr) {
-    //endre på en bestilling // FIXME: LAG
-    //alter
+  updateOrder(bestill, utstyr, sykkel, id) {
+    connection.query(
+      'update BESTILLING set sum=?, tilstand=?, beskrivelse=?, leie_start=?, leie_slutt=? where bestilling_id=?',
+      [
+        bestill.sum,
+        bestill.tilstand,
+        bestill.beskrivelse,
+        bestill.leie_start,
+        bestill.leie_slutt,
+        bestill.bestilling_id
+      ],
+      (error, results) => {
+        if (error) return console.error(error);
+        connection.query(
+          'update INNHOLDUTSTYR set navn=?, ant_utstyr=? where bestilling_id=?',
+          [utstyr.navn, utstyr.ant_utstyr],
+          (error, results) => {
+            if (error) return console.error(error);
+            connection.query(
+              'update INNHOLDSYKKEL set typenavn=? where bestilling_id=?',
+              [sykkel.typenavn],
+              (error, results) => {
+                if (error) return console.error(error);
+                connection.query(
+                  'update PERSON set fornavn=?, etternavn=? where bestilling_id=?',
+                  [bestill.fornavn, bestill.etternavn],
+                  (error, results) => {
+                    if (error) return console.error(error);
+                    connection.query(
+                      'update STATUS set tilstand=? where bestilling_id=?',
+                      [bestill.tilstand],
+                      (error, results) => {
+                        if (error) return console.error(error);
+                      }
+                    );
+                  }
+                );
+              }
+            );
+          }
+        );
+      }
+    );
   }
 
   deleteOrder(id) {
     //fjern en bestilling
-    //delete INNHOLD
     connection.query('delete from INNHOLDUTSTYR where bestilling_id = ?', [id], (error, results) => {
       if (error) return console.error(error);
       connection.query('delete from INNHOLDSYKKEL where bestilling_id = ?', [id], (error, results) => {
@@ -59,8 +98,6 @@ class BestillingService {
         });
       });
     });
-
-    //delete BESTILLING
   }
 
   updateStatus(orderId, status) {
