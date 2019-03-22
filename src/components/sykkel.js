@@ -3,18 +3,34 @@ import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
 import { Row, Column, Button, Img } from '../widgets';
 import { history } from '../index.js';
+import ReactLoading from 'react-loading';
+import { cartService } from '../services/CartService';
 
 class Sykkel extends Component {
-  valgtSortering = '';
-  valgtKlasse = '';
-  sykler = []; // FIXME: fjern dersom denne siden kun skal være til sykkelklasser
-  sorteringer = [];
-  sykkelklasser = [];
+  state = {
+      alleSykkeltyper : [],//denne holder alle sykkeltypene
+      sykkeltyper : []//denne holder alle sykkeltypene som skal vises
+  }
+
+  sorterMetode = [];
+  sorterSykkelklasse = [];
 
   render() {
+    let sykler = null;
+    let sykkelklasser = null;
+    if (!sykler && !sykkelklasser)
+      return (
+        <ReactLoading
+          type="bubbles"
+          color="violet, indigo, blue, green, yellow, orange, red,"
+          height={'20%'}
+          width={'20%'}
+        />
+      );
     return (
       <div>
         {/*Skjema for søk og valg av sykkel*/}
+
         <br />
         <div className="col-md-4">
           <h4>Velg sykkel</h4>
@@ -30,10 +46,10 @@ class Sykkel extends Component {
                     id="sorter"
                     name="sorter"
                     className="form-control"
-                    onChange={event => (this.valgtSortering = event.target.value)}
+                    onChange={event => this.changeOrder(event)}
                   >
                     <option>Sorter etter</option>
-                    {this.sorteringer.map(metode => (
+                    {this.sorterMetode.map(metode => (
                       <option key={metode[1]}>{metode[0]}</option>
                     ))}
                   </select>
@@ -46,10 +62,10 @@ class Sykkel extends Component {
                     id="typenavn"
                     name="typenavn"
                     className="form-control"
-                    onChange={event => (this.valgtKlasse = event.target.value)}
+                    onChange={event => this.changeContent(event)}
                   >
                     <option>Sykkeltype</option>
-                    {this.sykkelklasser.map(klasse => (
+                    {this.sorterSykkelklasse.map(klasse => (
                       <option key={klasse.klasse_id}>{klasse.klassenavn}</option>
                     ))}
                   </select>
@@ -61,16 +77,18 @@ class Sykkel extends Component {
 
         <div className="img">
           <ul className="flex-container wrap">
-            {this.sykkelklasser.map(klasse => (
-              <li className="flex-item" key={klasse.klasse_id}>
+            {this.state.sykkeltyper.map(sykkel => (
+              <li className="flex-item" key={sykkel.type_id}>
                 <img
-                  src={'images/sykler/' + klasse.klassenavn + '.jpg'}
+                  src={'images/sykler/' + sykkel.klassenavn + '.jpg'}
                   onClick={() => history.push('/ProduktSykkel')}
-                  alt={klasse.klassenavn}
+                  alt={sykkel.typenavn}
                   width="180px"
                   height="180px"
                 />
-                {klasse.klassenavn}
+                {sykkel.typenavn}
+                <br/>
+                {"Pris: " + sykkel.pris}
               </li>
             ))}
           </ul>
@@ -80,21 +98,35 @@ class Sykkel extends Component {
   }
 
   mounted() {
-    // FIXME: vi må bli enige om hvordan denne visningen skal være
-    //de to kallene med SQL gir feilmeldingen
-    this.sorteringer = sykkelService.getSykkelSorteringer();
+    this.sorterMetode = sykkelService.getSykkelSorteringer();
 
-    sykkelService.getSykler(sykler => {
-      this.sykler = sykler;
+    sykkelService.getSykkeltyper(typer => {
+      this.setState({alleSykkeltyper : typer });
+      this.setState({sykkeltyper : typer });
     });
 
     sykkelService.getSykkelklasser(klasser => {
-      this.sykkelklasser = klasser;
+      this.sorterSykkelklasse = klasser;
     });
   }
 
   goToSykkel(id) {
     history.push('/ProduktSykkel/' + id);
+  }
+
+  changeOrder(event){
+    sykkelService.sortSykkelsok(event.target.value, this.state.sykkeltyper, sortert =>{
+      this.setState({sykkeltyper: sortert});
+    });
+
+  }
+
+  changeContent(event){
+    sykkelService.visKlasse(event.target.value, this.state.alleSykkeltyper, nyVisning =>{
+        this.setState({sykkeltyper: nyVisning});
+    });
+
+
   }
 }
 

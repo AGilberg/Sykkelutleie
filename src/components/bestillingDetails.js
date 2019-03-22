@@ -79,7 +79,7 @@ class BestillingDetails extends Component {
               <br />
               <Row>
                 <Column right>
-                  <Button id="slett" variant="danger">
+                  <Button id="slett" variant="danger" onClick={this.delete}>
                     Slett bestilling
                   </Button>
                 </Column>
@@ -133,6 +133,12 @@ class BestillingDetails extends Component {
     let year = date.getFullYear();
 
     return day + '/' + month + '/' + year;
+  }
+  delete() {
+    bestillingService.deleteOrder(this.props.match.params.bestilling_id);
+    {
+      history.push('/aktivebestillinger');
+    }
   }
 }
 
