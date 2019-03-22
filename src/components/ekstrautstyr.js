@@ -8,11 +8,11 @@ import { history } from '../index.js';
 
 class Ekstrautstyr extends Component {
   state = {
-    altUtstyr:[],
-    utstyr:[]
-  }
-  valgtAvdeling = "";// FIXME: ikke i bruk, men kan kanskje brukes for å kunne søke med flere parameter
-  valgtKomp = "";// FIXME: ikke i bruk, men kan kanskje brukes for å kunne søke med flere parameter
+    altUtstyr: [],
+    utstyr: []
+  };
+  valgtAvdeling = ''; // FIXME: ikke i bruk, men kan kanskje brukes for å kunne søke med flere parameter
+  valgtKomp = ''; // FIXME: ikke i bruk, men kan kanskje brukes for å kunne søke med flere parameter
   sorteringer = [];
   sykkelklasser = [];
   avdelinger = [];
@@ -39,7 +39,7 @@ class Ekstrautstyr extends Component {
                     id="sorter"
                     name="sorter"
                     className="form-control"
-                    onChange={event => (this.changeOrder(event))}
+                    onChange={event => this.changeOrder(event)}
                   >
                     <option value="">Sorter etter</option>
                     {this.sorteringer.map(metode => (
@@ -54,7 +54,7 @@ class Ekstrautstyr extends Component {
                     id="kompatibel"
                     name="kompatibel"
                     className="form-control"
-                    onChange={event => (this.changeContent(event))}
+                    onChange={event => this.changeContent(event)}
                   >
                     <option value="">Kompatibel med</option>
                     {this.sykkelklasser.map(klasse => (
@@ -69,7 +69,7 @@ class Ekstrautstyr extends Component {
                     id="avdeling"
                     name="avdeling"
                     className="form-control"
-                    onChange={event => (this.changeContent(event))}
+                    onChange={event => this.changeContent(event)}
                   >
                     <option value="">Avdeling</option>
                     {this.avdelinger.map(avdeling => (
@@ -83,7 +83,7 @@ class Ekstrautstyr extends Component {
         </div>
 
         <div className="img">
-          <ul className="flex-container wrap">
+          <ul className="flex-container wrap" style={{}}>
             {this.state.utstyr.map(utstyr => (
               <li key={utstyr.utstyr_id} className="flex-item">
                 <img
@@ -94,9 +94,9 @@ class Ekstrautstyr extends Component {
                   height="180px"
                 />
                 {utstyr.navn}
-                <br/>
+                <br />
                 {utstyr.pris}
-                <br/>
+                <br />
                 {utstyr.avdelingsnavn}
               </li>
             ))}
@@ -107,8 +107,8 @@ class Ekstrautstyr extends Component {
   }
   mounted() {
     utstyrService.getUtstyr(utstyr => {
-      this.setState({altUtstyr: utstyr});
-      this.setState({utstyr: utstyr});
+      this.setState({ altUtstyr: utstyr });
+      this.setState({ utstyr: utstyr });
     });
 
     sykkelService.getSykkelklasser(result => {
@@ -121,25 +121,25 @@ class Ekstrautstyr extends Component {
     this.sorteringer = utstyrService.getSorteringer();
   }
 
-  changeOrder(event){//endre rekkefølgen på utstyret
-    utstyrService.sortUtstyrsok(event.target.value, this.state.utstyr, sortert =>{
-      this.setState({utstyr: sortert});
+  changeOrder(event) {
+    //endre rekkefølgen på utstyret
+    utstyrService.sortUtstyrsok(event.target.value, this.state.utstyr, sortert => {
+      this.setState({ utstyr: sortert });
     });
   }
 
-  changeContent(event){
+  changeContent(event) {
     switch (event.target.name) {
-      case "kompatibel":
+      case 'kompatibel':
         this.valgtKomp = event.target.value;
         break;
-      case "avdeling":
-        this.valgtAvdeling = event.target.value
+      case 'avdeling':
+        this.valgtAvdeling = event.target.value;
     }
 
-    utstyrService.visKompatibel(this.valgtKomp, this.state.altUtstyr, utvalg1 =>{
-
-      utstyrService.visAvdeling(this.valgtAvdeling, utvalg1, utvalg2 =>{
-        this.setState({utstyr: utvalg2});
+    utstyrService.visKompatibel(this.valgtKomp, this.state.altUtstyr, utvalg1 => {
+      utstyrService.visAvdeling(this.valgtAvdeling, utvalg1, utvalg2 => {
+        this.setState({ utstyr: utvalg2 });
       });
     });
   }
