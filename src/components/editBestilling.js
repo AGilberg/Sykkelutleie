@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import ReactDOM from 'react-dom';
 import { Card, List, Row, Column, Form, Button } from '../widgets';
 import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
+import ReactLoading from 'react-loading';
 
 class BestillingEdit extends Component {
   bestill = null;
@@ -15,10 +15,13 @@ class BestillingEdit extends Component {
   tilstander = [];
 
   render() {
-    if (!this.bestill || !this.sykkel || !this.utstyr) return null;
+    if (!this.bestill || !this.sykkel || !this.utstyr)
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
 
     return (
-      <div>
+      <div className="main">
         <Card title="Rediger bestilling">
           <Form.Label>Startdato:</Form.Label>
           <Form.Input
@@ -104,14 +107,10 @@ class BestillingEdit extends Component {
         <div>
           <Row>
             <Column>
-              <Button.Success onClick={this.save}>
-                Lagre
-              </Button.Success>
+              <Button.Success onClick={this.save}>Lagre</Button.Success>
             </Column>
             <Column right>
-              <Button.Light onClick={this.tilbake}>
-                Tilbake
-              </Button.Light>
+              <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
             </Column>
           </Row>
         </div>

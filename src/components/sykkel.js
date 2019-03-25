@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
-import { Row, Column, Button, Img } from '../widgets';
+import { Row, Column, Img } from '../widgets';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
 import { cartService } from '../services/CartService';
@@ -15,6 +15,7 @@ class Sykkel extends Component {
   sorterMetode = [];
   valgtSortering = '';
   sorterSykkelklasse = [];
+  avdelinger = [];
 
   render() {
     let sykler = null;
@@ -67,6 +68,21 @@ class Sykkel extends Component {
                   </select>
                 </div>
               </div>
+              <div className="col-6">
+                <div className="form-group">
+                  <select
+                    id="avdeling"
+                    name="avdeling"
+                    className="form-control"
+                    onChange={event => this.changeContent(event)}
+                  >
+                    <option value="">Avdeling</option>
+                    {this.avdelinger.map(avdeling => (
+                      <option key={avdeling.avdeling_id}>{avdeling.navn}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -85,6 +101,7 @@ class Sykkel extends Component {
                 {sykkel.typenavn}
                 <br />
                 {'Pris: ' + sykkel.pris}
+                <br />
               </li>
             ))}
           </ul>
@@ -120,9 +137,8 @@ class Sykkel extends Component {
   changeContent(event) {
     sykkelService.visKlasse(event.target.value, this.state.alleSykkeltyper, nyVisning => {
       sykkelService.sortSykkelsok(this.valgtSortering, nyVisning, sortert => {
-          this.setState({ sykkeltyper: sortert });
+        this.setState({ sykkeltyper: sortert });
       });
-
     });
   }
 }

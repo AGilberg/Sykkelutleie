@@ -14,7 +14,7 @@ class Handlekurv extends Component {
   }
 
   delItem(index) {
-    if (confirm("Er du sikker på at du vil slette produktet fra bestillingen?")) {
+    if (confirm('Er du sikker på at du vil slette produktet fra bestillingen?')) {
       cartService.dropItem(index);
       this.setState({ handlekurv: cartService.getHandlekurv() });
     }
@@ -55,9 +55,13 @@ class Handlekurv extends Component {
         <br />
         <br />
         <NavBar.Link to="/utsjekk">
+<<<<<<< HEAD
           <Button.Success>
             Utsjekk
           </Button.Success>
+=======
+          <Button.Success>Utsjekk</Button.Success>
+>>>>>>> 8c3c54da15ae287769a8bd5aeb1f4ee6760395f6
         </NavBar.Link>
       </div>
     );
