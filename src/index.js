@@ -28,8 +28,7 @@ class Menu extends Component {
             src="images/sykkelutleie.jpg"
             onClick={() => history.push('/')}
             alt="logo"
-            width="256.4px"
-            height="70px"
+            style={{ width: '256.4px', height: '70px' }}
           />
         >
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
@@ -100,7 +99,7 @@ ReactDOM.render(
           <Route exact path="/sykkel" component={Sykkel} />
           <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
           <Route exact path="/handlekurv" component={Handlekurv} />
-          <Route exact path="/produktutstyr" component={ProduktUtstyr} />
+          <Route exact path="/ekstrautstyr/:id" component={ProduktUtstyr} />
           <Route exact path="/produktsykkel" component={ProduktSykkel} />
         </div>
       </div>

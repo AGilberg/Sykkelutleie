@@ -88,21 +88,20 @@ class Ekstrautstyr extends Component {
         </div>
 
         <div className="img">
-          <ul className="flex-container wrap" style={{}}>
+          <ul className="flex-container wrap" style={{ fontWeight: 'bold', textAlign: 'center' }}>
             {this.state.utstyr.map(utstyr => (
               <li key={utstyr.utstyr_id} className="flex-item">
                 <img
                   src={'images/utstyr/' + utstyr.navn + '.jpg'}
-                  onClick={() => history.push('/ProduktUtstyr')}
+                  onClick={() => history.push('/ekstrautstyr/' + utstyr.utstyr_id)}
                   alt={utstyr.navn}
                   width="180px"
                   height="180px"
                 />
                 {utstyr.navn}
                 <br />
-                {'Pris: ' + utstyr.pris}
+                {utstyr.pris + ' kr'}
                 <br />
-                {utstyr.avdelingsnavn}
               </li>
             ))}
           </ul>

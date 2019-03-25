@@ -15,9 +15,9 @@ class Sykkel extends Component {
   sorterMetode = [];
   valgtSortering = '';
   sykkelklasser = [];
-  valgtKlassenavn = "";
+  valgtKlassenavn = '';
   avdelinger = [];
-  valgtAvdeling = "";
+  valgtAvdeling = '';
 
   render() {
     if (!this.state.sykkeltyper)
@@ -88,7 +88,7 @@ class Sykkel extends Component {
         </div>
 
         <div className="img">
-          <ul className="flex-container wrap">
+          <ul className="flex-container wrap" style={{ fontWeight: 'bold', textAlign: 'center' }}>
             {this.state.sykkeltyper.map(sykkel => (
               <li className="flex-item" key={sykkel.type_id}>
                 <img
@@ -122,7 +122,7 @@ class Sykkel extends Component {
       this.sykkelklasser = klasser;
     });
 
-    sykkelService.getAvdelinger(avdelinger =>{
+    sykkelService.getAvdelinger(avdelinger => {
       this.avdelinger = avdelinger;
     });
   }
@@ -140,10 +140,10 @@ class Sykkel extends Component {
 
   changeContent(event) {
     switch (event.target.name) {
-      case "klassenavn":
+      case 'klassenavn':
         this.valgtKlassenavn = event.target.value;
         break;
-      case "avdeling":
+      case 'avdeling':
         this.valgtAvdeling = event.target.value;
     }
 
