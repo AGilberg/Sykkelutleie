@@ -10,7 +10,7 @@ class ProduktUtstyr extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div>
         {/* Visning av et enkelt produkt (ekstrautstyr)*/}
         <br />
         <div className="col-md-4">
@@ -18,6 +18,14 @@ class ProduktUtstyr extends Component {
         </div>
 
         <br />
+
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-6">
+              <div className="form-group" />
+            </div>
+          </div>
+        </div>
 
         <Row>
           <Column right>
@@ -29,7 +37,9 @@ class ProduktUtstyr extends Component {
   }
 
   mounted() {
-    utstyrService;
+    utstyrService.getUtstyr(this.props.match.params.u.avdeling_id, utstyr => {
+      this.utstyr = utstyr;
+    });
   }
 
   tilbake() {

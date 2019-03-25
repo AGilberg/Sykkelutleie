@@ -135,8 +135,8 @@ class ButtonInfo extends Component {
     return (
       <button
         type="button"
-        className="btn btn-info"
-        style={{ backgroundColor: 'lightblue' }}
+        className="btn btn-default"
+        style={{ backgroundColor: '#f8f9fa', border: '2px solid lightgrey' }}
         onClick={this.props.onClick}
       >
         {this.props.children}
