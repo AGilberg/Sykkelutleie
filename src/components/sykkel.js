@@ -77,8 +77,8 @@ class Sykkel extends Component {
                     onChange={event => this.changeContent(event)}
                   >
                     <option value="">Avdeling</option>
-                    {this.avdelinger.map(sykkelavdeling => (
-                      <option key={sykkelavdeling.avdeling_id}>{sykkelavdeling.navn}</option>
+                    {this.avdelinger.map(avdeling => (
+                      <option key={avdeling.avdeling_id}>{avdeling.navn}</option>
                     ))}
                   </select>
                 </div>
@@ -87,7 +87,7 @@ class Sykkel extends Component {
           </div>
         </div>
 
-        <div className="img" style={{ overflow: 'hidden' }}>
+        <div className="img">
           <ul className="flex-container wrap">
             {this.state.sykkeltyper.map(sykkel => (
               <li className="flex-item" key={sykkel.type_id}>
@@ -102,7 +102,6 @@ class Sykkel extends Component {
                 <br />
                 {'Pris: ' + sykkel.pris}
                 <br />
-                {sykkel.avdelingsnavn}
               </li>
             ))}
           </ul>
