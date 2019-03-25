@@ -26,27 +26,17 @@ class BestillingEdit extends Component {
           <Form.Label>Startdato:</Form.Label>
           <Form.Input
             type="text"
-            value={this.bestill.leie_start}
+            value={this.formatDate(this.bestill.leie_start)}
             onChange={e => (this.bestill.leie_start = e.target.value)}
           />
           <Form.Label>Sluttdato:</Form.Label>
           <Form.Input
             type="text"
-            value={this.bestill.leie_slutt}
+            value={this.formatDate(this.bestill.leie_slutt)}
             onChange={e => (this.bestill.leie_slutt = e.target.value)}
           />
-          <Form.Label>Fornavn:</Form.Label>
-          <Form.Input
-            type="text"
-            value={this.bestill.fornavn}
-            onChange={e => (this.bestill.fornavn = e.target.value)}
-          />
-          <Form.Label>Etternavn:</Form.Label>
-          <Form.Input
-            type="text"
-            value={this.bestill.etternavn}
-            onChange={e => (this.bestill.etternavn = e.target.value)}
-          />
+          <Form.Label>Kunde:</Form.Label>
+          <p>{this.bestill.fornavn + ' ' + this.bestill.etternavn}</p>
           <Form.Label>Samlet pris:</Form.Label>
           <Form.Input type="number" value={this.bestill.sum} onChange={e => (this.bestill.sum = e.target.value)} />
 
@@ -66,11 +56,7 @@ class BestillingEdit extends Component {
 
           <Form.Label>Bestilte varer:</Form.Label>
           {this.sykkel.map(sykkel => (
-            <Form.Input
-              key={sykkel.innholdsykkel_id}
-              onChange={e => (this.sykkel.typenavn = e.target.value)}
-              value={sykkel.typenavn}
-            />
+            <p key={sykkel.innholdsykkel_id}>{sykkel.typenavn}</p>
           ))}
           <br />
           <Row>
@@ -84,12 +70,7 @@ class BestillingEdit extends Component {
           <Row>
             <Column left>
               {this.utstyr.map(utstyr => (
-                <Form.Input
-                  key={utstyr.innholdutstyr_id}
-                  onChange={e => (this.utstyr.navn = e.target.value)}
-                  value={utstyr.navn}
-                  type="text"
-                />
+                <p key={utstyr.innholdutstyr_id}>{utstyr.navn}</p>
               ))}
             </Column>
             <Column right>
@@ -138,6 +119,20 @@ class BestillingEdit extends Component {
 
   tilbake() {
     history.push('/aktivebestillinger' + this.props.match.params.bestilling_id);
+  }
+
+  formatDate(date) {
+    let day = date.getDate();
+    if (day < 10) {
+      day = '0' + day.toString();
+    }
+    let month = date.getMonth() + 1;
+    if (month < 10) {
+      month = '0' + month.toString();
+    }
+    let year = date.getFullYear();
+
+    return day + '/' + month + '/' + year;
   }
 }
 
