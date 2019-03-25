@@ -3,7 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { sykkelService } from '../services/SykkelService.js';
 import { utstyrService } from '../services/UtstyrService.js';
-import { Row, Column, Button, Img } from '../widgets';
+import { Row, Column, Img } from '../widgets';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
 

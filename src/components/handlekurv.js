@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { NavBar } from '../widgets';
+import { NavBar, Button } from '../widgets';
 import { NavLink } from 'react-router-dom';
 import { cartService } from '../services/CartService';
 import ReactLoading from 'react-loading';
@@ -14,7 +14,7 @@ class Handlekurv extends Component {
   }
 
   delItem(index) {
-    if (confirm("Er du sikker på at du vil slette produktet fra bestillingen?")) {
+    if (confirm('Er du sikker på at du vil slette produktet fra bestillingen?')) {
       cartService.dropItem(index);
       this.setState({ handlekurv: cartService.getHandlekurv() });
     }
@@ -55,9 +55,7 @@ class Handlekurv extends Component {
         <br />
         <br />
         <NavBar.Link to="/utsjekk">
-          <button className="btn btn-success" id="utsjekk">
-            Utsjekk
-          </button>
+          <Button.Success>Utsjekk</Button.Success>
         </NavBar.Link>
       </div>
     );

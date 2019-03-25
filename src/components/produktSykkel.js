@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { Row, Column } from '../widgets';
+import { Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
 
@@ -12,9 +12,7 @@ class ProduktSykkel extends Component {
         <div>produkt</div>
         <Row>
           <Column right>
-            <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
-              Tilbake
-            </button>
+            <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
           </Column>
         </Row>
       </div>
