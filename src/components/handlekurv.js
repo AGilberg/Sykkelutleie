@@ -58,8 +58,6 @@ class Handlekurv extends Component {
         <br />
         <NavBar.Link to="/utsjekk">
           <Button.Success>Utsjekk</Button.Success>
-
-          <Button.Success>Utsjekk</Button.Success>
         </NavBar.Link>
       </div>
     );
