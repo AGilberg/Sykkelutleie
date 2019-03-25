@@ -47,7 +47,7 @@ class Handlekurv extends Component {
               <div className="col">{prod.antall}</div>
               <div className="col">{prod.pris}</div>
               <div className="col">
-                <button onClick={() => this.delItem(index)}>Slett</button>
+                <Button.Danger id="slett" onClick={() => this.delItem(index)}>X</Button.Danger>
               </div>
             </div>
           ))}
@@ -55,7 +55,13 @@ class Handlekurv extends Component {
         <br />
         <br />
         <NavBar.Link to="/utsjekk">
+<<<<<<< HEAD
+          <Button.Success>
+            Utsjekk
+          </Button.Success>
+=======
           <Button.Success>Utsjekk</Button.Success>
+>>>>>>> 8c3c54da15ae287769a8bd5aeb1f4ee6760395f6
         </NavBar.Link>
       </div>
     );

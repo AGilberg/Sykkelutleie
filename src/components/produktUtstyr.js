@@ -20,7 +20,13 @@ class ProduktUtstyr extends Component {
 
         <Row>
           <Column right>
+<<<<<<< HEAD
+            <Button.Light onClick={this.tilbake}>
+              Tilbake
+            </Button.Light>
+=======
             <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
+>>>>>>> 8c3c54da15ae287769a8bd5aeb1f4ee6760395f6
           </Column>
         </Row>
       </div>
