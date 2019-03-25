@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { AktiveBestillinger } from './components/aktiveBestillinger.js';
+import { Leieperiode } from './components/Leieperiode.js';
 import { BestillingDetails } from './components/bestillingDetails.js';
 import { BestillingEdit } from './components/editBestilling.js';
 import { Ekstrautstyr } from './components/ekstrautstyr.js';
@@ -53,6 +54,9 @@ class Sidenav extends Component {
   render() {
     return (
       <div className="col-md-2">
+        <NavBar.Link className="link" to="/leieperiode">
+          Leieperiode
+        </NavBar.Link>
         <NavBar.Link className="link" to="/kunde">
           Kunde
         </NavBar.Link>
@@ -89,6 +93,7 @@ ReactDOM.render(
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
           <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
           <Route exact path="/aktivebestillinger/:bestilling_id/edit" component={BestillingEdit} />
+          <Route exact path="/leieperiode" component={Leieperiode} />
           <Route exact path="/kunde" component={Kunde} />
           <Route exact path="/kundesøk" component={Kundesøk} />
           <Route exact path="/registrerKunde" component={RegistrerKunde} />

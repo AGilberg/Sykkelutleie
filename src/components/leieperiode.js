@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
-import { utstyrService } from '../services/UtstyrService.js';
 import ReactLoading from 'react-loading';
+import { Row, Column, Button } from '../widgets';
 
-class ProduktUtstyr extends Component {
-  utstyr = null;
-
+class Leieperiode extends Component {
   render() {
     return (
-      <div className="main">
-        {/* Visning av et enkelt produkt (ekstrautstyr)*/}
+      <div>
+        {/* Visning av leieperioden*/}
         <br />
         <div className="col-md-4">
-          <h4>Produkt</h4>
+          <h4>Leieperiode</h4>
         </div>
-
         <br />
 
         <Row>
@@ -27,14 +23,9 @@ class ProduktUtstyr extends Component {
       </div>
     );
   }
-
-  mounted() {
-    utstyrService;
-  }
-
   tilbake() {
-    history.push('/sykkel');
+    history.push('/');
   }
 }
 
-export { ProduktUtstyr };
+export { Leieperiode };
