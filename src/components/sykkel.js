@@ -14,12 +14,12 @@ class Sykkel extends Component {
 
   sorterMetode = [];
   valgtSortering = '';
-  sorterSykkelklasse = [];
+  sykkelklasser = [];
+  valgtKlassenavn = "";
   avdelinger = [];
+  valgtAvdeling = "";
 
   render() {
-    let sykler = null;
-    let sykkelklasser = null;
     if (!this.state.sykkeltyper)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
@@ -56,13 +56,13 @@ class Sykkel extends Component {
               <div className="col-6">
                 <div className="form-group">
                   <select
-                    id="typenavn"
-                    name="typenavn"
+                    id="klassenavn"
+                    name="klassenavn"
                     className="form-control"
                     onChange={event => this.changeContent(event)}
                   >
-                    <option>Sykkeltype</option>
-                    {this.sorterSykkelklasse.map(klasse => (
+                    <option value="">Sykkelklasse</option>
+                    {this.sykkelklasser.map(klasse => (
                       <option key={klasse.klasse_id}>{klasse.klassenavn}</option>
                     ))}
                   </select>
@@ -119,7 +119,11 @@ class Sykkel extends Component {
     });
 
     sykkelService.getSykkelklasser(klasser => {
-      this.sorterSykkelklasse = klasser;
+      this.sykkelklasser = klasser;
+    });
+
+    sykkelService.getAvdelinger(avdelinger =>{
+      this.avdelinger = avdelinger;
     });
   }
 
@@ -135,9 +139,19 @@ class Sykkel extends Component {
   }
 
   changeContent(event) {
-    sykkelService.visKlasse(event.target.value, this.state.alleSykkeltyper, nyVisning => {
-      sykkelService.sortSykkelsok(this.valgtSortering, nyVisning, sortert => {
-        this.setState({ sykkeltyper: sortert });
+    switch (event.target.name) {
+      case "klassenavn":
+        this.valgtKlassenavn = event.target.value;
+        break;
+      case "avdeling":
+        this.valgtAvdeling = event.target.value;
+    }
+
+    sykkelService.visKlasse(this.valgtKlassenavn, this.state.alleSykkeltyper, utvalg1 => {
+      sykkelService.visAvdeling(this.valgtAvdeling, utvalg1, utvalg2 => {
+        sykkelService.sortSykkelsok(this.valgtSortering, utvalg2, sortert => {
+          this.setState({ sykkeltyper: sortert });
+        });
       });
     });
   }
