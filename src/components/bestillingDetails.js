@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import ReactDOM from 'react-dom';
 import { Card, List, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
@@ -84,14 +83,10 @@ class BestillingDetails extends Component {
               <br />
               <Row>
                 <Column right>
-                  <Button.Danger onClick={this.delete}>
-                    Slett bestilling
-                  </Button.Danger>
+                  <Button.Danger onClick={this.delete}>Slett bestilling</Button.Danger>
                 </Column>
                 <Column left>
-                  <Button.Success onClick={this.edit}>
-                    Endre bestilling
-                  </Button.Success>
+                  <Button.Success onClick={this.edit}>Endre bestilling</Button.Success>
                 </Column>
               </Row>
             </div>
@@ -101,9 +96,7 @@ class BestillingDetails extends Component {
           <br />
           <Row>
             <Column right>
-              <Button.Light onClick={this.tilbake}>
-                Tilbake
-              </Button.Light>
+              <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
             </Column>
           </Row>
         </div>

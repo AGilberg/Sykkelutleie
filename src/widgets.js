@@ -128,19 +128,6 @@ class ButtonLight extends Component {
   }
 }
 
-// export class Img extends Component {
-//   render() {
-//     return (
-//       <li className="flex-item">
-//         <img type="img" className="img" src={this.props.src} onClick={this.props.onClick}>
-//           {this.props.children}
-//           style={{ width: '150px', height: '150px' }}
-//         </img>
-//       </li>
-//     );
-//   }
-// }
-
 // Renders a button using Bootstrap styles
 export class Button {
   static Success = ButtonSuccess;
