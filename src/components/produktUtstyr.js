@@ -21,8 +21,6 @@ class ProduktUtstyr extends Component {
         <Row>
           <Column right>
             <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
-
-            <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
           </Column>
         </Row>
       </div>
