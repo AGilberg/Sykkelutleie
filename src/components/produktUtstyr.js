@@ -15,25 +15,38 @@ class ProduktUtstyr extends Component {
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
-    console.log(this.utstyr.navn);
+    console.log('images/utstyr/' + this.utstyr.navn + '.jpg');
     return (
       <div style={{ marginLeft: '20px' }}>
         {/* Visning av et enkelt produkt (ekstrautstyr)*/}
         <br />
-        <h4>{this.utstyr.navn}</h4>
-
-        <Card title="Produktinformasjon:" style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
-          <ul style={{ listStyleType: 'none' }}>
-            <li>Pris: {this.utstyr.pris} kr</li>
-            <li>Antall: {this.utstyr.antall}</li>
-            <li>{this.avdelinger.navn}</li>
-          </ul>
+        <Card>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-3">
+                <img
+                  style={{ width: '200px', height: '200px', border: '1px solid lightgrey', padding: '30px' }}
+                  src={'images/utstyr/' + this.utstyr.navn + '.jpg'}
+                />
+              </div>
+              <div className="col-9">
+                {' '}
+                <h4>{this.utstyr.navn}</h4>
+                <Card title="Produktinformasjon:" style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
+                  <ul style={{ listStyleType: 'none' }}>
+                    <li>Pris: {this.utstyr.pris} kr</li>
+                    <li>Antall: {this.utstyr.antall}</li>
+                    <li>{this.avdelinger.navn}</li>
+                  </ul>
+                </Card>
+                <br />
+              </div>
+            </div>
+          </div>
         </Card>
+
         <br />
-
-        <Card />
-
-        <div className="col-4">
+        <div className="col-12">
           <Row>
             <Column left>
               <Button.Success onClick={this.save}>Legg til</Button.Success>
