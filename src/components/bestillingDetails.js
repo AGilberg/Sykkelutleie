@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
-import { Card, List, Row, Column } from '../widgets';
-import Button from 'react-bootstrap/Button';
+import { Card, List, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
@@ -85,14 +84,14 @@ class BestillingDetails extends Component {
               <br />
               <Row>
                 <Column right>
-                  <Button id="slett" variant="danger" onClick={this.delete}>
+                  <Button.Danger onClick={this.delete}>
                     Slett bestilling
-                  </Button>
+                  </Button.Danger>
                 </Column>
                 <Column left>
-                  <Button id="endre" variant="success" onClick={this.edit}>
+                  <Button.Success onClick={this.edit}>
                     Endre bestilling
-                  </Button>
+                  </Button.Success>
                 </Column>
               </Row>
             </div>
@@ -102,9 +101,9 @@ class BestillingDetails extends Component {
           <br />
           <Row>
             <Column right>
-              <Button id="tilbake" variant="light" onClick={this.tilbake}>
+              <Button.Light onClick={this.tilbake}>
                 Tilbake
-              </Button>
+              </Button.Light>
             </Column>
           </Row>
         </div>
