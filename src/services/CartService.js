@@ -28,11 +28,7 @@ class CartService{
   }
 
   dropItem(start){//index i arrayen,
-    console.log(start);
-    console.log(this.handlekurv[start]);
     this.handlekurv.splice(start, 1);
-    console.log(this.handlekurv);
-
   }
 
   addItem(item){

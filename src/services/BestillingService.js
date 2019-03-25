@@ -13,7 +13,6 @@ class BestillingService {
       [null, ansvarlig, sum, dateStamp, status, leieStart, leieSlutt, beskrivelse],
       (error, results) => {
         if (error) return console.error(error);
-        console.log(results); //FJERN
         success('Registrering vellykket');
       }
     );

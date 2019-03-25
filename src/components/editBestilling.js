@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
-import { Card, List, Row, Column, Form } from '../widgets';
-import Button from 'react-bootstrap/Button';
+import { Card, List, Row, Column, Form, Button } from '../widgets';
 import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
@@ -109,14 +108,14 @@ class BestillingEdit extends Component {
         <div>
           <Row>
             <Column>
-              <Button variant="success" onClick={this.save}>
+              <Button.Success onClick={this.save}>
                 Lagre
-              </Button>
+              </Button.Success>
             </Column>
             <Column right>
-              <Button variant="light" onClick={this.tilbake}>
+              <Button.Light onClick={this.tilbake}>
                 Tilbake
-              </Button>
+              </Button.Light>
             </Column>
           </Row>
         </div>

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
-import { Card, List, Row, Column } from '../widgets';
-import Button from 'react-bootstrap/Button';
+import { Card, List, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
