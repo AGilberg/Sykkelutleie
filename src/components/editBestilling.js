@@ -22,7 +22,7 @@ class BestillingEdit extends Component {
       );
 
     return (
-      <div>
+      <div className="main">
         <Card title="Rediger bestilling">
           <Form.Label>Startdato:</Form.Label>
           <Form.Input
@@ -108,14 +108,10 @@ class BestillingEdit extends Component {
         <div>
           <Row>
             <Column>
-              <Button.Success onClick={this.save}>
-                Lagre
-              </Button.Success>
+              <Button.Success onClick={this.save}>Lagre</Button.Success>
             </Column>
             <Column right>
-              <Button.Light onClick={this.tilbake}>
-                Tilbake
-              </Button.Light>
+              <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
             </Column>
           </Row>
         </div>

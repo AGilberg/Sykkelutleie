@@ -87,7 +87,7 @@ class Sykkel extends Component {
           </div>
         </div>
 
-        <div className="img">
+        <div className="img" style={{ overflow: 'hidden' }}>
           <ul className="flex-container wrap">
             {this.state.sykkeltyper.map(sykkel => (
               <li className="flex-item" key={sykkel.type_id}>
@@ -101,6 +101,8 @@ class Sykkel extends Component {
                 {sykkel.typenavn}
                 <br />
                 {'Pris: ' + sykkel.pris}
+                <br />
+                {sykkel.avdelingsnavn}
               </li>
             ))}
           </ul>

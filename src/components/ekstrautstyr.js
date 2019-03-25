@@ -101,7 +101,7 @@ class Ekstrautstyr extends Component {
                 />
                 {utstyr.navn}
                 <br />
-                {utstyr.pris}
+                {'Pris: ' + utstyr.pris}
                 <br />
                 {utstyr.avdelingsnavn}
               </li>
@@ -127,7 +127,8 @@ class Ekstrautstyr extends Component {
     this.sorteringer = utstyrService.getSorteringer();
   }
 
-  changeOrder(event) {  //endre rekkefølgen på utstyret
+  changeOrder(event) {
+    //endre rekkefølgen på utstyret
     this.valgtSortering = event.target.value;
     utstyrService.sortUtstyrsok(this.valgtSortering, this.state.utstyr, sortert => {
       this.setState({ utstyr: sortert });
@@ -146,7 +147,7 @@ class Ekstrautstyr extends Component {
     utstyrService.visKompatibel(this.valgtKomp, this.state.altUtstyr, utvalg1 => {
       utstyrService.visAvdeling(this.valgtAvdeling, utvalg1, utvalg2 => {
         utstyrService.sortUtstyrsok(this.valgtSortering, utvalg2, sortert => {
-            this.setState({ utstyr: sortert });
+          this.setState({ utstyr: sortert });
         });
       });
     });
