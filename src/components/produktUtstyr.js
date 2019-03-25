@@ -17,6 +17,7 @@ class ProduktUtstyr extends Component {
       <div className="main">
         {/* Visning av et enkelt produkt (ekstrautstyr)*/}
         <div>produkt</div>
+
         <Row>
           <Column right>
             <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { kundeService } from '../services/KundeService.js';
 import { history } from '../index.js';
-import { Card, Button } from '../widgets';
+import { Button } from '../widgets';
+import Card from 'react-bootstrap/Card';
 import ReactLoading from 'react-loading';
 
 class Kundesøk extends Component {
