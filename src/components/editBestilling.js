@@ -7,6 +7,7 @@ import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
+import ReactLoading from 'react-loading';
 
 class BestillingEdit extends Component {
   bestill = null;
@@ -16,7 +17,10 @@ class BestillingEdit extends Component {
   tilstander = [];
 
   render() {
-    if (!this.bestill || !this.sykkel || !this.utstyr) return null;
+    if (!this.bestill || !this.sykkel || !this.utstyr)
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
 
     return (
       <div>

@@ -15,6 +15,7 @@ class Sykkel extends Component {
   sorterMetode = [];
   valgtSortering = '';
   sorterSykkelklasse = [];
+  avdelinger = [];
 
   render() {
     let sykler = null;
@@ -63,6 +64,21 @@ class Sykkel extends Component {
                     <option>Sykkeltype</option>
                     {this.sorterSykkelklasse.map(klasse => (
                       <option key={klasse.klasse_id}>{klasse.klassenavn}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="col-6">
+                <div className="form-group">
+                  <select
+                    id="avdeling"
+                    name="avdeling"
+                    className="form-control"
+                    onChange={event => this.changeContent(event)}
+                  >
+                    <option value="">Avdeling</option>
+                    {this.avdelinger.map(sykkelavdeling => (
+                      <option key={sykkelavdeling.avdeling_id}>{sykkelavdeling.navn}</option>
                     ))}
                   </select>
                 </div>
@@ -120,9 +136,8 @@ class Sykkel extends Component {
   changeContent(event) {
     sykkelService.visKlasse(event.target.value, this.state.alleSykkeltyper, nyVisning => {
       sykkelService.sortSykkelsok(this.valgtSortering, nyVisning, sortert => {
-          this.setState({ sykkeltyper: sortert });
+        this.setState({ sykkeltyper: sortert });
       });
-
     });
   }
 }
