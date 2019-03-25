@@ -1,6 +1,13 @@
 import { connection } from '../mysql_connection';
 
 class SykkelService{
+  getAvdelinger(success) {
+    connection.query('select * from AVDELING', (error, results) => {
+      if (error) return console.error(error);
+      success(results);
+    });
+  }
+
   getSykkeltyper(success){
     connection.query(
       'SELECT s.*, kl.klassenavn FROM SYKKELTYPE s, KLASSE kl  WHERE s.klasse_id = kl.klasse_id',
@@ -96,7 +103,7 @@ class SykkelService{
   }
 
   visKlasse(klasse, arrInn, success){
-    if(klasse == "Sykkeltype"){
+    if(klasse.length == 0){
       success(arrInn);
       return;
     }
@@ -107,6 +114,37 @@ class SykkelService{
       }
     }
     success(arr);
+  }
+
+  visAvdeling(avdeling, arrInn, success){
+    if(avdeling.length == 0){
+        success(arrInn);
+        return;
+    }
+    let arr = arrInn.slice();
+
+    connection.query(
+      'select * from SYKKELTYPE where type_id IN (select type_id from SYKKEL where avdeling_id IN (select avdeling_id from AVDELING where navn LIKE ?))',
+      [avdeling], (error, results) => {
+        if(error) return console.error(error);
+
+        for(let i = arr.length -1; i>=0; i--){
+          let found = false;
+          let k = results.length-1;
+
+          while(k >= 0 && !found){
+            if(arr[i].type_id == results[k].type_id){
+              found = true;
+            }
+            k--;
+          }
+
+          if(!found){
+            arr.splice(i,1);
+          }
+        }
+        success(arr);
+      });
   }
 }
 
