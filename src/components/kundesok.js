@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { kundeService } from '../services/KundeService.js';
 import { history } from '../index.js';
-import Card from 'react-bootstrap/Card';
+import { Card, Button } from '../widgets';
 import ReactLoading from 'react-loading';
 
 class Kundesøk extends Component {
@@ -14,7 +14,7 @@ class Kundesøk extends Component {
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
     return (
-      <div className="main">
+      <div>
         {/* Søkefunksjon for å søke etter registrerte kunder */}
         <br />
         <div className="col-md-4">
@@ -50,9 +50,9 @@ class Kundesøk extends Component {
         </div>
         <br />
         <div className="col-md-4">
-          <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
+          <Button.Light name="tilbake" onClick={this.tilbake}>
             Tilbake
-          </button>
+          </Button.Light>
         </div>
       </div>
     );

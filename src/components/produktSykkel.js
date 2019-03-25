@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Row, Column } from '../widgets';
 import { history } from '../index.js';
+import ReactLoading from 'react-loading';
 
 class ProduktSykkel extends Component {
   render() {
