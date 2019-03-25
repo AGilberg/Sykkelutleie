@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { NavBar } from '../widgets';
+import { NavBar, Button } from '../widgets';
 import { NavLink } from 'react-router-dom';
 import { cartService } from '../services/CartService';
 import ReactLoading from 'react-loading';
@@ -47,7 +47,7 @@ class Handlekurv extends Component {
               <div className="col">{prod.antall}</div>
               <div className="col">{prod.pris}</div>
               <div className="col">
-                <button onClick={() => this.delItem(index)}>Slett</button>
+                <Button.Danger id="slett" onClick={() => this.delItem(index)}>X</Button.Danger>
               </div>
             </div>
           ))}
@@ -55,9 +55,9 @@ class Handlekurv extends Component {
         <br />
         <br />
         <NavBar.Link to="/utsjekk">
-          <button className="btn btn-success" id="utsjekk">
+          <Button.Success>
             Utsjekk
-          </button>
+          </Button.Success>
         </NavBar.Link>
       </div>
     );

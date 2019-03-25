@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { Row, Column } from '../widgets';
+import { Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 
 class ProduktUtstyr extends Component {
@@ -11,9 +11,9 @@ class ProduktUtstyr extends Component {
         <div>produkt</div>
         <Row>
           <Column right>
-            <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
+            <Button.Light onClick={this.tilbake}>
               Tilbake
-            </button>
+            </Button.Light>
           </Column>
         </Row>
       </div>
