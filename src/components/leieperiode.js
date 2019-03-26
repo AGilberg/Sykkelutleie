@@ -16,6 +16,9 @@ class Leieperiode extends Component {
         <br />
 
         <Row>
+          <Column left>
+            <Button.Success onClick={this.velg}>Velg</Button.Success>
+          </Column>
           <Column right>
             <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
           </Column>
@@ -25,6 +28,10 @@ class Leieperiode extends Component {
   }
   tilbake() {
     history.push('/');
+  }
+
+  velg() {
+    history.push('/kunde');
   }
 }
 

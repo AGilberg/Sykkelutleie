@@ -73,6 +73,9 @@ class ProduktSykkel extends Component {
             <Column left>
               <Button.Success onClick={this.save}>Legg til</Button.Success>
             </Column>
+            <Column>
+              <Button.Info onClick={this.handlekurv}>Til handlekurv</Button.Info>
+            </Column>
             <Column right>
               <Button.Light onClick={this.back}>Tilbake</Button.Light>
             </Column>
@@ -99,11 +102,15 @@ class ProduktSykkel extends Component {
     });
   }
 
-  tilbake() {
+  back() {
     history.push('/sykkel');
   }
 
   save() {
+    history.push();
+  }
+
+  handlekurv() {
     history.push('/handlekurv');
   }
 }

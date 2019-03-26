@@ -64,6 +64,9 @@ class ProduktUtstyr extends Component {
             <Column left>
               <Button.Success onClick={this.save}>Legg til</Button.Success>
             </Column>
+            <Column>
+              <Button.Info onClick={this.handlekurv}>Til handlekurv</Button.Info>
+            </Column>
             <Column right>
               <Button.Light onClick={this.back}>Tilbake</Button.Light>
             </Column>
@@ -102,6 +105,9 @@ class ProduktUtstyr extends Component {
   }
 
   save() {
+    history.push();
+  }
+  handlekurv() {
     history.push('/handlekurv');
   }
 }
