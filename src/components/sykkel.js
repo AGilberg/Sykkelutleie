@@ -95,7 +95,7 @@ class Sykkel extends Component {
         <div className="img">
           <ul className="flex-container wrap">
             {this.sykkeltyper.map(sykkel => (
-              <li className="flex-item" key={sykkel.klasse_id}>
+              <li className="flex-item" key={sykkel.type_id}>
                 <img
                   src={'images/sykler/' + sykkel.klassenavn + '.jpg'}
                   onClick={() => history.push('/ProduktSykkel')}
