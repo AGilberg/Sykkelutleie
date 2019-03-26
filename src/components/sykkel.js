@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
-import { Row, Column, Img } from '../widgets';
+import { Row, Column } from '../widgets';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
 import { cartService } from '../services/CartService';

@@ -6,7 +6,6 @@ import { utstyrService } from '../services/UtstyrService.js';
 import ReactLoading from 'react-loading';
 
 class ProduktUtstyr extends Component {
-  altUtstyr = [];
   utstyr = null;
   avdelinger = null;
 
@@ -15,7 +14,7 @@ class ProduktUtstyr extends Component {
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
-    console.log('images/utstyr/' + this.utstyr.navn + '.jpg');
+
     return (
       <div style={{ marginLeft: '20px' }}>
         {/* Visning av et enkelt produkt (ekstrautstyr)*/}
@@ -63,12 +62,10 @@ class ProduktUtstyr extends Component {
   mounted() {
     utstyrService.getUtstyrNavn(this.props.match.params.id, utstyr => {
       this.utstyr = utstyr;
-      console.log(this.utstyr);
     });
 
     utstyrService.getAvdelingNavn(this.props.match.params.id, avdeling => {
       this.avdelinger = avdeling;
-      console.log(this.avdelinger);
     });
   }
 
