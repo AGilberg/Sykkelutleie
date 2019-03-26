@@ -31,7 +31,7 @@ class ProduktSykkel extends Component {
                 <div className="col-3" />
                 <img
                   style={{ width: '200px', height: '200px', border: '1px solid lightgrey', padding: '30px' }}
-                  src={'images/sykler/' + this.typer + '.jpg'}
+                  src={'images/sykler/' + +'.jpg'}
                 />
                 <div className="col-9">
                   {' '}

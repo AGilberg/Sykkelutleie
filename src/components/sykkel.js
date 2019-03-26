@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { sykkelService } from '../services/SykkelService.js';
@@ -15,11 +14,7 @@ class Sykkel extends Component {
 
   sorterMetode = [];
   valgtSortering = '';
-  valgtKlasse = '';
-  sykler = []; // FIXME: fjern dersom denne siden kun skal være til sykkelr
-  sorteringer = [];
   sykkelklasser = [];
-  sykkeltyper = [];
   valgtKlassenavn = '';
   avdelinger = [];
   valgtAvdeling = '';
@@ -93,8 +88,8 @@ class Sykkel extends Component {
         </div>
 
         <div className="img">
-          <ul className="flex-container wrap">
-            {this.sykkeltyper.map(sykkel => (
+          <ul className="flex-container wrap" style={{ fontWeight: 'bold', textAlign: 'center' }}>
+            {this.state.sykkeltyper.map(sykkel => (
               <li className="flex-item" key={sykkel.type_id}>
                 <img
                   src={'images/sykler/' + sykkel.klassenavn + '.jpg'}
@@ -123,8 +118,8 @@ class Sykkel extends Component {
       this.setState({ sykkeltyper: typer });
     });
 
-    sykkelService.getSykkeltyper(klasser => {
-      this.sykkeltyper = klasser;
+    sykkelService.getSykkelklasser(klasser => {
+      this.sykkelklasser = klasser;
     });
 
     sykkelService.getAvdelinger(avdelinger => {
