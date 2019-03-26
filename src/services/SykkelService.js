@@ -18,9 +18,13 @@ class SykkelService {
     );
   }
 
-  // getType(success) {
-  //   connection.query('SELECT * FROM SYKKELTYPE WHERE ');
-  // }
+  getType(success) {
+    connection.query('SELECT * FROM SYKKELTYPE', (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
 
   getSykkel(metode, navn, type, success) {
     switch (metode) {
