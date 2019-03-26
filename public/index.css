@@ -37,6 +37,10 @@ img:hover {
   width: 181px;
   height: 181px;
 }
+/* li:hover {
+  opacity: 0.7;
+  filter: alpha(opacity=1);
+} */
 
 /* POSISJONEN TIL DE ULIKE BORDER */
 .main {

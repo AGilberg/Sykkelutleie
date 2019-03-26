@@ -24,7 +24,7 @@ class ProduktUtstyr extends Component {
             <div className="row">
               <div className="col-3">
                 <img
-                  style={{ width: '200px', height: '200px', border: '1px solid lightgrey', padding: '30px' }}
+                  style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
                   src={'images/utstyr/' + this.utstyr.navn + '.jpg'}
                 />
               </div>
@@ -33,8 +33,22 @@ class ProduktUtstyr extends Component {
                 <h4>{this.utstyr.navn}</h4>
                 <Card title="Produktinformasjon:" style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
                   <ul style={{ listStyleType: 'none' }}>
-                    <li>Pris: {this.utstyr.pris} kr</li>
-                    <li>Antall: {this.utstyr.antall}</li>
+                    <li style={{ fontWeight: 'bold', color: 'red', fontSize: '25px' }}>
+                      Pris: {this.utstyr.pris} kr,-
+                    </li>
+                    <li>Lagerstatus: {this.utstyr.antall}</li>
+                    <li>
+                      Antall:
+                      <div className="input_div">
+                        <input type="text" size="25" value="1" id="count" style={{ marginRight: '20px' }} />
+                        <Button.Info value="-" onclick={this.antall}>
+                          -
+                        </Button.Info>
+                        <Button.Info value="+" onclick={this.antall}>
+                          +
+                        </Button.Info>
+                      </div>
+                    </li>
                     <li>{this.avdelinger.navn}</li>
                   </ul>
                 </Card>
@@ -67,6 +81,20 @@ class ProduktUtstyr extends Component {
     utstyrService.getAvdelingNavn(this.props.match.params.id, avdeling => {
       this.avdelinger = avdeling;
     });
+  }
+
+  antall() {
+    var count = 1;
+    function plus() {
+      count++;
+      countEl.value = count;
+    }
+    function minus() {
+      if (count > 1) {
+        count--;
+        countEl.value = count;
+      }
+    }
   }
 
   back() {

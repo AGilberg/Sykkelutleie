@@ -97,7 +97,7 @@ ReactDOM.render(
           <Route exact path="/kundesøk" component={Kundesøk} />
           <Route exact path="/registrerKunde" component={RegistrerKunde} />
           <Route exact path="/sykkel" component={Sykkel} />
-          <Route exact path="/sykkel/:id" component={ProduktSykkel} />
+          <Route exact path="/produktSykkel" component={ProduktSykkel} />
           <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
           <Route exact path="/ekstrautstyr/:id" component={ProduktUtstyr} />
           <Route exact path="/handlekurv" component={Handlekurv} />

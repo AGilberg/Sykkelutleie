@@ -11,43 +11,62 @@ class ProduktSykkel extends Component {
   klasse = null;
 
   render() {
-    if (!this.typer || !this.avdelinger || !this.klasser)
-      return (
-        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
-      );
+    // if (!this.typer || !this.avdelinger || !this.klasse)
+    //   return (
+    //     <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+    //   );
 
     return (
-      <div className="main">
+      <div style={{ marginLeft: '20px' }}>
         {/* Visning av et enkelt produkt (sykler)*/}
         <br />
-        <div className="col-md-4">
-          <h4>Hei</h4>
-        </div>
-        <br />
-        <div>
-          <Card>
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-3" />
+        <Card>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-3">
                 <img
-                  style={{ width: '200px', height: '200px', border: '1px solid lightgrey', padding: '30px' }}
+                  style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
                   src={'images/sykler/' + +'.jpg'}
                 />
-                <div className="col-9">
-                  {' '}
-                  <h4>{this.klasse.klassenavn}</h4>
-                  <Card title="Produktinformasjon:" style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
-                    <ul style={{ listStyleType: 'none' }}>
-                      <li>Pris: {this.typer} kr</li>
-                      <li>{this.avdelinger}</li>
-                    </ul>
-                  </Card>
-                  <br />
-                </div>
+              </div>
+              <div className="col-9">
+                {' '}
+                <h4>Typenavn</h4>
+                <Card title="Produktinformasjon:" style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
+                  <ul style={{ listStyleType: 'none' }}>
+                    <li>Klassenavn</li>
+                    <li style={{ fontWeight: 'bold', color: 'red', fontSize: '25px' }}>Pris: PRIS kr,-</li>
+                    <Card>
+                      <li>
+                        fijreaojgoeigjøaoigaoøithaithjaoei aeoigjø oaiejgøoaeiaerjgø
+                        ioaejrgøoiajegøoairjtgøoaeijrgøoaeijrg aøoeigInfo
+                      </li>
+                    </Card>
+                    <li>Gir</li>
+                    <li>Ramme</li>
+                    <li>Hjul</li>
+                    <br />
+                    <li>Lagerstatus: Antall sykler</li>
+                    <li>
+                      Antall:
+                      <div className="input_div">
+                        <input type="text" size="25" value="1" id="count" style={{ marginRight: '20px' }} />
+                        <Button.Info value="-" onclick={this.antall}>
+                          -
+                        </Button.Info>
+                        <Button.Info value="+" onclick={this.antall}>
+                          +
+                        </Button.Info>
+                      </div>
+                    </li>
+                    <li>Avdeling</li>
+                  </ul>
+                </Card>
+                <br />
               </div>
             </div>
-          </Card>
-        </div>
+          </div>
+        </Card>
         <br />
         <div className="col-12">
           <Row>
@@ -59,11 +78,9 @@ class ProduktSykkel extends Component {
             </Column>
           </Row>
         </div>
+        <br />
       </div>
     );
-    {
-      console.log(this.klasse);
-    }
   }
   mounted() {
     sykkelService.getType(typer => {
