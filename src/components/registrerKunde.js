@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { Row, Column } from '../widgets';
+import { Row, Column, Button } from '../widgets';
 import { kundeService } from '../services/KundeService.js';
 import { history } from '../index.js';
+import ReactLoading from 'react-loading';
 
 class RegistrerKunde extends Component {
   kjonn = 1;
@@ -18,6 +19,10 @@ class RegistrerKunde extends Component {
   tilbud = true;
 
   render() {
+    if (!this.fornavn == '')
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
     return (
       <div className="main">
         {/*  Skjema for registrering av kunde.*/}
@@ -208,14 +213,10 @@ class RegistrerKunde extends Component {
                 <div className="col-md-4">
                   <Row>
                     <Column>
-                      <button id="submit" name="submit" className="btn btn-success" onClick={this.add}>
-                        Registrer
-                      </button>
+                      <Button.Success onClick={this.add}>Registrer</Button.Success>
                     </Column>
                     <Column right>
-                      <button id="tilbake" name="tilbake" className="btn btn-light" onClick={this.tilbake}>
-                        Tilbake
-                      </button>
+                      <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
                     </Column>
                   </Row>
                 </div>

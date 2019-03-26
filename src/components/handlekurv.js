@@ -1,25 +1,30 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { NavBar } from '../widgets';
+import { NavBar, Button } from '../widgets';
 import { NavLink } from 'react-router-dom';
 import { cartService } from '../services/CartService';
+import ReactLoading from 'react-loading';
 
 class Handlekurv extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-        handlekurv: []
+      handlekurv: null
+    };
+  }
+
+  delItem(index) {
+    if (confirm('Er du sikker på at du vil slette produktet fra bestillingen?')) {
+      cartService.dropItem(index);
+      this.setState({ handlekurv: cartService.getHandlekurv() });
     }
   }
 
-
-
-  delItem(index){
-    cartService.dropItem(index);
-    this.setState({handlekurv : cartService.getHandlekurv() })
-  }
-
   render() {
+    if (!this.state.handlekurv)
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
     return (
       <div style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
         {/* Viser hva som er valgt til bestillingen */}
@@ -42,7 +47,9 @@ class Handlekurv extends Component {
               <div className="col">{prod.antall}</div>
               <div className="col">{prod.pris}</div>
               <div className="col">
-                <button onClick={()=>this.delItem(index)}>Slett</button>
+                <Button.Info id="slett" onClick={() => this.delItem(index)}>
+                  X
+                </Button.Info>
               </div>
             </div>
           ))}
@@ -50,16 +57,14 @@ class Handlekurv extends Component {
         <br />
         <br />
         <NavBar.Link to="/utsjekk">
-          <button className="btn btn-success" id="utsjekk">
-            Utsjekk
-          </button>
+          <Button.Success>Register</Button.Success>
         </NavBar.Link>
       </div>
     );
   }
 
-  mounted(){
-    this.setState({handlekurv : cartService.getHandlekurv() });
+  mounted() {
+    this.setState({ handlekurv: cartService.getHandlekurv() });
   }
 }
 

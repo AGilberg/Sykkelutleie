@@ -27,27 +27,25 @@
 
 .flex-item {
   padding: 5px;
-  width: 190px;
-  height: 210px;
+  width: 191px;
+  height: 235px;
   margin: 20px;
 }
-
 img:hover {
   opacity: 0.7;
   filter: alpha(opacity=1);
+  width: 181px;
+  height: 181px;
 }
 
-/* SIDENAV */
-.emner {
-  /* HOVER  */
-}
-
+/* POSISJONEN TIL DE ULIKE BORDER */
 .main {
   margin: 24px;
   margin-left: 0px;
   margin-right: 0px;
 }
 
+/* SIDENAV */
 .col-md-2 {
   background-color: #f8f9fa !important;
   padding-top: 10px;
@@ -68,75 +66,33 @@ img:hover {
   color: #9cbdbd;
 }
 
-@include media-breakpoint-up(md) {
-  html {
-    font-size: 2rem;
-  }
-}
-
+/* LOADER */
 .spinner {
-  margin: 100px auto 0;
-  width: 70px;
-  text-align: center;
+  margin: 150px auto 0;
 }
 
-/* .spinner > div {
-  width: 18px;
-  height: 18px;
-  background-color: #333;
-
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
 }
 
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
-
-@-webkit-keyframes sk-bouncedelay {
-  0%,
-  80%,
-  100% {
-    -webkit-transform: scale(0);
+@keyframes fadeInOpacity {
+  from {
+    opacity: 0;
   }
-  40% {
-    -webkit-transform: scale(1);
+  to {
+    opacity: 1;
   }
 }
 
-@keyframes sk-bouncedelay {
-  0%,
-  80%,
-  100% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  40% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-} */
-/* .openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
+.active {
+  color: black;
 }
+/*
+FARGEN PÅ LINKENE
+.link {
 
-.openbtn:hover {
-  background-color: #444;
-} */
-
-/* .link {
-  color: grey;
 } */

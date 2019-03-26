@@ -3,7 +3,9 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { AktiveBestillinger } from './components/aktiveBestillinger.js';
+import { Leieperiode } from './components/Leieperiode.js';
 import { BestillingDetails } from './components/bestillingDetails.js';
+import { BestillingEdit } from './components/editBestilling.js';
 import { Ekstrautstyr } from './components/ekstrautstyr.js';
 import { Handlekurv } from './components/handlekurv.js';
 import { Kunde } from './components/kunde.js';
@@ -26,8 +28,7 @@ class Menu extends Component {
             src="images/sykkelutleie.jpg"
             onClick={() => history.push('/')}
             alt="logo"
-            width="256.4px"
-            height="70px"
+            style={{ width: '256.4px', height: '70px' }}
           />
         >
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
@@ -51,17 +52,20 @@ class Home extends Component {
 class Sidenav extends Component {
   render() {
     return (
-      <div className="col-md-2" style={{ textPosition: 'relative' }}>
-        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/kunde">
+      <div className="col-md-2">
+        <NavBar.Link className="link" to="/leieperiode">
+          Leieperiode
+        </NavBar.Link>
+        <NavBar.Link className="link" to="/kunde">
           Kunde
         </NavBar.Link>
-        <NavBar.Link className="emner" activeStyle={{ textColor: 'white' }} to="/sykkel">
+        <NavBar.Link className="link" to="/sykkel">
           Sykkel
         </NavBar.Link>
-        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/ekstrautstyr">
+        <NavBar.Link className="link" to="/ekstrautstyr">
           Ekstrautstyr
         </NavBar.Link>
-        <NavBar.Link className="emner" activeStyle={{ color: 'white' }} to="/handlekurv">
+        <NavBar.Link className="link" to="/handlekurv">
           Handlekurv
         </NavBar.Link>
       </div>
@@ -87,13 +91,15 @@ ReactDOM.render(
           <Route exact path="/" component={Home} />
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
           <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
+          <Route exact path="/aktivebestillinger/:bestilling_id/edit" component={BestillingEdit} />
+          <Route exact path="/leieperiode" component={Leieperiode} />
           <Route exact path="/kunde" component={Kunde} />
           <Route exact path="/kundesøk" component={Kundesøk} />
           <Route exact path="/registrerKunde" component={RegistrerKunde} />
           <Route exact path="/sykkel" component={Sykkel} />
           <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
           <Route exact path="/handlekurv" component={Handlekurv} />
-          <Route exact path="/produktutstyr" component={ProduktUtstyr} />
+          <Route exact path="/ekstrautstyr/:id" component={ProduktUtstyr} />
           <Route exact path="/produktsykkel" component={ProduktSykkel} />
         </div>
       </div>

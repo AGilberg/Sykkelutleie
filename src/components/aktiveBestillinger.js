@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import ReactDOM from 'react-dom';
-import { Card, List, Row, Column } from '../widgets';
-import Button from 'react-bootstrap/Button';
+import { Card, List, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
+import ReactLoading from 'react-loading';
 
 class AktiveBestillinger extends Component {
-  bestilling = [];
+  bestilling = null;
 
   render() {
+    if (!this.bestilling)
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
     return (
       <div>
         {/* Visning av bestillinger som har status som aktiv (altså ikke tidligere gjennomførte leieforhold) */}

@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import ReactDOM from 'react-dom';
-import { Card, List, Row, Column } from '../widgets';
-import Button from 'react-bootstrap/Button';
+import { Card, List, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
+import ReactLoading from 'react-loading';
 
 class BestillingDetails extends Component {
   bestill = null;
@@ -14,7 +13,10 @@ class BestillingDetails extends Component {
   utstyr = null;
 
   render() {
-    if (!this.bestill || !this.sykkel || !this.utstyr) return null;
+    if (!this.bestill || !this.sykkel || !this.utstyr)
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
 
     return (
       <div className="main">
@@ -32,7 +34,9 @@ class BestillingDetails extends Component {
             <br />
             <Row>
               <Column width={3}>Kunde:</Column>
-              <Column>{this.bestill.fornavn}</Column>
+              <Column>
+                {this.bestill.fornavn} {this.bestill.etternavn}
+              </Column>
             </Row>
             <br />
             <Row>
@@ -79,14 +83,10 @@ class BestillingDetails extends Component {
               <br />
               <Row>
                 <Column right>
-                  <Button id="slett" variant="danger" onClick={this.delete}>
-                    Slett bestilling
-                  </Button>
+                  <Button.Danger onClick={this.delete}>Slett bestilling</Button.Danger>
                 </Column>
                 <Column left>
-                  <Button id="endre" variant="success">
-                    Endre bestilling
-                  </Button>
+                  <Button.Success onClick={this.edit}>Endre bestilling</Button.Success>
                 </Column>
               </Row>
             </div>
@@ -96,9 +96,7 @@ class BestillingDetails extends Component {
           <br />
           <Row>
             <Column right>
-              <Button id="tilbake" variant="light" onClick={this.tilbake}>
-                Tilbake
-              </Button>
+              <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
             </Column>
           </Row>
         </div>
@@ -139,6 +137,9 @@ class BestillingDetails extends Component {
     {
       history.push('/aktivebestillinger');
     }
+  }
+  edit() {
+    history.push('/aktivebestillinger/' + this.bestill.bestilling_id + '/edit');
   }
 }
 

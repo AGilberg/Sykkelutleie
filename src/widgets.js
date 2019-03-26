@@ -128,24 +128,29 @@ class ButtonLight extends Component {
   }
 }
 
-// export class Img extends Component {
-//   render() {
-//     return (
-//       <li className="flex-item">
-//         <img type="img" className="img" src={this.props.src} onClick={this.props.onClick}>
-//           {this.props.children}
-//           style={{ width: '150px', height: '150px' }}
-//         </img>
-//       </li>
-//     );
-//   }
-// }
+// Renders a danger button using Bootstrap styles
+// Attributes: onClick
+class ButtonInfo extends Component {
+  render() {
+    return (
+      <button
+        type="button"
+        className="btn btn-default"
+        style={{ backgroundColor: '#f8f9fa', border: '2px solid lightgrey' }}
+        onClick={this.props.onClick}
+      >
+        {this.props.children}
+      </button>
+    );
+  }
+}
 
 // Renders a button using Bootstrap styles
 export class Button {
   static Success = ButtonSuccess;
   static Danger = ButtonDanger;
   static Light = ButtonLight;
+  static Info = ButtonInfo;
 }
 
 // Renders a form label using Bootstrap styles
