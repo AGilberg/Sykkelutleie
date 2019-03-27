@@ -44,14 +44,26 @@ class SykkelService {
     });
   }
 
-  getType(type_id, typenavn, hjulstorrelse, rammestorrelse, girsystem, klasse_id, pris, success) {
+  getAltOmSykkel(type_id, success) {
     connection.query(
-      'select type_id, typenavn, hjulstorrelse, rammestorrelse, girsystem, klasse_id, pris FROM SYKKELTYPE WHERE type_id=?',
-      [type_id, typenavn, hjulstorrelse, rammestorrelse, girsystem, klasse_id, pris],
+      'select typenavn, hjul_storrelse, ramme_storrelse, girsystem, klasse_id, pris FROM SYKKELTYPE WHERE type_id=?',
+      [type_id],
       (error, results) => {
         if (error) return console.error(error);
         console.log(results);
-        success(results);
+        success(results[0]);
+      }
+    );
+  }
+
+  getKlasser(type_id, success) {
+    connection.query(
+      'SELECT klassenavn, info FROM KLASSE k, SYKKELTYPE s WHERE s.klasse_id = k.klasse_id AND type_id=?',
+      [type_id],
+      (error, results) => {
+        if (error) return console.error(error);
+        console.log(results);
+        success(results[0]);
       }
     );
   }

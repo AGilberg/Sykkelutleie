@@ -93,7 +93,7 @@ class Sykkel extends Component {
               <li className="flex-item" key={sykkel.type_id}>
                 <img
                   src={'images/sykler/' + sykkel.klassenavn + '.jpg'}
-                  onClick={() => history.push('/ProduktSykkel')}
+                  onClick={() => history.push('/sykkel/' + sykkel.type_id)}
                   alt={sykkel.typenavn}
                   width="180px"
                   height="180px"
@@ -128,7 +128,7 @@ class Sykkel extends Component {
   }
 
   goToSykkel(id) {
-    history.push('/ProduktSykkel/' + id);
+    history.push('/sykkel/:' + id);
   }
 
   changeOrder(event) {

@@ -6,15 +6,15 @@ import { history } from '../index.js';
 import ReactLoading from 'react-loading';
 
 class ProduktSykkel extends Component {
-  typer = null;
+  type = null;
   avdelinger = null;
-  klasse = [];
+  klasse = null;
 
   render() {
-    // if (!this.typer || !this.avdelinger || !this.klasse)
-    //   return (
-    //     <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
-    //   );
+    if (!this.type || !this.klasse)
+      return (
+        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
+      );
 
     return (
       <div style={{ marginLeft: '20px' }}>
@@ -31,35 +31,23 @@ class ProduktSykkel extends Component {
               </div>
               <div className="col-9">
                 {' '}
-                <h4>Typenavn</h4>
-                <div title="Produktinformasjon:" className="ramme">
+                <h4>{this.type.typenavn}</h4>
+                <div className="ramme">
                   <ul style={{ listStyleType: 'none' }}>
-                    <li>Klassenavn</li>
-                    <li className="text">Pris: PRIS kr,-</li>
+                    <h5>Produktinformasjon: </h5>
+                    <li>{this.klasse.klassenavn}</li>
+                    <li className="text">Pris: {this.type.pris} kr,-</li>
+                    <br />
                     <div className="borderShadow">
-                      <li>
-                        fijreaojgoeigjøaoigaoøithaithjaoei aeoigjø oaiejgøoaeiaerjgø
-                        ioaejrgøoiajegøoairjtgøoaeijrgøoaeijrg aøoeigInfo
-                      </li>
+                      <li>{this.klasse.info}</li>
                     </div>
                     <br />
-                    <li>Gir</li>
-                    <li>Ramme</li>
-                    <li>Hjul</li>
+                    <li>Girsystem: {this.type.girsystem}</li>
+                    <li>Rammestørrelse: {this.type.ramme_storrelse} </li>
+                    <li>Hjulstørrelse: {this.type.hjul_storrelse}</li>
                     <br />
                     <li>Lagerstatus: Antall sykler</li>
-                    <li>
-                      Antall:
-                      <div className="input_div">
-                        <input type="text" size="25" value="1" id="count" style={{ marginRight: '20px' }} />
-                        <Button.Info value="-" onclick={this.antall}>
-                          -
-                        </Button.Info>
-                        <Button.Info value="+" onclick={this.antall}>
-                          +
-                        </Button.Info>
-                      </div>
-                    </li>
+                    <li>Antall:</li>
                     <li>Avdeling</li>
                   </ul>
                 </div>
@@ -87,9 +75,14 @@ class ProduktSykkel extends Component {
     );
   }
   mounted() {
-    sykkelService.getType(this.props.match.params.id, typer => {
-      this.typer = typer;
-      console.log(this.typer);
+    sykkelService.getAltOmSykkel(this.props.match.params.id, type => {
+      this.type = type;
+      console.log(this.type.typenavn);
+    });
+
+    sykkelService.getKlasser(this.props.match.params.id, klasse => {
+      this.klasse = klasse;
+      console.log(this.klasse.klassenavn);
     });
   }
 
