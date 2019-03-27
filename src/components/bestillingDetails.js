@@ -21,7 +21,14 @@ class BestillingDetails extends Component {
     return (
       <div className="main">
         <Card title="Om bestillingen:">
-          <Card>
+          <div
+            style={{
+              borderRadius: '4px',
+              boxSizing: 'border-box',
+              padding: '30px 30px',
+              margin: '14px'
+            }}
+          >
             <Row>
               <Column width={3}>Startdato:</Column>
               <Column>{this.formateDate(this.bestill.leie_start)}</Column>
@@ -90,7 +97,7 @@ class BestillingDetails extends Component {
                 </Column>
               </Row>
             </div>
-          </Card>
+          </div>
         </Card>
         <div>
           <br />

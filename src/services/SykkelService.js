@@ -18,14 +18,6 @@ class SykkelService {
     );
   }
 
-  getType(success) {
-    connection.query('SELECT * FROM SYKKELTYPE', (error, results) => {
-      if (error) return console.error(error);
-
-      success(results);
-    });
-  }
-
   getSykkel(metode, navn, type, success) {
     switch (metode) {
       case 'navn':
@@ -50,6 +42,18 @@ class SykkelService {
 
       success(results);
     });
+  }
+
+  getType(type_id, typenavn, hjulstorrelse, rammestorrelse, girsystem, klasse_id, pris, success) {
+    connection.query(
+      'select type_id, typenavn, hjulstorrelse, rammestorrelse, girsystem, klasse_id, pris FROM SYKKELTYPE WHERE type_id=?',
+      [type_id, typenavn, hjulstorrelse, rammestorrelse, girsystem, klasse_id, pris],
+      (error, results) => {
+        if (error) return console.error(error);
+        console.log(results);
+        success(results);
+      }
+    );
   }
 
   getSykkelSorteringer() {

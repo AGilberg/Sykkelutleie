@@ -31,11 +31,9 @@ class ProduktUtstyr extends Component {
               <div className="col-9">
                 {' '}
                 <h4>{this.utstyr.navn}</h4>
-                <Card title="Produktinformasjon:" style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
+                <Card title="Produktinformasjon:" className="ramme">
                   <ul style={{ listStyleType: 'none' }}>
-                    <li style={{ fontWeight: 'bold', color: 'red', fontSize: '25px' }}>
-                      Pris: {this.utstyr.pris} kr,-
-                    </li>
+                    <li className="text">Pris: {this.utstyr.pris} kr,-</li>
                     <li>Lagerstatus: {this.utstyr.antall}</li>
                     <li>
                       Antall:

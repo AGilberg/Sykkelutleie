@@ -8,7 +8,7 @@ import ReactLoading from 'react-loading';
 class ProduktSykkel extends Component {
   typer = null;
   avdelinger = null;
-  klasse = null;
+  klasse = [];
 
   render() {
     // if (!this.typer || !this.avdelinger || !this.klasse)
@@ -26,22 +26,23 @@ class ProduktSykkel extends Component {
               <div className="col-3">
                 <img
                   style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
-                  src={'images/sykler/' + +'.jpg'}
+                  src={'images/sykler/' + this.klasse.klassenavn + '.jpg'}
                 />
               </div>
               <div className="col-9">
                 {' '}
                 <h4>Typenavn</h4>
-                <Card title="Produktinformasjon:" style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
+                <div title="Produktinformasjon:" className="ramme">
                   <ul style={{ listStyleType: 'none' }}>
                     <li>Klassenavn</li>
-                    <li style={{ fontWeight: 'bold', color: 'red', fontSize: '25px' }}>Pris: PRIS kr,-</li>
-                    <Card>
+                    <li className="text">Pris: PRIS kr,-</li>
+                    <div className="borderShadow">
                       <li>
                         fijreaojgoeigjøaoigaoøithaithjaoei aeoigjø oaiejgøoaeiaerjgø
                         ioaejrgøoiajegøoairjtgøoaeijrgøoaeijrg aøoeigInfo
                       </li>
-                    </Card>
+                    </div>
+                    <br />
                     <li>Gir</li>
                     <li>Ramme</li>
                     <li>Hjul</li>
@@ -61,7 +62,7 @@ class ProduktSykkel extends Component {
                     </li>
                     <li>Avdeling</li>
                   </ul>
-                </Card>
+                </div>
                 <br />
               </div>
             </div>
@@ -86,19 +87,9 @@ class ProduktSykkel extends Component {
     );
   }
   mounted() {
-    sykkelService.getType(typer => {
+    sykkelService.getType(this.props.match.params.id, typer => {
       this.typer = typer;
       console.log(this.typer);
-    });
-
-    sykkelService.getAvdelinger(avdelinger => {
-      this.avdelinger = avdelinger;
-      console.log(this.avdelinger);
-    });
-
-    sykkelService.getSykkelklasser(klasse => {
-      this.klasse = klasse;
-      console.log(this.klasse);
     });
   }
 

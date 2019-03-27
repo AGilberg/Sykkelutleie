@@ -7,7 +7,13 @@ import { NavLink } from 'react-router-dom';
 export class Card extends Component {
   render() {
     return (
-      <div className="card">
+      <div
+        className="card"
+        style={{
+          boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
+          backgroundColor: '#f9fdff'
+        }}
+      >
         <div className="card-body">
           <h5 className="card-title">{this.props.title}</h5>
           <div className="card-text">{this.props.children}</div>
@@ -97,7 +103,12 @@ export class NavBar extends Component {
 class ButtonSuccess extends Component {
   render() {
     return (
-      <button type="button" className="btn btn-success" onClick={this.props.onClick}>
+      <button
+        type="button"
+        className="btn btn-success"
+        style={{ boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}
+        onClick={this.props.onClick}
+      >
         {this.props.children}
       </button>
     );
@@ -109,7 +120,12 @@ class ButtonSuccess extends Component {
 class ButtonDanger extends Component {
   render() {
     return (
-      <button type="button" className="btn btn-danger" onClick={this.props.onClick}>
+      <button
+        type="button"
+        className="btn btn-danger"
+        style={{ boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}
+        onClick={this.props.onClick}
+      >
         {this.props.children}
       </button>
     );
@@ -121,7 +137,12 @@ class ButtonDanger extends Component {
 class ButtonLight extends Component {
   render() {
     return (
-      <button type="button" className="btn btn-light" onClick={this.props.onClick}>
+      <button
+        type="button"
+        className="btn btn-light"
+        style={{ boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}
+        onClick={this.props.onClick}
+      >
         {this.props.children}
       </button>
     );
@@ -136,7 +157,11 @@ class ButtonInfo extends Component {
       <button
         type="button"
         className="btn btn-default"
-        style={{ backgroundColor: '#f8f9fa', border: '2px solid lightgrey' }}
+        style={{
+          backgroundColor: '#f8f9fa',
+          border: '2px solid lightgrey',
+          boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
+        }}
         onClick={this.props.onClick}
       >
         {this.props.children}

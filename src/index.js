@@ -22,7 +22,10 @@ export const history = createHashHistory();
 class Menu extends Component {
   render() {
     return (
-      <div className="col bg-light">
+      <div
+        className="col bg-light"
+        style={{ boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)' }}
+      >
         <NavBar
           brand=<img
             src="images/sykkelutleie.jpg"

@@ -22,7 +22,8 @@
   flex-wrap: wrap;
 }
 .wrap li {
-  background: #d1e0e0;
+  background: #deeaf2;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .flex-item {
@@ -37,6 +38,7 @@ img:hover {
   width: 181px;
   height: 181px;
 }
+
 /* li:hover {
   opacity: 0.7;
   filter: alpha(opacity=1);
@@ -48,6 +50,27 @@ img:hover {
   margin-left: 0px;
   margin-right: 0px;
 }
+.form-horizontal {
+  width: 90%;
+  padding: 12px 30px;
+  margin: 14px;
+  display: inline-block;
+}
+.text {
+  font-weight: bold;
+  color: red;
+  font-size: 25px;
+}
+.ramme {
+  margin: 24px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.borderShadow {
+  background-color: #eaf7ff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 15px;
+}
 
 /* SIDENAV */
 .col-md-2 {
@@ -56,6 +79,7 @@ img:hover {
   border: 1px solid #c9dbdb;
   border-top: none;
   font-size: 1rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .col-md-2 a {

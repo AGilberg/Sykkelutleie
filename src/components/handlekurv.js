@@ -26,13 +26,22 @@ class Handlekurv extends Component {
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
     return (
-      <div style={{ margin: '24px', marginLeft: '0px', marginRight: '0px' }}>
+      <div
+        style={{
+          margin: '24px',
+          marginLeft: '0px',
+          marginRight: '0px'
+        }}
+      >
         {/* Viser hva som er valgt til bestillingen */}
         <div className="col-md-4">
           <h4>Handlekurv</h4>
         </div>
         <br />
-        <div className="container-fluid">
+        <div
+          className="container-fluid"
+          style={{ boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}
+        >
           <div className="row" style={{ backgroundColor: 'lavender', fontWeight: 'bold' }}>
             <div className="col">Nr.</div>
             <div className="col">Produktnavn</div>
