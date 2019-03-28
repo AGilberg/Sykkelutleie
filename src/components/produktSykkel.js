@@ -7,11 +7,11 @@ import ReactLoading from 'react-loading';
 
 class ProduktSykkel extends Component {
   type = null;
-  avdelinger = null;
+  avdeling = null;
   klasse = null;
 
   render() {
-    if (!this.type || !this.klasse)
+    if (!this.type || !this.klasse || !this.avdeling)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
@@ -47,8 +47,19 @@ class ProduktSykkel extends Component {
                     <li>Hjulstørrelse: {this.type.hjul_storrelse}</li>
                     <br />
                     <li>Lagerstatus: Antall sykler</li>
-                    <li>Antall:</li>
-                    <li>Avdeling</li>
+                    <li>
+                      Antall:
+                      <div className="input_div">
+                        <input type="number" size="25" value="1" id="count" style={{ marginRight: '20px' }} />
+                        <Button.Info value="-" onclick={this.minus}>
+                          -
+                        </Button.Info>
+                        <Button.Info value="+" onclick={this.plus}>
+                          +
+                        </Button.Info>
+                      </div>
+                    </li>
+                    <li>{this.avdeling.navn}</li>
                   </ul>
                 </div>
                 <br />
@@ -57,6 +68,7 @@ class ProduktSykkel extends Component {
           </div>
         </Card>
         <br />
+
         <div className="col-12">
           <Row>
             <Column left>
@@ -84,6 +96,25 @@ class ProduktSykkel extends Component {
       this.klasse = klasse;
       console.log(this.klasse.klassenavn);
     });
+
+    sykkelService.getAvdelingNavn(this.props.match.params.id, avdeling => {
+      this.avdeling = avdeling;
+      console.log(this.avdeling.navn);
+    });
+  }
+
+  antall() {
+    var count = 1;
+    function plus() {
+      count++;
+      countEl.value = count;
+    }
+    function minus() {
+      if (count > 1) {
+        count--;
+        countEl.value = count;
+      }
+    }
   }
 
   back() {

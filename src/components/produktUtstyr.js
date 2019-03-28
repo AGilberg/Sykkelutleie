@@ -35,7 +35,18 @@ class ProduktUtstyr extends Component {
                   <ul style={{ listStyleType: 'none' }}>
                     <li className="text">Pris: {this.utstyr.pris} kr,-</li>
                     <li>Lagerstatus: {this.utstyr.antall}</li>
-                    <li>Antall://IKKE FERDIG</li>
+                    <li>
+                      Antall://IKKE FERDIG
+                      <div className="input_div">
+                        <input type="text" size="25" value="1" id="count" style={{ marginRight: '20px' }} />
+                        <Button.Info value="-" onclick={this.minus}>
+                          -
+                        </Button.Info>
+                        <Button.Info value="+" onclick={this.plus}>
+                          +
+                        </Button.Info>
+                      </div>
+                    </li>
                     <li>{this.avdelinger.navn}</li>
                   </ul>
                 </Card>
