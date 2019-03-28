@@ -3,10 +3,12 @@ import { Component } from 'react-simplified';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
 import { Row, Column, Button } from '../widgets';
+import { cartService } from '../services/CartService';
 
 class Leieperiode extends Component {
-  fra_dato = '';
-  til_dato = '';
+  fra_dato = null;
+  til_dato = null;
+  min_date = '';
   render() {
     return (
       <div>
@@ -28,6 +30,8 @@ class Leieperiode extends Component {
                 name="fra_dato"
                 type="date"
                 className="form-control input-md"
+                min={this.min_date}
+                value={this.min_date}
                 onChange={event => (this.fra_dato = event.target.value)}
                 required
               />
@@ -38,6 +42,8 @@ class Leieperiode extends Component {
                 name="til_dato"
                 type="date"
                 className="form-control input-md"
+                min={this.min_date}
+                value={this.min_date}
                 onChange={event => (this.til_dato = event.target.value)}
                 required
               />
@@ -58,14 +64,34 @@ class Leieperiode extends Component {
       </div>
     );
   }
+
+  mounted(){//YYYY-MM-DD
+    let d = new Date();
+    let day = d.getDate();
+    if(day < 10){
+      day = "0" + day;
+    }
+    let month = d.getMonth() + 1;
+    if(month < 10){
+      month = "0" + month;
+    }
+    let year = d.getFullYear();
+
+    this.min_date = year + "-" + month +"-" + day;
+    this.fra_dato = this.min_date;
+    this.til_dato = this.min_date;
+  }
+
   tilbake() {
     history.push('/');
   }
 
-  velg() {
-    console.log(this.fra_dato, this.til_dato);
-    {/* Fra- og til dato klart for å legges inn i lokalt array her. */}
-    history.push('/kunde');
+  velg() {/* Fra- og til dato klart for å legges inn i lokalt array her. */
+    if(this.fra_dato != null && this.til_dato != null){
+      cartService.setStartdato(this.fra_dato);
+      cartService.setSluttdato(this.til_dato);
+      history.push('/kunde');
+    }
   }
 }
 
