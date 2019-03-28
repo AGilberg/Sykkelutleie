@@ -1,24 +1,51 @@
 import { connection } from '../mysql_connection';
-//import { cartService } from './CartService';
+import { cartService } from './CartService';
 
-class BestillingService {
-  addOrder(cartArr, person_id, gruppe_id, leiestart, leieslutt, status_id, sum, beskrivelse) {
-    //legg til en ny bestilling i databasen
-    let d = new Date();// FIXME:  hent fra cartService?
-    let dateStamp = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();// FIXME:  hent fra cartService?
-    console.log(dateStamp);
-    console.log(leiestart);
+class BestillingService {// FIXME: legg til boolsk rabatt --> if rabatt --> reduser sum med 5%
+  addOrder(sum, rabatt) {//legg til en ny bestilling i databasen
+    console.log(sum);
+    console.log(rabatt);
+
+    let d = new Date();
+    let dateStamp = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+
+    let besk = cartService.getBeskrivelse();// FIXME: gjør det mulig å legge inn en kommentar
+    let start = cartService.getStartdato();
+    let slutt = cartService.getSluttdato();
+    let gruppe = cartService.getGruppe().gruppe_id;// FIXME: gjør det mulig å legge inn en gruppe(?)
+    let kunde = cartService.getKunde().person_id;
+    let status = cartService.getStatus().status_id;// FIXME: gjør det mulig å legge inn en status
 
     connection.query(//legg inn bestilling
-      'INSERT INTO BESTILLING(bestilling_id, bestillingsdato, person_id, gruppe_id, leie_start, leie_slutt, status_id, sum, beskrivelse) VALUES (?,?,?,?,?,?,?,?,?)',
-      [null, dateStamp, person_id, gruppe_id, this.leiestart, this.leieslutt, this.status_id, this.sum, this.beskrivelse],
+      'INSERT INTO BESTILLING (bestilling_id, bestillingsdato, person_id, gruppe_id, leie_start, leie_slutt, status_id, sum, beskrivelse, gittRabatt) VALUES (?,?,?,?,?,?,?,?,?,?)',
+      [null, dateStamp, kunde, gruppe, start, slutt, status, sum, besk, rabatt],
       (error, results) => {
         if (error) return console.error(error);
-        console.log(results);
+        console.log("OK fra bestilling.js");
         console.log(results.insertId);
-        //success('Registrering vellykket');
       }
     );
+
+    /*
+
+
+    switch (varer[i].kategori) {
+      case "sykkel":
+        sum
+        break;
+      case "utstyr":
+
+        break;
+      default:
+        console.log("feil med summering i BestillingServive.js");
+
+    }
+
+
+
+    DATOFORMAT: YYYY-DD-MM
+
+    */
     // let count = 0;// FIXME: legg til registrering av innhold
     // for (item of cartArr) {
     //   /*oppbygning: cartArr[item,item,...];

@@ -6,8 +6,8 @@ import { Row, Column, Button } from '../widgets';
 import { cartService } from '../services/CartService';
 
 class Leieperiode extends Component {
-  fra_dato = null;
-  til_dato = null;
+  fra_dato = '';
+  til_dato = '';
   min_date = '';
   render() {
     return (
@@ -31,8 +31,8 @@ class Leieperiode extends Component {
                 type="date"
                 className="form-control input-md"
                 min={this.min_date}
-                value={this.min_date}
-                onChange={event => (this.fra_dato = event.target.value)}
+                value={this.fra_dato}
+                onChange={(event) => {this.updateCalendar(event)}}
                 required
               />
               </td>
@@ -43,8 +43,8 @@ class Leieperiode extends Component {
                 type="date"
                 className="form-control input-md"
                 min={this.min_date}
-                value={this.min_date}
-                onChange={event => (this.til_dato = event.target.value)}
+                value={this.til_dato}
+                onChange={(event) => {this.updateCalendar(event)}}
                 required
               />
               </td>
@@ -87,10 +87,18 @@ class Leieperiode extends Component {
   }
 
   velg() {/* Fra- og til dato klart for å legges inn i lokalt array her. */
-    if(this.fra_dato != null && this.til_dato != null){
-      cartService.setStartdato(this.fra_dato);
-      cartService.setSluttdato(this.til_dato);
-      history.push('/kunde');
+    cartService.setStartdato(this.fra_dato);
+    cartService.setSluttdato(this.til_dato);
+    history.push('/kunde');
+  }
+
+  updateCalendar(evt){
+    switch (evt.target.name) {
+      case "til_dato":
+        this.til_dato = evt.target.value;
+        break;
+      case "fra_dato":
+        this.fra_dato = evt.target.value;
     }
   }
 }

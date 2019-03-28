@@ -78,10 +78,6 @@ class CartService{
   addItem(item){//legg til et produkt i handlekurven
     this.handlekurv.push(item);
   }
-
-  setKunde(kunde){
-    this.kunde = kunde;
-  }
 }
 
 export let cartService = new CartService();

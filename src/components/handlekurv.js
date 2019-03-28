@@ -11,14 +11,39 @@ class Handlekurv extends Component {
     super(props);
     this.state = {
       handlekurv: null
-    };
+    }
+    this.sum = 0;
+    this.rabatt = false;
+  }
+
+  updateRabatt(){
+    this.rabatt = !this.rabatt;
+    this.updateSum();
+  }
+
+  updateSum(){
+    let varer = cartService.getHandlekurv();
+    this.sum = 0;
+    for(let i = 0; i < varer.length; i++){
+      this.sum+= varer[i].pris;
+    }
+
+    if(this.rabatt){
+      this.sum*=0.95;// 5% i rabatt
+    }
+    this.sum = this.sum.toFixed(2);
   }
 
   delItem(index) {
     if (confirm('Er du sikker på at du vil slette produktet fra bestillingen?')) {
       cartService.dropItem(index);
       this.setState({ handlekurv: cartService.getHandlekurv() });
+      this.updateSum();
     }
+  }
+
+  regBestilling(){// FIXME: legg til feilsjekk + annet?
+    bestillingService.addOrder(this.sum, this.rabatt);
   }
 
   render() {
@@ -64,6 +89,9 @@ class Handlekurv extends Component {
             </div>
           ))}
         </div>
+        <div>Totalt: {this.sum} kr
+          Rabatt<input type="checkbox" onChange={this.updateRabatt}/>
+        </div>
         <br />
         <br />
         <NavBar.Link to="/utsjekk">
@@ -75,19 +103,7 @@ class Handlekurv extends Component {
 
   mounted() {
     this.setState({ handlekurv: cartService.getHandlekurv() });
-  }
-
-  regBestilling(){// FIXME: legg til feilsjekk + annet?
-    //this.state.handlekurv;//varer
-    let startdato = cartService.getStartdato();// FIXME: sjekk for null, eller start etter slutt
-    let sluttdato = cartService.getSluttdato();
-    let kunde = cartService.getKunde();// FIXME: sjekk at kunde eller gruppe er registrert
-    let gruppe = cartService.getGruppe();// FIXME: finn ut om gruppe skal være del av
-    let beskrivelse = cartService.getBeskrivelse();// FIXME: gjør det mulig å legge inn en kommentar/beskrivelse
-    let status = cartService.getStatus();// FIXME: gjør det mulig å legge inn en status, men kun statuser registrert i databasen
-    let sum = 0; // FIXME: beregn sum, oppdater dersom rabatt blir valgt, legg til mulighet for rabatt
-
-    bestillingService.addOrder(this.state.handlekurv, kunde.kunde_id, gruppe.gruppe_id, startdato, sluttdato, status.status_id, sum, beskrivelse);
+    this.updateSum();
   }
 }
 
