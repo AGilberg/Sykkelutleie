@@ -46,7 +46,7 @@ class Kundesøk extends Component {
                   <li>Kommentar: {kunde.kommentar}</li>
                 </ul>
                 <div>
-                  <Button.Success onClick={()=>{kundeService.addKundeToOrder(kunde.person_id)}}>Velg Kunde</Button.Success>
+                  <Button.Success onClick={()=>{kundeService.addKundeToOrder(kunde)}}>Velg Kunde</Button.Success>
                 </div>
               </Card>
             ))}
@@ -66,6 +66,7 @@ class Kundesøk extends Component {
       this.kunder = kunder;
     });
   }
+
 
   sok() {
     var input, filter, type, div, ul, i, li, txt;
