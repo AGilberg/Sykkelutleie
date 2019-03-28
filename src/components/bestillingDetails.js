@@ -66,6 +66,8 @@ class BestillingDetails extends Component {
             <Row>
               <Column width={3}>Bestilte varer:</Column>
               <Column>
+                <div className="brBottom">Sykkel: </div>
+
                 {this.sykkel.map(sykkel => (
                   <Row key={sykkel.innholdsykkel_id}>
                     <ul>
@@ -75,6 +77,7 @@ class BestillingDetails extends Component {
                 ))}
               </Column>
               <Column>
+                <div className="brBottom">Utstyr: </div>
                 {this.utstyr.map(utstyr => (
                   <Row key={utstyr.innholdutstyr_id}>
                     <ul>

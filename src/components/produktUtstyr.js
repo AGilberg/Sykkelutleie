@@ -4,7 +4,7 @@ import { Card, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import { utstyrService } from '../services/UtstyrService.js';
 import ReactLoading from 'react-loading';
-import { cartService } from '../services/CartService.js'
+import { cartService } from '../services/CartService.js';
 import { varsel } from '../index.js';
 
 class ProduktUtstyr extends Component {
@@ -34,42 +34,60 @@ class ProduktUtstyr extends Component {
               <div className="col-9">
                 {' '}
                 <h4>{this.utstyr.navn}</h4>
-                <Card title="Produktinformasjon:" className="ramme">
+                <div className="ramme">
                   <ul style={{ listStyleType: 'none' }}>
-                    <li className="text">Pris: {this.utstyr.pris} kr,-</li>
+                    <h5>Produktinformasjon: </h5>
+                    <li className="PrisText">Pris: {this.utstyr.pris} kr,-</li>
                     <li>Lagerstatus: {this.utstyr.antall}</li>
                     <li>
-
                       <div className="input_div">
-                        <input type="number" size="25" value={this.antall} id="count" style={{ marginRight: '20px' }} onChange={()=>{this.endreAntall("",event.target.value)}}/>
-                        <Button.Info onClick={()=>{this.endreAntall("minus")}}>
+                        <input
+                          type="number"
+                          size="25"
+                          value={this.antall}
+                          id="count"
+                          style={{ marginRight: '20px' }}
+                          onChange={() => {
+                            this.endreAntall('', event.target.value);
+                          }}
+                        />
+                        <Button.Info
+                          onClick={() => {
+                            this.endreAntall('minus');
+                          }}
+                        >
                           -
                         </Button.Info>
-                        <Button.Info onClick={()=>{this.endreAntall("pluss")}}>
+                        <Button.Info
+                          onClick={() => {
+                            this.endreAntall('pluss');
+                          }}
+                        >
                           +
                         </Button.Info>
                       </div>
                     </li>
                     <li>{this.avdelinger.navn}</li>
                   </ul>
-                </Card>
-                <br />
+
+                  <br />
+                </div>
               </div>
             </div>
           </div>
         </Card>
 
         <br />
-        <div className="col-12">
+        <div className="col-8">
           <Row>
             <Column left>
-              <Button.Success onClick={this.add}>Legg til bestilling</Button.Success>
+              <Button.Light onClick={this.back}>Tilbake</Button.Light>
             </Column>
             <Column>
               <Button.Info onClick={this.handlekurv}>Til handlekurv</Button.Info>
             </Column>
             <Column right>
-              <Button.Light onClick={this.back}>Tilbake</Button.Light>
+              <Button.Success onClick={this.add}>Legg til bestilling</Button.Success>
             </Column>
           </Row>
         </div>
@@ -87,41 +105,46 @@ class ProduktUtstyr extends Component {
     });
   }
 
-
   endreAntall(dir, inp) {
     switch (dir) {
-      case "pluss":
-      if(this.antall >= this.utstyr.antall){
-        this.antall == this.utstyr.antall;
-      }else{
-        this.antall++;
-      }
+      case 'pluss':
+        if (this.antall >= this.utstyr.antall) {
+          this.antall == this.utstyr.antall;
+        } else {
+          this.antall++;
+        }
         break;
-      case "minus":
-      if(this.antall > 1){
-        this.antall--;
-      }
-      break;
-      default://onChange
-        if(inp < 1){
+      case 'minus':
+        if (this.antall > 1) {
+          this.antall--;
+        }
+        break;
+      default:
+        //onChange
+        if (inp < 1) {
           this.antall = 1;
-        }else if(inp > this.utstyr.antall){
+        } else if (inp > this.utstyr.antall) {
           this.antall = this.utstyr.antall;
-        }else{
+        } else {
           this.antall = inp;
         }
     }
   }
-
 
   back() {
     history.push('/ekstrautstyr');
   }
 
   add() {
-    let produkt = { kategori:'utstyr', id: this.utstyr.utstyr_id, navn: this.utstyr.navn, antall: this.antall, pris: this.utstyr.pris*this.antall };
+    let produkt = {
+      kategori: 'utstyr',
+      id: this.utstyr.utstyr_id,
+      navn: this.utstyr.navn,
+      antall: this.antall,
+      pris: this.utstyr.pris * this.antall
+    };
     cartService.addItem(produkt);
-    varsel.varsel("Produktet ble lagt til i handlekurven!");
+    varsel.varsel('Produktet ble lagt til i handlekurven!');
     history.push('/ekstrautstyr');
   }
   handlekurv() {

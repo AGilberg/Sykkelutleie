@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
-import { Row, Column, Button } from '../widgets';
+import { Card, Row, Column, Button } from '../widgets';
 import { cartService } from '../services/CartService';
 
 class Leieperiode extends Component {
@@ -14,70 +14,84 @@ class Leieperiode extends Component {
       <div>
         {/* Visning av leieperioden*/}
         <br />
-        <div className="col-md-4">
+        <Card>
           <h4>Leieperiode</h4>
-        </div>
-        <table>
-          <tbody>
-            <tr>
-              <th>Fra dato</th>
-              <th>Til dato</th>
-            </tr>
-            <tr>
-              <td>
-              <input
-                id="fra_dato"
-                name="fra_dato"
-                type="date"
-                className="form-control input-md"
-                min={this.min_date}
-                value={this.fra_dato}
-                onChange={(event) => {this.updateCalendar(event)}}
-                required
-              />
-              </td>
-              <td>
-              <input
-                id="til_dato"
-                name="til_dato"
-                type="date"
-                className="form-control input-md"
-                min={this.min_date}
-                value={this.til_dato}
-                onChange={(event) => {this.updateCalendar(event)}}
-                required
-              />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <br />
 
-        <Row>
-          <Column left>
-            <Button.Success onClick={this.velg}>Velg</Button.Success>
-          </Column>
-          <Column right>
-            <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
-          </Column>
-        </Row>
+          <table className="table" style={{ marginTop: '50px', marginBottom: '100px' }}>
+            <tbody>
+              <tr>
+                <th>Fra dato</th>
+                <th>Til dato</th>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    id="fra_dato"
+                    name="fra_dato"
+                    type="date"
+                    style={{
+                      marginRight: '40px',
+                      boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)'
+                    }}
+                    className="form-control input-md"
+                    min={this.min_date}
+                    value={this.fra_dato}
+                    onChange={event => {
+                      this.updateCalendar(event);
+                    }}
+                    required
+                  />
+                </td>
+
+                <td>
+                  <input
+                    id="til_dato"
+                    name="til_dato"
+                    type="date"
+                    className="form-control input-md"
+                    style={{
+                      marginRight: '40px',
+                      boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)'
+                    }}
+                    min={this.min_date}
+                    value={this.til_dato}
+                    onChange={event => {
+                      this.updateCalendar(event);
+                    }}
+                    required
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <Row>
+            <Column right>
+              <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
+            </Column>
+            <Column left>
+              <Button.Success onClick={this.velg}>Velg</Button.Success>
+            </Column>
+          </Row>
+        </Card>
       </div>
     );
   }
 
-  mounted(){//YYYY-MM-DD
+  mounted() {
+    //YYYY-MM-DD
     let d = new Date();
     let day = d.getDate();
-    if(day < 10){
-      day = "0" + day;
+    if (day < 10) {
+      day = '0' + day;
     }
     let month = d.getMonth() + 1;
-    if(month < 10){
-      month = "0" + month;
+    if (month < 10) {
+      month = '0' + month;
     }
     let year = d.getFullYear();
 
-    this.min_date = year + "-" + month +"-" + day;
+    this.min_date = year + '-' + month + '-' + day;
     this.fra_dato = this.min_date;
     this.til_dato = this.min_date;
   }
@@ -86,19 +100,21 @@ class Leieperiode extends Component {
     history.push('/');
   }
 
-  velg() {/* Fra- og til dato klart for å legges inn i lokalt array her. */
+  velg() {
+    /* Fra- og til dato klart for å legges inn i lokalt array her. */
     cartService.setStartdato(this.fra_dato);
     cartService.setSluttdato(this.til_dato);
     history.push('/kunde');
   }
 
-  updateCalendar(evt){
+  updateCalendar(evt) {
     switch (evt.target.name) {
-      case "til_dato":
+      case 'til_dato':
         this.til_dato = evt.target.value;
         break;
-      case "fra_dato":
+      case 'fra_dato':
         this.fra_dato = evt.target.value;
+        break;
     }
   }
 }

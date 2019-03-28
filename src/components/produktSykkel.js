@@ -4,7 +4,7 @@ import { sykkelService } from '../services/SykkelService.js';
 import { Card, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
-import { cartService } from '../services/CartService.js'
+import { cartService } from '../services/CartService.js';
 
 class ProduktSykkel extends Component {
   type = null;
@@ -37,7 +37,7 @@ class ProduktSykkel extends Component {
                   <ul style={{ listStyleType: 'none' }}>
                     <h5>Produktinformasjon: </h5>
                     <li>{this.klasse.klassenavn}</li>
-                    <li className="text">Pris: {this.type.pris} kr,-</li>
+                    <li className="PrisText">Pris: {this.type.pris} kr,-</li>
                     <br />
                     <div className="borderShadow">
                       <li>{this.klasse.info}</li>
@@ -51,11 +51,28 @@ class ProduktSykkel extends Component {
                     <li>
                       Antall:
                       <div className="input_div">
-                        <input type="number" size="25" value={this.antall} id="count" style={{ marginRight: '20px' }} onChange={(event)=>{this.endreAntall("",event.target.value)}} />
-                        <Button.Info onClick={()=>{this.endreAntall("minus")}}>
+                        <input
+                          type="number"
+                          size="25"
+                          value={this.antall}
+                          id="count"
+                          style={{ marginRight: '20px' }}
+                          onChange={event => {
+                            this.endreAntall('', event.target.value);
+                          }}
+                        />
+                        <Button.Info
+                          onClick={() => {
+                            this.endreAntall('minus');
+                          }}
+                        >
                           -
                         </Button.Info>
-                        <Button.Info onClick={()=>{this.endreAntall("pluss")}}>
+                        <Button.Info
+                          onClick={() => {
+                            this.endreAntall('pluss');
+                          }}
+                        >
                           +
                         </Button.Info>
                       </div>
@@ -70,16 +87,16 @@ class ProduktSykkel extends Component {
         </Card>
         <br />
 
-        <div className="col-12">
+        <div className="col-8">
           <Row>
             <Column left>
-              <Button.Success onClick={this.add}>Legg til bestilling</Button.Success>
+              <Button.Light onClick={this.back}>Tilbake</Button.Light>
             </Column>
             <Column>
               <Button.Info onClick={this.handlekurv}>Til handlekurv</Button.Info>
             </Column>
             <Column right>
-              <Button.Light onClick={this.back}>Tilbake</Button.Light>
+              <Button.Success onClick={this.add}>Legg til bestilling</Button.Success>
             </Column>
           </Row>
         </div>
@@ -99,20 +116,21 @@ class ProduktSykkel extends Component {
 
   endreAntall(dir, inp) {
     switch (dir) {
-      case "pluss": // FIXME: add limit to antall
+      case 'pluss': // FIXME: add limit to antall
         this.antall++;
         break;
-      case "minus":
-      if(this.antall > 1){
-        this.antall--;
-      }
-      break;
-      default://onchange// FIXME: add limit to antall
-      if(inp < 1){
-        this.antall = 1;
-      }else{
-        this.antall = inp;
-      }
+      case 'minus':
+        if (this.antall > 1) {
+          this.antall--;
+        }
+        break;
+      default:
+        //onchange// FIXME: add limit to antall
+        if (inp < 1) {
+          this.antall = 1;
+        } else {
+          this.antall = inp;
+        }
     }
   }
 
@@ -121,7 +139,13 @@ class ProduktSykkel extends Component {
   }
 
   add() {
-    let produkt = {kategori:'sykkel', id: this.type.type_id, navn: this.type.typenavn, antall: this.antall, pris: this.type.pris*this.antall };
+    let produkt = {
+      kategori: 'sykkel',
+      id: this.type.type_id,
+      navn: this.type.typenavn,
+      antall: this.antall,
+      pris: this.type.pris * this.antall
+    };
     cartService.addItem(produkt);
     history.push('/sykkel');
   }
