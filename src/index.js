@@ -35,9 +35,18 @@ class Menu extends Component {
           />
         >
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
+          <div id="varsler"></div>
         </NavBar>
       </div>
     );
+  }
+  varsel(msg) {
+    document.getElementById("varsler").innerHTML = msg;
+
+    setTimeout(function(){
+        document.getElementById("varsler").innerHTML = '';
+    }, 5000);
+
   }
 }
 
@@ -110,3 +119,5 @@ ReactDOM.render(
   </HashRouter>,
   document.getElementById('root')
 );
+
+export let varsel = new Menu();

@@ -2,12 +2,7 @@ import { connection } from '../mysql_connection';
 
 class CartService{
   constructor(){
-    this.handlekurv = [//varene i bestillingen
-      { id: 2, navn: 'test-1', antall: 1, pris: 150 },
-      { id: 3, navn: 'test-2', antall: 1, pris: 900 },
-      { id: 1, navn: 'test-3', antall: 3, pris: 75 },
-      { id: 2, navn: 'test-4', antall: 1, pris: 150 }
-    ];
+    this.handlekurv = [];
     this.start;//startdato for leieforholdet
     this.slutt;//sluttdato for leieforholdet
     this.kunde;//ansvarlig kunde,

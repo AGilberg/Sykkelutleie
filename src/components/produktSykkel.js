@@ -4,6 +4,7 @@ import { sykkelService } from '../services/SykkelService.js';
 import { Card, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
+import { cartService } from '../services/CartService.js'
 
 class ProduktSykkel extends Component {
   type = null;
@@ -72,7 +73,7 @@ class ProduktSykkel extends Component {
         <div className="col-12">
           <Row>
             <Column left>
-              <Button.Success onClick={this.save}>Legg til</Button.Success>
+              <Button.Success onClick={this.add}>Legg til bestilling</Button.Success>
             </Column>
             <Column>
               <Button.Info onClick={this.handlekurv}>Til handlekurv</Button.Info>
@@ -119,8 +120,10 @@ class ProduktSykkel extends Component {
     history.push('/sykkel');
   }
 
-  save() {
-    history.push();
+  add() {
+    let produkt = { id: this.type.type_id, navn: this.type.typenavn, antall: this.antall, pris: this.type.pris*this.antall };
+    cartService.addItem(produkt);
+    history.push('/sykkel');
   }
 
   handlekurv() {
