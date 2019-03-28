@@ -8,6 +8,7 @@ import ReactLoading from 'react-loading';
 class ProduktUtstyr extends Component {
   utstyr = null;
   avdelinger = null;
+  antall = 1;
 
   render() {
     if (!this.utstyr || !this.avdelinger)
@@ -36,13 +37,13 @@ class ProduktUtstyr extends Component {
                     <li className="text">Pris: {this.utstyr.pris} kr,-</li>
                     <li>Lagerstatus: {this.utstyr.antall}</li>
                     <li>
-                      Antall://IKKE FERDIG
+
                       <div className="input_div">
-                        <input type="text" size="25" value="1" id="count" style={{ marginRight: '20px' }} />
-                        <Button.Info value="-" onclick={this.minus}>
+                        <input type="number" size="25" value={this.antall} id="count" style={{ marginRight: '20px' }} onChange={()=>{this.endreAntall("",event.target.value)}}/>
+                        <Button.Info onClick={()=>{this.endreAntall("minus")}}>
                           -
                         </Button.Info>
-                        <Button.Info value="+" onclick={this.plus}>
+                        <Button.Info onClick={()=>{this.endreAntall("pluss")}}>
                           +
                         </Button.Info>
                       </div>
@@ -84,19 +85,32 @@ class ProduktUtstyr extends Component {
     });
   }
 
-  antall() {
-    var count = 1;
-    function plus() {
-      count++;
-      countEl.value = count;
-    }
-    function minus() {
-      if (count > 1) {
-        count--;
-        countEl.value = count;
+
+  endreAntall(dir, inp) {
+    switch (dir) {
+      case "pluss":
+      if(this.antall >= this.utstyr.antall){
+        this.antall == this.utstyr.antall;
+      }else{
+        this.antall++;
       }
+        break;
+      case "minus":
+      if(this.antall > 1){
+        this.antall--;
+      }
+      break;
+      default://onChange
+        if(inp < 1){
+          this.antall = 1;
+        }else if(inp > this.utstyr.antall){
+          this.antall = this.utstyr.antall;
+        }else{
+          this.antall = inp;
+        }
     }
   }
+
 
   back() {
     history.push('/ekstrautstyr');

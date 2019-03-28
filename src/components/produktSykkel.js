@@ -7,11 +7,11 @@ import ReactLoading from 'react-loading';
 
 class ProduktSykkel extends Component {
   type = null;
-  avdeling = null;
   klasse = null;
+  antall = 1;
 
   render() {
-    if (!this.type || !this.klasse || !this.avdeling)
+    if (!this.type || !this.klasse)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
@@ -50,16 +50,16 @@ class ProduktSykkel extends Component {
                     <li>
                       Antall:
                       <div className="input_div">
-                        <input type="number" size="25" value="1" id="count" style={{ marginRight: '20px' }} />
-                        <Button.Info value="-" onclick={this.minus}>
+                        <input type="number" size="25" value={this.antall} id="count" style={{ marginRight: '20px' }} onChange={(event)=>{this.endreAntall("",event.target.value)}} />
+                        <Button.Info onClick={()=>{this.endreAntall("minus")}}>
                           -
                         </Button.Info>
-                        <Button.Info value="+" onclick={this.plus}>
+                        <Button.Info onClick={()=>{this.endreAntall("pluss")}}>
                           +
                         </Button.Info>
                       </div>
                     </li>
-                    <li>{this.avdeling.navn}</li>
+                    <li>Denne skal vise avdeling, men må hentes fra forrige eller kunne velges</li>
                   </ul>
                 </div>
                 <br />
@@ -89,30 +89,28 @@ class ProduktSykkel extends Component {
   mounted() {
     sykkelService.getAltOmSykkel(this.props.match.params.id, type => {
       this.type = type;
-      console.log(this.type.typenavn);
     });
 
     sykkelService.getKlasser(this.props.match.params.id, klasse => {
       this.klasse = klasse;
-      console.log(this.klasse.klassenavn);
-    });
-
-    sykkelService.getAvdelingNavn(this.props.match.params.id, avdeling => {
-      this.avdeling = avdeling;
-      console.log(this.avdeling.navn);
     });
   }
 
-  antall() {
-    var count = 1;
-    function plus() {
-      count++;
-      countEl.value = count;
-    }
-    function minus() {
-      if (count > 1) {
-        count--;
-        countEl.value = count;
+  endreAntall(dir, inp) {
+    switch (dir) {
+      case "pluss": // FIXME: add limit to antall
+        this.antall++;
+        break;
+      case "minus":
+      if(this.antall > 1){
+        this.antall--;
+      }
+      break;
+      default://onchange// FIXME: add limit to antall
+      if(inp < 1){
+        this.antall = 1;
+      }else{
+        this.antall = inp;
       }
     }
   }

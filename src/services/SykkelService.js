@@ -68,19 +68,6 @@ class SykkelService {
     );
   }
 
-  getAvdelingNavn(type_id, success) {
-    connection.query(
-      'SELECT a.navn FROM SYKKELTYPE s, OPPSETT o, UTSTYR u, AVDELING a WHERE s.klasse_id = o.klasse_id AND o.utstyr_id = u.utstyr_id AND u.avdeling_id= a.avdeling_id AND type_id=?',
-      [type_id],
-      (error, results) => {
-        if (error) return console.error(error);
-
-        console.log(results);
-        success(results[0]);
-      }
-    );
-  }
-
   getSykkelSorteringer() {
     let options = [];
     options[0] = ['Alfabetisk A-Z', 'alfAZ'];
