@@ -98,10 +98,10 @@ class Sykkel extends Component {
                   width="180px"
                   height="180px"
                 />
-                <div style={{ overflow: 'hidden', width: '100%', height: '30px' }}>{sykkel.typenavn}</div>
-                <br />
+                <div style={{ overflow: 'hidden', width: '100%', height: '22.5px' }}>{sykkel.typenavn}</div>
+
                 {'Pris: ' + sykkel.pris}
-                <br />
+
               </li>
             ))}
           </ul>
