@@ -43,6 +43,7 @@ class KundeService {
   }
 
   addKundeToOrder(kundeId) {
+    console.log(kundeId);
     //legg til en kunde som ansvarlig for et kjøp
   }
   //egentlig en lokal funksjon?

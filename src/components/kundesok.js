@@ -45,6 +45,9 @@ class Kundesøk extends Component {
                   <li>Født: {this.formatDate(kunde.fodt)}</li>
                   <li>Kommentar: {kunde.kommentar}</li>
                 </ul>
+                <div>
+                  <Button.Success onClick={()=>{kundeService.addKundeToOrder(kunde.person_id)}}>Velg Kunde</Button.Success>
+                </div>
               </Card>
             ))}
           </div>
