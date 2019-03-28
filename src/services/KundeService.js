@@ -42,17 +42,6 @@ class KundeService {
       });
   }
 
-  addKundeToOrder(kundeId) {
-    console.log(kundeId);
-    //legg til en kunde som ansvarlig for et kjøp
-  }
-  //egentlig en lokal funksjon?
-
-  removeKundeFromOrder() {
-    //fjern en kunde som ansvarlig for et kjøp
-    //egentlig en lokal funksjon?
-  }
-
   getKunder(success) {
     connection.query('select * from PERSON', (error, results) => {
       if (error) return console.error(error);
@@ -61,7 +50,7 @@ class KundeService {
     });
   }
 
-  getKunde(metode, fornavn, etternavn, mobilnr, mail) {
+  getKunde(metode, fornavn, etternavn, mobilnr, mail) {// FIXME: unødig etter adrians søkefunksjon?
     switch (metode) {
       case 'navn':
         connection.query(

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { kundeService } from '../services/KundeService.js';
+import { cartService } from '../services/CartService.js';
 import { history } from '../index.js';
 import { Button } from '../widgets';
 import Card from 'react-bootstrap/Card';
@@ -46,7 +47,7 @@ class Kundesøk extends Component {
                   <li>Kommentar: {kunde.kommentar}</li>
                 </ul>
                 <div>
-                  <Button.Success onClick={()=>{kundeService.addKundeToOrder(kunde)}}>Velg Kunde</Button.Success>
+                  <Button.Success onClick={()=>{cartService.setKunde(kunde)}}>Velg Kunde</Button.Success>
                 </div>
               </Card>
             ))}

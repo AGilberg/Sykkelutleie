@@ -1,44 +1,47 @@
 import { connection } from '../mysql_connection';
+//import { cartService } from './CartService';
 
 class BestillingService {
-  addOrder(cartArr, ansvarlig, status, leieStart, leieSlutt, beskrivelse) {
+  addOrder(cartArr, person_id, gruppe_id, leiestart, leieslutt, status_id, sum, beskrivelse) {
     //legg til en ny bestilling i databasen
-    let sum = 0; //regn ut summen, ønskelig fordi priser kan endre seg
-    let d = new Date();
-    let dateStamp = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+    let d = new Date();// FIXME:  hent fra cartService?
+    let dateStamp = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();// FIXME:  hent fra cartService?
+    console.log(dateStamp);
+    console.log(leiestart);
 
-    connection.query(
-      //legg inn bestilling
-      'insert into BESTILLING values (?,?,?,?,?,?,?,?)',
-      [null, ansvarlig, sum, dateStamp, status, leieStart, leieSlutt, beskrivelse],
+    connection.query(//legg inn bestilling
+      'INSERT INTO BESTILLING(bestilling_id, bestillingsdato, person_id, gruppe_id, leie_start, leie_slutt, status_id, sum, beskrivelse) VALUES (?,?,?,?,?,?,?,?,?)',
+      [null, dateStamp, person_id, gruppe_id, this.leiestart, this.leieslutt, this.status_id, this.sum, this.beskrivelse],
       (error, results) => {
         if (error) return console.error(error);
-        success('Registrering vellykket');
+        console.log(results);
+        console.log(results.insertId);
+        //success('Registrering vellykket');
       }
     );
-    let count = 0;
-    for (item of cartArr) {
-      /*oppbygning: cartArr[item,item,...];
-        item[utstyrId, sykkelId, antUtstyr, kommentar];
-        */
-      //trenger --> bestilling_id
-      connection.query(
-        //legg inn innholdet til bestillingen
-        'insert into INNHOLD values (?,?,?,?,?,?)',
-        [null, bestillingId, item[0], item[1], item[2], item[3]],
-        (error, results) => {
-          if (error) return console.error(error);
-          count++;
-          success();
-        }
-      );
-    }
-    if (count == cartArr.length) {
-      // FIXME: SKRIV UT MELDINGEN TIL BRUKER?
-      console.log('Alt ble reigstrert');
-    } else {
-      console.log('Mangler det noe?');
-    }
+    // let count = 0;// FIXME: legg til registrering av innhold
+    // for (item of cartArr) {
+    //   /*oppbygning: cartArr[item,item,...];
+    //     item[utstyrId, sykkelId, antUtstyr, kommentar];
+    //     */
+    //   //trenger --> bestilling_id
+    //   connection.query(
+    //     //legg inn innholdet til bestillingen
+    //     'insert into INNHOLD values (?,?,?,?,?,?)',
+    //     [null, bestillingId, item[0], item[1], item[2], item[3]],
+    //     (error, results) => {
+    //       if (error) return console.error(error);
+    //       count++;
+    //       success();
+    //     }
+    //   );
+    // }
+    // if (count == cartArr.length) {
+    //   // FIXME: SKRIV UT MELDINGEN TIL BRUKER?
+    //   console.log('Alt ble reigstrert');
+    // } else {
+    //   console.log('Mangler det noe?');
+    // }
   }
 
   updateOrder(bestill, utstyr, sykkel, id) {

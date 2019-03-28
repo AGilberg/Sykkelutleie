@@ -6,9 +6,9 @@ class CartService{
     this.startdato;//startdato for leieforholdet
     this.sluttdato;//sluttdato for leieforholdet
     this.kunde;//ansvarlig kunde,
-    this.gruppe;//tilknyttet gruppe
-    this.beskrivelse;//beskrivelse/kommentar til bestillingen
-    this.status;
+    this.gruppe = {gruppe_id:null};//tilknyttet gruppe // FIXME: gjør det mulig å velge gruppe, eller fjern med antagelse om annen løsning
+    this.beskrivelse = "KOMMENTAR FRA SERCIVE";//beskrivelse/kommentar til bestillingen // FIXME: gjør det mulig å legge til en kommentar/beskrivelse
+    this.status = {status_id: 1, tilstand: 'OK'};// FIXME: gjør det mulig å velge status
   }
 
   getHandlekurv(){

@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import { NavBar, Button } from '../widgets';
 import { NavLink } from 'react-router-dom';
 import { cartService } from '../services/CartService';
+import { bestillingService } from '../services/BestillingService';
 import ReactLoading from 'react-loading';
 
 class Handlekurv extends Component {
@@ -66,7 +67,7 @@ class Handlekurv extends Component {
         <br />
         <br />
         <NavBar.Link to="/utsjekk">
-          <Button.Success>Register</Button.Success>
+          <Button.Success onClick={this.regBestilling}>Register</Button.Success>
         </NavBar.Link>
       </div>
     );
@@ -74,6 +75,19 @@ class Handlekurv extends Component {
 
   mounted() {
     this.setState({ handlekurv: cartService.getHandlekurv() });
+  }
+
+  regBestilling(){// FIXME: legg til feilsjekk + annet?
+    //this.state.handlekurv;//varer
+    let startdato = cartService.getStartdato();// FIXME: sjekk for null, eller start etter slutt
+    let sluttdato = cartService.getSluttdato();
+    let kunde = cartService.getKunde();// FIXME: sjekk at kunde eller gruppe er registrert
+    let gruppe = cartService.getGruppe();// FIXME: finn ut om gruppe skal være del av
+    let beskrivelse = cartService.getBeskrivelse();// FIXME: gjør det mulig å legge inn en kommentar/beskrivelse
+    let status = cartService.getStatus();// FIXME: gjør det mulig å legge inn en status, men kun statuser registrert i databasen
+    let sum = 0; // FIXME: beregn sum, oppdater dersom rabatt blir valgt, legg til mulighet for rabatt
+
+    bestillingService.addOrder(this.state.handlekurv, kunde.kunde_id, gruppe.gruppe_id, startdato, sluttdato, status.status_id, sum, beskrivelse);
   }
 }
 
