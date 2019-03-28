@@ -119,7 +119,7 @@ class ProduktUtstyr extends Component {
   }
 
   add() {
-    let produkt = { id: this.utstyr.utstyr_id, navn: this.utstyr.navn, antall: this.antall, pris: this.utstyr.pris*this.antall };
+    let produkt = { kategori:'utstyr', id: this.utstyr.utstyr_id, navn: this.utstyr.navn, antall: this.antall, pris: this.utstyr.pris*this.antall };
     cartService.addItem(produkt);
     varsel.varsel("Produktet ble lagt til i handlekurven!");
     history.push('/ekstrautstyr');

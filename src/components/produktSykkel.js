@@ -121,7 +121,7 @@ class ProduktSykkel extends Component {
   }
 
   add() {
-    let produkt = { id: this.type.type_id, navn: this.type.typenavn, antall: this.antall, pris: this.type.pris*this.antall };
+    let produkt = {kategori:'sykkel', id: this.type.type_id, navn: this.type.typenavn, antall: this.antall, pris: this.type.pris*this.antall };
     cartService.addItem(produkt);
     history.push('/sykkel');
   }
