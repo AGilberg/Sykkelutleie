@@ -76,8 +76,10 @@ class Kundesøk extends Component {
       txt = li[type].textContent || li[type].innerText;
       if (txt.toUpperCase().indexOf(filter) > -1) {
         ul[i].style.display = '';
+        ul[i].closest('div.card').style.display = '';
       } else {
         ul[i].style.display = 'none';
+        ul[i].closest('div.card').style.display = 'none';
       }
     }
   }
