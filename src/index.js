@@ -58,11 +58,11 @@ class Home extends Component {
       <div className="main">
         <Card title="Hovedside">
           <div style={{ margin: '50px' }}>
-            <h6>Værmelding:</h6>
+            <h5>Værmelding:</h5>
             <Row>
               <div className="col-md-6">
                 <img
-                  className="brBottom"
+                  className="brBottom shadow"
                   style={{
                     width: '750px',
                     height: '300px',
@@ -72,10 +72,11 @@ class Home extends Component {
                 />
               </div>
             </Row>
-            <h6>Årets ansatt: </h6>
+            <h5>Årets ansatt: </h5>
             <Row>
               <div className="col-md-5">
                 <img
+                  className="shadow"
                   style={{
                     width: '200px',
                     height: '250px',
