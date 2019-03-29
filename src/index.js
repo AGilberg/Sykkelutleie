@@ -35,16 +35,19 @@ class Menu extends Component {
           />
         >
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
-          <div id="varsler" />
+          <div className="js-hidden" id="varsler" />
         </NavBar>
       </div>
     );
   }
   varsel(msg) {
-    document.getElementById('varsler').innerHTML = msg;
+    let varsel = document.getElementById('varsler');
+    varsel.classList.remove("js-hidden");
+    varsel.innerHTML = msg;
 
     setTimeout(function() {
-      document.getElementById('varsler').innerHTML = '';
+      varsel.innerHTML = '';
+      varsel.classList.add("js-hidden");
     }, 5000);
   }
 }
