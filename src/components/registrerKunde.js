@@ -38,7 +38,6 @@ class RegistrerKunde extends Component {
                       name="fornavn"
                       type="text"
                       placeholder="Fornavn"
-                      autofocus="true"
                       className="form-control input-md shadow"
                       value={this.fornavn}
                       onChange={event => (this.fornavn = event.target.value)}
