@@ -35,18 +35,17 @@ class Menu extends Component {
           />
         >
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
-          <div id="varsler"></div>
+          <div id="varsler" />
         </NavBar>
       </div>
     );
   }
   varsel(msg) {
-    document.getElementById("varsler").innerHTML = msg;
+    document.getElementById('varsler').innerHTML = msg;
 
-    setTimeout(function(){
-        document.getElementById("varsler").innerHTML = '';
+    setTimeout(function() {
+      document.getElementById('varsler').innerHTML = '';
     }, 5000);
-
   }
 }
 

@@ -9,14 +9,17 @@ class Kunde extends Component {
       <div>
         {/* Linker til å legge til/søke opp kunder */}
         <br />
-        <Card>
-          <NavBar.Link className="link" to="/registrerKunde">
-            Registrer kunde
-          </NavBar.Link>
-        </Card>
-        <Card>
-          <NavBar.Link to="/kundesøk">Kundesøk</NavBar.Link>
-        </Card>
+        <div className="lenke lenke1 brBottom">
+          <Card>
+            <NavBar.Link to="/registrerKunde">Registrer kunde</NavBar.Link>
+          </Card>
+        </div>
+
+        <div className="lenke lenke2">
+          <Card>
+            <NavBar.Link to="/kundesøk">Kundesøk</NavBar.Link>
+          </Card>
+        </div>
       </div>
     );
   }

@@ -35,7 +35,7 @@ class ProduktUtstyr extends Component {
                 {' '}
                 <h4>{this.utstyr.navn}</h4>
                 <div className="ramme">
-                  <ul style={{ listStyleType: 'none' }}>
+                  <ul className="brBottom" style={{ listStyleType: 'none' }}>
                     <h5>Produktinformasjon: </h5>
                     <li className="PrisText">Pris: {this.utstyr.pris} kr,-</li>
                     <li>Lagerstatus: {this.utstyr.antall}</li>
@@ -69,8 +69,6 @@ class ProduktUtstyr extends Component {
                     </li>
                     <li>{this.avdelinger.navn}</li>
                   </ul>
-
-                  <br />
                 </div>
               </div>
             </div>

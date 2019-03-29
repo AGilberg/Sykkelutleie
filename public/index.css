@@ -128,10 +128,60 @@ img:hover {
   color: black;
 }
 
-.registerForm {
-}
-/*
-FARGEN PÅ LINKENE
-.link {
-
+/* .lenke {
+  margin-top: 50px;
+  margin-left: 200px;
+  margin-right: 200px;
+  text-align: center;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  color: black;
 } */
+
+.lenke {
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 200px;
+  margin-right: 200px;
+  font-size: 16px;
+  margin: 50px 200px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.lenke1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #f8f9fa !important;
+  border-radius: 10px;
+}
+
+.lenke1:hover {
+  background-color: #deeaf2;
+  color: white;
+}
+
+.lenke2 {
+  background-color: white;
+  color: black;
+  border: 2px solid #f8f9fa !important;
+  border-radius: 10px;
+}
+
+.lenke2:hover {
+  background-color: #deeaf2;
+  color: white;
+}
+
+#varsler {
+  margin-left: 100px;
+  border: 1px solid #deeaf2;
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: #eaf7ff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
