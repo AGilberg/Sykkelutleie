@@ -42,12 +42,12 @@ class Menu extends Component {
   }
   varsel(msg) {
     let varsel = document.getElementById('varsler');
-    varsel.classList.remove("js-hidden");
+    varsel.classList.remove('js-hidden');
     varsel.innerHTML = msg;
 
     setTimeout(function() {
       varsel.innerHTML = '';
-      varsel.classList.add("js-hidden");
+      varsel.classList.add('js-hidden');
     }, 5000);
   }
 }
@@ -56,7 +56,46 @@ class Home extends Component {
   render() {
     return (
       <div className="main">
-        <Card title="Hjem">Hovedside</Card>
+        <Card title="Hovedside">
+          <div style={{ margin: '50px' }}>
+            <h6>Værmelding:</h6>
+            <Row>
+              <div className="col-md-6">
+                <img
+                  className="brBottom"
+                  style={{
+                    width: '750px',
+                    height: '300px',
+                    opacity: '1.0'
+                  }}
+                  src="images/vaarmelding.jpg"
+                />
+              </div>
+            </Row>
+            <h6>Årets ansatt: </h6>
+            <Row>
+              <div className="col-md-5">
+                <img
+                  style={{
+                    width: '200px',
+                    height: '250px',
+                    opacity: '1.0'
+                  }}
+                  src="images/aaretsAnsatt.jpg"
+                />
+              </div>
+              <div className="col-md-5">
+                <b>Om meg:</b>
+                <p>
+                  {' '}
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                  industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                  scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                </p>{' '}
+              </div>
+            </Row>
+          </div>
+        </Card>
       </div>
     );
   }
