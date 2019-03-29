@@ -11,25 +11,25 @@ class Handlekurv extends Component {
     super(props);
     this.state = {
       handlekurv: null
-    }
+    };
     this.sum = 0;
     this.rabatt = false;
   }
 
-  updateRabatt(){
+  updateRabatt() {
     this.rabatt = !this.rabatt;
     this.updateSum();
   }
 
-  updateSum(){
+  updateSum() {
     let varer = cartService.getHandlekurv();
     this.sum = 0;
-    for(let i = 0; i < varer.length; i++){
-      this.sum+= varer[i].pris;
+    for (let i = 0; i < varer.length; i++) {
+      this.sum += varer[i].pris;
     }
 
-    if(this.rabatt){
-      this.sum*=0.95;// 5% i rabatt
+    if (this.rabatt) {
+      this.sum *= 0.95; // 5% i rabatt
     }
     this.sum = this.sum.toFixed(2);
   }
@@ -42,7 +42,8 @@ class Handlekurv extends Component {
     }
   }
 
-  regBestilling(){// FIXME: legg til feilsjekk + annet?
+  regBestilling() {
+    // FIXME: legg til feilsjekk + annet?
     bestillingService.addOrder(this.sum, this.rabatt);
   }
 
@@ -65,7 +66,7 @@ class Handlekurv extends Component {
         </div>
         <br />
         <div
-          className="container-fluid"
+          className="container-fluid brBottom"
           style={{ boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}
         >
           <div className="row" style={{ backgroundColor: 'lavender', fontWeight: 'bold' }}>
@@ -89,11 +90,11 @@ class Handlekurv extends Component {
             </div>
           ))}
         </div>
-        <div>Totalt: {this.sum} kr
-          Rabatt<input type="checkbox" onChange={this.updateRabatt}/>
+        <div className="col">
+          Totalt: {this.sum} kr <br /> Rabatt:
+          <input className="col-1" type="checkbox" onChange={this.updateRabatt} />
         </div>
-        <br />
-        <br />
+
         <NavBar.Link to="/utsjekk">
           <Button.Success onClick={this.regBestilling}>Register</Button.Success>
         </NavBar.Link>
