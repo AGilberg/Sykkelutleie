@@ -4,8 +4,8 @@ import varsel from '../services/notifications.js';
 class CartService{
   constructor(){
     this.handlekurv = [];
-    this.startdato;//startdato for leieforholdet
-    this.sluttdato;//sluttdato for leieforholdet
+    this.startdato = null;//startdato for leieforholdet
+    this.sluttdato = null;//sluttdato for leieforholdet
     this.kunde = null;//ansvarlig kunde,
     this.gruppe = {gruppe_id:null};//tilknyttet gruppe // FIXME: gjør det mulig å velge gruppe, eller fjern med antagelse om annen løsning
     this.beskrivelse = "KOMMENTAR FRA SERCIVE";//beskrivelse/kommentar til bestillingen // FIXME: gjør det mulig å legge til en kommentar/beskrivelse

@@ -15,6 +15,8 @@ class Handlekurv extends Component {
     this.sum = 0;
     this.rabatt = false;
     this.kunde = cartService.kunde;
+    this.startdato = cartService.startdato;
+    this.sluttdato = cartService.sluttdato;
   }
 
   updateRabatt() {
@@ -92,6 +94,15 @@ class Handlekurv extends Component {
           ))}
         </div>
         <div className="col">
+          <div>
+            <h6><b>Leieperiode:</b> { (
+              (this.startdato || this.sluttdato) != null
+              ?
+              "fra "+this.startdato+" til "+this.sluttdato
+              :
+              "NB! Det er ikke valgt en leieperiode for bestillingen enda."
+            ) }</h6>
+          </div>
           <div>
             <h6><b>Kunde:</b> { (
               this.kunde != null
