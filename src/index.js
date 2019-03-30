@@ -54,6 +54,20 @@ class Menu extends Component {
 }
 
 class Home extends Component {
+  constructor(){
+    super();
+    this.state = {
+      useURL: ""
+    }
+      this.trondelagURL = "https://www.yr.no/sted/Norge/Tr%c3%b8ndelag/Trondheim/Trondheim/ekstern_boks_tre_dager.html";
+      this.isbjornURL = "https://www.yr.no/sted/Norge/Svalbard/Isbj%c3%b8rnhamna/ekstern_boks_tre_dager.html";
+      this.osloURL  = "https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/ekstern_boks_tre_dager.html";
+  }
+
+  mounted(){
+    this.setState({useURL: this.trondelagURL});// FIXME: hent inn URL utenfra, bør egentlig ligge i DB sammen med avdeling elns
+  }
+
   render() {
     return (
       <div className="main">
@@ -62,21 +76,8 @@ class Home extends Component {
             <h5>Værmelding:</h5>
             <Row>
               <div className="vaermelding" >
-                 <Iframe url="https://www.yr.no/sted/Norge/Tr%c3%b8ndelag/Trondheim/Trondheim/ekstern_boks_tre_dager.html"/>
+                 <Iframe url={this.state.useURL}/>
               </div>
-
-
-      {/*        <div className="col-md-6">
-                <img
-                  className="brBottom shadow"
-                  style={{
-                    width: '750px',
-                    height: '300px',
-                    opacity: '1.0'
-                  }}
-                  src="images/vaarmelding.jpg"
-                />
-              </div>*/}
             </Row>
             <h5>Årets ansatt: </h5>
             <Row>
