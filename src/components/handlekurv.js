@@ -14,6 +14,7 @@ class Handlekurv extends Component {
     };
     this.sum = 0;
     this.rabatt = false;
+    this.kunde = cartService.kunde;
   }
 
   updateRabatt() {
@@ -91,6 +92,15 @@ class Handlekurv extends Component {
           ))}
         </div>
         <div className="col">
+          <div>
+            <h6><b>Kunde:</b> { (
+              this.kunde != null
+              ?
+              this.kunde.fornavn+" "+this.kunde.etternavn
+              :
+              "NB! Ingen kunde er tilknyttet bestillingen enda."
+            ) }</h6>
+          </div>
           Totalt: {this.sum} kr <br /> Rabatt:
           <input className="col-1" type="checkbox" onChange={this.updateRabatt} />
         </div>
