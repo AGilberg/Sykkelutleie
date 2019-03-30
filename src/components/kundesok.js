@@ -47,7 +47,7 @@ class Kundesøk extends Component {
                   <li>Kommentar: {kunde.kommentar}</li>
                 </ul>
                 <div>
-                  <Button.Success onClick={()=>{cartService.setKunde(kunde)}}>Velg Kunde</Button.Success>
+                  <Button.Success onClick={()=>{this.velg(kunde)}}>Velg Kunde</Button.Success>
                 </div>
               </Card>
             ))}
@@ -87,6 +87,11 @@ class Kundesøk extends Component {
         ul[i].closest('div.card').style.display = 'none';
       }
     }
+  }
+
+  velg(kunde) {
+    cartService.setKunde(kunde);
+    history.push('/sykkel');
   }
 
   tilbake() {

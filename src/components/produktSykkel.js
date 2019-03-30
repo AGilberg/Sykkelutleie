@@ -44,11 +44,12 @@ class ProduktSykkel extends Component {
                       <li>{this.klasse.info}</li>
                     </div>
                     <br />
+                    <h5>Detaljer: </h5>
                     <li>Girsystem: {this.type.girsystem}</li>
                     <li>Rammestørrelse: {this.type.ramme_storrelse} </li>
                     <li>Hjulstørrelse: {this.type.hjul_storrelse}</li>
                     <br />
-                    <li>Lagerstatus: Antall sykler</li>
+                    <li><b>Lagerstatus:</b> Antall sykler</li>
                     <li>
                       Antall:
                       <div className="input_div">
