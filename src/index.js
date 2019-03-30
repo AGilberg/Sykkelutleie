@@ -65,7 +65,7 @@ class Home extends Component {
   }
 
   mounted(){
-    this.setState({useURL: this.trondelagURL});// FIXME: hent inn URL utenfra, bør egentlig ligge i DB sammen med avdeling elns
+    this.setState({useURL: this.isbjornURL});// FIXME: hent inn URL utenfra, bør egentlig ligge i DB sammen med avdeling elns
   }
 
   render() {
@@ -75,8 +75,8 @@ class Home extends Component {
           <div style={{ margin: '50px' }}>
             <h5>Værmelding:</h5>
             <Row>
-              <div className="vaermelding" >
-                 <Iframe url={this.state.useURL}/>
+              <div id="here"className="vaermelding" >{/* FIXME: legg til en cover-div for å gjøre feltet ikke-klikkbart?*/}
+                <Iframe height="195px" width="100%" url={this.state.useURL} sandbox=" "/>
               </div>
             </Row>
             <h5>Årets ansatt: </h5>
