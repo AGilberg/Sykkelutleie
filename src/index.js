@@ -75,8 +75,7 @@ class Home extends Component {
           <div style={{ margin: '50px' }}>
             <h5>Værmelding:</h5>
             <Row>
-              <div id="here"className="vaermelding brBottom" >{/* FIXME: legg til en cover-div for å gjøre feltet ikke-klikkbart?*/}
-
+              <div id="here"className="vaermelding brBottom" >
                 <Iframe height="195px" width="100%" url={this.state.useURL} sandbox=" "/>
                 <div className="coverWeather"></div>
               </div>
