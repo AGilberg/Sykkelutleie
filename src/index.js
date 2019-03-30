@@ -41,16 +41,6 @@ class Menu extends Component {
       </div>
     );
   }
-  varsel(msg) {
-    let varsel = document.getElementById('varsler');
-    varsel.classList.remove('js-hidden');
-    varsel.innerHTML = msg;
-
-    setTimeout(function() {
-      varsel.innerHTML = '';
-      varsel.classList.add('js-hidden');
-    }, 5000);
-  }
 }
 
 class Home extends Component {
@@ -169,5 +159,3 @@ ReactDOM.render(
   </HashRouter>,
   document.getElementById('root')
 );
-
-export let varsel = new Menu();

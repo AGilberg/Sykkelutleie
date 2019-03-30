@@ -4,8 +4,8 @@ import { Card, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import { utstyrService } from '../services/UtstyrService.js';
 import ReactLoading from 'react-loading';
-import { cartService } from '../services/CartService.js';
-import { varsel } from '../index.js';
+import { cartService } from '../services/CartService.js'
+import varsel from '../services/notifications.js';
 
 class ProduktUtstyr extends Component {
   utstyr = null;
@@ -142,7 +142,7 @@ class ProduktUtstyr extends Component {
       pris: this.utstyr.pris * this.antall
     };
     cartService.addItem(produkt);
-    varsel.varsel('Produktet ble lagt til i handlekurven!');
+    varsel("Suksess!", "Produktet ble lagt til i handlekurven.");
     history.push('/ekstrautstyr');
   }
   handlekurv() {

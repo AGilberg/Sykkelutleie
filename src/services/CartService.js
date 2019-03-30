@@ -1,4 +1,5 @@
 //import { connection } from '../mysql_connection';
+import varsel from '../services/notifications.js';
 
 class CartService{
   constructor(){
@@ -49,6 +50,7 @@ class CartService{
 
   setKunde(kunde){
     this.kunde = kunde;
+    varsel("Suksess!", "Kunden er valgt");
   }
 
   setGruppe(gruppe){

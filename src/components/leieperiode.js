@@ -4,6 +4,7 @@ import { history } from '../index.js';
 import ReactLoading from 'react-loading';
 import { Card, Row, Column, Button } from '../widgets';
 import { cartService } from '../services/CartService';
+import varsel from '../services/notifications.js';
 
 class Leieperiode extends Component {
   fra_dato = '';
@@ -104,6 +105,7 @@ class Leieperiode extends Component {
     /* Fra- og til dato klart for å legges inn i lokalt array her. */
     cartService.setStartdato(this.fra_dato);
     cartService.setSluttdato(this.til_dato);
+    varsel("Suksess!", "Datoer er valgt");
     history.push('/kunde');
   }
 

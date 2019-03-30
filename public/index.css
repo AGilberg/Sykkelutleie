@@ -128,14 +128,55 @@ img:hover {
   color: black;
 }
 
-/* .lenke {
-  margin-top: 50px;
-  margin-left: 200px;
-  margin-right: 200px;
-  text-align: center;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  color: black;
+.vrsl-container {
+  font-size: 14px;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+}
+
+.vrsl {
+  background: #51a351;
+  color: #fff;
+  padding: 15px 15px 15px 50px;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 6px;
+  width: 300px;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 0 20px grey;
+  opacity: 0.9;
+  background-position: 15px center !important;
+  background-repeat: no-repeat !important;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==");
+}
+
+.vrsl:hover {
+      box-shadow: 0 0 12px #000000;
+      opacity: 1;
+    }
+
+.vrsl-tittel {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 6px;
+  word-wrap: break-word;
+}
+
+.vrsl-melding {
+  margin: 0;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+/*
+FARGEN PÅ LINKENE
+.link {
+
 } */
 
 .lenke {

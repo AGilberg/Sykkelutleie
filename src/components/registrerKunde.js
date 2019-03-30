@@ -4,6 +4,7 @@ import { Card, Row, Column, Button } from '../widgets';
 import { kundeService } from '../services/KundeService.js';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
+import varsel from '../services/notifications.js';
 
 class RegistrerKunde extends Component {
   kjonn = 1;
@@ -231,6 +232,7 @@ class RegistrerKunde extends Component {
       this.kommentar,
       () => {}
     );
+    varsel("Suksess!", "Kunden ble registrert.");
   }
   tilbake() {
     history.push('/kunde');
