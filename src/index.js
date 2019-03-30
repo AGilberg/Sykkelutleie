@@ -15,6 +15,7 @@ import { ProduktUtstyr } from './components/produktUtstyr.js';
 import { RegistrerKunde } from './components/registrerKunde.js';
 import { Sykkel } from './components/sykkel.js';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
+import Iframe from 'react-iframe'
 
 import createHashHistory from 'history/createHashHistory';
 export const history = createHashHistory();
@@ -60,7 +61,12 @@ class Home extends Component {
           <div style={{ margin: '50px' }}>
             <h5>Værmelding:</h5>
             <Row>
-              <div className="col-md-6">
+              <div className="vaermelding" >
+                 <Iframe url="https://www.yr.no/sted/Norge/Tr%c3%b8ndelag/Trondheim/Trondheim/ekstern_boks_tre_dager.html"/>
+              </div>
+
+
+      {/*        <div className="col-md-6">
                 <img
                   className="brBottom shadow"
                   style={{
@@ -70,7 +76,7 @@ class Home extends Component {
                   }}
                   src="images/vaarmelding.jpg"
                 />
-              </div>
+              </div>*/}
             </Row>
             <h5>Årets ansatt: </h5>
             <Row>
