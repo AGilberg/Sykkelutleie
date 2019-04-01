@@ -149,7 +149,7 @@ class ProduktSykkel extends Component {
       pris: this.type.pris * this.antall
     };
     cartService.addItem(produkt);
-    varsel("Suksess!", "Produktet ble lagt til i handlekurven.");
+    varsel("Suksess!", "Produktet ble lagt til i handlekurven.", "vrsl-success");
     history.push('/sykkel');
   }
 

@@ -50,7 +50,7 @@ class CartService{
 
   setKunde(kunde){
     this.kunde = kunde;
-    varsel("Suksess!", "Kunden er valgt");
+    varsel("Suksess!", "Kunden er valgt", "vrsl-success");
   }
 
   setGruppe(gruppe){

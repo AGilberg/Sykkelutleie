@@ -1,4 +1,4 @@
-export default function varsel(tittel, melding) {
+export default function varsel(tittel, melding, type) { // type må enten være "vrsl-success" eller "vrsl-danger"!
   var closed = 'false';
   const body = document.getElementsByTagName('body')[0];
   const container = document.createElement('div');
@@ -6,7 +6,7 @@ export default function varsel(tittel, melding) {
   body.appendChild(container);
 
   const vrsl = document.createElement('div');
-  vrsl.className = 'vrsl';
+  vrsl.className = 'vrsl ' + type;
   container.appendChild(vrsl);
 
   const ttl = document.createElement('div');
