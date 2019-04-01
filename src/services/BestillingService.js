@@ -79,33 +79,19 @@ class BestillingService {
       'update BESTILLING set sum=?, status_id=?, beskrivelse=?, leie_start=?, leie_slutt=? where bestilling_id=?',
       [
         bestill.sum,
+        bestill.status_id,
         bestill.beskrivelse,
         bestill.leie_start,
         bestill.leie_slutt,
-        bestill.bestilling_id,
-        bestill.status_id
+        bestill.bestilling_id
       ],
       (error, results) => {
         if (error) return console.error(error);
         connection.query(
-          'update INNHOLDUTSTYR set ant_utstyr=? where bestilling_id=?',
-          [utstyr.ant_utstyr, bestill.bestilling_id],
+          'update PERSON set fornavn=?, etternavn=? where person_id=?',
+          [bestill.fornavn, bestill.etternavn, bestill.person_id],
           (error, results) => {
             if (error) return console.error(error);
-            connection.query(
-              'update INNHOLDSYKKEL set sykkel_id=? where bestilling_id=?',
-              [sykkel.sykkel_id, bestill.bestilling_id],
-              (error, results) => {
-                if (error) return console.error(error);
-                connection.query(
-                  'update PERSON set fornavn=?, etternavn=? where person_id=?',
-                  [bestill.fornavn, bestill.etternavn, bestill.person_id],
-                  (error, results) => {
-                    if (error) return console.error(error);
-                  }
-                );
-              }
-            );
           }
         );
       }
@@ -125,9 +111,16 @@ class BestillingService {
     });
   }
 
+  deleteSykkel(innholdsykkel_id) {
+    connection.query('delete from INNHOLDSYKKEL WHERE innholdsykkel_id = ?', [innholdsykkel_id], (error, results) => {
+      if (error) return console.error(error);
+      console.log(results);
+    });
+  }
+
   tilstander(success) {
     //endre statusen til en bestilling
-    connection.query('SELECT tilstand FROM STATUS', (error, results) => {
+    connection.query('SELECT status_id, tilstand FROM STATUS', (error, results) => {
       if (error) return console.error(error);
       success(results);
     });
