@@ -1,9 +1,15 @@
 export default function varsel(tittel, melding, type) { // type må enten være "vrsl-success" eller "vrsl-danger"!
   var closed = 'false';
   const body = document.getElementsByTagName('body')[0];
-  const container = document.createElement('div');
-  container.className = 'vrsl-container';
-  body.appendChild(container);
+  const sjekk = document.querySelector('.vrsl-container');
+  var container = null;
+  if (sjekk != null) {
+    container = sjekk;
+  } else {
+    container = document.createElement('div');
+    container.className = 'vrsl-container';
+    body.appendChild(container);
+  }
 
   const vrsl = document.createElement('div');
   vrsl.className = 'vrsl ' + type;
@@ -21,12 +27,12 @@ export default function varsel(tittel, melding, type) { // type må enten være 
   // Fjerner varselet
   setTimeout(() => {
     if (closed == 'false') {
-      body.removeChild(container);
+      container.removeChild(vrsl);
     }
   	}, 5000);
 
   container.onclick = function(){
-    body.removeChild(container);
+    container.removeChild(vrsl);
     closed = 'true';
   };
 }
