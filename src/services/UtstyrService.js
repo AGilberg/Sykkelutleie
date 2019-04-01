@@ -12,6 +12,13 @@ class UtstyrService {
       }
     );
   }
+  getUtstyralle(success) {
+    connection.query('SELECT navn FROM UTSTYR', (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
 
   getUtstyrNavn(utstyr_id, success) {
     connection.query('SELECT * FROM UTSTYR WHERE utstyr_id=?', [utstyr_id], (error, results) => {

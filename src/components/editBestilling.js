@@ -1,88 +1,126 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { Card, List, Row, Column, Form, Button } from '../widgets';
+import ReactDOM from 'react-dom';
+import { Card, List, Row, Column, Form } from '../widgets';
+import Button from 'react-bootstrap/Button';
 import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
-import ReactLoading from 'react-loading';
-import { Kundesøk } from '../components/kundesok.js';
+import { sykkelService } from '../services/SykkelService.js';
+import { utstyrService } from '../services/UtstyrService.js';
 
 class BestillingEdit extends Component {
   bestill = null;
   sykkel = null;
+  sykler = null;
   utstyr = null;
-
-  tilstander = [];
+  utstyralle = null;
+  status = null;
 
   render() {
-    if (!this.bestill || !this.sykkel || !this.utstyr)
-      return (
-        <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
-      );
+    if (!this.bestill || !this.sykkel || !this.utstyr || !this.sykler || !this.utstyralle || !this.status) return null;
 
     return (
-      <div className="main">
+      <div>
         <Card title="Rediger bestilling">
           <Form.Label>Startdato:</Form.Label>
           <Form.Input
             type="text"
-            value={this.formatDate(this.bestill.leie_start)}
+            value={this.bestill.leie_start}
             onChange={e => (this.bestill.leie_start = e.target.value)}
           />
           <Form.Label>Sluttdato:</Form.Label>
           <Form.Input
             type="text"
-            value={this.formatDate(this.bestill.leie_slutt)}
+            value={this.bestill.leie_slutt}
             onChange={e => (this.bestill.leie_slutt = e.target.value)}
           />
-          <Form.Label>Kunde:</Form.Label>
-          <Kundesøk />
-          <p>{this.bestill.fornavn + ' ' + this.bestill.etternavn}</p>
-          <Form.Label>Samlet pris:</Form.Label>
-          <Form.Input type="number" value={this.bestill.sum} onChange={e => (this.bestill.sum = e.target.value)} />
-
-          <Form.Label>Status:</Form.Label>
+          <Form.Label>Fornavn:</Form.Label>
           <Form.Input
             type="text"
-            value={this.bestill.tilstand}
-            onChange={e => (this.bestill.tilstand = e.target.value)}
+            value={this.bestill.fornavn}
+            onChange={e => (this.bestill.fornavn = e.target.value)}
           />
-
+          <Form.Label>Etternavn:</Form.Label>
+          <Form.Input
+            type="text"
+            value={this.bestill.etternavn}
+            onChange={e => (this.bestill.etternavn = e.target.value)}
+          />
+          <Form.Label>Samlet pris:</Form.Label>
+          <Form.Input type="number" value={this.bestill.sum} onChange={e => (this.bestill.sum = e.target.value)} />
+          <br />
+          <Form.Label>Status:</Form.Label>
+          <br />
+          <select key={this.bestill.status_id} type="text" onChange={e => (this.bestill.tilstand = e.target.value)}>
+            <option value="">{this.bestill.tilstand}</option>
+            {this.status.map(status => (
+              <option key={status.status_id}>{status.tilstand}</option>
+            ))}
+          </select>
+          <br />
+          <br />
           <Form.Label>Beskrivelse:</Form.Label>
           <Form.Input
             type="text"
             value={this.bestill.beskrivelse}
             onChange={e => (this.bestill.beskrivelse = e.target.value)}
           />
-
+          <br />
           <Form.Label>Bestilte varer:</Form.Label>
-          {this.sykkel.map(sykkel => (
-            <p key={sykkel.innholdsykkel_id}>{sykkel.typenavn}</p>
-          ))}
+          <br />
+          <Form.Label>Sykler:</Form.Label>
+          <br />
+          <Row>
+            <Column left>
+              {this.sykkel.map(sykkel => (
+                <select key={sykkel.sykkel_id} onChange={e => (this.sykkel.typenavn = e.target.value)}>
+                  <option value="">{sykkel.typenavn}</option>
+                  {this.sykler.map(sykler => (
+                    <option key={sykler.sykkel_id}>{sykler.typenavn}</option>
+                  ))}
+                </select>
+              ))}
+            </Column>
+          </Row>
           <br />
           <Row>
             <Column left>
               <div>Utstyr:</div>
             </Column>
-            <Column center>
-              <div>Antall:</div>
-            </Column>
           </Row>
           <Row>
             <Column left>
               {this.utstyr.map(utstyr => (
-                <p key={utstyr.innholdutstyr_id}>{utstyr.navn}</p>
+                <select key={utstyr.innholdutstyr_id} onChange={e => (this.utstyr.navn = e.target.value)}>
+                  <option value="">{utstyr.navn}</option>
+                  {this.utstyralle.map(utstyralle => (
+                    <option key={utstyralle.utstyr_id}>{utstyralle.navn}</option>
+                  ))}
+                </select>
               ))}
             </Column>
-            <Column right>
+          </Row>
+          <br />
+          <Row>
+            <Column left>
+              <div>Antall av det bestilte utstyret:</div>
+            </Column>
+          </Row>
+
+          <Row>
+            <Column left>
               {this.utstyr.map(utstyr => (
-                <Form.Input
-                  key={utstyr.innholdutstyr_id}
-                  onChange={e => (this.utstyr.ant_utstyr = e.target.value)}
-                  value={utstyr.ant_utstyr}
-                  type="text"
-                />
+                <>
+                  <div>{utstyr.navn + ': '}</div>
+                  <Form.Input
+                    key={utstyr.innholdutstyr_id}
+                    onChange={e => (this.utstyr.ant_utstyr = e.target.value)}
+                    type="number"
+                    placeholder={utstyr.ant_utstyr}
+                  />
+                </>
               ))}
             </Column>
           </Row>
@@ -90,10 +128,14 @@ class BestillingEdit extends Component {
         <div>
           <Row>
             <Column>
-              <Button.Success onClick={this.save}>Lagre</Button.Success>
+              <Button variant="success" onClick={this.save}>
+                Lagre
+              </Button>
             </Column>
             <Column right>
-              <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
+              <Button variant="light" onClick={this.tilbake}>
+                Tilbake
+              </Button>
             </Column>
           </Row>
         </div>
@@ -111,6 +153,15 @@ class BestillingEdit extends Component {
     bestillingService.getOrderContentsUtstyr(this.props.match.params.bestilling_id, utstyr => {
       this.utstyr = utstyr;
     });
+    sykkelService.getSykkeltyper(sykler => {
+      this.sykler = sykler;
+    });
+    utstyrService.getUtstyralle(utstyralle => {
+      this.utstyralle = utstyralle;
+    });
+    bestillingService.tilstander(status => {
+      this.status = status;
+    });
   }
 
   save() {
@@ -121,20 +172,6 @@ class BestillingEdit extends Component {
 
   tilbake() {
     history.push('/aktivebestillinger' + this.props.match.params.bestilling_id);
-  }
-
-  formatDate(date) {
-    let day = date.getDate();
-    if (day < 10) {
-      day = '0' + day.toString();
-    }
-    let month = date.getMonth() + 1;
-    if (month < 10) {
-      month = '0' + month.toString();
-    }
-    let year = date.getFullYear();
-
-    return day + '/' + month + '/' + year;
   }
 }
 

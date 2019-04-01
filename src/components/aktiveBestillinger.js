@@ -17,7 +17,7 @@ class AktiveBestillinger extends Component {
       );
     return (
       <div>
-        {/* Visning av bestillinger som har status som aktiv (altså ikke tidligere gjennomførte leieforhold) */}
+        {/* Visning av bestillinger som ikke har status som gjennomført */}
         <br />
         <Card title="Aktive bestillinger">
           <List>

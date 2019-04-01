@@ -1,27 +1,30 @@
 import { connection } from '../mysql_connection';
 import { cartService } from './CartService';
 
-class BestillingService {// FIXME: legg til boolsk rabatt --> if rabatt --> reduser sum med 5%
-  addOrder(sum, rabatt) {//legg til en ny bestilling i databasen
+class BestillingService {
+  // FIXME: legg til boolsk rabatt --> if rabatt --> reduser sum med 5%
+  addOrder(sum, rabatt) {
+    //legg til en ny bestilling i databasen
     console.log(sum);
     console.log(rabatt);
 
     let d = new Date();
     let dateStamp = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
 
-    let besk = cartService.getBeskrivelse();// FIXME: gjør det mulig å legge inn en kommentar
+    let besk = cartService.getBeskrivelse(); // FIXME: gjør det mulig å legge inn en kommentar
     let start = cartService.getStartdato();
     let slutt = cartService.getSluttdato();
-    let gruppe = cartService.getGruppe().gruppe_id;// FIXME: gjør det mulig å legge inn en gruppe(?)
+    let gruppe = cartService.getGruppe().gruppe_id; // FIXME: gjør det mulig å legge inn en gruppe(?)
     let kunde = cartService.getKunde().person_id;
-    let status = cartService.getStatus().status_id;// FIXME: gjør det mulig å legge inn en status
+    let status = cartService.getStatus().status_id; // FIXME: gjør det mulig å legge inn en status
 
-    connection.query(//legg inn bestilling
+    connection.query(
+      //legg inn bestilling
       'INSERT INTO BESTILLING (bestilling_id, bestillingsdato, person_id, gruppe_id, leie_start, leie_slutt, status_id, sum, beskrivelse, gittRabatt) VALUES (?,?,?,?,?,?,?,?,?,?)',
       [null, dateStamp, kunde, gruppe, start, slutt, status, sum, besk, rabatt],
       (error, results) => {
         if (error) return console.error(error);
-        console.log("OK fra bestilling.js");
+        console.log('OK fra bestilling.js');
         console.log(results.insertId);
       }
     );
@@ -73,39 +76,32 @@ class BestillingService {// FIXME: legg til boolsk rabatt --> if rabatt --> redu
 
   updateOrder(bestill, utstyr, sykkel, id) {
     connection.query(
-      'update BESTILLING set sum=?, tilstand=?, beskrivelse=?, leie_start=?, leie_slutt=? where bestilling_id=?',
+      'update BESTILLING set sum=?, status_id=?, beskrivelse=?, leie_start=?, leie_slutt=? where bestilling_id=?',
       [
         bestill.sum,
-        bestill.tilstand,
         bestill.beskrivelse,
         bestill.leie_start,
         bestill.leie_slutt,
-        bestill.bestilling_id
+        bestill.bestilling_id,
+        bestill.status_id
       ],
       (error, results) => {
         if (error) return console.error(error);
         connection.query(
-          'update INNHOLDUTSTYR set navn=?, ant_utstyr=? where bestilling_id=?',
-          [utstyr.navn, utstyr.ant_utstyr],
+          'update INNHOLDUTSTYR set ant_utstyr=? where bestilling_id=?',
+          [utstyr.ant_utstyr, bestill.bestilling_id],
           (error, results) => {
             if (error) return console.error(error);
             connection.query(
-              'update INNHOLDSYKKEL set typenavn=? where bestilling_id=?',
-              [sykkel.typenavn],
+              'update INNHOLDSYKKEL set sykkel_id=? where bestilling_id=?',
+              [sykkel.sykkel_id, bestill.bestilling_id],
               (error, results) => {
                 if (error) return console.error(error);
                 connection.query(
-                  'update PERSON set fornavn=?, etternavn=? where bestilling_id=?',
-                  [bestill.fornavn, bestill.etternavn],
+                  'update PERSON set fornavn=?, etternavn=? where person_id=?',
+                  [bestill.fornavn, bestill.etternavn, bestill.person_id],
                   (error, results) => {
                     if (error) return console.error(error);
-                    connection.query(
-                      'update STATUS set tilstand=? where bestilling_id=?',
-                      [bestill.tilstand],
-                      (error, results) => {
-                        if (error) return console.error(error);
-                      }
-                    );
                   }
                 );
               }
@@ -129,16 +125,12 @@ class BestillingService {// FIXME: legg til boolsk rabatt --> if rabatt --> redu
     });
   }
 
-  updateStatus(orderId, status) {
+  tilstander(success) {
     //endre statusen til en bestilling
-    connection.query(
-      'update BESTILLING set status_id = ?, where bestilling_id = ?',
-      [status, orderId],
-      (error, results) => {
-        if (error) return console.error(error);
-        success();
-      }
-    );
+    connection.query('SELECT tilstand FROM STATUS', (error, results) => {
+      if (error) return console.error(error);
+      success(results);
+    });
   }
 
   validateOrder() {
