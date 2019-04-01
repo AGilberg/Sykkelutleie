@@ -1,4 +1,5 @@
 import { connection } from '../mysql_connection';
+import varsel from '../services/notifications.js';
 
 class KundeService {
   addNewKunde(fornavn, etternavn, mail, tlf, adresse, postnr, sted, fodt, kommentar, success) {
@@ -7,9 +8,13 @@ class KundeService {
       'insert into PERSON values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [fornavn, etternavn, mail, tlf, adresse, postnr, sted, fodt, kommentar],
       (error, results) => {
-        if (error) return console.error(error);
+        if (error) {
+          varsel("FEIL!", "Du mangler input.", "vrsl-danger");
+          return console.error(error);
+        }
 
         success('Registrering vellykket');
+        varsel("Suksess!", "Kunden ble registrert.", "vrsl-success");
       }
     );
   }
