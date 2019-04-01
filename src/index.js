@@ -3,7 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { AktiveBestillinger } from './components/aktiveBestillinger.js';
-import { Leieperiode } from './components/Leieperiode.js';
+import { Leieperiode } from './components/leieperiode.js';
 import { BestillingDetails } from './components/bestillingDetails.js';
 import { BestillingEdit } from './components/editBestilling.js';
 import { Ekstrautstyr } from './components/ekstrautstyr.js';
@@ -15,7 +15,7 @@ import { ProduktUtstyr } from './components/produktUtstyr.js';
 import { RegistrerKunde } from './components/registrerKunde.js';
 import { Sykkel } from './components/sykkel.js';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
-import Iframe from 'react-iframe'
+import Iframe from 'react-iframe';
 
 import createHashHistory from 'history/createHashHistory';
 export const history = createHashHistory();
@@ -44,18 +44,18 @@ class Menu extends Component {
 }
 
 class Home extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      useURL: ""
-    }
-      this.trondelagURL = "https://www.yr.no/sted/Norge/Tr%c3%b8ndelag/Trondheim/Trondheim/ekstern_boks_tre_dager.html";
-      this.isbjornURL = "https://www.yr.no/sted/Norge/Svalbard/Isbj%c3%b8rnhamna/ekstern_boks_tre_dager.html";
-      this.osloURL  = "https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/ekstern_boks_tre_dager.html";
+      useURL: ''
+    };
+    this.trondelagURL = 'https://www.yr.no/sted/Norge/Tr%c3%b8ndelag/Trondheim/Trondheim/ekstern_boks_tre_dager.html';
+    this.isbjornURL = 'https://www.yr.no/sted/Norge/Svalbard/Isbj%c3%b8rnhamna/ekstern_boks_tre_dager.html';
+    this.osloURL = 'https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/ekstern_boks_tre_dager.html';
   }
 
-  mounted(){
-    this.setState({useURL: this.isbjornURL});// FIXME: hent inn URL utenfra, bør egentlig ligge i DB sammen med avdeling elns
+  mounted() {
+    this.setState({ useURL: this.isbjornURL }); // FIXME: hent inn URL utenfra, bør egentlig ligge i DB sammen med avdeling elns
   }
 
   render() {
@@ -65,9 +65,9 @@ class Home extends Component {
           <div style={{ margin: '50px' }}>
             <h5>Værmelding:</h5>
             <Row>
-              <div id="here"className="vaermelding brBottom" >
-                <Iframe height="195px" width="100%" url={this.state.useURL} sandbox=" "/>
-                <div className="coverWeather"></div>
+              <div id="here" className="vaermelding brBottom">
+                <Iframe height="195px" width="100%" url={this.state.useURL} sandbox=" " />
+                <div className="coverWeather" />
               </div>
             </Row>
             <h5>Årets ansatt: </h5>
