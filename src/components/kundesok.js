@@ -34,6 +34,7 @@ class Kundesøk extends Component {
             <option value="4">Fødselsdato</option>
           </select>
         </div>
+
         <div id="kunderesultat" style={{ padding: '12px', margin: '5px' }}>
           <div>
             {this.kunder.map(kunde => (
@@ -47,7 +48,13 @@ class Kundesøk extends Component {
                   <li>Kommentar: {kunde.kommentar}</li>
                 </ul>
                 <div>
-                  <Button.Success onClick={()=>{this.velg(kunde)}}>Velg Kunde</Button.Success>
+                  <Button.Success
+                    onClick={() => {
+                      this.velg(kunde);
+                    }}
+                  >
+                    Velg Kunde
+                  </Button.Success>
                 </div>
               </Card>
             ))}
@@ -67,7 +74,6 @@ class Kundesøk extends Component {
       this.kunder = kunder;
     });
   }
-
 
   sok() {
     var input, filter, type, div, ul, i, li, txt;
