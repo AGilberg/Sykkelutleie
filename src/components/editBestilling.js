@@ -6,6 +6,7 @@ import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
 import ReactLoading from 'react-loading';
+import { Kundesøk } from '../components/kundesok.js';
 
 class BestillingEdit extends Component {
   bestill = null;
@@ -36,6 +37,7 @@ class BestillingEdit extends Component {
             onChange={e => (this.bestill.leie_slutt = e.target.value)}
           />
           <Form.Label>Kunde:</Form.Label>
+          <Kundesøk />
           <p>{this.bestill.fornavn + ' ' + this.bestill.etternavn}</p>
           <Form.Label>Samlet pris:</Form.Label>
           <Form.Input type="number" value={this.bestill.sum} onChange={e => (this.bestill.sum = e.target.value)} />
