@@ -7,13 +7,8 @@ import { history } from '../index.js';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
-<<<<<<< HEAD
 import { sykkelService } from '../services/SykkelService.js';
 import { utstyrService } from '../services/UtstyrService.js';
-=======
-import ReactLoading from 'react-loading';
-import { Kundesøk } from '../components/kundesok.js';
->>>>>>> 21f3b1bd91541938436b8df7659d6c2cad7ae7ea
 
 class BestillingEdit extends Component {
   bestill = null;
@@ -41,17 +36,7 @@ class BestillingEdit extends Component {
             value={this.bestill.leie_slutt}
             onChange={e => (this.bestill.leie_slutt = e.target.value)}
           />
-<<<<<<< HEAD
           <Form.Label>Fornavn:</Form.Label>
-=======
-          <Form.Label>Kunde:</Form.Label>
-          <Kundesøk />
-          <p>{this.bestill.fornavn + ' ' + this.bestill.etternavn}</p>
-          <Form.Label>Samlet pris:</Form.Label>
-          <Form.Input type="number" value={this.bestill.sum} onChange={e => (this.bestill.sum = e.target.value)} />
-
-          <Form.Label>Status:</Form.Label>
->>>>>>> 21f3b1bd91541938436b8df7659d6c2cad7ae7ea
           <Form.Input
             type="text"
             value={this.bestill.fornavn}
