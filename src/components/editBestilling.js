@@ -53,7 +53,7 @@ class BestillingEdit extends Component {
           <br />
           <Form.Label>Status:</Form.Label>
           <br />
-          <select key={this.bestill.bestilling_id} type="text" onChange={e => (this.bestill.tilstand = e.target.value)}>
+          <select key={this.bestill.status_id} type="text" onChange={e => (this.bestill.tilstand = e.target.value)}>
             <option value="">{this.bestill.tilstand}</option>
             {this.status.map(status => (
               <option key={status.status_id}>{status.tilstand}</option>
@@ -75,10 +75,10 @@ class BestillingEdit extends Component {
           <Row>
             <Column left>
               {this.sykkel.map(sykkel => (
-                <select key={sykkel.innholdsykkel_id} onChange={e => (this.sykkel.typenavn = e.target.value)}>
+                <select key={sykkel.sykkel_id} onChange={e => (this.sykkel.typenavn = e.target.value)}>
                   <option value="">{sykkel.typenavn}</option>
                   {this.sykler.map(sykler => (
-                    <option key={sykler.type_id}>{sykler.typenavn}</option>
+                    <option key={sykler.sykkel_id}>{sykler.typenavn}</option>
                   ))}
                 </select>
               ))}

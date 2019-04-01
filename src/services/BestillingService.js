@@ -76,39 +76,32 @@ class BestillingService {
 
   updateOrder(bestill, utstyr, sykkel, id) {
     connection.query(
-      'update BESTILLING set sum=?, tilstand=?, beskrivelse=?, leie_start=?, leie_slutt=? where bestilling_id=?',
+      'update BESTILLING set sum=?, status_id=?, beskrivelse=?, leie_start=?, leie_slutt=? where bestilling_id=?',
       [
         bestill.sum,
-        bestill.tilstand,
         bestill.beskrivelse,
         bestill.leie_start,
         bestill.leie_slutt,
-        bestill.bestilling_id
+        bestill.bestilling_id,
+        bestill.status_id
       ],
       (error, results) => {
         if (error) return console.error(error);
         connection.query(
-          'update INNHOLDUTSTYR set navn=?, ant_utstyr=? where bestilling_id=?',
-          [utstyr.navn, utstyr.ant_utstyr],
+          'update INNHOLDUTSTYR set ant_utstyr=? where bestilling_id=?',
+          [utstyr.ant_utstyr, bestill.bestilling_id],
           (error, results) => {
             if (error) return console.error(error);
             connection.query(
-              'update INNHOLDSYKKEL set typenavn=? where bestilling_id=?',
-              [sykkel.typenavn],
+              'update INNHOLDSYKKEL set sykkel_id=? where bestilling_id=?',
+              [sykkel.sykkel_id, bestill.bestilling_id],
               (error, results) => {
                 if (error) return console.error(error);
                 connection.query(
-                  'update PERSON set fornavn=?, etternavn=? where bestilling_id=?',
-                  [bestill.fornavn, bestill.etternavn],
+                  'update PERSON set fornavn=?, etternavn=? where person_id=?',
+                  [bestill.fornavn, bestill.etternavn, bestill.person_id],
                   (error, results) => {
                     if (error) return console.error(error);
-                    connection.query(
-                      'update STATUS set tilstand=? where bestilling_id=?',
-                      [bestill.tilstand],
-                      (error, results) => {
-                        if (error) return console.error(error);
-                      }
-                    );
                   }
                 );
               }
