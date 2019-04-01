@@ -3,7 +3,7 @@ import { Component } from 'react-simplified';
 import { kundeService } from '../services/KundeService.js';
 import { cartService } from '../services/CartService.js';
 import { history } from '../index.js';
-import { Button } from '../widgets';
+import { Button, Row, Column } from '../widgets';
 import Card from 'react-bootstrap/Card';
 import ReactLoading from 'react-loading';
 
@@ -19,14 +19,26 @@ class Kundesøk extends Component {
       <div>
         {/* Søkefunksjon for å søke etter registrerte kunder */}
         <br />
-        <div className="col-md-4">
+        <div className="col-md-12">
           <h4>Søk etter kunde</h4>
         </div>
 
-        <div className="col-md-4">
+        <div className="col-md-12">
           <br />
-          <input type="text" name="sok" id="sok" placeholder="Søk i kundedatabasen" onChange={this.sok} />
-          <select id="kategori">
+          <input
+            type="text"
+            className="shadow brRight"
+            name="sok"
+            style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
+            id="sok"
+            placeholder="Søk i kundedatabasen"
+            onChange={this.sok}
+          />
+          <select
+            id="kategori"
+            className="shadow"
+            style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
+          >
             <option value="0">Navn</option>
             <option value="1">Epost</option>
             <option value="2">Telefon</option>
@@ -38,8 +50,8 @@ class Kundesøk extends Component {
         <div id="kunderesultat" style={{ padding: '12px', margin: '5px' }}>
           <div>
             {this.kunder.map(kunde => (
-              <Card key={kunde.person_id}>
-                <ul>
+              <Card className="brBottom shadow" key={kunde.person_id}>
+                <ul style={{ paddingTop: '15px' }}>
                   <li>Navn: {kunde.fornavn + ' ' + kunde.etternavn}</li>
                   <li>Mail: {kunde.mail}</li>
                   <li>Telefon: {kunde.tlf}</li>
@@ -48,20 +60,30 @@ class Kundesøk extends Component {
                   <li>Kommentar: {kunde.kommentar}</li>
                 </ul>
                 <div>
-                  <Button.Success
-                    onClick={() => {
-                      this.velg(kunde);
-                    }}
-                  >
-                    Velg Kunde
-                  </Button.Success>
+                  <Row>
+                    <Column right>
+                      <Button.Success
+                        onClick={() => {
+                          this.velg(kunde);
+                        }}
+                      >
+                        Velg Kunde
+                      </Button.Success>
+                    </Column>
+
+                    <Column left>
+                      <Button.Danger>X</Button.Danger>
+                    </Column>
+                  </Row>
                 </div>
+                <br />
               </Card>
             ))}
           </div>
         </div>
+
         <br />
-        <div className="col-md-4">
+        <div className="col-md-12">
           <Button.Light name="tilbake" onClick={this.tilbake}>
             Tilbake
           </Button.Light>
