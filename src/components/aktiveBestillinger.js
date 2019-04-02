@@ -23,7 +23,9 @@ class AktiveBestillinger extends Component {
           <List>
             {this.bestilling.map(bestill => (
               <List.Item key={bestill.bestilling_id} to={'/aktivebestillinger/' + bestill.bestilling_id}>
-                {bestill.beskrivelse}
+                Dette er bestillingen til {bestill.fornavn} {bestill.etternavn}
+                {'. '}
+                <br /> {'Kommentar: '} {bestill.beskrivelse}
               </List.Item>
             ))}
           </List>

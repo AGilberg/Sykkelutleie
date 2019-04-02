@@ -74,7 +74,7 @@ class BestillingEdit extends Component {
                 <Card key={sykkel.innholdsykkel_id}>
                   {sykkel.typenavn}
 
-                  <Button variant="danger" onClick={this.delete}>
+                  <Button variant="danger" onClick={e => this.deletesyk(sykkel.innholdsykkel_id)}>
                     Slett
                   </Button>
                 </Card>
@@ -92,6 +92,9 @@ class BestillingEdit extends Component {
               {this.utstyr.map(utstyr => (
                 <Card key={utstyr.utstyr_id}>
                   {utstyr.navn} ({utstyr.ant_utstyr})
+                  <Button variant="danger" onClick={e => this.deleteuts(utstyr.innholdutstyr_id)}>
+                    Slett
+                  </Button>
                 </Card>
               ))}
             </Column>
@@ -138,8 +141,17 @@ class BestillingEdit extends Component {
   tilbake() {
     history.push('/aktivebestillinger');
   }
-  delete() {
-    bestillingService.deleteSykkel(this.props.match.params.bestilling_id, () => {});
+  deletesyk(id) {
+    bestillingService.deleteSykkel(id);
+    {
+      history.push('/aktivebestillinger');
+    }
+  }
+  deleteuts(id) {
+    bestillingService.deleteUtstyr(id);
+    {
+      history.push('/aktivebestillinger');
+    }
   }
 }
 
