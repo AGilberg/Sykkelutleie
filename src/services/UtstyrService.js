@@ -1,12 +1,16 @@
 import { connection } from '../mysql_connection';
 import { sykkelService } from '../services/SykkelService.js'; //for å få tak i sykkelklassene
+import varsel from './notifications.js';
 
 class UtstyrService {
   getUtstyr(success) {
     connection.query(
       'SELECT u.*, a.navn AS "avdelingsnavn" FROM UTSTYR u, AVDELING a  WHERE u.avdeling_id = a.avdeling_id',
       (error, results) => {
-        if (error) return console.error(error);
+        if (error) {
+          varsel("Oops!", "Det oppsto problemer med å hente data.", "vrsl-danger");
+          return console.error(error);
+        }
 
         success(results);
       }

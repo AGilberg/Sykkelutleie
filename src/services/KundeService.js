@@ -49,7 +49,10 @@ class KundeService {
 
   getKunder(success) {
     connection.query('select * from PERSON', (error, results) => {
-      if (error) return console.error(error);
+      if (error) {
+        varsel("Oops!", "Det oppsto problemer med å hente data.", "vrsl-danger");
+        return console.error(error);
+      }
 
       success(results);
     });

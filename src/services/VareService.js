@@ -1,9 +1,13 @@
 import { connection } from '../mysql_connection';
+import varsel from './notifications.js';
 
 class VareService {
   getVarer(success) {
     connection.query('select * from UTSTYR', (error, results) => {
-      if (error) return console.error(error);
+      if (error) {
+        varsel("Oops!", "Det oppsto problemer med å hente data.", "vrsl-danger");
+        return console.error(error);
+      }
 
       success(results);
     });
