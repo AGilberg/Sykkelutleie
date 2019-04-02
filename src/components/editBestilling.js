@@ -73,7 +73,7 @@ class BestillingEdit extends Component {
               {this.sykkel.map(sykkel => (
                 <Card key={sykkel.innholdsykkel_id}>
                   {sykkel.typenavn}
-
+                  <br />
                   <Button variant="danger" onClick={e => this.deletesyk(sykkel.innholdsykkel_id)}>
                     Slett
                   </Button>
@@ -92,6 +92,7 @@ class BestillingEdit extends Component {
               {this.utstyr.map(utstyr => (
                 <Card key={utstyr.utstyr_id}>
                   {utstyr.navn} ({utstyr.ant_utstyr})
+                  <br />
                   <Button variant="danger" onClick={e => this.deleteuts(utstyr.innholdutstyr_id)}>
                     Slett
                   </Button>
