@@ -145,7 +145,7 @@ class BestillingDetails extends Component {
   delete() {
     bestillingService.deleteOrder(this.props.match.params.bestilling_id);
     {
-      history.push('/aktivebestillinger');
+      history.push('/');
     }
   }
   edit() {
