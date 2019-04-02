@@ -1,5 +1,7 @@
 import { connection } from '../mysql_connection';
 import { cartService } from './CartService';
+import varsel from './notifications.js';
+import { history } from '../index.js';
 
 class BestillingService {
   // FIXME: legg til boolsk rabatt --> if rabatt --> reduser sum med 5%
@@ -24,6 +26,9 @@ class BestillingService {
       [null, dateStamp, kunde, gruppe, start, slutt, status, sum, besk, rabatt],
       (error, results) => {
         if (error) return console.error(error);
+        cartService.dropCart();
+        varsel("Suksess!", "Bestillingen er registrert", "vrsl-success");
+        history.push('/');
         console.log('OK fra bestilling.js');
         console.log(results.insertId);
       }
