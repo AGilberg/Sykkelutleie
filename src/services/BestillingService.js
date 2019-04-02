@@ -27,7 +27,7 @@ class BestillingService {
       (error, results) => {
         if (error) return console.error(error);
         cartService.dropCart();
-        varsel("Suksess!", "Bestillingen er registrert", "vrsl-success");
+        varsel('Suksess!', 'Bestillingen er registrert', 'vrsl-success');
         history.push('/');
         console.log('OK fra bestilling.js');
         console.log(results.insertId);
@@ -123,6 +123,13 @@ class BestillingService {
     });
   }
 
+  deleteUtstyr(innholdutstyr_id) {
+    connection.query('delete from INNHOLDUTSTYR WHERE innholdutstyr_id = ?', [innholdutstyr_id], (error, results) => {
+      if (error) return console.error(error);
+      console.log(results);
+    });
+  }
+
   tilstander(success) {
     //endre statusen til en bestilling
     connection.query('SELECT status_id, tilstand FROM STATUS', (error, results) => {
@@ -179,11 +186,14 @@ class BestillingService {
   }
 
   getAktiveBestillinger(success) {
-    connection.query('select * from BESTILLING', (error, results) => {
-      if (error) return console.error(error);
+    connection.query(
+      'select * from BESTILLING, PERSON where BESTILLING.person_id = PERSON.person_id',
+      (error, results) => {
+        if (error) return console.error(error);
 
-      success(results);
-    });
+        success(results);
+      }
+    );
   }
 }
 
