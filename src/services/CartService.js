@@ -10,6 +10,7 @@ class CartService{
     this.gruppe = {gruppe_id:null};//tilknyttet gruppe // FIXME: gjør det mulig å velge gruppe, eller fjern med antagelse om annen løsning
     this.beskrivelse = "KOMMENTAR FRA SERCIVE";//beskrivelse/kommentar til bestillingen // FIXME: gjør det mulig å legge til en kommentar/beskrivelse
     this.status = {status_id: 1, tilstand: 'OK'};// FIXME: gjør det mulig å velge status
+    this.antDager = null;
   }
 
   getHandlekurv(){
@@ -40,6 +41,10 @@ class CartService{
     return this.status;
   }
 
+  getAntDager(){
+    return this.antDager;
+  }
+
   setStartdato(dato){
     this.startdato = dato;
   }
@@ -65,11 +70,16 @@ class CartService{
     this.beskrivelse = text;
   }
 
+  setAntDager(antDager){
+    this.antDager = antDager;
+  }
+
   dropOrder(){//sletter all bestillingsdata
     this.handlekurv = [];
     this.handlekurv = [];
     this.startdato = null;
     this.sluttdato = null;
+    this.antDager = null;
     this.kunde = null;
   }
 
