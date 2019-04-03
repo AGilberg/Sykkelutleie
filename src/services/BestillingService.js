@@ -19,6 +19,7 @@ class BestillingService {
     let gruppe = cartService.getGruppe().gruppe_id; // FIXME: gjør det mulig å legge inn en gruppe(?)
     let kunde = cartService.getKunde().person_id;
     let status = cartService.getStatus().status_id; // FIXME: gjør det mulig å legge inn en status
+    let varer = cartService.getHandlekurv();
 
     connection.query(
       //legg inn bestilling
@@ -31,52 +32,32 @@ class BestillingService {
         history.push('/');
         console.log('OK fra bestilling.js');
         console.log(results.insertId);
+        let best_id = results.insertId;
+        for(let i = 0; i < varer.length; i++){
+          let vare = varer[i];
+          switch (vare.kategori) {
+            case "sykkel"://trenger bestillng_id og sykkel_id // FIXME: registrerer kun sykkelid 16
+              connection.query(
+                'insert into INNHOLDSYKKEL (innholdsykkel_id, bestilling_id, sykkel_id) values (?,?,?)',
+                [null, best_id, 16 ], (error, results) => {
+                if (error) return console.error(error);
+                console.log(results);
+              });
+              break;
+            case "utstyr":
+            connection.query(
+              'insert into INNHOLDUTSTYR (innholdutstyr_id, bestilling_id, utstyr_id, ant_utstyr) values (?,?,?,?)',
+              [null, best_id, vare.id, vare.antall], (error, results) => {
+              if (error) return console.error(error);
+              console.log(results);
+            });
+              break;
+            default:
+              console.log("feil innhold i BestillingServive.js");
+          }
+        }
       }
     );
-
-    /*
-
-
-    switch (varer[i].kategori) {
-      case "sykkel":
-        sum
-        break;
-      case "utstyr":
-
-        break;
-      default:
-        console.log("feil med summering i BestillingServive.js");
-
-    }
-
-
-
-    DATOFORMAT: YYYY-DD-MM
-
-    */
-    // let count = 0;// FIXME: legg til registrering av innhold
-    // for (item of cartArr) {
-    //   /*oppbygning: cartArr[item,item,...];
-    //     item[utstyrId, sykkelId, antUtstyr, kommentar];
-    //     */
-    //   //trenger --> bestilling_id
-    //   connection.query(
-    //     //legg inn innholdet til bestillingen
-    //     'insert into INNHOLD values (?,?,?,?,?,?)',
-    //     [null, bestillingId, item[0], item[1], item[2], item[3]],
-    //     (error, results) => {
-    //       if (error) return console.error(error);
-    //       count++;
-    //       success();
-    //     }
-    //   );
-    // }
-    // if (count == cartArr.length) {
-    //   // FIXME: SKRIV UT MELDINGEN TIL BRUKER?
-    //   console.log('Alt ble reigstrert');
-    // } else {
-    //   console.log('Mangler det noe?');
-    // }
   }
 
   updateOrder(bestill, utstyr, sykkel, id) {
