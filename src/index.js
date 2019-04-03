@@ -36,7 +36,7 @@ class Menu extends Component {
           />
         >
           <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
-          <div className="js-hidden" id="varsler" />
+          <div className="js-hidden" id="leieperiode" />
         </NavBar>
       </div>
     );
@@ -70,9 +70,9 @@ class Home extends Component {
                 <div className="coverWeather" />
               </div>
             </Row>
-            <h5>Årets ansatt: </h5>
+            <h5>Årets ansatt: Fridtjof Leganger </h5>
             <Row>
-              <div className="col-md-5">
+              <div className="col-md-4">
                 <img
                   className="shadow"
                   style={{
@@ -83,13 +83,22 @@ class Home extends Component {
                   src="images/aaretsAnsatt.jpg"
                 />
               </div>
-              <div className="col-md-5">
+              <div className="col-md-8">
                 <b>Om meg:</b>
                 <p>
                   {' '}
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                  industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                  scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                  Jeg er 22 år gammel og kommer fra Sandnes, Rogaland. Nå bor jeg i Trondheim sammen med min forlovede,
+                  som i likhet med meg studerer ved NTNU. Noen av interessene mine er friluftsliv, diverse håndverk, å
+                  spille eufonium og brettspill. Bildet av meg er fra en langtur i sommer, da jeg kom meg opp på
+                  Hardangervidda. Det skal også nevnes at jeg er et kaffe-menneske – selv om jeg greier meg fint uten er
+                  det alltid godt med. Før jeg begynte på studiene mine gjennomførte jeg førstegangstjenesten i
+                  Forsvaret. Det var en lærerik prosess som jeg har hatt mye igjen for, spesielt med tanke på min
+                  interesse for friluftsliv. Videre tok jeg opp fag fra videregående skole som privatist her i
+                  Trondheim. Blant fagene var IT-1 og IT-2 som begge var med på å gi meg en økt interesse for IT-faget.
+                  Etter et halvt år på linjen “Matteknologi” ved NTNU, bestemte jeg meg for å søke et mer data-relatert
+                  studium. Dette førte til at jeg nå er førsteårsstudent på studiet "Informatikk: Drift av datasystem".
+                  I fremtiden kunne jeg tenkt meg å nytte kompetansen min til å løse sikkerhetsrelaterte problemer i
+                  IT-verdenen.
                 </p>{' '}
               </div>
             </Row>
