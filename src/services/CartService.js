@@ -65,8 +65,12 @@ class CartService{
     this.beskrivelse = text;
   }
 
-  dropCart(){//slett hele handlekurven
+  dropOrder(){//sletter all bestillingsdata
     this.handlekurv = [];
+    this.handlekurv = [];
+    this.startdato = null;
+    this.sluttdato = null;
+    this.kunde = null;
   }
 
   alterCart(){//index i arrayen,// FIXME: fjern?

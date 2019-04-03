@@ -26,7 +26,7 @@ class BestillingService {
       [null, dateStamp, kunde, gruppe, start, slutt, status, sum, besk, rabatt],
       (error, results) => {
         if (error) return console.error(error);
-        cartService.dropCart();
+        cartService.dropOrder();
         varsel('Suksess!', 'Bestillingen er registrert', 'vrsl-success');
         history.push('/');
         console.log('OK fra bestilling.js');

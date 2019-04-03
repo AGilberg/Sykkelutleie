@@ -132,7 +132,7 @@ class Sidenav extends Component {
       history.push('/leieperiode');
     } else {
       if (confirm('OBS! All data tilknyttet denne bestillingen vil gå tapt hvis du fortsetter.')) {
-        cartService.dropCart();
+        cartService.dropOrder();
       }
     }
   }
