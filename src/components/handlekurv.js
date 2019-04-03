@@ -17,6 +17,7 @@ class Handlekurv extends Component {
     this.kunde = cartService.kunde;
     this.startdato = cartService.startdato;
     this.sluttdato = cartService.sluttdato;
+    this.antDager = cartService.antDager;
   }
 
   updateRabatt() {
@@ -28,7 +29,7 @@ class Handlekurv extends Component {
     let varer = cartService.getHandlekurv();
     this.sum = 0;
     for (let i = 0; i < varer.length; i++) {
-      this.sum += varer[i].pris;
+      this.sum += varer[i].pris * this.antDager;
     }
 
     if (this.rabatt) {
@@ -76,7 +77,8 @@ class Handlekurv extends Component {
             <div className="col">Nr.</div>
             <div className="col">Produktnavn</div>
             <div className="col">Antall</div>
-            <div className="col">Pris</div>
+            <div className="col">Enhetspris</div>
+            <div className="col">Totalpris</div>
             <div className="col" />
           </div>
           {this.state.handlekurv.map((prod, index) => (
@@ -85,6 +87,7 @@ class Handlekurv extends Component {
               <div className="col">{prod.navn}</div>
               <div className="col">{prod.antall}</div>
               <div className="col">{prod.pris}</div>
+              <div className="col">{prod.pris * this.antDager}</div>
               <div className="col">
                 <Button.Info id="slett" onClick={() => this.delItem(index)}>
                   X
@@ -98,7 +101,7 @@ class Handlekurv extends Component {
             <h6><b>Leieperiode:</b> { (
               (this.startdato || this.sluttdato) != null
               ?
-              "fra "+this.startdato+" til "+this.sluttdato
+              "fra "+this.startdato+" til "+this.sluttdato + " antall dager: " + this.antDager
               :
               "NB! Det er ikke valgt en leieperiode for bestillingen enda."
             ) }</h6>
