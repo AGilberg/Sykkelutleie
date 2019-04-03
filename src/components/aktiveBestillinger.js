@@ -6,6 +6,7 @@ import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
 import ReactLoading from 'react-loading';
+import formatDate from '../services/formatDate.js';
 
 class AktiveBestillinger extends Component {
   bestilling = null;
@@ -20,12 +21,21 @@ class AktiveBestillinger extends Component {
         {/* Visning av bestillinger som ikke har status som gjennomført */}
         <br />
         <Card title="Aktive bestillinger">
+          <Row>
+            <Column>BestillingsID</Column>
+            <Column>Kunde</Column>
+            <Column>Leie fra</Column>
+            <Column>Leie til</Column>
+          </Row>
           <List>
             {this.bestilling.map(bestill => (
               <List.Item key={bestill.bestilling_id} to={'/aktivebestillinger/' + bestill.bestilling_id}>
-                Dette er bestillingen til {bestill.fornavn} {bestill.etternavn}
-                {'. '}
-                <br /> {'Kommentar: '} {bestill.beskrivelse}
+                <Row>
+                  <Column>{bestill.bestilling_id}</Column>
+                  <Column>{bestill.fornavn} {bestill.etternavn}</Column>
+                  <Column>{formatDate(bestill.leie_start)}</Column>
+                  <Column>{formatDate(bestill.leie_slutt)}</Column>
+                </Row>
               </List.Item>
             ))}
           </List>
