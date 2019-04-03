@@ -17,7 +17,7 @@ class BestillingEdit extends Component {
     if (!this.bestill || !this.sykkel || !this.utstyr || !this.status) return null;
 
     return (
-      <div>
+      <div className="main">
         <Card title="Rediger bestilling">
           <Form.Label>Startdato:</Form.Label>
           <Form.Input
