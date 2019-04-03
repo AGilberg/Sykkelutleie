@@ -16,6 +16,7 @@ import { RegistrerKunde } from './components/registrerKunde.js';
 import { Sykkel } from './components/sykkel.js';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 import Iframe from 'react-iframe';
+import { cartService } from './services/CartService';
 
 import createHashHistory from 'history/createHashHistory';
 export const history = createHashHistory();
@@ -115,6 +116,9 @@ class Sidenav extends Component {
     return (
       <div className="col-md-2">
         <NavBar.Link className="link" to="/leieperiode">
+          <Button.Success onClick={this.bestill}>Ny bestilling</Button.Success>
+        </NavBar.Link>
+        <NavBar.Link className="link" to="/leieperiode">
           Leieperiode
         </NavBar.Link>
         <NavBar.Link className="link" to="/kunde">
@@ -131,6 +135,15 @@ class Sidenav extends Component {
         </NavBar.Link>
       </div>
     );
+  }
+  bestill() {
+    if (cartService.kunde == null && cartService.startdato == null && cartService.handlekurv.length == 0) {
+      history.push('/leieperiode');
+    } else {
+      if (confirm('OBS! All data tilknyttet denne bestillingen vil gå tapt hvis du fortsetter.')) {
+        cartService.dropOrder();
+      }
+    }
   }
 }
 
