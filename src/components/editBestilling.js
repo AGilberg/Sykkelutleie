@@ -8,6 +8,7 @@ import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 
 class BestillingEdit extends Component {
+  /* Skjema for redigering av en bestilling */
   bestill = null;
   sykkel = null;
   utstyr = null;
@@ -69,6 +70,7 @@ class BestillingEdit extends Component {
           <Form.Label>Sykler:</Form.Label>
           <br />
           <Row>
+            {/* Slette en sykkel fra bestillingen */}
             <Column left>
               {this.sykkel.map(sykkel => (
                 <Card key={sykkel.innholdsykkel_id}>
@@ -88,6 +90,7 @@ class BestillingEdit extends Component {
             </Column>
           </Row>
           <Row>
+            {/* Slette utstyr fra bestillingen */}
             <Column left>
               {this.utstyr.map(utstyr => (
                 <Card key={utstyr.utstyr_id}>

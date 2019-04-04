@@ -8,6 +8,8 @@ import { kundeService } from '../services/KundeService.js';
 import ReactLoading from 'react-loading';
 
 class BestillingDetails extends Component {
+  /* Viser detaljer om en enkelt bestilling */
+
   bestill = null;
   sykkel = null;
   utstyr = null;
@@ -92,6 +94,7 @@ class BestillingDetails extends Component {
             <div>
               <br />
               <Row>
+                {/* Rediger eller slette en bestilling */}
                 <Column right>
                   <Button.Danger onClick={this.delete}>Slett bestilling</Button.Danger>
                 </Column>
@@ -130,6 +133,7 @@ class BestillingDetails extends Component {
   }
 
   formateDate(date) {
+    /* Endrer datoformatet */
     let day = date.getDate();
     if (day < 10) {
       day = '0' + day.toString();

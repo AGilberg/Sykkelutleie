@@ -36,7 +36,7 @@ class Menu extends Component {
             style={{ width: '256.4px', height: '70px' }}
           />
         >
-          <NavBar.Link to="/aktivebestillinger">Aktive bestillinger</NavBar.Link>
+          <NavBar.Link to="/aktivebestillinger">Alle bestillinger</NavBar.Link>
           <div className="js-hidden" id="leieperiode" />
         </NavBar>
       </div>

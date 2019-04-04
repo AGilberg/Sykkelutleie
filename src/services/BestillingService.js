@@ -33,27 +33,31 @@ class BestillingService {
         console.log('OK fra bestilling.js');
         console.log(results.insertId);
         let best_id = results.insertId;
-        for(let i = 0; i < varer.length; i++){
+        for (let i = 0; i < varer.length; i++) {
           let vare = varer[i];
           switch (vare.kategori) {
-            case "sykkel"://trenger bestillng_id og sykkel_id // FIXME: registrerer kun sykkelid 16
+            case 'sykkel': //trenger bestillng_id og sykkel_id // FIXME: registrerer kun sykkelid 16
               connection.query(
                 'insert into INNHOLDSYKKEL (innholdsykkel_id, bestilling_id, sykkel_id) values (?,?,?)',
-                [null, best_id, 16 ], (error, results) => {
-                if (error) return console.error(error);
-                console.log(results);
-              });
+                [null, best_id, 16],
+                (error, results) => {
+                  if (error) return console.error(error);
+                  console.log(results);
+                }
+              );
               break;
-            case "utstyr":
-            connection.query(
-              'insert into INNHOLDUTSTYR (innholdutstyr_id, bestilling_id, utstyr_id, ant_utstyr) values (?,?,?,?)',
-              [null, best_id, vare.id, vare.antall], (error, results) => {
-              if (error) return console.error(error);
-              console.log(results);
-            });
+            case 'utstyr':
+              connection.query(
+                'insert into INNHOLDUTSTYR (innholdutstyr_id, bestilling_id, utstyr_id, ant_utstyr) values (?,?,?,?)',
+                [null, best_id, vare.id, vare.antall],
+                (error, results) => {
+                  if (error) return console.error(error);
+                  console.log(results);
+                }
+              );
               break;
             default:
-              console.log("feil innhold i BestillingServive.js");
+              console.log('feil innhold i BestillingServive.js');
           }
         }
       }
@@ -61,6 +65,7 @@ class BestillingService {
   }
 
   updateOrder(bestill, utstyr, sykkel, id) {
+    //Funksjon for å lagre endringer på en bestilling
     connection.query(
       'update BESTILLING set sum=?, status_id=?, beskrivelse=?, leie_start=?, leie_slutt=? where bestilling_id=?',
       [
@@ -98,6 +103,7 @@ class BestillingService {
   }
 
   deleteSykkel(innholdsykkel_id) {
+    //Fjern en sykkel fra en bestilling
     connection.query('delete from INNHOLDSYKKEL WHERE innholdsykkel_id = ?', [innholdsykkel_id], (error, results) => {
       if (error) return console.error(error);
       console.log(results);
@@ -105,6 +111,7 @@ class BestillingService {
   }
 
   deleteUtstyr(innholdutstyr_id) {
+    //Fjern utstyr fra en bestilling
     connection.query('delete from INNHOLDUTSTYR WHERE innholdutstyr_id = ?', [innholdutstyr_id], (error, results) => {
       if (error) return console.error(error);
       console.log(results);
@@ -122,7 +129,7 @@ class BestillingService {
   validateOrder() {
     //bekreft at orderen er komplett uten feil eller mangler
     /*
-    det er en ansvarlig kunden
+    det er en ansvarlig kunde
     sykkelen er ledig i gitt periode
     start og slutt dato er gyldige
     */
@@ -141,6 +148,7 @@ class BestillingService {
   }
 
   getOrderContentsSykler(bestilling_id, success) {
+    //Henter ut sykler som er lagt inn i en bestilling
     connection.query(
       'select * from INNHOLDSYKKEL, SYKKEL, SYKKELTYPE where INNHOLDSYKKEL.bestilling_id=? and INNHOLDSYKKEL.sykkel_id = SYKKEL.sykkel_id and SYKKEL.type_id = SYKKELTYPE.type_id',
       [bestilling_id],
@@ -154,6 +162,7 @@ class BestillingService {
   }
 
   getOrderContentsUtstyr(bestilling_id, success) {
+    //Henter ut utstyr som er lagt inn i en bestilling
     connection.query(
       'select * from INNHOLDUTSTYR, UTSTYR where INNHOLDUTSTYR.bestilling_id=? and UTSTYR.utstyr_id = INNHOLDUTSTYR.utstyr_id',
       [bestilling_id],
@@ -167,8 +176,21 @@ class BestillingService {
   }
 
   getAktiveBestillinger(success) {
+    //Henter aktive bestillinger
     connection.query(
-      'select * from BESTILLING, PERSON where BESTILLING.person_id = PERSON.person_id',
+      'select * from BESTILLING, PERSON where BESTILLING.person_id = PERSON.person_id and BESTILLING.status_id NOT LIKE 9',
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    );
+  }
+
+  getFullforteBestillinger(success) {
+    //Henter aktive bestillinger
+    connection.query(
+      'select * from BESTILLING, PERSON where BESTILLING.person_id = PERSON.person_id and BESTILLING.status_id LIKE 9',
       (error, results) => {
         if (error) return console.error(error);
 
