@@ -5,7 +5,7 @@ class SykkelService {
   getAvdelinger(success) {
     connection.query('select * from AVDELING', (error, results) => {
       if (error) {
-        varsel("Oops!", "Det oppsto problemer med å hente data.", "vrsl-danger");
+        varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
         return console.error(error);
       }
       success(results);

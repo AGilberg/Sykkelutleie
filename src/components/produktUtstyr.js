@@ -4,7 +4,7 @@ import { Card, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import { utstyrService } from '../services/UtstyrService.js';
 import ReactLoading from 'react-loading';
-import { cartService } from '../services/CartService.js'
+import { cartService } from '../services/CartService.js';
 import varsel from '../services/notifications.js';
 
 class ProduktUtstyr extends Component {
@@ -81,9 +81,7 @@ class ProduktUtstyr extends Component {
             <Column left>
               <Button.Light onClick={this.back}>Tilbake</Button.Light>
             </Column>
-            <Column>
-              <Button.Info onClick={this.handlekurv}>Til handlekurv</Button.Info>
-            </Column>
+
             <Column right>
               <Button.Success onClick={this.add}>Legg til bestilling</Button.Success>
             </Column>
@@ -142,11 +140,8 @@ class ProduktUtstyr extends Component {
       pris: this.utstyr.pris * this.antall
     };
     cartService.addItem(produkt);
-    varsel("Suksess!", "Produktet ble lagt til i handlekurven.", "vrsl-success");
+    varsel('Suksess!', 'Produktet ble lagt til i handlekurven.', 'vrsl-success');
     history.push('/ekstrautstyr');
-  }
-  handlekurv() {
-    history.push('/handlekurv');
   }
 }
 

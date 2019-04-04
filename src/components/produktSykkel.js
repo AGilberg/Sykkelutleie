@@ -4,7 +4,7 @@ import { sykkelService } from '../services/SykkelService.js';
 import { Card, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
-import { cartService } from '../services/CartService.js'
+import { cartService } from '../services/CartService.js';
 import varsel from '../services/notifications.js';
 
 class ProduktSykkel extends Component {
@@ -49,9 +49,10 @@ class ProduktSykkel extends Component {
                     <li>Rammestørrelse: {this.type.ramme_storrelse} </li>
                     <li>Hjulstørrelse: {this.type.hjul_storrelse}</li>
                     <br />
-                    <li><b>Lagerstatus:</b> Antall sykler</li>
+                    <li />
+                    <b>Lagerstatus:</b>
+
                     <li>
-                      Antall:
                       <div className="input_div">
                         <input
                           type="number"
@@ -94,9 +95,7 @@ class ProduktSykkel extends Component {
             <Column left>
               <Button.Light onClick={this.back}>Tilbake</Button.Light>
             </Column>
-            <Column>
-              <Button.Info onClick={this.handlekurv}>Til handlekurv</Button.Info>
-            </Column>
+
             <Column right>
               <Button.Success onClick={this.add}>Legg til bestilling</Button.Success>
             </Column>
@@ -149,12 +148,8 @@ class ProduktSykkel extends Component {
       pris: this.type.pris * this.antall
     };
     cartService.addItem(produkt);
-    varsel("Suksess!", "Produktet ble lagt til i handlekurven.", "vrsl-success");
+    varsel('Suksess!', 'Produktet ble lagt til i handlekurven.', 'vrsl-success');
     history.push('/sykkel');
-  }
-
-  handlekurv() {
-    history.push('/handlekurv');
   }
 }
 
