@@ -248,6 +248,7 @@ FARGEN PÅ LINKENE
   height: 196px;
   border-bottom: 1px solid blue;
   overflow: hidden;
+   pointer-events:none;
 }
 
 .coverWeather {
