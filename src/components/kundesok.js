@@ -6,6 +6,8 @@ import { history } from '../index.js';
 import { Button, Row, Column } from '../widgets';
 import Card from 'react-bootstrap/Card';
 import ReactLoading from 'react-loading';
+import confirmBox from '../services/confirmBox';
+import varsel from '../services/notifications.js';
 
 class Kundesøk extends Component {
   kunder = null;
@@ -72,7 +74,11 @@ class Kundesøk extends Component {
                     </Column>
 
                     <Column left>
-                      <Button.Danger>X</Button.Danger>
+                      <Button.Danger
+                        onClick={()=>{this.slettKunde(kunde)}}
+                        >
+                          Slett kunde
+                      </Button.Danger>
                     </Column>
                   </Row>
                 </div>
@@ -115,6 +121,16 @@ class Kundesøk extends Component {
         ul[i].closest('div.card').style.display = 'none';
       }
     }
+  }
+
+  slettKunde(kunde){
+    console.log(kunde);
+    confirmBox("Varsel","Ønsker du å slette " + kunde.fornavn + " " + kunde.etternavn + "?", res=>{
+      if(res == 1){
+        console.log("SLETT EN KUNDE!, lag funk");
+        varsel('Suksess!', 'Kunden ble slettet', 'vrsl-success');
+      }
+    });
   }
 
   velg(kunde) {

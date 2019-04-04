@@ -6,6 +6,8 @@ import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
 import ReactLoading from 'react-loading';
+import confirmBox from '../services/confirmBox';
+import varsel from '../services/notifications.js';
 
 class BestillingDetails extends Component {
   /* Viser detaljer om en enkelt bestilling */
@@ -147,10 +149,15 @@ class BestillingDetails extends Component {
     return day + '/' + month + '/' + year;
   }
   delete() {
-    bestillingService.deleteOrder(this.props.match.params.bestilling_id);
-    {
-      history.push('/');
-    }
+    confirmBox("Varsel","Ønsker du å slette bestillingen?", res=>{
+      if(res == 1){
+        bestillingService.deleteOrder(this.props.match.params.bestilling_id);
+        varsel('Suksess!', 'Du har slettet bestillingen', 'vrsl-success');
+        {
+          history.push('/');
+        }
+      }
+    });
   }
   edit() {
     history.push('/aktivebestillinger/' + this.bestill.bestilling_id + '/edit');

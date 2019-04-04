@@ -39,11 +39,9 @@ class Handlekurv extends Component {
   }
 
   delItem(index) {
-    if (confirm('Er du sikker på at du vil slette produktet fra bestillingen?')) {
-      cartService.dropItem(index);
-      this.setState({ handlekurv: cartService.getHandlekurv() });
-      this.updateSum();
-    }
+    cartService.dropItem(index);
+    this.setState({ handlekurv: cartService.getHandlekurv() });
+    this.updateSum();
   }
 
   regBestilling() {

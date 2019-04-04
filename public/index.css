@@ -261,3 +261,48 @@ FARGEN PÅ LINKENE
   left: 0;
   opacity: 1;
 }
+
+
+.coverConfirmBox{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  opacity: 0.3;
+}
+
+.confirmBox{
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 5;
+  top: 30%;
+  margin-left: 30%;
+  width: 40%;
+  height: 200px;
+
+  background-color: white;
+  border-radius: 20px;
+  border-style: lightgrey, 2px, solid;
+
+  text-align: center;
+  padding-top: 20px;
+  color: black;
+
+}
+
+.confirmBox>button{
+  box-sizing: border-box;
+  width: 30%;
+  height: 40px;
+  margin-left: 3px;
+  margin-right: 3px;
+
+}
+
+.confirmBox>button:hover{
+  background-color: lightgrey;
+}

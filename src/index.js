@@ -17,6 +17,8 @@ import { Sykkel } from './components/sykkel.js';
 import { Card, List, Row, Column, NavBar, Button, Form } from './widgets';
 import Iframe from 'react-iframe';
 import { cartService } from './services/CartService';
+import confirmBox from './services/confirmBox';
+import varsel from './services/notifications.js';
 
 import createHashHistory from 'history/createHashHistory';
 export const history = createHashHistory();
@@ -71,7 +73,7 @@ class Home extends Component {
                 <div className="coverWeather" />
               </div>
             </Row>
-            <h5>Årets ansatt: Fridtjof Leganger </h5>
+            <h5>Årets ansatt: Rikard Gjelsvik </h5>
             <Row>
               <div className="col-md-4">
                 <img
@@ -140,9 +142,12 @@ class Sidenav extends Component {
     if (cartService.kunde == null && cartService.startdato == null && cartService.handlekurv.length == 0) {
       history.push('/leieperiode');
     } else {
-      if (confirm('OBS! All data tilknyttet denne bestillingen vil gå tapt hvis du fortsetter.')) {
-        cartService.dropOrder();
-      }
+      confirmBox("Varsel","Ønsker du å starte en ny bestilling?", res=>{
+        if(res == 1){
+            cartService.dropOrder();
+            varsel('Suksess!', 'Du startet en ny bestilling', 'vrsl-success');
+        }
+      });
     }
   }
 }
