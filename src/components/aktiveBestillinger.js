@@ -21,10 +21,10 @@ class AktiveBestillinger extends Component {
       );
     return (
       <div className="main">
-        {/* Visning av bestillinger som ikke har status som fullført */}
 
         <Tabs defaultActiveKey="aktiveBestillinger" id="bestillingTabs">
           <Tab eventKey="aktiveBestillinger" title="Aktive bestillinger">
+          {/* Visning av bestillinger som ikke har status som fullført */}
             <Row>
               <Column>BestillingsID</Column>
               <Column>Kunde</Column>

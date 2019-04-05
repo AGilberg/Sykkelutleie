@@ -1,3 +1,4 @@
+// Funksjon for å lage konfirmasjonsboks
 export default function confirmBox(tittel, melding, success) {
   const coverConfirmBox = document.createElement('div');
   coverConfirmBox.classList = 'coverConfirmBox';
