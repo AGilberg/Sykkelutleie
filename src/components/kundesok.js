@@ -19,7 +19,7 @@ class Kundesøk extends Component {
       );
     return (
       <div>
-        {/* Søkefunksjon for å søke etter registrerte kunder */}
+        {/* Søk etter registrerte kunder */}
         <br />
         <div className="col-md-12">
           <h4>Søk etter kunde</h4>
@@ -103,22 +103,23 @@ class Kundesøk extends Component {
     });
   }
 
+// Søkefunksjon for å søke etter registrerte kunder
   sok() {
     var input, filter, type, div, ul, i, li, txt;
     input = document.getElementById('sok');
     filter = input.value.toUpperCase();
-    type = document.getElementById('kategori').value;
+    type = document.getElementById('kategori').value; // Henter typekategori for søk
     div = document.getElementById('kunderesultat').children[0];
     ul = div.getElementsByTagName('ul');
     for (i = 0; i < this.kunder.length; i++) {
       li = ul[i].getElementsByTagName('li');
       txt = li[type].textContent || li[type].innerText;
-      if (txt.toUpperCase().indexOf(filter) > -1) {
+      if (txt.toUpperCase().indexOf(filter) > -1) { // Fjerner case-sensitivitet
         ul[i].style.display = '';
         ul[i].closest('div.card').style.display = '';
       } else {
         ul[i].style.display = 'none';
-        ul[i].closest('div.card').style.display = 'none';
+        ul[i].closest('div.card').style.display = 'none'; // Fjerner kunder som ikke matcher
       }
     }
   }
