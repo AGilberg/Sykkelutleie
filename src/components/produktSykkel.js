@@ -11,6 +11,10 @@ class ProduktSykkel extends Component {
   type = null;
   klasse = null;
   antall = 1;
+  startdato = null;
+  sluttdato = null;
+  avdeling = null;
+  ledigeSykler = [];
 
   render() {
     if (!this.type || !this.klasse)
@@ -50,16 +54,22 @@ class ProduktSykkel extends Component {
                     <li>Hjulstørrelse: {this.type.hjul_storrelse}</li>
                     <br />
                     <li />
-                    <b>Lagerstatus:</b>
+                    <b>Lagerstatus:{this.ledigeSykler.length}</b>
 
                     <li>
                       <div className="input_div">
                         <input
                           type="number"
                           size="25"
-                          value={this.antall}
                           id="count"
+                          value={this.antall}
                           style={{ marginRight: '20px' }}
+                          onFocus={(event)=>{event.target.value = null;}}
+                          onBlur={(event)=>{
+                            if(event.target.value.length == 0){
+                              this.endreAntall('',this.antall);
+                            }
+                          }}
                           onChange={event => {
                             this.endreAntall('', event.target.value);
                           }}
@@ -113,23 +123,53 @@ class ProduktSykkel extends Component {
     sykkelService.getKlasser(this.props.match.params.id, klasse => {
       this.klasse = klasse;
     });
+
+    this.sluttdato = cartService.getSluttdato();
+    this.startdato = cartService.getStartdato();
+    this.avdeling = cartService.getAvdeling();
+
+    if(this.sluttdato != null && this.avdeling != null){
+      sykkelService.getLedigeSykler(this.props.match.params.id, this.startdato, this.sluttdato, this.avdeling, ledige => {
+        this.ledigeSykler = ledige;
+
+        if(ledige.length == 0){
+          this.antall = 0;
+        }
+      });
+    }else{
+      this.antall = 0;
+      if(this.sluttdato == null){
+        varsel('OBS!','Leieperiode er ikke valgt','vrsl-danger');
+      }
+      if(this.avdeling == null){
+        varsel('OBS!','Avdeling er ikke valgt','vrsl-danger');
+      }
+    }
   }
 
   endreAntall(dir, inp) {
+    let max = this.ledigeSykler.length;
     switch (dir) {
-      case 'pluss': // FIXME: add limit to antall
-        this.antall++;
+      case 'pluss':
+        if(this.antall < max){
+            this.antall++;
+        }
         break;
       case 'minus':
         if (this.antall > 1) {
           this.antall--;
         }
         break;
-      default:
-        //onchange// FIXME: add limit to antall
-        if (inp < 1) {
+      default://dersom brukeren skriver inn tall manuelt
+        if (max == 0) {
+          this.antall = 0;
+        }
+        else if(inp < 1){
           this.antall = 1;
-        } else {
+
+        }else if(inp > max){
+          this.antall = max;
+        }else{
           this.antall = inp;
         }
     }
@@ -140,16 +180,30 @@ class ProduktSykkel extends Component {
   }
 
   add() {
-    let produkt = {
-      kategori: 'sykkel',
-      id: this.type.type_id,
-      navn: this.type.typenavn,
-      antall: this.antall,
-      pris: this.type.pris * this.antall
-    };
-    cartService.addItem(produkt);
-    varsel('Suksess!', 'Produktet ble lagt til i handlekurven.', 'vrsl-success');
-    history.push('/sykkel');
+    if(this.sluttdato != null && this.avdeling != null && this.antall != 0){
+      let produkt = {
+        kategori: 'sykkel',
+        id: this.type.type_id,
+        navn: this.type.typenavn,
+        antall: this.antall,
+        pris: this.type.pris * this.antall,
+        id:this.ledigeSykler.slice()
+      };
+      console.log(produkt);
+      cartService.addItem(produkt);
+      varsel('Suksess!', 'Produktet ble lagt til i handlekurven.', 'vrsl-success');
+      history.push('/sykkel');
+    }else{
+      if(this.sluttdato == null){
+          varsel('Feil!','Leieperiode er ikke valgt','vrsl-danger');
+      }
+      if(this.avdeling == null){
+        varsel('Feil!','Avdeling er ikke valgt','vrsl-danger');
+      }
+      if(this.antall == 0){
+        varsel('Feil!','Du kan ikke legge til 0 varer','vrsl-danger');
+      }
+    }
   }
 }
 

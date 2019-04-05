@@ -54,7 +54,6 @@ class SykkelService {
       [type_id],
       (error, results) => {
         if (error) return console.error(error);
-        console.log(results);
         success(results[0]);
       }
     );
@@ -66,10 +65,39 @@ class SykkelService {
       [type_id],
       (error, results) => {
         if (error) return console.error(error);
-        console.log(results);
         success(results[0]);
       }
     );
+  }
+
+  getLedigeSykler(type_id, start, slutt, avdeling_id, success){
+    let opptatt = [];
+    let mulige = [];
+    connection.query(
+      'SELECT  SYKKEL.sykkel_id, typenavn, leie_start, leie_slutt FROM SYKKELTYPE, SYKKEL, BESTILLING, INNHOLDSYKKEL WHERE SYKKEL.type_id = SYKKELTYPE.type_id AND BESTILLING.bestilling_id=INNHOLDSYKKEL.bestilling_id AND SYKKEL.sykkel_id=INNHOLDSYKKEL.sykkel_id AND SYKKEL.type_id = ? AND SYKKEL.status_id = 1 AND SYKKEL.avdeling_id = ? AND (leie_start BETWEEN ? AND ? OR  leie_slutt BETWEEN ? AND ?)',
+      [type_id, avdeling_id, start, slutt, start, slutt],
+      (error, res1) => {
+        if (error) return console.error(error);
+        this.opptatt = res1;
+
+        connection.query(
+          'SELECT sykkel_id FROM SYKKEL WHERE type_id = ? AND status_id = 1 AND avdeling_id = ? AND naa_avdeling_id = ?',
+          [type_id, avdeling_id, avdeling_id],
+          (error,res2) => {
+          if (error) return console.error(error);
+          this.mulige = res2;
+          if(this.opptatt.length > 0){
+            for(let i = this.mulige.length -1; i >= 0 ; i--){//filtrer mulige sykler mot opptate sykler
+              for(let k = this.opptatt.length -1; k >=0; k-- ){
+                if(this.mulige[i].sykkel_id == this.opptatt[k].sykkel_id){
+                  this.mulige.splice(i,1);
+                }
+              }
+            }
+          }
+          success(this.mulige);//retunere mulige sykkel_ider
+        });
+      });
   }
 
   getSykkelSorteringer() {
@@ -127,30 +155,32 @@ class SykkelService {
     }
   }
 
-  visKlasse(klasse, arrInn, success) {
-    if (klasse.length == 0) {
+  visKlasse(klasse_id, arrInn, success) {
+    klasse_id = parseInt(klasse_id);
+    if (klasse_id == -1) {
       success(arrInn);
       return;
     }
     let arr = arrInn.slice(); //lager en klone av arrayen for ikke å endre den originale
     for (let i = arr.length - 1; i >= 0; i--) {
-      if (arr[i].klassenavn !== klasse) {
+      if (arr[i].klasse_id != klasse_id) {
         arr.splice(i, 1);
       }
     }
     success(arr);
   }
 
-  visAvdeling(avdeling, arrInn, success) {
-    if (avdeling.length == 0) {
+  visAvdeling(avdeling_id, arrInn, success) {
+    avdeling_id = parseInt(avdeling_id);
+    if (avdeling_id == -1) {
       success(arrInn);
       return;
     }
     let arr = arrInn.slice();
 
     connection.query(
-      'select * from SYKKELTYPE where type_id IN (select type_id from SYKKEL where avdeling_id IN (select avdeling_id from AVDELING where navn LIKE ?))',
-      [avdeling],
+      'select * from SYKKELTYPE where type_id IN (select type_id from SYKKEL where avdeling_id = ?)',
+      [avdeling_id],
       (error, results) => {
         if (error) return console.error(error);
 

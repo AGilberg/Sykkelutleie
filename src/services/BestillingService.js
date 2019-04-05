@@ -4,12 +4,7 @@ import varsel from './notifications.js';
 import { history } from '../index.js';
 
 class BestillingService {
-  // FIXME: legg til boolsk rabatt --> if rabatt --> reduser sum med 5%
-  addOrder(sum, rabatt) {
-    //legg til en ny bestilling i databasen
-    console.log(sum);
-    console.log(rabatt);
-
+  addOrder(sum, rabatt) {//legg til en ny bestilling i databasen
     let d = new Date();
     let dateStamp = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
 
@@ -21,30 +16,26 @@ class BestillingService {
     let status = cartService.getStatus().status_id; // FIXME: gjør det mulig å legge inn en status
     let varer = cartService.getHandlekurv();
 
-    connection.query(
-      //legg inn bestilling
+    connection.query(//legg inn bestilling
       'INSERT INTO BESTILLING (bestilling_id, bestillingsdato, person_id, gruppe_id, leie_start, leie_slutt, status_id, sum, beskrivelse, gittRabatt) VALUES (?,?,?,?,?,?,?,?,?,?)',
       [null, dateStamp, kunde, gruppe, start, slutt, status, sum, besk, rabatt],
       (error, results) => {
         if (error) return console.error(error);
-        cartService.dropOrder();
-        varsel('Suksess!', 'Bestillingen er registrert', 'vrsl-success');
-        history.push('/');
-        console.log('OK fra bestilling.js');
-        console.log(results.insertId);
+
         let best_id = results.insertId;
         for (let i = 0; i < varer.length; i++) {
           let vare = varer[i];
           switch (vare.kategori) {
             case 'sykkel': //trenger bestillng_id og sykkel_id // FIXME: registrerer kun sykkelid 16
-              connection.query(
-                'insert into INNHOLDSYKKEL (innholdsykkel_id, bestilling_id, sykkel_id) values (?,?,?)',
-                [null, best_id, 16],
-                (error, results) => {
-                  if (error) return console.error(error);
-                  console.log(results);
-                }
-              );
+              for(let k = 0; k < vare.antall; k++){
+                connection.query(
+                  'insert into INNHOLDSYKKEL (innholdsykkel_id, bestilling_id, sykkel_id) values (?,?,?)',
+                  [null, best_id, vare.id[k].sykkel_id],
+                  (error, results) => {
+                    if (error) return console.error(error);
+                  }
+                );
+              }
               break;
             case 'utstyr':
               connection.query(
@@ -52,7 +43,6 @@ class BestillingService {
                 [null, best_id, vare.id, vare.antall],
                 (error, results) => {
                   if (error) return console.error(error);
-                  console.log(results);
                 }
               );
               break;
@@ -60,6 +50,9 @@ class BestillingService {
               console.log('feil innhold i BestillingServive.js');
           }
         }
+        cartService.dropOrder();
+        varsel('Suksess!', 'Bestillingen er registrert', 'vrsl-success');
+        history.push('/');
       }
     );
   }
@@ -126,15 +119,6 @@ class BestillingService {
     });
   }
 
-  validateOrder() {
-    //bekreft at orderen er komplett uten feil eller mangler
-    /*
-    det er en ansvarlig kunde
-    sykkelen er ledig i gitt periode
-    start og slutt dato er gyldige
-    */
-  }
-
   getOrder(bestilling_id, success) {
     connection.query(
       'select * from BESTILLING, PERSON, STATUS where bestilling_id=? and BESTILLING.person_id=PERSON.person_id and STATUS.status_id = BESTILLING.status_id',
@@ -156,7 +140,6 @@ class BestillingService {
         if (error) return console.error(error);
 
         success(results);
-        console.log(results);
       }
     );
   }
@@ -170,7 +153,6 @@ class BestillingService {
         if (error) return console.error(error);
 
         success(results);
-        console.log(results);
       }
     );
   }

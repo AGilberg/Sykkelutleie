@@ -57,7 +57,6 @@ class UtstyrService {
       [utstyr_id],
       (error, results) => {
         if (error) return console.error(error);
-        console.log(results);
         success(results[0]);
       }
     );

@@ -15,9 +15,9 @@ class Sykkel extends Component {
   sorterMetode = [];
   valgtSortering = '';
   sykkelklasser = [];
-  valgtKlassenavn = '';
+  valgtKlassenavn = -1;
   avdelinger = [];
-  valgtAvdeling = '';
+  valgtAvdeling = -1;
 
   render() {
     if (!this.state.sykkeltyper)
@@ -61,9 +61,9 @@ class Sykkel extends Component {
                     className="form-control"
                     onChange={event => this.changeContent(event)}
                   >
-                    <option value="">Sykkelklasse</option>
+                    <option id={-1}>Sykkelklasse</option>
                     {this.sykkelklasser.map(klasse => (
-                      <option key={klasse.klasse_id}>{klasse.klassenavn}</option>
+                      <option key={klasse.klasse_id} id={klasse.klasse_id}>{klasse.klassenavn}</option>
                     ))}
                   </select>
                 </div>
@@ -76,9 +76,9 @@ class Sykkel extends Component {
                     className="form-control"
                     onChange={event => this.changeContent(event)}
                   >
-                    <option value="">Avdeling</option>
+                    <option id={-1}>Avdeling</option>
                     {this.avdelinger.map(avdeling => (
-                      <option key={avdeling.avdeling_id}>{avdeling.navn}</option>
+                      <option key={avdeling.avdeling_id} id={avdeling.avdeling_id}>{avdeling.navn}</option>
                     ))}
                   </select>
                 </div>
@@ -127,10 +127,6 @@ class Sykkel extends Component {
     });
   }
 
-  goToSykkel(id) {
-    history.push('/sykkel/:' + id);
-  }
-
   changeOrder(event) {
     this.valgtSortering = event.target.value;
     sykkelService.sortSykkelsok(this.valgtSortering, this.state.sykkeltyper, sortert => {
@@ -139,12 +135,15 @@ class Sykkel extends Component {
   }
 
   changeContent(event) {
+    let sel = document.getElementById(event.target.id);
+    let id = sel[sel.selectedIndex].id;
+    console.log(id);
     switch (event.target.name) {
       case 'klassenavn':
-        this.valgtKlassenavn = event.target.value;
+        this.valgtKlassenavn = id;
         break;
       case 'avdeling':
-        this.valgtAvdeling = event.target.value;
+        this.valgtAvdeling = id;
     }
 
     sykkelService.visKlasse(this.valgtKlassenavn, this.state.alleSykkeltyper, utvalg1 => {

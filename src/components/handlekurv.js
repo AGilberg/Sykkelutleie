@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { cartService } from '../services/CartService';
 import { bestillingService } from '../services/BestillingService';
 import ReactLoading from 'react-loading';
+import varsel from '../services/notifications.js';
 
 class Handlekurv extends Component {
   constructor(props) {
@@ -14,10 +15,10 @@ class Handlekurv extends Component {
     };
     this.sum = 0;
     this.rabatt = false;
-    this.kunde = cartService.kunde;
-    this.startdato = cartService.startdato;
-    this.sluttdato = cartService.sluttdato;
-    this.antDager = cartService.antDager;
+    this.kunde = cartService.getKunde();
+    this.startdato = cartService.getStartdato();
+    this.sluttdato = cartService.getSluttdato();
+    this.antDager = cartService.getAntDager();
   }
 
   updateRabatt() {
@@ -45,8 +46,21 @@ class Handlekurv extends Component {
   }
 
   regBestilling() {
-    // FIXME: legg til feilsjekk + annet?
-    bestillingService.addOrder(this.sum, this.rabatt);
+    let antVarer = this.state.handlekurv.length;
+    console.log(antVarer);
+    if(this.startdato != null && this.kunde != null && antVarer > 0){
+        bestillingService.addOrder(this.sum, this.rabatt);
+    }else{
+      if(this.startdato == null){
+        varsel('Feil!', 'Du må velge en periode', 'vrsl-danger');
+      }
+      if(this.kunde == null){
+        varsel('Feil!', 'Du må velge en kunde', 'vrsl-danger');
+      }
+      if(antVarer <= 0){
+        varsel('Feil!', 'Du må legge til minst en vare', 'vrsl-danger');
+      }
+    }
   }
 
   render() {
@@ -116,10 +130,7 @@ class Handlekurv extends Component {
           Totalt: {this.sum} kr <br /> Rabatt:
           <input className="col-1" type="checkbox" onChange={this.updateRabatt} />
         </div>
-
-        <NavBar.Link to="/utsjekk">
           <Button.Success onClick={this.regBestilling}>Register</Button.Success>
-        </NavBar.Link>
       </div>
     );
   }

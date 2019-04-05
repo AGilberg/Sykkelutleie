@@ -47,6 +47,12 @@ class ProduktUtstyr extends Component {
                           value={this.antall}
                           id="count"
                           style={{ marginRight: '20px' }}
+                          onFocus={(event)=>{event.target.value = null;}}
+                          onBlur={(event)=>{
+                            if(event.target.value.length == 0){
+                              this.endreAntall('',this.antall);
+                            }
+                          }}
                           onChange={() => {
                             this.endreAntall('', event.target.value);
                           }}
@@ -94,20 +100,29 @@ class ProduktUtstyr extends Component {
   mounted() {
     utstyrService.getUtstyrNavn(this.props.match.params.id, utstyr => {
       this.utstyr = utstyr;
+      if(this.utstyr.antall == 0){
+        this.antall = 0;
+      }
     });
 
     utstyrService.getAvdelingNavn(this.props.match.params.id, avdeling => {
       this.avdelinger = avdeling;
     });
+
+    if(cartService.getStartdato() == null){
+      varsel('Feil!', 'Leieperiode er ikke valgt', 'vrsl-danger');
+    }
+    if( cartService.getAvdeling() == null){
+      varsel('Feil!', 'Avdeling er ikke valgt', 'vrsl-danger');
+    }
   }
 
   endreAntall(dir, inp) {
+    let max = this.utstyr.antall;
     switch (dir) {
       case 'pluss':
-        if (this.antall >= this.utstyr.antall) {
-          this.antall == this.utstyr.antall;
-        } else {
-          this.antall++;
+        if(this.antall < max){
+            this.antall++;
         }
         break;
       case 'minus':
@@ -115,13 +130,16 @@ class ProduktUtstyr extends Component {
           this.antall--;
         }
         break;
-      default:
-        //onChange
-        if (inp < 1) {
+      default://dersom brukeren skriver inn tall manuelt
+        if (max == 0) {
+          this.antall = 0;
+        }
+        else if(inp < 1){
           this.antall = 1;
-        } else if (inp > this.utstyr.antall) {
-          this.antall = this.utstyr.antall;
-        } else {
+
+        }else if(inp > max){
+          this.antall = max;
+        }else{
           this.antall = inp;
         }
     }
@@ -132,16 +150,28 @@ class ProduktUtstyr extends Component {
   }
 
   add() {
-    let produkt = {
-      kategori: 'utstyr',
-      id: this.utstyr.utstyr_id,
-      navn: this.utstyr.navn,
-      antall: this.antall,
-      pris: this.utstyr.pris * this.antall
-    };
-    cartService.addItem(produkt);
-    varsel('Suksess!', 'Produktet ble lagt til i handlekurven.', 'vrsl-success');
-    history.push('/ekstrautstyr');
+    if(cartService.getStartdato() != null && cartService.getAvdeling() != null && this.antall != 0){
+      let produkt = {
+        kategori: 'utstyr',
+        id: this.utstyr.utstyr_id,
+        navn: this.utstyr.navn,
+        antall: this.antall,
+        pris: this.utstyr.pris * this.antall
+      };
+      cartService.addItem(produkt);
+      varsel('Suksess!', 'Produktet ble lagt til i handlekurven.', 'vrsl-success');
+      history.push('/ekstrautstyr');
+    }else{
+      if(cartService.getStartdato() == null){
+        varsel('Feil!', 'Leieperiode er ikke valgt', 'vrsl-danger');
+      }
+      if( cartService.getAvdeling() == null){
+        varsel('Feil!', 'Avdeling er ikke valgt', 'vrsl-danger');
+      }
+      if(this.antall == 0){
+        varsel('Feil!', 'Du kan ikke legge til 0 varer', 'vrsl-danger');
+      }
+    }
   }
 }
 

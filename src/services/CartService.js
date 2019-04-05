@@ -11,6 +11,7 @@ class CartService{
     this.beskrivelse = "KOMMENTAR FRA SERCIVE";//beskrivelse/kommentar til bestillingen // FIXME: gjør det mulig å legge til en kommentar/beskrivelse
     this.status = {status_id: 1, tilstand: 'OK'};// FIXME: gjør det mulig å velge status
     this.antDager = null;
+    this.avdeling = 1;// FIXME: endre til null
   }
 
   getHandlekurv(){
@@ -45,6 +46,10 @@ class CartService{
     return this.antDager;
   }
 
+  getAvdeling(){
+    return this.avdeling;
+  }
+
   setStartdato(dato){
     this.startdato = dato;
   }
@@ -72,6 +77,10 @@ class CartService{
 
   setAntDager(antDager){
     this.antDager = antDager;
+  }
+
+  setAvdeling(avd){
+    this.avdeling = avd;
   }
 
   dropOrder(){//sletter all bestillingsdata
