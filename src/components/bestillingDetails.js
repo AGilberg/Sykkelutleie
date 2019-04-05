@@ -24,7 +24,10 @@ class BestillingDetails extends Component {
 
     return (
       <div className="main">
-        <Card title="Om bestillingen:">
+        <Card>
+          <div className="col-md-4">
+            <h4>Om bestilling: </h4>
+          </div>
           <div
             style={{
               borderRadius: '4px',
@@ -149,8 +152,8 @@ class BestillingDetails extends Component {
     return day + '/' + month + '/' + year;
   }
   delete() {
-    confirmBox("Varsel","Ønsker du å slette bestillingen?", res=>{
-      if(res == 1){
+    confirmBox('Varsel', 'Ønsker du å slette bestillingen?', res => {
+      if (res == 1) {
         bestillingService.deleteOrder(this.props.match.params.bestilling_id);
         varsel('Suksess!', 'Du har slettet bestillingen', 'vrsl-success');
         {

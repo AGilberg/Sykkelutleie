@@ -39,6 +39,7 @@ class Menu extends Component {
           />
         >
           <NavBar.Link to="/aktivebestillinger">Alle bestillinger</NavBar.Link>
+          <NavBar.Link to="/ansatt">Ansatt</NavBar.Link>
           <div className="js-hidden" id="leieperiode" />
         </NavBar>
       </div>
@@ -64,7 +65,10 @@ class Home extends Component {
   render() {
     return (
       <div className="main">
-        <Card title="Hovedside">
+        <Card>
+          <div className="col-md-4">
+            <h4>Hovedside </h4>
+          </div>
           <div style={{ margin: '50px' }}>
             <h5>Værmelding:</h5>
             <Row>
@@ -120,21 +124,11 @@ class Sidenav extends Component {
         <NavBar.Link className="link" to="/leieperiode">
           <Button.Success onClick={this.bestill}>Ny bestilling</Button.Success>
         </NavBar.Link>
-        <NavBar.Link className="link" to="/leieperiode">
-          Leieperiode
-        </NavBar.Link>
-        <NavBar.Link className="link" to="/kunde">
-          Kunde
-        </NavBar.Link>
-        <NavBar.Link className="link" to="/sykkel">
-          Sykkel
-        </NavBar.Link>
-        <NavBar.Link className="link" to="/ekstrautstyr">
-          Ekstrautstyr
-        </NavBar.Link>
-        <NavBar.Link className="link" to="/handlekurv">
-          Handlekurv
-        </NavBar.Link>
+        <NavBar.Link to="/leieperiode">Leieperiode</NavBar.Link>
+        <NavBar.Link to="/kunde">Kunde</NavBar.Link>
+        <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
+        <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
+        <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
       </div>
     );
   }
@@ -142,10 +136,10 @@ class Sidenav extends Component {
     if (cartService.kunde == null && cartService.startdato == null && cartService.handlekurv.length == 0) {
       history.push('/leieperiode');
     } else {
-      confirmBox("Varsel","Ønsker du å starte en ny bestilling?", res=>{
-        if(res == 1){
-            cartService.dropOrder();
-            varsel('Suksess!', 'Du startet en ny bestilling', 'vrsl-success');
+      confirmBox('Varsel', 'Ønsker du å starte en ny bestilling?', res => {
+        if (res == 1) {
+          cartService.dropOrder();
+          varsel('Suksess!', 'Du startet en ny bestilling', 'vrsl-success');
         }
       });
     }

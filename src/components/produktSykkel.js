@@ -54,7 +54,7 @@ class ProduktSykkel extends Component {
                     <li>Hjulstørrelse: {this.type.hjul_storrelse}</li>
                     <br />
                     <li />
-                    <b>Lagerstatus:{this.ledigeSykler.length}</b>
+                    <b>Lagerstatus: {this.ledigeSykler.length}</b>
 
                     <li>
                       <div className="input_div">
@@ -64,10 +64,12 @@ class ProduktSykkel extends Component {
                           id="count"
                           value={this.antall}
                           style={{ marginRight: '20px' }}
-                          onFocus={(event)=>{event.target.value = null;}}
-                          onBlur={(event)=>{
-                            if(event.target.value.length == 0){
-                              this.endreAntall('',this.antall);
+                          onFocus={event => {
+                            event.target.value = null;
+                          }}
+                          onBlur={event => {
+                            if (event.target.value.length == 0) {
+                              this.endreAntall('', this.antall);
                             }
                           }}
                           onChange={event => {
@@ -128,21 +130,27 @@ class ProduktSykkel extends Component {
     this.startdato = cartService.getStartdato();
     this.avdeling = cartService.getAvdeling();
 
-    if(this.sluttdato != null && this.avdeling != null){
-      sykkelService.getLedigeSykler(this.props.match.params.id, this.startdato, this.sluttdato, this.avdeling, ledige => {
-        this.ledigeSykler = ledige;
+    if (this.sluttdato != null && this.avdeling != null) {
+      sykkelService.getLedigeSykler(
+        this.props.match.params.id,
+        this.startdato,
+        this.sluttdato,
+        this.avdeling,
+        ledige => {
+          this.ledigeSykler = ledige;
 
-        if(ledige.length == 0){
-          this.antall = 0;
+          if (ledige.length == 0) {
+            this.antall = 0;
+          }
         }
-      });
-    }else{
+      );
+    } else {
       this.antall = 0;
-      if(this.sluttdato == null){
-        varsel('OBS!','Leieperiode er ikke valgt','vrsl-danger');
+      if (this.sluttdato == null) {
+        varsel('OBS!', 'Leieperiode er ikke valgt', 'vrsl-danger');
       }
-      if(this.avdeling == null){
-        varsel('OBS!','Avdeling er ikke valgt','vrsl-danger');
+      if (this.avdeling == null) {
+        varsel('OBS!', 'Avdeling er ikke valgt', 'vrsl-danger');
       }
     }
   }
@@ -151,8 +159,8 @@ class ProduktSykkel extends Component {
     let max = this.ledigeSykler.length;
     switch (dir) {
       case 'pluss':
-        if(this.antall < max){
-            this.antall++;
+        if (this.antall < max) {
+          this.antall++;
         }
         break;
       case 'minus':
@@ -160,16 +168,15 @@ class ProduktSykkel extends Component {
           this.antall--;
         }
         break;
-      default://dersom brukeren skriver inn tall manuelt
+      default:
+        //dersom brukeren skriver inn tall manuelt
         if (max == 0) {
           this.antall = 0;
-        }
-        else if(inp < 1){
+        } else if (inp < 1) {
           this.antall = 1;
-
-        }else if(inp > max){
+        } else if (inp > max) {
           this.antall = max;
-        }else{
+        } else {
           this.antall = inp;
         }
     }
@@ -180,28 +187,28 @@ class ProduktSykkel extends Component {
   }
 
   add() {
-    if(this.sluttdato != null && this.avdeling != null && this.antall != 0){
+    if (this.sluttdato != null && this.avdeling != null && this.antall != 0) {
       let produkt = {
         kategori: 'sykkel',
         id: this.type.type_id,
         navn: this.type.typenavn,
         antall: this.antall,
         pris: this.type.pris * this.antall,
-        id:this.ledigeSykler.slice()
+        id: this.ledigeSykler.slice()
       };
       console.log(produkt);
       cartService.addItem(produkt);
       varsel('Suksess!', 'Produktet ble lagt til i handlekurven.', 'vrsl-success');
       history.push('/sykkel');
-    }else{
-      if(this.sluttdato == null){
-          varsel('Feil!','Leieperiode er ikke valgt','vrsl-danger');
+    } else {
+      if (this.sluttdato == null) {
+        varsel('Feil!', 'Leieperiode er ikke valgt', 'vrsl-danger');
       }
-      if(this.avdeling == null){
-        varsel('Feil!','Avdeling er ikke valgt','vrsl-danger');
+      if (this.avdeling == null) {
+        varsel('Feil!', 'Avdeling er ikke valgt', 'vrsl-danger');
       }
-      if(this.antall == 0){
-        varsel('Feil!','Du kan ikke legge til 0 varer','vrsl-danger');
+      if (this.antall == 0) {
+        varsel('Feil!', 'Du kan ikke legge til 0 varer', 'vrsl-danger');
       }
     }
   }

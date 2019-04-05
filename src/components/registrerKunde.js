@@ -55,7 +55,7 @@ class RegistrerKunde extends Component {
                     />
                   </div>
                 </div>
-                {/* Fødselsdato (annet format på dette, mtp brukervennlighet?)*/}
+                {/*Fodseldato*/}
                 <div className="form-group">
                   <label className="col-sm-6 control-label" htmlFor="fodt">
                     Fødselsdato

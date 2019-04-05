@@ -16,7 +16,9 @@ class Leieperiode extends Component {
         {/* Visning av leieperioden*/}
         <br />
         <Card>
-          <h4>Leieperiode</h4>
+          <div className="col-md-4">
+            <h4>Leieperiode</h4>
+          </div>
 
           <table className="table" style={{ marginTop: '50px', marginBottom: '100px' }}>
             <tbody>
@@ -106,27 +108,27 @@ class Leieperiode extends Component {
     let calcStart = this.formaterDato(this.fra_dato);
     let calcSlutt = this.formaterDato(this.til_dato);
     let antDager = this.getAntDager(calcStart, calcSlutt) + 1;
-    if(antDager >= 1 && calcStart.getTime() <= calcSlutt.getTime()){
+    if (antDager >= 1 && calcStart.getTime() <= calcSlutt.getTime()) {
       cartService.setStartdato(this.fra_dato);
       cartService.setSluttdato(this.til_dato);
       cartService.setAntDager(antDager);
-      varsel("Suksess!", "Datoer er valgt", "vrsl-success");
+      varsel('Suksess!', 'Datoer er valgt', 'vrsl-success');
       history.push('/kunde');
-    }else{
-      varsel("Feil!", "Ikke gyldig dato", "vrsl-danger");
+    } else {
+      varsel('Feil!', 'Ikke gyldig dato', 'vrsl-danger');
     }
   }
 
-formaterDato(str) {//endrer datoen for å kunne beregne differansen
+  formaterDato(str) {
+    //endrer datoen for å kunne beregne differansen
     var mdy = str.split('-');
-    return new Date(mdy[0], mdy[1]-1, mdy[2]);
-}
+    return new Date(mdy[0], mdy[1] - 1, mdy[2]);
+  }
 
-getAntDager(start, slutt) {
-    let dag = 1000*60*60*24;//en dag i millisekund
-    return Math.round((slutt-start)/(dag));
-}
-
+  getAntDager(start, slutt) {
+    let dag = 1000 * 60 * 60 * 24; //en dag i millisekund
+    return Math.round((slutt - start) / dag);
+  }
 
   updateCalendar(evt) {
     switch (evt.target.name) {

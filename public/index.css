@@ -51,16 +51,21 @@ img:hover {
   margin: 14px;
   display: inline-block;
 }
+
+/* Styling av beløpet */
 .PrisText {
   font-weight: bold;
   color: red;
   font-size: 25px;
 }
+
 .ramme {
   margin: 24px;
   margin-left: 0px;
   margin-right: 0px;
 }
+
+/* Shadow på ting som ikke er CARD */
 .borderShadow {
   background-color: #eaf7ff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -126,6 +131,7 @@ img:hover {
 }
 .active {
   color: black;
+  font-size: 17px;
 }
 
 .vrsl-container {
@@ -181,13 +187,7 @@ img:hover {
   text-align: left;
   word-wrap: break-word;
 }
-
-/*
-FARGEN PÅ LINKENE
-.link {
-
-} */
-
+/* div'en rundt buttons --> Kunde */
 .lenke {
   color: white;
   padding: 16px 32px;
@@ -248,7 +248,7 @@ FARGEN PÅ LINKENE
   height: 196px;
   border-bottom: 1px solid blue;
   overflow: hidden;
-   pointer-events:none;
+  pointer-events: none;
 }
 
 .coverWeather {
@@ -263,8 +263,7 @@ FARGEN PÅ LINKENE
   opacity: 1;
 }
 
-
-.coverConfirmBox{
+.coverConfirmBox {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -276,7 +275,7 @@ FARGEN PÅ LINKENE
   opacity: 0.3;
 }
 
-.confirmBox{
+.confirmBox {
   position: absolute;
   box-sizing: border-box;
   z-index: 5;
@@ -292,18 +291,50 @@ FARGEN PÅ LINKENE
   text-align: center;
   padding-top: 20px;
   color: black;
-
 }
 
-.confirmBox>button{
+.confirmBox > button {
   box-sizing: border-box;
   width: 30%;
   height: 40px;
   margin-left: 3px;
   margin-right: 3px;
-
 }
 
-.confirmBox>button:hover{
+.confirmBox > button:hover {
   background-color: lightgrey;
+}
+.nav-link {
+  display: block;
+  padding: 0.9rem 1rem;
+}
+
+/* Tekst */
+a {
+  color: grey;
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 18px;
+}
+
+/* hover av alle bestillinger */
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  font-size: 15px;
+  color: black;
+  background-color: #f9fdff;
+
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa !important;
+}
+
+/* Alle bestillinger */
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
 }

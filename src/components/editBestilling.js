@@ -19,91 +19,108 @@ class BestillingEdit extends Component {
 
     return (
       <div className="main">
-        <Card title="Rediger bestilling">
-          <Form.Label>Startdato:</Form.Label>
-          <Form.Input
-            type="date"
-            value={this.bestill.leie_start}
-            onChange={e => (this.bestill.leie_start = e.target.value)}
-          />
-          <Form.Label>Sluttdato:</Form.Label>
-          <Form.Input
-            type="date"
-            value={this.bestill.leie_slutt}
-            onChange={e => (this.bestill.leie_slutt = e.target.value)}
-          />
-          <Form.Label>Fornavn:</Form.Label>
-          <Form.Input
-            type="text"
-            value={this.bestill.fornavn}
-            onChange={e => (this.bestill.fornavn = e.target.value)}
-          />
-          <Form.Label>Etternavn:</Form.Label>
-          <Form.Input
-            type="text"
-            value={this.bestill.etternavn}
-            onChange={e => (this.bestill.etternavn = e.target.value)}
-          />
-          <Form.Label>Samlet pris:</Form.Label>
-          <Form.Input type="number" value={this.bestill.sum} onChange={e => (this.bestill.sum = e.target.value)} />
-          <br />
-          <Form.Label>Status:</Form.Label>
-          <br />
-          <select value={this.bestill.status_id} onChange={e => (this.bestill.status_id = e.target.value)}>
-            {this.status.map(status => (
-              <option key={status.status_id} value={status.status_id}>
-                {status.tilstand}
-              </option>
-            ))}
-          </select>
-          <br />
-          <br />
-          <Form.Label>Beskrivelse:</Form.Label>
-          <Form.Input
-            type="text"
-            value={this.bestill.beskrivelse}
-            onChange={e => (this.bestill.beskrivelse = e.target.value)}
-          />
-          <br />
-          <Form.Label>Bestilte varer:</Form.Label>
-          <br />
-          <Form.Label>Sykler:</Form.Label>
-          <br />
-          <Row>
-            {/* Slette en sykkel fra bestillingen */}
-            <Column left>
-              {this.sykkel.map(sykkel => (
-                <Card key={sykkel.innholdsykkel_id}>
-                  {sykkel.typenavn}
-                  <br />
-                  <Button variant="danger" onClick={e => this.deletesyk(sykkel.innholdsykkel_id)}>
-                    Slett
-                  </Button>
-                </Card>
-              ))}
-            </Column>
-          </Row>
-          <br />
-          <Row>
-            <Column left>
-              <div>Utstyr:</div>
-            </Column>
-          </Row>
-          <Row>
-            {/* Slette utstyr fra bestillingen */}
-            <Column left>
-              {this.utstyr.map(utstyr => (
-                <Card key={utstyr.utstyr_id}>
-                  {utstyr.navn} ({utstyr.ant_utstyr})
-                  <br />
-                  <Button variant="danger" onClick={e => this.deleteuts(utstyr.innholdutstyr_id)}>
-                    Slett
-                  </Button>
-                </Card>
-              ))}
-            </Column>
-          </Row>
+        <Card>
+          <div className="col-md-4">
+            <h4>Rediger bestilling: </h4>
+          </div>
+          <div className="container-fluid brBottom">
+            <div className="row">
+              <div className="col-8">
+                <Form.Label>Startdato:</Form.Label>
+
+                <Form.Input
+                  type="date"
+                  value={this.bestill.leie_start}
+                  onChange={e => (this.bestill.leie_start = e.target.value)}
+                />
+                <Form.Label>Sluttdato:</Form.Label>
+                <Form.Input
+                  type="date"
+                  value={this.bestill.leie_slutt}
+                  onChange={e => (this.bestill.leie_slutt = e.target.value)}
+                />
+                <Form.Label>Fornavn:</Form.Label>
+                <Form.Input
+                  type="text"
+                  value={this.bestill.fornavn}
+                  onChange={e => (this.bestill.fornavn = e.target.value)}
+                />
+                <Form.Label>Etternavn:</Form.Label>
+                <Form.Input
+                  type="text"
+                  value={this.bestill.etternavn}
+                  onChange={e => (this.bestill.etternavn = e.target.value)}
+                />
+                <Form.Label>Samlet pris:</Form.Label>
+                <Form.Input
+                  type="number"
+                  value={this.bestill.sum}
+                  onChange={e => (this.bestill.sum = e.target.value)}
+                />
+                <br />
+                <Form.Label>Status:</Form.Label>
+                <br />
+                <select value={this.bestill.status_id} onChange={e => (this.bestill.status_id = e.target.value)}>
+                  {this.status.map(status => (
+                    <option key={status.status_id} value={status.status_id}>
+                      {status.tilstand}
+                    </option>
+                  ))}
+                </select>
+                <br />
+                <br />
+                <Form.Label>Beskrivelse:</Form.Label>
+                <Form.Input
+                  type="text"
+                  value={this.bestill.beskrivelse}
+                  onChange={e => (this.bestill.beskrivelse = e.target.value)}
+                />
+
+                <br />
+                <Form.Label>Bestilte varer:</Form.Label>
+                <br />
+                <Form.Label>Sykler:</Form.Label>
+                <br />
+
+                <Row>
+                  {/* Slette en sykkel fra bestillingen */}
+                  <Column left>
+                    {this.sykkel.map(sykkel => (
+                      <Card key={sykkel.innholdsykkel_id}>
+                        {sykkel.typenavn}
+                        <br />
+                        <Button variant="danger" onClick={e => this.deletesyk(sykkel.innholdsykkel_id)}>
+                          Slett
+                        </Button>
+                      </Card>
+                    ))}
+                  </Column>
+                </Row>
+                <br />
+                <Row>
+                  <Column left>
+                    <div>Utstyr:</div>
+                  </Column>
+                </Row>
+                <Row>
+                  {/* Slette utstyr fra bestillingen */}
+                  <Column left>
+                    {this.utstyr.map(utstyr => (
+                      <Card key={utstyr.utstyr_id}>
+                        {utstyr.navn} ({utstyr.ant_utstyr})
+                        <br />
+                        <Button variant="danger" onClick={e => this.deleteuts(utstyr.innholdutstyr_id)}>
+                          Slett
+                        </Button>
+                      </Card>
+                    ))}
+                  </Column>
+                </Row>
+              </div>
+            </div>
+          </div>
         </Card>
+        <br />
         <div>
           <Row>
             <Column>
