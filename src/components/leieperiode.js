@@ -76,6 +76,7 @@ class Leieperiode extends Component {
               <Button.Success onClick={this.velg}>Velg</Button.Success>
             </Column>
           </Row>
+          <br />
         </Card>
       </div>
     );
