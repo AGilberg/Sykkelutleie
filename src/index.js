@@ -26,11 +26,12 @@ import createHashHistory from 'history/createHashHistory';
 export const history = createHashHistory();
 
 class Menu extends Component {
-  mounted(){
-    if(!cartService.getIsLoggedInn()){
-      history.push('/login');
-    }
-  }
+  // mounted(){// FIXME: legg til for å bruke innloggingen, IKKE FJERN
+  //   if(!cartService.getIsLoggedInn()){
+  //    document.getElementById("loginCover").classList.remove('js-hidden');
+  //     history.push('/login');
+  //   }
+  // }
 
   render() {
     return (
@@ -38,7 +39,7 @@ class Menu extends Component {
         className="col bg-light"
         style={{ boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)' }}
       >
-        <div id="loginCover" className="js-cover"></div>
+        <div id="loginCover" className="js-cover js-hidden"></div>
         <NavBar
           brand=<img
             src="images/sykkelutleie.jpg"
