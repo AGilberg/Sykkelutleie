@@ -12,6 +12,11 @@ class CartService{
     this.status = {status_id: 1, tilstand: 'OK'};// FIXME: gjør det mulig å velge status
     this.antDager = null;
     this.avdeling = 1;// FIXME: endre til null
+    this.isLoggedInn = false;
+  }
+
+  getIsLoggedInn(){
+    return this.isLoggedInn;
   }
 
   getHandlekurv(){
@@ -48,6 +53,10 @@ class CartService{
 
   getAvdeling(){
     return this.avdeling;
+  }
+
+  setIsLoggedInn(bool){
+    this.isLoggedInn = bool;
   }
 
   setStartdato(dato){

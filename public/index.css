@@ -293,6 +293,15 @@ img:hover {
   color: black;
 }
 
+.loginBox{/*justering av confirmBox*/
+  top: 20%;
+  margin-left: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+}
+
 .confirmBox > button {
   box-sizing: border-box;
   width: 30%;
@@ -337,4 +346,16 @@ a {
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0, 0, 0, 0.5);
   font-size: 18px;
+}
+
+.js-cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: black;
+  opacity: 0.5;
 }
