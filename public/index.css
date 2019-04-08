@@ -293,7 +293,8 @@ img:hover {
   color: black;
 }
 
-.loginBox{/*justering av confirmBox*/
+.loginBox {
+  /*justering av confirmBox*/
   top: 20%;
   margin-left: 20%;
   display: flex;
@@ -348,7 +349,7 @@ a {
   font-size: 18px;
 }
 
-.js-cover{
+.js-cover {
   position: absolute;
   top: 0;
   left: 0;
@@ -358,4 +359,17 @@ a {
   z-index: 2;
   background-color: black;
   opacity: 0.5;
+}
+
+.logUt {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  margin-top: 13px;
+  margin-left: 650px;
+
+  font-weight: bold;
+}
+
+.logUt:hover {
+  color: black;
 }

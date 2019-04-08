@@ -21,7 +21,7 @@ import { cartService } from './services/CartService';
 import confirmBox from './services/confirmBox';
 import varsel from './services/notifications.js';
 import Login from './components/login';
-import {loginService} from './services/LoginService';
+import { loginService } from './services/LoginService';
 
 import createHashHistory from 'history/createHashHistory';
 export const history = createHashHistory();
@@ -40,7 +40,7 @@ class Menu extends Component {
         className="col bg-light"
         style={{ boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)' }}
       >
-        <div id="loginCover" className="js-cover js-hidden"></div>
+        <div id="loginCover" className="js-cover js-hidden" />
         <NavBar
           brand=<img
             src="images/sykkelutleie.jpg"
@@ -51,7 +51,9 @@ class Menu extends Component {
         >
           <NavBar.Link to="/aktivebestillinger">Alle bestillinger</NavBar.Link>
           <NavBar.Link to="/ansatt">Ansatt</NavBar.Link>
-          <div onClick={loginService.logout}>Logg ut</div>
+          <div className="logUt" onClick={loginService.logout}>
+            Logg ut
+          </div>
           <div className="js-hidden" id="leieperiode" />
         </NavBar>
       </div>
@@ -164,7 +166,6 @@ ReactDOM.render(
       className="container-fluid"
       style={{ overflow: 'hidden', position: 'fixed', bottom: '0', left: '0', height: '100%' }}
     >
-
       <div className="row">
         <div className="col-12" style={{ width: '100%', paddingLeft: '0px', paddingRight: '0px' }}>
           <Menu />
