@@ -1,10 +1,10 @@
 import { connection } from '../mysql_connection';
 import varsel from './notifications.js';
 import {cartService} from './CartService';
+import { history } from '../index.js';
 
 class LoginService {
   login(name, psw, success){
-    console.log(name, psw);
     connection.query(
       'select p.fornavn, p.etternavn, a.avdeling_id from PERSON p, ANSATT a where p.person_id = a.person_id AND a.brukernavn LIKE ? AND a.passord LIKE ?',
       [name,psw],
@@ -25,6 +25,11 @@ class LoginService {
         success(true);
       }
     );
+  }
+  logout(){
+    cartService.setIsLoggedInn(false);
+    document.querySelector("div#loginCover").classList.remove('js-hidden');
+    history.push('/login');
   }
 }
 

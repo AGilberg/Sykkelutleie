@@ -21,12 +21,13 @@ import { cartService } from './services/CartService';
 import confirmBox from './services/confirmBox';
 import varsel from './services/notifications.js';
 import Login from './components/login';
+import {loginService} from './services/LoginService';
 
 import createHashHistory from 'history/createHashHistory';
 export const history = createHashHistory();
 
 class Menu extends Component {
-  // mounted(){// FIXME: legg til for å bruke innloggingen, IKKE FJERN
+  // mounted(){// FIXME: legg til for å bruke innloggingen og utlogging, IKKE FJERN
   //   if(!cartService.getIsLoggedInn()){
   //    document.getElementById("loginCover").classList.remove('js-hidden');
   //     history.push('/login');
@@ -50,6 +51,7 @@ class Menu extends Component {
         >
           <NavBar.Link to="/aktivebestillinger">Alle bestillinger</NavBar.Link>
           <NavBar.Link to="/ansatt">Ansatt</NavBar.Link>
+          <div onClick={loginService.logout}>Logg ut</div>
           <div className="js-hidden" id="leieperiode" />
         </NavBar>
       </div>
