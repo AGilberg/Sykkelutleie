@@ -160,7 +160,7 @@ class BestillingService {
   getAktiveBestillinger(success) {
     //Henter aktive bestillinger
     connection.query(
-      'select * from BESTILLING, PERSON where BESTILLING.person_id = PERSON.person_id and BESTILLING.status_id NOT LIKE 9',
+      'select * from BESTILLING, PERSON where BESTILLING.person_id = PERSON.person_id and BESTILLING.status_id NOT LIKE 9 order by leie_start',
       (error, results) => {
         if (error) return console.error(error);
 
