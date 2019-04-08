@@ -51,10 +51,21 @@ class Menu extends Component {
         >
           <NavBar.Link to="/aktivebestillinger">Alle bestillinger</NavBar.Link>
           <NavBar.Link to="/ansatt">Ansatt</NavBar.Link>
-          <div className="logUt" onClick={loginService.logout}>
-            Logg ut
+
+          <div
+            style={{
+              color: 'rgba(0, 0, 0, 0.5)',
+              fontSize: '18px',
+              marginTop: '5px',
+              position: 'absolute',
+              right: '10px',
+              padding: '8px',
+              paddingBottom: '12px',
+              fontWeight: 'bold'
+            }}
+          >
+            <Button.Info onClick={loginService.logout}>Logg ut</Button.Info>
           </div>
-          <div className="js-hidden" id="leieperiode" />
         </NavBar>
       </div>
     );
