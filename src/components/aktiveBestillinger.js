@@ -14,17 +14,31 @@ class AktiveBestillinger extends Component {
   bestilling = null;
   fullfortbest = null;
 
+  state = {sok: ""};
+
+  onInputChange = (event, data) => this.setState({sok: event.target.value.toLowerCase()});
+
   render() {
     if (!this.bestilling || !this.fullfortbest)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
+    // Filtrerer hvilke bestillinger som blir rendret, etter søkeord (søkes etter navn her).
+    const bestilling = this.bestilling.filter(bestilling => bestilling["navn"].toString().toLowerCase().includes(this.state.sok));
+    const fullfortbest = this.fullfortbest.filter(bestilling => bestilling["navn"].toString().toLowerCase().includes(this.state.sok));
     return (
       <div className="main">
 
         <Tabs defaultActiveKey="aktiveBestillinger" id="bestillingTabs">
           <Tab eventKey="aktiveBestillinger" title="Aktive bestillinger">
           {/* Visning av bestillinger som ikke har status som fullført */}
+          <input
+            type="text"
+            className="shadow brRight"
+            style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
+            placeholder="Søk etter kunde"
+            onChange={this.onInputChange}
+          />
             <Row>
               <Column>BestillingsID</Column>
               <Column>Kunde</Column>
@@ -32,15 +46,15 @@ class AktiveBestillinger extends Component {
               <Column>Leie til</Column>
             </Row>
             <List>
-              {this.bestilling.map(bestill => (
-                <List.Item key={bestill.bestilling_id} to={'/aktivebestillinger/' + bestill.bestilling_id}>
+              {bestilling.map(bestilling => (
+                <List.Item key={bestilling.bestilling_id} to={'/aktivebestillinger/' + bestilling.bestilling_id}>
                   <Row>
-                    <Column>{bestill.bestilling_id}</Column>
+                    <Column>{bestilling.bestilling_id}</Column>
                     <Column>
-                      {bestill.fornavn} {bestill.etternavn}
+                      {bestilling.fornavn} {bestilling.etternavn}
                     </Column>
-                    <Column>{formatDate(bestill.leie_start)}</Column>
-                    <Column>{formatDate(bestill.leie_slutt)}</Column>
+                    <Column>{formatDate(bestilling.leie_start)}</Column>
+                    <Column>{formatDate(bestilling.leie_slutt)}</Column>
                   </Row>
                 </List.Item>
               ))}
@@ -50,6 +64,13 @@ class AktiveBestillinger extends Component {
           <br />
           <Tab eventKey="fullforteBestillinger" title="Fullførte bestillinger">
             {/* Visning av bestillinger som har status som fullført */}
+            <input
+              type="text"
+              className="shadow brRight"
+              style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
+              placeholder="Søk etter kunde"
+              onChange={this.onInputChange}
+            />
             <Row>
               <Column>BestillingsID</Column>
               <Column>Kunde</Column>
@@ -57,15 +78,15 @@ class AktiveBestillinger extends Component {
               <Column>Leie til</Column>
             </Row>
             <List>
-              {this.fullfortbest.map(bestill => (
-                <List.Item key={bestill.bestilling_id} to={'/aktivebestillinger/' + bestill.bestilling_id}>
+              {fullfortbest.map(bestilling => (
+                <List.Item key={bestilling.bestilling_id} to={'/aktivebestillinger/' + bestilling.bestilling_id}>
                   <Row>
-                    <Column>{bestill.bestilling_id}</Column>
+                    <Column>{bestilling.bestilling_id}</Column>
                     <Column>
-                      {bestill.fornavn} {bestill.etternavn}
+                      {bestilling.fornavn} {bestilling.etternavn}
                     </Column>
-                    <Column>{formatDate(bestill.leie_start)}</Column>
-                    <Column>{formatDate(bestill.leie_slutt)}</Column>
+                    <Column>{formatDate(bestilling.leie_start)}</Column>
+                    <Column>{formatDate(bestilling.leie_slutt)}</Column>
                   </Row>
                 </List.Item>
               ))}
@@ -77,10 +98,16 @@ class AktiveBestillinger extends Component {
   }
   mounted() {
     bestillingService.getAktiveBestillinger(bestilling => {
-      this.bestilling = bestilling;
+      this.bestilling = bestilling.map(bestilling => ({
+        ...bestilling,
+        navn: `${bestilling.fornavn} ${bestilling.etternavn}` // legger til "navn" = fornavn OG etternavn
+      }));
     });
     bestillingService.getFullforteBestillinger(fullfortbest => {
-      this.fullfortbest = fullfortbest;
+      this.fullfortbest = fullfortbest.map(bestilling => ({
+        ...bestilling,
+        navn: `${bestilling.fornavn} ${bestilling.etternavn}`
+      }));
     });
   }
 }
