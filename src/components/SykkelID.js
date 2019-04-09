@@ -16,7 +16,7 @@ class SykkelID extends Component {
     return (
       <div className="main">
         <Card>
-          <div className="col-md-4" style={{ margin: '30px' }}>
+          <div className="col-md-6" style={{ margin: '30px' }}>
             <h4>Avvik </h4>
             <h6>Skriv inn en sykkel ID og søk for å endre status og nåværende avdeling </h6>
             <div className="brBottom">

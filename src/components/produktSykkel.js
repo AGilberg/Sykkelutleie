@@ -92,7 +92,6 @@ class ProduktSykkel extends Component {
                         </Button.Info>
                       </div>
                     </li>
-                    <li>Denne skal vise avdeling, men må hentes fra forrige eller kunne velges</li>
                   </ul>
                 </div>
                 <br />
