@@ -43,7 +43,7 @@ class AktiveBestillinger extends Component {
             {/* Visning av bestillinger som ikke har status som fullført */}
             <input
               type="text"
-              className=" brRight bestillingInput"
+              className=" bestillingInput"
               placeholder="Søk etter kunde"
               onChange={this.onInputChange}
             />
@@ -73,16 +73,18 @@ class AktiveBestillinger extends Component {
             {/* Visning av bestillinger som har status som fullført */}
             <input
               type="text"
-              className=" brRight bestillingInput"
+              className=" bestillingInput"
               placeholder="Søk etter kunde"
               onChange={this.onInputChange}
             />
+
             <Row>
               <Column>BestillingsID</Column>
               <Column>Kunde</Column>
               <Column>Leie fra</Column>
               <Column>Leie til</Column>
             </Row>
+
             <List>
               {fullfortbest.map(bestilling => (
                 <List.Item key={bestilling.bestilling_id} to={'/aktivebestillinger/' + bestilling.bestilling_id}>

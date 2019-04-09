@@ -3,7 +3,7 @@ import varsel from './notifications.js';
 
 class ProduktIDService {
     getSykkelByID(sykkelid,success) {
-      connection.query('Select * FROM SYKKEL WHERE sykkel_id=?',[sykkelid], (error, results) => {
+      connection.query('Select * FROM SYKKEL, SYKKELTYPE, AVDELING WHERE sykkel_id=? AND SYKKEL.avdeling_id=AVDELING.avdeling_id AND SYKKEL.type_id=SYKKELTYPE.type_id',[sykkelid], (error, results) => {
         if (error) {
           varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
           return console.error(error);

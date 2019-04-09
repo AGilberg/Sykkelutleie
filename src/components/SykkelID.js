@@ -15,7 +15,8 @@ class SykkelID extends Component {
   render() {
     return (
       <div className="col-md-4" style={{ margin: '30px' }}>
-        <h4>Sykkel id: </h4>
+        <h3> Avvik </h3>
+        <h4>Søk opp sykkel id for å endre status og avdeling: </h4>
         <div>
         <input
           id="id"
@@ -48,13 +49,10 @@ class SykkelID extends Component {
 
         </Row>
         <div  style={{marginTop:"50px"}}>
-        <Row>
-        <Column>
-        </Column>
-        </Row>
-        <Row>
-        <Column>
-        <div>  Avdeling{this.info.avdeling_id}  </div>
+
+        <div>  ID: {this.info.sykkel_id}  </div>
+        <div> Typenavn: {this.info.typenavn} </div>
+        <div> {this.info.navn}  </div>
         <Form.Label>Nå avdeling:</Form.Label>
         <br />
         <select id="avdSel" onChange={() => {
@@ -67,7 +65,6 @@ class SykkelID extends Component {
           ))}
         </select>
 
-
         <div>  Status {this.info.status_id} </div>
         <Form.Label>Status:</Form.Label>
         <br />
@@ -78,8 +75,7 @@ class SykkelID extends Component {
             </option>
           ))}
         </select>
-        </Column>
-        </Row>
+
         </div>
       </div>
     );
