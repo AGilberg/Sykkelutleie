@@ -11,7 +11,7 @@ class CartService{
     this.beskrivelse = "KOMMENTAR FRA SERCIVE";//beskrivelse/kommentar til bestillingen // FIXME: gjør det mulig å legge til en kommentar/beskrivelse
     this.status = {status_id: 1, tilstand: 'OK'};// FIXME: gjør det mulig å velge status
     this.antDager = null;
-    this.avdeling = 1;// FIXME: endre til null
+    this.avdeling = -1;// FIXME: endre til null
     this.isLoggedInn = false;
   }
 
