@@ -17,7 +17,8 @@ class SykkelID extends Component {
       <div className="main">
         <Card>
           <div className="col-md-4" style={{ margin: '30px' }}>
-            <h4>Sykkel ID: </h4>
+            <h4>Avvik </h4>
+            <h6>Skriv inn en sykkel ID og søk for å endre status og nåværende avdeling </h6>
             <div className="brBottom">
               <input
                 id="id"
@@ -51,7 +52,9 @@ class SykkelID extends Component {
 
               <Row>
                 <Column>
-                  <div> Avdeling: {this.info.avdeling_id} </div>
+                  <div> Sykkelklasse: {this.info.klassenavn}</div>
+                  <div> Modellnavn: {this.info.typenavn}</div>
+                  <div> Eier: {this.info.navn} </div>
                   <Form.Label>Nå avdeling: </Form.Label>
                   <br />
                   <select
@@ -68,7 +71,7 @@ class SykkelID extends Component {
                     ))}
                   </select>
 
-                  <div> Status: {this.info.status_id} </div>
+                  <div />
                   <Form.Label>Status: </Form.Label>
                   <br />
                   <select
@@ -91,10 +94,12 @@ class SykkelID extends Component {
     );
   }
   sok(id) {
-    produktIDService.getSykkelByID(id, success => {
-      this.info = success;
-      console.log(this.info);
-    });
+    if (id != 0) {
+      produktIDService.getSykkelByID(id, success => {
+        this.info = success;
+        console.log(this.info);
+      });
+    }
     bestillingService.tilstander(status => {
       this.status = status;
     });
