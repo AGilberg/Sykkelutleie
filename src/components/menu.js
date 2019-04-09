@@ -3,14 +3,39 @@ import { Component } from 'react-simplified';
 import { Card, List, Row, Column, NavBar, Button, Form } from '../widgets';
 import { history } from '../index.js';
 import { loginService } from '../services/LoginService';
+import { sykkelService } from '../services/SykkelService.js';
+import { cartService } from '../services/CartService';
+import confirmBox from '../services/confirmBox';
 
 class Menu extends Component {
-  // mounted(){// FIXME: legg til for å bruke innloggingen og utlogging, IKKE FJERN
-  //   if(!cartService.getIsLoggedInn()){
-  //    document.getElementById("loginCover").classList.remove('js-hidden');
-  //     history.push('/login');
-  //   }
-  // }
+  avdelinger = [];
+  state={
+      avdValue: "Avdelinger"
+  };
+
+
+  changeAvdeling(evt){
+    let sel = document.getElementById(evt.target.id);
+    let id = sel[sel.selectedIndex].id;
+    let name = sel[sel.selectedIndex].value;
+    confirmBox('Varsel', 'Dersom du bytter avdeling mister du nåværende bestilling! Ønsker du å fortsette?', res => {
+      if (res == 1) {//ja
+        this.setState({avdValue:name});
+        cartService.dropOrder();
+        history.push('/leieperiode');
+      }
+    });
+  }
+
+  mounted(){
+    // if(!cartService.getIsLoggedInn()){// FIXME: legg til for å bruke innloggingen og utlogging, IKKE FJERN
+    //  document.getElementById("loginCover").classList.remove('js-hidden');
+    //   history.push('/login');
+    // }
+    sykkelService.getAvdelinger(avdelinger => {
+      this.avdelinger = avdelinger;
+    });
+  }
 
   render() {
     return (
@@ -28,24 +53,36 @@ class Menu extends Component {
           />
         >
           <NavBar.Link to="/aktivebestillinger">Alle bestillinger</NavBar.Link>
-
-          <NavBar.Link to="/sykkelID">Avvik</NavBar.Link>
-          <div className="js-hidden" id="leieperiode" />
-
-          <div
-            style={{
-              color: 'rgba(0, 0, 0, 0.5)',
-              fontSize: '18px',
-              marginTop: '5px',
-              position: 'absolute',
-              right: '10px',
-              padding: '8px',
-              paddingBottom: '12px',
-              fontWeight: 'bold'
-            }}
-          >
-            <Button.Info onClick={loginService.logout}>Logg ut</Button.Info>
-          </div>
+           <NavBar.Link to="/sykkelID">Avvik</NavBar.Link>
+           <div className="js-hidden" id="leieperiode" />
+             <div className="form-group">
+               <select
+                 id="avdeling"
+                 name="avdeling"
+                 className="form-control"
+                 value={this.state.avdValue}
+                 onChange={event => this.changeAvdeling(event)}
+               >
+                 <option id={-1}>{this.state.avdValue}</option>
+                 {this.avdelinger.map(avdeling => (
+                   <option key={avdeling.avdeling_id} id={avdeling.avdeling_id}>{avdeling.navn}</option>
+                 ))}
+               </select>
+             </div>
+           <div
+             style={{
+               color: 'rgba(0, 0, 0, 0.5)',
+               fontSize: '18px',
+               marginTop: '5px',
+               position: 'absolute',
+               right: '10px',
+               padding: '8px',
+               paddingBottom: '12px',
+               fontWeight: 'bold'
+             }}
+           >
+             <Button.Info onClick={loginService.logout}>Logg ut</Button.Info>
+           </div>
         </NavBar>
       </div>
     );
