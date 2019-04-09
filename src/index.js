@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { AktiveBestillinger } from './components/aktiveBestillinger.js';
 import { Ansatt } from './components/ansatt.js';
+import { SykkelID } from './components/SykkelID.js';
 import { Leieperiode } from './components/leieperiode.js';
 import { BestillingDetails } from './components/bestillingDetails.js';
 import { BestillingEdit } from './components/editBestilling.js';
@@ -41,6 +42,7 @@ class Menu extends Component {
         >
           <NavBar.Link to="/aktivebestillinger">Alle bestillinger</NavBar.Link>
           <NavBar.Link to="/ansatt">Ansatt</NavBar.Link>
+          <NavBar.Link to="/sykkelID">Sykkel ID</NavBar.Link>
           <div className="js-hidden" id="leieperiode" />
         </NavBar>
       </div>
@@ -167,6 +169,7 @@ ReactDOM.render(
           <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
           <Route exact path="/aktivebestillinger/:bestilling_id/edit" component={BestillingEdit} />
           <Route exact path="/ansatt" component={Ansatt} />
+          <Route exact path="/SykkelID" component={SykkelID}/>
           <Route exact path="/leieperiode" component={Leieperiode} />
           <Route exact path="/kunde" component={Kunde} />
           <Route exact path="/kundesøk" component={Kundesøk} />
