@@ -5,18 +5,19 @@ import { utstyrService } from '../services/UtstyrService.js';
 import { Row, Column } from '../widgets';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
+import { cartService } from '../services/CartService';
 
 class Ekstrautstyr extends Component {
   state = {
     altUtstyr: [],
     utstyr: null
   };
-  valgtAvdeling = '';
+  valgtAvdeling = cartService.getAvdeling();
   valgtKomp = '';
   valgtSortering = '';
   sorteringer = [];
   sykkelklasser = [];
-  avdelinger = [];
+
 
   render() {
     if (!this.state.utstyr)
@@ -69,21 +70,6 @@ class Ekstrautstyr extends Component {
                   </select>
                 </div>
               </div>
-              <div className="col-6">
-                <div className="form-group">
-                  <select
-                    id="avdeling"
-                    name="avdeling"
-                    className="form-control"
-                    onChange={event => this.changeContent(event)}
-                  >
-                    <option value="">Avdeling</option>
-                    {this.avdelinger.map(avdeling => (
-                      <option key={avdeling.avdeling_id}>{avdeling.navn}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -112,15 +98,14 @@ class Ekstrautstyr extends Component {
   }
   mounted() {
     utstyrService.getUtstyr(utstyr => {
+      console.log("mounted");
       this.setState({ altUtstyr: utstyr });
-      this.setState({ utstyr: utstyr });
+    //  this.setState({ utstyr: utstyr });
+      this.makeChange();
     });
 
     sykkelService.getSykkelklasser(result => {
       this.sykkelklasser = result;
-    });
-    utstyrService.getAvdelinger(result => {
-      this.avdelinger = result;
     });
 
     this.sorteringer = utstyrService.getSorteringer();
@@ -135,14 +120,12 @@ class Ekstrautstyr extends Component {
   }
 
   changeContent(event) {
-    switch (event.target.name) {
-      case 'kompatibel':
         this.valgtKomp = event.target.value;
-        break;
-      case 'avdeling':
-        this.valgtAvdeling = event.target.value;
-    }
+        this.makeChange();
+  }
 
+  makeChange(){
+    console.log("makeChange");
     utstyrService.visKompatibel(this.valgtKomp, this.state.altUtstyr, utvalg1 => {
       utstyrService.visAvdeling(this.valgtAvdeling, utvalg1, utvalg2 => {
         utstyrService.sortUtstyrsok(this.valgtSortering, utvalg2, sortert => {
