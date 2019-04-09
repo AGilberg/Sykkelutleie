@@ -18,7 +18,7 @@ class SykkelID extends Component {
         <Card>
           <div className="col-md-4" style={{ margin: '30px' }}>
             <h4>Sykkel ID: </h4>
-            <div className="brBottom">
+            <div>
               <input
                 id="id"
                 name="id"

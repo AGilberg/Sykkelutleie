@@ -105,10 +105,7 @@ class Leieperiode extends Component {
   }
 
   velg() {
-    /* Fra- og til dato klart for å legges inn i lokalt array her. */
-    let naa = new Date();
-      naa = naa.getTime();
-    let calcNaa = Date.now();
+    let calcNaa = this.formaterDato(this.min_date).getTime();
     let calcStart = this.formaterDato(this.fra_dato).getTime();
     let calcSlutt = this.formaterDato(this.til_dato).getTime();
     let antDager = this.getAntDager(calcStart, calcSlutt) + 1;
