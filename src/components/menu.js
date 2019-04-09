@@ -7,7 +7,6 @@ import { sykkelService } from '../services/SykkelService.js';
 import { cartService } from '../services/CartService';
 import confirmBox from '../services/confirmBox';
 
-
 class Menu extends Component {
   avdelinger = [];
   state={
