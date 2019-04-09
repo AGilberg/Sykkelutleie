@@ -31,7 +31,7 @@ class Menu extends Component {
           <NavBar.Link to="/aktivebestillinger">Alle bestillinger</NavBar.Link>
           <NavBar.Link to="/ansatt">Ansatt</NavBar.Link>
 
-           <NavBar.Link to="/sykkelID">Sykkel ID</NavBar.Link>
+           <NavBar.Link to="/sykkelID">Avvik</NavBar.Link>
            <div className="js-hidden" id="leieperiode" />
 
            <div
