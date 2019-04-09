@@ -12,18 +12,22 @@ import varsel from '../services/notifications.js';
 class Kundesøk extends Component {
   kunder = null;
 
-  state = {sok: "", kategori: "navn"};
+  state = { sok: '', kategori: 'navn' };
 
-
-  onInputChange = (event, data) => this.setState({sok: event.target.value.toLowerCase()});
-  onSelectChange = (event) => this.setState({kategori: event.target.value});
+  onInputChange = (event, data) => this.setState({ sok: event.target.value.toLowerCase() });
+  onSelectChange = event => this.setState({ kategori: event.target.value });
 
   render() {
     if (!this.kunder)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
-      const kunder = this.kunder.filter(kunde => kunde[this.state.kategori].toString().toLowerCase().includes(this.state.sok));
+    const kunder = this.kunder.filter(kunde =>
+      kunde[this.state.kategori]
+        .toString()
+        .toLowerCase()
+        .includes(this.state.sok)
+    );
     return (
       <div>
         {/* Søk etter registrerte kunder */}
@@ -36,19 +40,13 @@ class Kundesøk extends Component {
           <br />
           <input
             type="text"
-            className="shadow brRight"
+            className="shadow brRight kundeinput"
             name="sok"
-            style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
             id="sok"
             placeholder="Søk i kundedatabasen"
             onChange={this.onInputChange}
           />
-          <select
-            id="kategori"
-            className="shadow"
-            style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
-            onChange={this.onSelectChange}
-          >
+          <select id="kategori" className="shadow kundeinput" onChange={this.onSelectChange}>
             <option value="navn">Navn</option>
             <option value="mail">Epost</option>
             <option value="tlf">Telefon</option>
@@ -83,9 +81,11 @@ class Kundesøk extends Component {
 
                     <Column left>
                       <Button.Danger
-                        onClick={()=>{this.slettKunde(kunde)}}
-                        >
-                          Slett kunde
+                        onClick={() => {
+                          this.slettKunde(kunde);
+                        }}
+                      >
+                        Slett kunde
                       </Button.Danger>
                     </Column>
                   </Row>
@@ -114,12 +114,11 @@ class Kundesøk extends Component {
     });
   }
 
-
-  slettKunde(kunde){
+  slettKunde(kunde) {
     console.log(kunde);
-    confirmBox("Varsel","Ønsker du å slette " + kunde.fornavn + " " + kunde.etternavn + "?", res=>{
-      if(res == 1){
-        console.log("SLETT EN KUNDE!, lag funk");
+    confirmBox('Varsel', 'Ønsker du å slette ' + kunde.fornavn + ' ' + kunde.etternavn + '?', res => {
+      if (res == 1) {
+        console.log('SLETT EN KUNDE!, lag funk');
         varsel('Suksess!', 'Kunden ble slettet', 'vrsl-success');
       }
     });

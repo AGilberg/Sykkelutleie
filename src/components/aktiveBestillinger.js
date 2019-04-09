@@ -7,8 +7,8 @@ import { bestillingService } from '../services/BestillingService.js';
 import { kundeService } from '../services/KundeService.js';
 import ReactLoading from 'react-loading';
 import formatDate from '../services/formatDate.js';
-import Tabs from 'react-bootstrap/Tabs'
-import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 class AktiveBestillinger extends Component {
   bestilling = null;
@@ -21,10 +21,9 @@ class AktiveBestillinger extends Component {
       );
     return (
       <div className="main">
-
         <Tabs defaultActiveKey="aktiveBestillinger" id="bestillingTabs">
-          <Tab eventKey="aktiveBestillinger" title="Aktive bestillinger">
-          {/* Visning av bestillinger som ikke har status som fullført */}
+          <Tab eventKey="aktiveBestillinger" title="Aktive bestillinger" className="doubleBr">
+            {/* Visning av bestillinger som ikke har status som fullført */}
             <Row>
               <Column>BestillingsID</Column>
               <Column>Kunde</Column>
@@ -46,8 +45,7 @@ class AktiveBestillinger extends Component {
               ))}
             </List>
           </Tab>
-          <br />
-          <br />
+
           <Tab eventKey="fullforteBestillinger" title="Fullførte bestillinger">
             {/* Visning av bestillinger som har status som fullført */}
             <Row>
