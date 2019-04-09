@@ -26,6 +26,7 @@ class ProduktIDService {
           return console.error(error);
         }
         console.log(results);
+        varsel('Suksess!', 'Sykkelen er oppdatert', 'vrsl-success');
       }
     );
   }
