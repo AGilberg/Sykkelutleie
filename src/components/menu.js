@@ -22,6 +22,7 @@ class Menu extends Component {
         //ja
         this.setState({ avdValue: name });
         cartService.dropOrder();
+        cartService.setAvdeling(id);
         history.push('/leieperiode');
       }
     });

@@ -60,6 +60,9 @@ class Handlekurv extends Component {
       if(antVarer <= 0){
         varsel('Feil!', 'Du må legge til minst en vare', 'vrsl-danger');
       }
+      if(cartService.getAvdeling() == -1){
+        varsel('Feil!', 'Du har ikke valgt avdeling', 'vrsl-danger');
+      }
     }
   }
 

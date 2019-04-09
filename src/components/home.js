@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Card, List, Row, Column, NavBar, Button, Form } from '../widgets';
 import Iframe from 'react-iframe';
+import { cartService } from '../services/CartService';
 
 class Home extends Component {
   constructor() {
@@ -9,13 +10,20 @@ class Home extends Component {
     this.state = {
       useURL: ''
     };
-    this.trondelagURL = 'https://www.yr.no/sted/Norge/Tr%c3%b8ndelag/Trondheim/Trondheim/ekstern_boks_tre_dager.html';
-    this.isbjornURL = 'https://www.yr.no/sted/Norge/Svalbard/Isbj%c3%b8rnhamna/ekstern_boks_tre_dager.html';
-    this.osloURL = 'https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/ekstern_boks_tre_dager.html';
-  }
+    this.urlArr = [];
+    this.urlArr[1] = 'https://www.yr.no/sted/Norge/Tr%c3%b8ndelag/Trondheim/Trondheim/ekstern_boks_tre_dager.html';//trøndelag
+    this.urlArr[2] = 'https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/ekstern_boks_tre_dager.html';//oslo
+    this.urlArr[3] = 'https://www.yr.no/sted/Norge/Svalbard/Isbj%c3%b8rnhamna/ekstern_boks_tre_dager.html';//isbjørn
+    }
 
   mounted() {
-    this.setState({ useURL: this.isbjornURL }); // FIXME: hent inn URL utenfra, bør egentlig ligge i DB sammen med avdeling elns
+    let id = cartService.getAvdeling();
+    if(id != -1 && id <= 3){
+        this.setState({ useURL: this.urlArr[id] });
+    }else{
+        this.setState({ useURL: this.urlArr[1] });
+    }
+
   }
 
   render() {
