@@ -52,7 +52,7 @@ class SykkelID extends Component {
 
         <div>  ID: {this.info.sykkel_id}  </div>
         <div> Typenavn: {this.info.typenavn} </div>
-        <div> {this.info.navn}  </div>
+        <div> Eier: {this.info.navn}  </div>
         <Form.Label>Nå avdeling:</Form.Label>
         <br />
         <select id="avdSel" onChange={() => {
@@ -64,8 +64,7 @@ class SykkelID extends Component {
             </option>
           ))}
         </select>
-
-        <div>  Status {this.info.status_id} </div>
+        <div> </div>
         <Form.Label>Status:</Form.Label>
         <br />
         <select value={this.info.status_id} onChange={e => (this.info.status_id = e.target.value)}>
@@ -81,9 +80,11 @@ class SykkelID extends Component {
     );
   }
   sok(id) {
+    if (id!=0)
     produktIDService.getSykkelByID(id, success => {
       this.info = success;
       console.log(this.info);
+
     });
     bestillingService.tilstander(status => {
       this.status = status;
