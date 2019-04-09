@@ -23,9 +23,7 @@ class Kundesøk extends Component {
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
-      console.log(this.state);
       const kunder = this.kunder.filter(kunde => kunde[this.state.kategori].toString().toLowerCase().includes(this.state.sok));
-      console.log(kunder);
     return (
       <div>
         {/* Søk etter registrerte kunder */}
@@ -111,7 +109,7 @@ class Kundesøk extends Component {
     kundeService.getKunder(kunder => {
       this.kunder = kunder.map(kunde => ({
         ...kunde,
-        navn: `${kunde.fornavn} ${kunde.etternavn}`
+        navn: `${kunde.fornavn} ${kunde.etternavn}` // Slår sammen fornavn og etternavn for søkbarhet
       }));
     });
   }
