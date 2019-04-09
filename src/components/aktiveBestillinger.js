@@ -43,8 +43,7 @@ class AktiveBestillinger extends Component {
             {/* Visning av bestillinger som ikke har status som fullført */}
             <input
               type="text"
-              className="shadow brRight"
-              style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
+              className=" brRight bestillingInput"
               placeholder="Søk etter kunde"
               onChange={this.onInputChange}
             />
@@ -74,8 +73,7 @@ class AktiveBestillinger extends Component {
             {/* Visning av bestillinger som har status som fullført */}
             <input
               type="text"
-              className="shadow brRight"
-              style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
+              className=" brRight bestillingInput"
               placeholder="Søk etter kunde"
               onChange={this.onInputChange}
             />

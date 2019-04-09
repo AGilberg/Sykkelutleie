@@ -82,7 +82,6 @@ img:hover {
   border: 1px solid #c9dbdb;
   border-top: none;
   font-size: 1rem;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .col-md-2 a {
@@ -359,4 +358,11 @@ a {
   border: 2px solid lightgrey;
   border-radius: 4px;
   padding: 5px;
+}
+
+.bestillingInput {
+  border: 2px solid #dee0e2;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
 }
