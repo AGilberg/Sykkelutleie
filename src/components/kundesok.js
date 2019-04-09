@@ -58,7 +58,7 @@ class Kundesøk extends Component {
         <div id="kunderesultat" style={{ padding: '12px', margin: '5px' }}>
           <div>
             {kunder.map(kunde => (
-              <Card className="brBottom shadow" key={kunde.person_id}>
+              <Card className="brBottom shadow boxColor" key={kunde.person_id}>
                 <ul style={{ paddingTop: '15px' }}>
                   <li>Navn: {kunde.fornavn + ' ' + kunde.etternavn}</li>
                   <li>Mail: {kunde.mail}</li>

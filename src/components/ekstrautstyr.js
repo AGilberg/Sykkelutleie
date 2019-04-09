@@ -53,6 +53,7 @@ class Ekstrautstyr extends Component {
                   </select>
                 </div>
               </div>
+
               <div className="col-6">
                 <div className="form-group">
                   <select
