@@ -26,7 +26,7 @@ class BestillingService {
         for (let i = 0; i < varer.length; i++) {
           let vare = varer[i];
           switch (vare.kategori) {
-            case 'sykkel': //trenger bestillng_id og sykkel_id // FIXME: registrerer kun sykkelid 16
+            case 'sykkel': //trenger bestillng_id og sykkel_id 
               for(let k = 0; k < vare.antall; k++){
                 connection.query(
                   'insert into INNHOLDSYKKEL (innholdsykkel_id, bestilling_id, sykkel_id) values (?,?,?)',

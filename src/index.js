@@ -21,17 +21,27 @@ import Iframe from 'react-iframe';
 import { cartService } from './services/CartService';
 import confirmBox from './services/confirmBox';
 import varsel from './services/notifications.js';
+import Login from './components/login';
+import { loginService } from './services/LoginService';
 
 import createHashHistory from 'history/createHashHistory';
 export const history = createHashHistory();
 
 class Menu extends Component {
+  // mounted(){// FIXME: legg til for å bruke innloggingen og utlogging, IKKE FJERN
+  //   if(!cartService.getIsLoggedInn()){
+  //    document.getElementById("loginCover").classList.remove('js-hidden');
+  //     history.push('/login');
+  //   }
+  // }
+
   render() {
     return (
       <div
         className="col bg-light"
         style={{ boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)' }}
       >
+        <div id="loginCover" className="js-cover js-hidden" />
         <NavBar
           brand=<img
             src="images/sykkelutleie.jpg"
@@ -42,8 +52,24 @@ class Menu extends Component {
         >
           <NavBar.Link to="/aktivebestillinger">Alle bestillinger</NavBar.Link>
           <NavBar.Link to="/ansatt">Ansatt</NavBar.Link>
-          <NavBar.Link to="/sykkelID">Sykkel ID</NavBar.Link>
-          <div className="js-hidden" id="leieperiode" />
+
+           <NavBar.Link to="/sykkelID">Sykkel ID</NavBar.Link>
+           <div className="js-hidden" id="leieperiode" />
+
+           <div
+             style={{
+               color: 'rgba(0, 0, 0, 0.5)',
+               fontSize: '18px',
+               marginTop: '5px',
+               position: 'absolute',
+               right: '10px',
+               padding: '8px',
+               paddingBottom: '12px',
+               fontWeight: 'bold'
+             }}
+           >
+             <Button.Info onClick={loginService.logout}>Logg ut</Button.Info>
+           </div>
         </NavBar>
       </div>
     );
@@ -165,6 +191,7 @@ ReactDOM.render(
         <Sidenav />
         <div className="col-md-10" style={{ overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
           <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
           <Route exact path="/aktivebestillinger/:bestilling_id" component={BestillingDetails} />
           <Route exact path="/aktivebestillinger/:bestilling_id/edit" component={BestillingEdit} />

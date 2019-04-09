@@ -36,40 +36,45 @@ class BestillingDetails extends Component {
               margin: '14px'
             }}
           >
-            <Row>
-              <Column width={3}>Startdato:</Column>
-              <Column>{this.formateDate(this.bestill.leie_start)}</Column>
-            </Row>
-            <br />
-            <Row>
-              <Column width={3}>Sluttdato:</Column>
-              <Column>{this.formateDate(this.bestill.leie_slutt)}</Column>
-            </Row>
-            <br />
-            <Row>
-              <Column width={3}>Kunde:</Column>
-              <Column>
-                {this.bestill.fornavn} {this.bestill.etternavn}
-              </Column>
-            </Row>
-            <br />
-            <Row>
-              <Column width={3}>Samlet pris:</Column>
-              <Column>{this.bestill.sum},-</Column>
-            </Row>
-            <br />
-            <Row>
-              <Column width={3}>Status:</Column>
-              <Column>{this.bestill.tilstand}</Column>
-            </Row>
-            <br />
-            <Row>
-              <Column width={3}>Beskrivelse:</Column>
-              <Column>{this.bestill.beskrivelse}</Column>
-            </Row>
+            <div className="brBottom">
+              <Row>
+                <Column width={3}>Startdato:</Column>
+                <Column>{this.formateDate(this.bestill.leie_start)}</Column>
+              </Row>
+            </div>
 
-            <br />
-            <br />
+            <div className="brBottom">
+              <Row>
+                <Column width={3}>Sluttdato:</Column>
+                <Column>{this.formateDate(this.bestill.leie_slutt)}</Column>
+              </Row>
+            </div>
+            <div className="brBottom">
+              <Row>
+                <Column width={3}>Kunde:</Column>
+                <Column>
+                  {this.bestill.fornavn} {this.bestill.etternavn}
+                </Column>
+              </Row>
+            </div>
+            <div className="brBottom">
+              <Row>
+                <Column width={3}>Samlet pris:</Column>
+                <Column>{this.bestill.sum},-</Column>
+              </Row>
+            </div>
+            <div className="brBottom">
+              <Row>
+                <Column width={3}>Status:</Column>
+                <Column>{this.bestill.tilstand}</Column>
+              </Row>
+            </div>
+            <div className="doubleBr">
+              <Row>
+                <Column width={3}>Beskrivelse:</Column>
+                <Column>{this.bestill.beskrivelse}</Column>
+              </Row>
+            </div>
             <Row>
               <Column width={3}>Bestilte varer:</Column>
               <Column>

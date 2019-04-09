@@ -12,11 +12,22 @@ import varsel from '../services/notifications.js';
 class Kundesøk extends Component {
   kunder = null;
 
+  state = { sok: '', kategori: 'navn' };
+
+  onInputChange = (event, data) => this.setState({ sok: event.target.value.toLowerCase() });
+  onSelectChange = event => this.setState({ kategori: event.target.value });
+
   render() {
     if (!this.kunder)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
+    const kunder = this.kunder.filter(kunde =>
+      kunde[this.state.kategori]
+        .toString()
+        .toLowerCase()
+        .includes(this.state.sok)
+    );
     return (
       <div>
         {/* Søk etter registrerte kunder */}
@@ -29,29 +40,24 @@ class Kundesøk extends Component {
           <br />
           <input
             type="text"
-            className="shadow brRight"
+            className="shadow brRight kundeinput"
             name="sok"
-            style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
             id="sok"
             placeholder="Søk i kundedatabasen"
-            onChange={this.sok}
+            onChange={this.onInputChange}
           />
-          <select
-            id="kategori"
-            className="shadow"
-            style={{ border: '2px solid lightgrey', borderRadius: '4px', padding: '5px' }}
-          >
-            <option value="0">Navn</option>
-            <option value="1">Epost</option>
-            <option value="2">Telefon</option>
-            <option value="3">Adresse</option>
-            <option value="4">Fødselsdato</option>
+          <select id="kategori" className="shadow kundeinput" onChange={this.onSelectChange}>
+            <option value="navn">Navn</option>
+            <option value="mail">Epost</option>
+            <option value="tlf">Telefon</option>
+            <option value="adresse">Adresse</option>
+            <option value="fodt">Fødselsdato</option>
           </select>
         </div>
 
         <div id="kunderesultat" style={{ padding: '12px', margin: '5px' }}>
           <div>
-            {this.kunder.map(kunde => (
+            {kunder.map(kunde => (
               <Card className="brBottom shadow" key={kunde.person_id}>
                 <ul style={{ paddingTop: '15px' }}>
                   <li>Navn: {kunde.fornavn + ' ' + kunde.etternavn}</li>
@@ -75,9 +81,11 @@ class Kundesøk extends Component {
 
                     <Column left>
                       <Button.Danger
-                        onClick={()=>{this.slettKunde(kunde)}}
-                        >
-                          Slett kunde
+                        onClick={() => {
+                          this.slettKunde(kunde);
+                        }}
+                      >
+                        Slett kunde
                       </Button.Danger>
                     </Column>
                   </Row>
@@ -99,36 +107,18 @@ class Kundesøk extends Component {
   }
   mounted() {
     kundeService.getKunder(kunder => {
-      this.kunder = kunder;
+      this.kunder = kunder.map(kunde => ({
+        ...kunde,
+        navn: `${kunde.fornavn} ${kunde.etternavn}` // Slår sammen fornavn og etternavn for søkbarhet
+      }));
     });
   }
 
-// Søkefunksjon for å søke etter registrerte kunder
-  sok() {
-    var input, filter, type, div, ul, i, li, txt;
-    input = document.getElementById('sok');
-    filter = input.value.toUpperCase();
-    type = document.getElementById('kategori').value; // Henter typekategori for søk
-    div = document.getElementById('kunderesultat').children[0];
-    ul = div.getElementsByTagName('ul');
-    for (i = 0; i < this.kunder.length; i++) {
-      li = ul[i].getElementsByTagName('li');
-      txt = li[type].textContent || li[type].innerText;
-      if (txt.toUpperCase().indexOf(filter) > -1) { // Fjerner case-sensitivitet
-        ul[i].style.display = '';
-        ul[i].closest('div.card').style.display = '';
-      } else {
-        ul[i].style.display = 'none';
-        ul[i].closest('div.card').style.display = 'none'; // Fjerner kunder som ikke matcher
-      }
-    }
-  }
-
-  slettKunde(kunde){
+  slettKunde(kunde) {
     console.log(kunde);
-    confirmBox("Varsel","Ønsker du å slette " + kunde.fornavn + " " + kunde.etternavn + "?", res=>{
-      if(res == 1){
-        console.log("SLETT EN KUNDE!, lag funk");
+    confirmBox('Varsel', 'Ønsker du å slette ' + kunde.fornavn + ' ' + kunde.etternavn + '?', res => {
+      if (res == 1) {
+        console.log('SLETT EN KUNDE!, lag funk');
         varsel('Suksess!', 'Kunden ble slettet', 'vrsl-success');
       }
     });

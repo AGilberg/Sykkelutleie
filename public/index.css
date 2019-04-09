@@ -82,7 +82,6 @@ img:hover {
   border: 1px solid #c9dbdb;
   border-top: none;
   font-size: 1rem;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .col-md-2 a {
@@ -126,6 +125,11 @@ img:hover {
 .brBottom {
   margin-bottom: 30px;
 }
+
+.doubleBr {
+  margin-bottom: 60px;
+}
+
 .brRight {
   margin-right: 30px;
 }
@@ -226,17 +230,6 @@ img:hover {
   color: white;
 }
 
-#leieperiode {
-  margin-left: 100px;
-  border: 1px solid #deeaf2;
-  padding-top: 5px;
-  padding-right: 10px;
-  padding-left: 10px;
-  background-color: #eaf7ff;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  display: hidden;
-}
-
 .js-hidden {
   display: none;
 }
@@ -293,6 +286,16 @@ img:hover {
   color: black;
 }
 
+.loginBox {
+  /*justering av confirmBox*/
+  top: 20%;
+  margin-left: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+}
+
 .confirmBox > button {
   box-sizing: border-box;
   width: 30%;
@@ -311,7 +314,7 @@ img:hover {
 
 /* Tekst */
 a {
-  color: grey;
+  color: #66686b;
   text-decoration: none;
   background-color: transparent;
   font-size: 18px;
@@ -337,4 +340,29 @@ a {
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0, 0, 0, 0.5);
   font-size: 18px;
+}
+
+.js-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.kundeinput {
+  border: 2px solid lightgrey;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.bestillingInput {
+  border: 2px solid #dee0e2;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
 }
