@@ -14,7 +14,7 @@ class LoginService {
           return console.error(error);
         }
         console.log("---LoginService------");
-        console.log(results[0].avdeling_id);
+        console.log(results);
         if(results.length <= 0){
             varsel("FEIL!", "Feil brukernavn eller passord", "vrsl-danger");
             success(false);
@@ -22,7 +22,6 @@ class LoginService {
         }
         varsel("Suksess!", "Du er nå logget inn", "vrsl-success");
         cartService.setIsLoggedInn(true);
-        cartService.setAvdeling(results[0].avdeling_id);
         success(true);
       }
     );

@@ -33,7 +33,7 @@ class Home extends Component {
                 <div className="coverWeather" />
               </div>
             </Row>
-            <h5>Årets ansatt: Rikard Erlend Gjelsvik </h5>
+            <h5>Årets ansatt: Rikard Gjelsvik </h5>
             <Row>
               <div className="col-md-4">
                 <img

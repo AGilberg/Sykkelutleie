@@ -113,15 +113,14 @@ class UtstyrService {
     }
   }
 
-  visAvdeling(avdeling_id, arrInn, success) {
-    avdeling_id = parseInt(avdeling_id);
-    if (avdeling_id == -1) {
+  visAvdeling(avdeling, arrInn, success) {
+    if (avdeling.length == 0) {
       success(arrInn);
       return;
     }
     let arr = arrInn.slice(); //lager en klone av arrayen for ikke å endre den originale
     for (let i = arr.length - 1; i >= 0; i--) {
-      if (arr[i].avdeling_id !== avdeling_id) {
+      if (arr[i].avdelingsnavn !== avdeling) {
         arr.splice(i, 1);
       }
     }

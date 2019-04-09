@@ -9,11 +9,11 @@ import varsel from '../services/notifications.js';
 
 class ProduktUtstyr extends Component {
   utstyr = null;
-  avdeling = null;
+  avdelinger = null;
   antall = 1;
 
   render() {
-    if (!this.utstyr || !this.avdeling)
+    if (!this.utstyr || !this.avdelinger)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
@@ -73,7 +73,7 @@ class ProduktUtstyr extends Component {
                         </Button.Info>
                       </div>
                     </li>
-                    <li>{this.avdeling.navn}</li>
+                    <li>{this.avdelinger.navn}</li>
                   </ul>
                 </div>
               </div>
@@ -106,14 +106,14 @@ class ProduktUtstyr extends Component {
     });
 
     utstyrService.getAvdelingNavn(this.props.match.params.id, avdeling => {
-      this.avdeling = avdeling;
+      this.avdelinger = avdeling;
     });
 
     if(cartService.getStartdato() == null){
-      varsel('OBS!', 'Leieperiode er ikke valgt', 'vrsl-danger');
+      varsel('Feil!', 'Leieperiode er ikke valgt', 'vrsl-danger');
     }
-    if( cartService.getAvdeling() == -1){
-      varsel('OBS!', 'Avdeling er ikke valgt', 'vrsl-danger');
+    if( cartService.getAvdeling() == null){
+      varsel('Feil!', 'Avdeling er ikke valgt', 'vrsl-danger');
     }
   }
 
@@ -165,7 +165,7 @@ class ProduktUtstyr extends Component {
       if(cartService.getStartdato() == null){
         varsel('Feil!', 'Leieperiode er ikke valgt', 'vrsl-danger');
       }
-      if( cartService.getAvdeling() == -1){
+      if( cartService.getAvdeling() == null){
         varsel('Feil!', 'Avdeling er ikke valgt', 'vrsl-danger');
       }
       if(this.antall == 0){

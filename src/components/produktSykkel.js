@@ -92,6 +92,7 @@ class ProduktSykkel extends Component {
                         </Button.Info>
                       </div>
                     </li>
+                    <li>Denne skal vise avdeling, men må hentes fra forrige eller kunne velges</li>
                   </ul>
                 </div>
                 <br />
@@ -129,7 +130,7 @@ class ProduktSykkel extends Component {
     this.startdato = cartService.getStartdato();
     this.avdeling = cartService.getAvdeling();
 
-    if (this.sluttdato != null && this.avdeling != -1) {
+    if (this.sluttdato != null && this.avdeling != null) {
       sykkelService.getLedigeSykler(
         this.props.match.params.id,
         this.startdato,
@@ -148,7 +149,7 @@ class ProduktSykkel extends Component {
       if (this.sluttdato == null) {
         varsel('OBS!', 'Leieperiode er ikke valgt', 'vrsl-danger');
       }
-      if (this.avdeling == -1) {
+      if (this.avdeling == null) {
         varsel('OBS!', 'Avdeling er ikke valgt', 'vrsl-danger');
       }
     }
@@ -203,7 +204,7 @@ class ProduktSykkel extends Component {
       if (this.sluttdato == null) {
         varsel('Feil!', 'Leieperiode er ikke valgt', 'vrsl-danger');
       }
-      if (this.avdeling == -1) {
+      if (this.avdeling == null) {
         varsel('Feil!', 'Avdeling er ikke valgt', 'vrsl-danger');
       }
       if (this.antall == 0) {

@@ -16,7 +16,8 @@ class Sykkel extends Component {
   valgtSortering = '';
   sykkelklasser = [];
   valgtKlassenavn = -1;
-  valgtAvdeling = cartService.getAvdeling();
+  avdelinger = [];
+  valgtAvdeling = -1;
 
   render() {
     if (!this.state.sykkeltyper)
@@ -67,6 +68,21 @@ class Sykkel extends Component {
                   </select>
                 </div>
               </div>
+              <div className="col-6">
+                <div className="form-group">
+                  <select
+                    id="avdeling"
+                    name="avdeling"
+                    className="form-control"
+                    onChange={event => this.changeContent(event)}
+                  >
+                    <option id={-1}>Avdeling</option>
+                    {this.avdelinger.map(avdeling => (
+                      <option key={avdeling.avdeling_id} id={avdeling.avdeling_id}>{avdeling.navn}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -100,11 +116,14 @@ class Sykkel extends Component {
     sykkelService.getSykkeltyper(typer => {
       this.setState({ alleSykkeltyper: typer });
       this.setState({ sykkeltyper: typer });
-      this.makeChange();
     });
 
     sykkelService.getSykkelklasser(klasser => {
       this.sykkelklasser = klasser;
+    });
+
+    sykkelService.getAvdelinger(avdelinger => {
+      this.avdelinger = avdelinger;
     });
   }
 
@@ -118,10 +137,15 @@ class Sykkel extends Component {
   changeContent(event) {
     let sel = document.getElementById(event.target.id);
     let id = sel[sel.selectedIndex].id;
-    this.valgtKlassenavn = id;
-    this.makeChange();
-  }
-  makeChange(){
+    console.log(id);
+    switch (event.target.name) {
+      case 'klassenavn':
+        this.valgtKlassenavn = id;
+        break;
+      case 'avdeling':
+        this.valgtAvdeling = id;
+    }
+
     sykkelService.visKlasse(this.valgtKlassenavn, this.state.alleSykkeltyper, utvalg1 => {
       sykkelService.visAvdeling(this.valgtAvdeling, utvalg1, utvalg2 => {
         sykkelService.sortSykkelsok(this.valgtSortering, utvalg2, sortert => {

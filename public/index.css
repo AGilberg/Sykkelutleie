@@ -276,7 +276,6 @@ img:hover {
   margin-left: 30%;
   width: 40%;
   height: 200px;
-  padding: 20px;
 
   background-color: white;
   border-radius: 20px;
@@ -295,7 +294,6 @@ img:hover {
   flex-direction: column;
   justify-content: center;
   height: 300px;
-  padding: 30px;
 }
 
 .confirmBox > button {
@@ -371,9 +369,4 @@ a {
 
 .boxColor {
   background-color: #f9fdff;
-}
-
-.avd_select {
-  margin-top: 8px;
-  margin-left: 20px;
 }
