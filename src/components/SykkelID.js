@@ -18,7 +18,7 @@ class SykkelID extends Component {
         <Card>
           <div className="col-md-4" style={{ margin: '30px' }}>
             <h4>Sykkel ID: </h4>
-            <div>
+            <div className="brBottom">
               <input
                 id="id"
                 name="id"
@@ -50,7 +50,7 @@ class SykkelID extends Component {
               </Row>
               <Row>
                 <Column>
-                  <div> Avdeling{this.info.avdeling_id} </div>
+                  <div> Avdeling {this.info.avdeling_id} </div>
                   <Form.Label>Nå avdeling:</Form.Label>
                   <br />
                   <select
@@ -67,7 +67,7 @@ class SykkelID extends Component {
                   </select>
 
                   <div> Status {this.info.status_id} </div>
-                  <Form.Label>Status:</Form.Label>
+                  <Form.Label>Status: </Form.Label>
                   <br />
                   <select value={this.info.status_id} onChange={e => (this.info.status_id = e.target.value)}>
                     {this.status.map(status => (
