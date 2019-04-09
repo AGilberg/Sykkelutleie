@@ -122,9 +122,6 @@ class SykkelID extends Component {
       }else{
           this.info = success;
       }
-
-      this.render();
-
     });
     bestillingService.tilstander(status => {
       this.status = status;
