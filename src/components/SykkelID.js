@@ -48,12 +48,14 @@ class SykkelID extends Component {
               <Row>
                 <Column />
               </Row>
+
               <Row>
                 <Column>
-                  <div> Avdeling {this.info.avdeling_id} </div>
-                  <Form.Label>Nå avdeling:</Form.Label>
+                  <div> Avdeling: {this.info.avdeling_id} </div>
+                  <Form.Label>Nå avdeling: </Form.Label>
                   <br />
                   <select
+                    className="brBottom kundeinput"
                     id="avdSel"
                     onChange={() => {
                       this.updateAvdeling(event);
@@ -66,10 +68,14 @@ class SykkelID extends Component {
                     ))}
                   </select>
 
-                  <div> Status {this.info.status_id} </div>
+                  <div> Status: {this.info.status_id} </div>
                   <Form.Label>Status: </Form.Label>
                   <br />
-                  <select value={this.info.status_id} onChange={e => (this.info.status_id = e.target.value)}>
+                  <select
+                    className="kundeinput"
+                    value={this.info.status_id}
+                    onChange={e => (this.info.status_id = e.target.value)}
+                  >
                     {this.status.map(status => (
                       <option key={status.status_id} value={status.status_id}>
                         {status.tilstand}
