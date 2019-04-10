@@ -65,12 +65,10 @@ class SykkelID extends Component {
                       className="brBottom kundeinput"
                       id="avdSel"
                       value={this.info.avdeling_id}
-                      onChange={() => {
-                        this.updateAvdeling(event);
-                      }}
+                      onChange={e => (this.info.avdeling_id = e.target.value)}
                     >
                       {this.avdeling.map(avdeling => (
-                        <option key={avdeling.naa_avdeling_id} id={avdeling.naa_avdeling_id}>
+                        <option key={avdeling.avdeling_id} value={avdeling.avdeling_id}>
                           {avdeling.navn}
                         </option>
                       ))}
@@ -132,7 +130,7 @@ class SykkelID extends Component {
   }
   oppdater() {
     if (this.info !== null) {
-      produktIDService.updateSykkelByID(this.info.status_id, this.info.naa_avdeling_id, this.sykkelid);
+      produktIDService.updateSykkelByID(this.info.status_id, this.info.avdeling_id, this.sykkelid);
     } else {
       varsel('Feil!', 'Ingen sykkel valgt', 'vrsl-danger');
     }

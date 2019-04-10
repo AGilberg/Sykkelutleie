@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import { Card, List, Row, Column, NavBar, Button, Form } from '../widgets';
 import { history } from '../index.js';
 import { loginService } from '../services/LoginService';
+import { cartService } from '../services/CartService';
 import confirmBox from '../services/confirmBox';
 import varsel from '../services/notifications.js';
 
