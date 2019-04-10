@@ -5,7 +5,7 @@ class VareService {
   getVarer(success) {
     connection.query('select * from UTSTYR', (error, results) => {
       if (error) {
-        varsel("Oops!", "Det oppsto problemer med å hente data.", "vrsl-danger");
+        varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
         return console.error(error);
       }
 
@@ -29,6 +29,28 @@ class VareService {
     options[2] = ['Pris, lav-høy', 'prisLH'];
     options[3] = ['Pris, høy-lav', 'prisHL'];
     return options;
+  }
+  getPakker(success) {
+    connection.query('select * from PAKKE', (error, results) => {
+      if (error) {
+        varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
+        return console.error(error);
+      }
+
+      success(results);
+    });
+  }
+  getPakkeinnhold(pakkeinnhold) {
+    connection.query(
+      'select * from PAKKE, PAKKEINNHOLD where PAKKEINNHOLD.pakke_id = ? and PAKKE.pakke_id = PAKKE.pakke_id',
+      [pakkeinnhold],
+      (error, results) => {
+        if (error) {
+          varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
+          return console.error(error);
+        }
+      }
+    );
   }
 }
 
