@@ -12,16 +12,6 @@ class VareService {
       success(results);
     });
   }
-  getAvdeling(success) {
-    connection.query('select * from AVDELING', (error, results) => {
-      if (error) return console.error(error);
-
-      success(results);
-    });
-  }
-  getVare(metode, navn, sykkeltype) {
-    //søk etter en vare
-  }
   getSorteringer() {
     let options = [];
     options[0] = ['Alfabetisk A-Z', 'alfAZ'];
@@ -96,4 +86,4 @@ class VareService {
   }
 }
 
-export let vareService = new VareService();
+export let pakkeService = new PakkeService();
