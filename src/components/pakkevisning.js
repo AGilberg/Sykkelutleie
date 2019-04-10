@@ -94,16 +94,16 @@ class Pakkevisning extends Component {
     );
   }
   mounted() {
-    vareService.getPakkeinnholdsykler(this.props.match.params.pakke_id, pakkesykkel => {
+    pakkeService.getPakkeinnholdsykler(this.props.match.params.pakke_id, pakkesykkel => {
       this.pakkesykkel = pakkesykkel;
     });
-    vareService.getPakkeinnholdutstyr(this.props.match.params.pakke_id, pakkeutstyr => {
+    pakkeService.getPakkeinnholdutstyr(this.props.match.params.pakke_id, pakkeutstyr => {
       this.pakkeutstyr = pakkeutstyr;
     });
-    vareService.getPakke(this.props.match.params.pakke_id, pakke => {
+    pakkeService.getPakke(this.props.match.params.pakke_id, pakke => {
       this.pakke = pakke;
     });
-    vareService.getInnhold(this.props.match.params.pakkeinnhold_id, innhold => {
+    pakkeService.getInnhold(this.props.match.params.pakkeinnhold_id, innhold => {
       this.innhold = innhold;
     });
 
