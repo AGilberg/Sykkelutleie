@@ -37,7 +37,7 @@ class Home extends Component {
             <h5>Værmelding:</h5>
             <Row>
               <div id="here" className="vaermelding brBottom">
-                <Iframe height="195px" width="100%" url={this.state.useURL} sandbox="allow-scripts" />
+                <Iframe style="position: 'static'" height="195px" width="100%" url={this.state.useURL} sandbox="allow-scripts" />
                 <div className="coverWeather" />
               </div>
             </Row>
