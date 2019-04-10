@@ -18,6 +18,7 @@ class Sidenav extends Component {
         <NavBar.Link to="/kunde">Kunde</NavBar.Link>
         <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
         <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
+        <NavBar.Link to="/pakker">Pakketilbud</NavBar.Link>
         <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
       </div>
     );

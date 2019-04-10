@@ -15,6 +15,8 @@ import { ProduktSykkel } from './components/produktSykkel.js';
 import { ProduktUtstyr } from './components/produktUtstyr.js';
 import { RegistrerKunde } from './components/registrerKunde.js';
 import { Sykkel } from './components/sykkel.js';
+import { Pakketilbud } from './components/pakker.js';
+import { Pakkevisning } from './components/pakkevisning.js';
 import Login from './components/login';
 import Home from './components/home';
 import Menu from './components/menu';
@@ -53,6 +55,8 @@ ReactDOM.render(
           <Route exact path="/ekstrautstyr" component={Ekstrautstyr} />
           <Route exact path="/ekstrautstyr/:id" component={ProduktUtstyr} />
           <Route exact path="/handlekurv" component={Handlekurv} />
+          <Route exact path="/pakker" component={Pakketilbud} />
+          <Route exact path="/pakker/:pakke_id" component={Pakkevisning} />
         </div>
       </div>
     </div>
