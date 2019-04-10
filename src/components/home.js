@@ -37,8 +37,10 @@ class Home extends Component {
             <h5>Værmelding:</h5>
             <Row>
               <div id="here" className="vaermelding brBottom">
-                <Iframe style="position: 'static'" height="195px" width="100%" url={this.state.useURL} sandbox="allow-scripts" />
-                <div className="coverWeather" />
+                <Iframe height="300px" width="100%" url={this.state.useURL} sandbox="allow-scripts" />
+                <div className="coverWeather" >
+                  <div className="coverWeather2" />
+                </div>
               </div>
             </Row>
             <h5>Årets ansatt: Rikard Erlend Gjelsvik </h5>

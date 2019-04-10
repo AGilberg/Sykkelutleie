@@ -238,8 +238,7 @@ img:hover {
   /*styling matcher yr-boksen*/
   box-sizing: border-box;
   width: 468px;
-  height: 196px;
-  border-bottom: 1px solid blue;
+  height: 300px;
   overflow: hidden;
   pointer-events: none;
 }
@@ -254,6 +253,19 @@ img:hover {
   top: 0;
   left: 0;
   opacity: 1;
+}
+
+.coverWeather2 {
+  /*gjør yr-boksen uklikkbar*/
+  box-sizing: border-box;
+  width: 100%;
+  height: 110px;
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(249,253,255);
+  border-top: 1px solid blue;
 }
 
 .coverConfirmBox {
