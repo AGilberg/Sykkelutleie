@@ -1,7 +1,7 @@
 import { connection } from '../mysql_connection';
 import varsel from './notifications.js';
 
-class VareService {
+class PakkeService {
   getVarer(success) {
     connection.query('select * from UTSTYR', (error, results) => {
       if (error) {
