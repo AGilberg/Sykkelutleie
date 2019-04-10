@@ -12,6 +12,9 @@ class Pakkevisning extends Component {
   pakkeutstyr = null;
   pakke = null;
   innhold = null;
+  startdato = null;
+  sluttdato = null;
+  avdeling = null;
 
   render() {
     if (!this.pakkesykkel || !this.pakkeutstyr || !this.pakke || !this.innhold)
@@ -103,10 +106,43 @@ class Pakkevisning extends Component {
     vareService.getInnhold(this.props.match.params.pakkeinnhold_id, innhold => {
       this.innhold = innhold;
     });
+
+    this.sluttdato = cartService.getSluttdato();
+    this.startdato = cartService.getStartdato();
+    this.avdeling = cartService.getAvdeling();
+
+    if (this.sluttdato != null && this.avdeling != -1) {
+      this.antall = 0;
+      if (this.sluttdato == null) {
+        varsel('OBS!', 'Leieperiode er ikke valgt', 'vrsl-danger');
+      }
+      if (this.avdeling == -1) {
+        varsel('OBS!', 'Avdeling er ikke valgt', 'vrsl-danger');
+      }
+    }
   }
 
-  back() {
-    history.push('/pakker');
+  add() {
+    if (this.sluttdato != null && this.avdeling != null) {
+      let produkt = {
+        kategori: 'pakke',
+        id: this.pakkesykkel.type_id,
+        navn: this.pakkesykkel.typenavn,
+        pris: this.pakke.pris
+      };
+
+      console.log(produkt);
+      cartService.addItem(produkt);
+      varsel('Suksess!', 'Pakken ble lagt til i handlekurven.', 'vrsl-success');
+      history.push('/pakker');
+    } else {
+      if (this.sluttdato == null) {
+        varsel('Feil!', 'Leieperiode er ikke valgt', 'vrsl-danger');
+      }
+      if (this.avdeling == -1) {
+        varsel('Feil!', 'Avdeling er ikke valgt', 'vrsl-danger');
+      }
+    }
   }
 }
 
