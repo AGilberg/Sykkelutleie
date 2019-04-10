@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { vareService } from '../services/VareService.js';
+import { pakkeService } from '../services/PakkeService.js';
 import { Card, Row, Column, Button } from '../widgets';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
