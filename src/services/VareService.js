@@ -38,19 +38,30 @@ class VareService {
       }
 
       success(results);
+      console.log(results);
     });
   }
-  getPakkeinnhold(pakkeinnhold) {
-    connection.query(
-      'select * from PAKKE, PAKKEINNHOLD where PAKKEINNHOLD.pakke_id = ? and PAKKE.pakke_id = PAKKE.pakke_id',
-      [pakkeinnhold],
-      (error, results) => {
-        if (error) {
-          varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
-          return console.error(error);
-        }
+  getPakke(pakke_id, success) {
+    connection.query('select * from PAKKE where PAKKE.pakke_id =?', [pakke_id], (error, results) => {
+      if (error) {
+        varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
+        return console.error(error);
       }
-    );
+
+      success(results);
+      console.log(results);
+    });
+  }
+  getPakkeinnhold(pakke_id, success) {
+    connection.query('select * from PAKKEINNHOLD where PAKKEINNHOLD.pakke_id = ?', [pakke_id], (error, results) => {
+      if (error) {
+        varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
+        return console.error(error);
+      }
+
+      success(results);
+      console.log(results);
+    });
   }
 }
 
