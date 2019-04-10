@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import { Card, List, Row, Column, NavBar, Button, Form } from '../widgets';
 import { history } from '../index.js';
 import { loginService } from '../services/LoginService';
+import { cartService } from '../services/CartService';
 import confirmBox from '../services/confirmBox';
 import varsel from '../services/notifications.js';
 import { cartService } from '../services/CartService';
@@ -19,6 +20,7 @@ class Sidenav extends Component {
         <NavBar.Link to="/kunde">Kunde</NavBar.Link>
         <NavBar.Link to="/sykkel">Sykkel</NavBar.Link>
         <NavBar.Link to="/ekstrautstyr">Ekstrautstyr</NavBar.Link>
+        <NavBar.Link to="/pakker">Pakketilbud</NavBar.Link>
         <NavBar.Link to="/handlekurv">Handlekurv</NavBar.Link>
       </div>
     );

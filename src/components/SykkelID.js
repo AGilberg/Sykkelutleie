@@ -9,44 +9,43 @@ import { bestillingService } from '../services/BestillingService.js';
 import varsel from '../services/notifications.js';
 
 class SykkelID extends Component {
-
   sykkelid = [];
   info = null;
   status = [];
   avdeling = [];
-  standard =   (
+  standard = (
     <div>
-    <h4>Sykkel ID: </h4>
-    <div className="brBottom">
-      <input
-        id="id"
-        name="id"
-        type="number"
-        placeholder="ID"
-        className="form-control input-md shadow"
-        onChange={event => (this.sykkelid = event.target.value)}
-        required
-      />
+      <h4>Sykkel ID: </h4>
+      <div className="brBottom">
+        <input
+          id="id"
+          name="id"
+          type="number"
+          placeholder="ID"
+          className="form-control input-md shadow"
+          onChange={event => (this.sykkelid = event.target.value)}
+          required
+        />
+      </div>
+      <Row>
+        <Column left>
+          <Button.Light
+            onClick={() => {
+              this.sok(this.sykkelid);
+            }}
+          >
+            Søk
+          </Button.Light>
+        </Column>
+        <Column right>
+          <Button.Success onClick={this.oppdater}>Lagre endringer</Button.Success>
+        </Column>
+      </Row>
     </div>
-    <Row>
-      <Column left>
-        <Button.Light
-          onClick={() => {
-            this.sok(this.sykkelid);
-          }}
-        >
-          Søk
-        </Button.Light>
-      </Column>
-      <Column right>
-        <Button.Success onClick={this.oppdater}>Lagre endringer</Button.Success>
-      </Column>
-    </Row>
-    </div>
-      );
+  );
 
   render() {
-    if(this.info !== null){
+    if (this.info !== null) {
       return (
         <div className="main">
           <Card>
@@ -65,12 +64,11 @@ class SykkelID extends Component {
                     <select
                       className="brBottom kundeinput"
                       id="avdSel"
-                      onChange={() => {
-                        this.updateAvdeling(event);
-                      }}
+                      value={this.info.avdeling_id}
+                      onChange={e => (this.info.avdeling_id = e.target.value)}
                     >
                       {this.avdeling.map(avdeling => (
-                        <option key={avdeling.avdeling_id} id={avdeling.avdeling_id}>
+                        <option key={avdeling.avdeling_id} value={avdeling.avdeling_id}>
                           {avdeling.navn}
                         </option>
                       ))}
@@ -97,30 +95,30 @@ class SykkelID extends Component {
           </Card>
         </div>
       );
-    }else{
-      return(
+    } else {
+      return (
         <div className="main">
-            <Card>
-              <div className="col-md-6" style={{ margin: '30px' }}>
-                {this.standard}
+          <Card>
+            <div className="col-md-6" style={{ margin: '30px' }}>
+              {this.standard}
             </div>
-        </Card>
-      </div>
+          </Card>
+        </div>
       );
     }
   }
 
   sok(id) {
-    if(id.length == 0){
+    if (id.length == 0) {
       varsel('OBS!', 'Ikke gyldig søk', 'vrsl-danger');
       return;
     }
     produktIDService.getSykkelByID(id, success => {
-      if(success === undefined){
+      if (success === undefined) {
         this.info = null;
-            varsel('OBS!', 'Ingen treff', 'vrsl-success');
-      }else{
-          this.info = success;
+        varsel('OBS!', 'Ingen treff', 'vrsl-success');
+      } else {
+        this.info = success;
       }
     });
     bestillingService.tilstander(status => {
@@ -131,12 +129,11 @@ class SykkelID extends Component {
     });
   }
   oppdater() {
-    if(this.info !== null){
-        produktIDService.updateSykkelByID(this.info.status_id, this.info.naa_avdeling_id, this.sykkelid);
-    }else{
+    if (this.info !== null) {
+      produktIDService.updateSykkelByID(this.info.status_id, this.info.avdeling_id, this.sykkelid);
+    } else {
       varsel('Feil!', 'Ingen sykkel valgt', 'vrsl-danger');
     }
-
   }
   updateAvdeling(e) {
     let sel = document.getElementById(e.target.id);

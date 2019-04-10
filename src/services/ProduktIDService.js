@@ -18,7 +18,7 @@ class ProduktIDService {
   updateSykkelByID(status, avdeling, sykkelid) {
     console.log(status, avdeling, sykkelid);
     connection.query(
-      'UPDATE SYKKEL SET status_id=?, naa_avdeling_id=? WHERE sykkel_id=?',
+      'UPDATE SYKKEL SET status_id=?, avdeling_id=? WHERE sykkel_id=?',
       [status, avdeling, sykkelid],
       (error, results) => {
         if (error) {
