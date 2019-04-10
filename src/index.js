@@ -39,7 +39,7 @@ ReactDOM.render(
 
       <div className="row" style={{ height: '100%', paddingBottom: '96px' }}>
         <Sidenav />
-        <div className="col-md-10" style={{ overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
+        <div className="col-md-10" style={{overflowX:'hidden', overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
