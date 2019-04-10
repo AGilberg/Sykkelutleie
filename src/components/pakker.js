@@ -47,7 +47,7 @@ class Pakketilbud extends Component {
   }
 
   mounted() {
-    vareService.getPakker(pakke => {
+    pakkeService.getPakker(pakke => {
       this.pakke = pakke;
     });
   }
