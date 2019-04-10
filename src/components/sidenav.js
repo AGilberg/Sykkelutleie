@@ -6,7 +6,6 @@ import { loginService } from '../services/LoginService';
 import { cartService } from '../services/CartService';
 import confirmBox from '../services/confirmBox';
 import varsel from '../services/notifications.js';
-import { cartService } from '../services/CartService';
 
 //activeStyle funk ikkje
 class Sidenav extends Component {
