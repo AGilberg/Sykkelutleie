@@ -8,40 +8,69 @@ import { cartService } from '../services/CartService.js';
 import varsel from '../services/notifications.js';
 
 class Pakkevisning extends Component {
-  pakkeinnhold = null;
+  pakkesykkel = null;
+  pakkeutstyr = null;
   pakke = null;
+  innhold = null;
 
   render() {
-    if (!this.pakkeinnhold || !this.pakke)
+    if (!this.pakkesykkel || !this.pakkeutstyr || !this.pakke || !this.innhold)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
 
     return (
       <div>
+        <br />
         <Card>
           <div className="container-fluid">
             <div className="row">
               <div className="col-3">
-                <img
-                  style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
-                  src={'images/pakke/' + this.pakke.pakkenavn + '.jpg'}
-                />
+                {this.pakke.map(pakke => (
+                  <img
+                    style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
+                    src={'images/pakker/' + pakke.pakkenavn + '.jpg'}
+                  />
+                ))}
               </div>
               <div className="col-9">
                 {' '}
-                <h4>{this.pakke.pakkenavn}</h4>
+                {this.pakke.map(pakke => (
+                  <h4 key={pakke.pakke_id}>{pakke.pakkenavn}</h4>
+                ))}
+                <br />
                 <div className="ramme">
                   <ul style={{ listStyleType: 'none' }}>
-                    <h5>Produktinformasjon: </h5>
-                    <li>ting</li>
-                    <li className="PrisText">Pris: {this.pakke.pris} kr,-</li>
+                    <h5>Sykler: </h5>
+                    {this.pakkesykkel.map(pakkesykkel => (
+                      <li key={pakkesykkel.pakke_id}>
+                        {pakkesykkel.typenavn}, antall: {pakkesykkel.ant}
+                      </li>
+                    ))}
+
+                    <br />
+
+                    <h5>Utstyr: </h5>
+                    {this.pakkeutstyr.map(pakkeutstyr => (
+                      <li key={pakkeutstyr.pakke_id}>
+                        {pakkeutstyr.navn}, antall: {pakkeutstyr.ant}
+                        <br />
+                      </li>
+                    ))}
+
+                    <br />
+
+                    {this.pakke.map(pakke => (
+                      <li className="PrisText" key={pakke.pakke_id}>
+                        Pris: {pakke.pris} kr,-
+                      </li>
+                    ))}
                     <br />
                     <div className="borderShadow">
-                      <li>beskrivelse</li>
+                      {this.pakke.map(pakke => (
+                        <li key={pakke.pakke_id}>{pakke.beskrivelse}</li>
+                      ))}
                     </div>
-                    <br />
-                    <h5>Detaljer: </h5>
                   </ul>
                 </div>
                 <br />
@@ -49,15 +78,30 @@ class Pakkevisning extends Component {
             </div>
           </div>
         </Card>
+        <br />
+        <Row>
+          <Column right>
+            <Button.Light onClick={this.back}>Tilbake</Button.Light>
+          </Column>
+          <Column left>
+            <Button.Success onClick={this.add}>Legg til i handlekurv</Button.Success>
+          </Column>
+        </Row>
       </div>
     );
   }
   mounted() {
-    vareService.getPakkeinnhold(this.props.match.params.pakke_id, pakkeinnhold => {
-      this.pakkeinnhold = pakkeinnhold;
+    vareService.getPakkeinnholdsykler(this.props.match.params.pakke_id, pakkesykkel => {
+      this.pakkesykkel = pakkesykkel;
+    });
+    vareService.getPakkeinnholdutstyr(this.props.match.params.pakke_id, pakkeutstyr => {
+      this.pakkeutstyr = pakkeutstyr;
     });
     vareService.getPakke(this.props.match.params.pakke_id, pakke => {
       this.pakke = pakke;
+    });
+    vareService.getInnhold(this.props.match.params.pakkeinnhold_id, innhold => {
+      this.innhold = innhold;
     });
   }
 

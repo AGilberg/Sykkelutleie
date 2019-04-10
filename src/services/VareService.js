@@ -41,6 +41,18 @@ class VareService {
       console.log(results);
     });
   }
+
+  getInnhold(pakkeinnhold_id, success) {
+    connection.query('select * from PAKKEINNHOLD where pakkeinnhold_id = ?', [pakkeinnhold_id], (error, results) => {
+      if (error) {
+        varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
+        return console.error(error);
+      }
+
+      success(results);
+      console.log(results);
+    });
+  }
   getPakke(pakke_id, success) {
     connection.query('select * from PAKKE where PAKKE.pakke_id =?', [pakke_id], (error, results) => {
       if (error) {
@@ -52,16 +64,35 @@ class VareService {
       console.log(results);
     });
   }
-  getPakkeinnhold(pakke_id, success) {
-    connection.query('select * from PAKKEINNHOLD where PAKKEINNHOLD.pakke_id = ?', [pakke_id], (error, results) => {
-      if (error) {
-        varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
-        return console.error(error);
-      }
+  getPakkeinnholdsykler(pakke_id, success) {
+    connection.query(
+      'select * from PAKKEINNHOLD, PAKKE, SYKKELTYPE where PAKKEINNHOLD.pakke_id = ? and PAKKEINNHOLD.pakke_id = PAKKE.pakke_id and SYKKELTYPE.type_id = PAKKEINNHOLD.type_id',
+      [pakke_id],
+      (error, results) => {
+        if (error) {
+          varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
+          return console.error(error);
+        }
 
-      success(results);
-      console.log(results);
-    });
+        success(results);
+        console.log(results);
+      }
+    );
+  }
+  getPakkeinnholdutstyr(pakke_id, success) {
+    connection.query(
+      'select * from PAKKEINNHOLD, PAKKE, UTSTYR where PAKKEINNHOLD.pakke_id = ? and PAKKEINNHOLD.pakke_id = PAKKE.pakke_id and UTSTYR.utstyr_id = PAKKEINNHOLD.utstyr_id',
+      [pakke_id],
+      (error, results) => {
+        if (error) {
+          varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
+          return console.error(error);
+        }
+
+        success(results);
+        console.log(results);
+      }
+    );
   }
 }
 
