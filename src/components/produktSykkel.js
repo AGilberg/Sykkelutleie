@@ -29,13 +29,13 @@ class ProduktSykkel extends Component {
         <Card>
           <div className="container-fluid">
             <div className="row">
-              <div className="col-4">
+              <div className="col-3">
                 <img
                   style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
                   src={'images/sykler/' + this.klasse.klassenavn + '.jpg'}
                 />
               </div>
-              <div className="col-8">
+              <div className="col-9">
                 {' '}
                 <h4>{this.type.typenavn}</h4>
                 <div className="ramme">
@@ -62,7 +62,6 @@ class ProduktSykkel extends Component {
                           type="number"
                           size="25"
                           id="count"
-                          className="kundeinput"
                           value={this.antall}
                           style={{ marginRight: '20px' }}
                           onFocus={event => {
