@@ -28,19 +28,21 @@ class Pakkevisning extends Component {
           <Card>
             <div className="container-fluid">
               <div className="row">
-                <div className="col-4">
+                <div className="col-3">
                   {this.pakke.map(pakke => (
                     <img
                       key={pakke.pakke_id}
-                      style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
+                      style={{ width: '250px', height: '250px', marginTop: '30px', marginLeft: '15px', opacity: 1.0 }}
                       src={'images/pakker/' + pakke.pakkenavn + '.jpg'}
                     />
                   ))}
                 </div>
-                <div className="col-8">
+                <div className="col-9">
                   {' '}
                   {this.pakke.map(pakke => (
-                    <h4 key={pakke.pakke_id}>{pakke.pakkenavn}</h4>
+                    <h4 className="h4Style" key={pakke.pakke_id}>
+                      {pakke.pakkenavn}
+                    </h4>
                   ))}
                   <br />
                   <div className="ramme">
