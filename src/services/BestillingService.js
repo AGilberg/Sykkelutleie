@@ -108,7 +108,6 @@ class BestillingService {
     //Fjern en sykkel fra en bestilling
     connection.query('delete from INNHOLDSYKKEL WHERE innholdsykkel_id = ?', [innholdsykkel_id], (error, results) => {
       if (error) return console.error(error);
-      console.log(results);
     });
   }
 
@@ -116,7 +115,6 @@ class BestillingService {
     //Fjern utstyr fra en bestilling
     connection.query('delete from INNHOLDUTSTYR WHERE innholdutstyr_id = ?', [innholdutstyr_id], (error, results) => {
       if (error) return console.error(error);
-      console.log(results);
     });
   }
 

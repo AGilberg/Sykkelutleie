@@ -38,7 +38,6 @@ class VareService {
       }
 
       success(results);
-      console.log(results);
     });
   }
   getPakke(pakke_id, success) {
@@ -49,7 +48,6 @@ class VareService {
       }
 
       success(results);
-      console.log(results);
     });
   }
   getPakkeinnhold(pakke_id, success) {
@@ -60,7 +58,6 @@ class VareService {
       }
 
       success(results);
-      console.log(results);
     });
   }
 }
