@@ -20,7 +20,7 @@ class KundeService {
   }
 
   removeKunde(person_id) {
-    // FIXME: FUNKSJON IKKE TESTET I PROGRAMMET
+    // Slette person
 
     connection.query('UPDATE BESTILLING SET person_id = NULL WHERE person_id = ?', [person_id], (error, results) => {
       if (error) return console.error(error);
@@ -40,36 +40,6 @@ class KundeService {
 
       success(results);
     });
-  }
-
-  getKunde(metode, fornavn, etternavn, mobilnr, mail) {
-    // FIXME: unødig etter adrians søkefunksjon?
-    switch (metode) {
-      case 'navn':
-        connection.query(
-          'select * from PERSON where fornavn like ? or etternavn like ?',
-          [fornavn, etternavn],
-          (error, results) => {
-            if (error) return console.error(error);
-
-            success(results);
-          }
-        );
-        break;
-      case 'mobilnr':
-        connection.query('select * from PERSON where tlf = ?', [mobilnr], (error, results) => {
-          if (error) return console.error(error);
-
-          success(results);
-        });
-        break;
-      case 'mail':
-        connection.query('select * from PERSON where mail like ?', [mail], (error, results) => {
-          if (error) return console.error(error);
-
-          success(results);
-        });
-    }
   }
 }
 
