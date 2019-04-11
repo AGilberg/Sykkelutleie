@@ -25,7 +25,7 @@ class ProduktUtstyr extends Component {
         <Card>
           <div className="container-fluid">
             <div className="row">
-              <div className="col-3">
+              <div className="col-3 brBottom">
                 <img
                   style={{ width: '250px', height: '250px', marginTop: '30px', marginLeft: '15px', opacity: 1.0 }}
                   src={'images/utstyr/' + this.utstyr.navn + '.jpg'}
