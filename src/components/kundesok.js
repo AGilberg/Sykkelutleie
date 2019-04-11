@@ -117,7 +117,9 @@ class Kundesøk extends Component {
   slettKunde(kunde) {
     confirmBox('Varsel', 'Ønsker du å slette ' + kunde.fornavn + ' ' + kunde.etternavn + '?', res => {
       if (res == 1) {
+        kundeService.removeKunde(kunde.person_id);
         varsel('Suksess!', 'Kunden ble slettet', 'vrsl-success');
+        console.log(kunde);
       }
     });
   }
