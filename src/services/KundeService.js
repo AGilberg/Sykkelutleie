@@ -19,14 +19,50 @@ class KundeService {
     );
   }
 
+  erKundeAnsatt(person_id, success) {
+    //sjeker om en kunde er ansatt
+    connection.query('select * from ANSATT where person_id = ?', [person_id], (error, results) => {
+      if (error) return console.log(error);
+
+      if (results.length != 0) {
+        success(true); //kunden er også ansatt
+      } else {
+        success(false); //kunden er ikke ansatt
+      }
+    });
+  }
+
+  harKundeAktiveBestillinger(person_id, success) {
+    //sjekker om en kunde har aktive bestillinger
+    connection.query(
+      'SELECT * FROM BESTILLING where person_id = ? and leie_slutt >= DATE(CURDATE())',
+      [person_id],
+      (error, results) => {
+        if (error) return console.log(error);
+        console.log(results);
+        console.log(results.length != 0);
+        if (results.length != 0) {
+          success(true); //kunden har bestillinger
+        } else {
+          success(false); //kunden har ikke bestillinger
+        }
+      }
+    );
+  }
+
   removeKunde(person_id) {
     // Slette person
 
     connection.query('UPDATE BESTILLING SET person_id = NULL WHERE person_id = ?', [person_id], (error, results) => {
       if (error) return console.error(error);
 
-      connection.query('DELETE FROM PERSON WHERE person_id = ?', [person_id], (error, results) => {
+      connection.query('DELETE FROM ANSATT WHERE person_id = ?', [person_id], (error, results) => {
         if (error) return console.error(error);
+
+        connection.query('DELETE FROM PERSON WHERE person_id = ?', [person_id], (error, results) => {
+          if (error) return console.error(error);
+          varsel('Suksess!', 'Kunden ble slettet', 'vrsl-success');
+        });
       });
     });
   }
