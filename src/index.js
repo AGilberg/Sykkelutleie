@@ -22,7 +22,7 @@ import Home from './components/home';
 import Menu from './components/menu';
 import Sidenav from './components/sidenav';
 
-import createHashHistory from 'history/createHashHistory';
+import { createHashHistory } from 'history';
 export const history = createHashHistory();
 
 ReactDOM.render(
@@ -39,7 +39,7 @@ ReactDOM.render(
 
       <div className="row" style={{ height: '100%', paddingBottom: '96px' }}>
         <Sidenav />
-        <div className="col-md-10" style={{overflowX:'hidden', overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
+        <div className="col-md-10" style={{ overflowX: 'hidden', overflowY: 'scroll', borderTop: '1px solid #c9dbdb' }}>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/aktivebestillinger" component={AktiveBestillinger} />
