@@ -115,11 +115,31 @@ class Kundesøk extends Component {
   }
 
   slettKunde(kunde) {
-    confirmBox('Varsel', 'Ønsker du å slette ' + kunde.fornavn + ' ' + kunde.etternavn + '?', res => {
-      if (res == 1) {
-        kundeService.removeKunde(kunde.person_id);
-        varsel('Suksess!', 'Kunden ble slettet', 'vrsl-success');
-        console.log(kunde);
+    confirmBox('Varsel', 'Ønsker du å slette ' + kunde.fornavn + ' ' + kunde.etternavn + '?', res1 => {
+      if (res1 == 1) {
+        kundeService.harKundeAktiveBestillinger(kunde.person_id, res2 => {
+          if (!res2) {
+            kundeService.erKundeAnsatt(kunde.person_id, res3 => {
+              if (res3) {
+                confirmBox(
+                  'Varsel',
+                  kunde.fornavn + ' ' + kunde.etternavn + ' er en ansatt, ønsker du å fortsette?',
+                  res4 => {
+                    if (res4 == 1) {
+                      kundeService.removeKunde(kunde.person_id);
+                      history.push('/kunde');
+                    }
+                  }
+                );
+              } else {
+                kundeService.removeKunde(kunde.person_id);
+                history.push('/kunde');
+              }
+            });
+          } else {
+            varsel('Feil!', 'Kan ikke slette kunde med aktive bestillinger', 'vrsl-danger');
+          }
+        });
       }
     });
   }
