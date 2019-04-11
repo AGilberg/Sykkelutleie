@@ -117,6 +117,13 @@ class BestillingService {
       if (error) return console.error(error);
     });
   }
+  deletePakke(innholdpakke_id) {
+    //Fjern Pakke fra en bestilling
+    connection.query('delete from INNHOLDPAKKE WHERE innholdpakke_id = ?', [innholdpakke_id], (error, results) => {
+      if (error) return console.error(error);
+      console.log(results);
+    });
+  }
 
   tilstander(success) {
     //endre statusen til en bestilling
