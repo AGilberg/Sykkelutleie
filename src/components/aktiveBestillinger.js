@@ -18,6 +18,11 @@ class AktiveBestillinger extends Component {
 
   onInputChange = (event, data) => this.setState({ sok: event.target.value.toLowerCase() });
 
+  changeTab(){//nullstiller søket når en navigere med tabs
+    document.querySelector("div>input.bestillingInput").value = "";
+    this.setState({ sok: '' });
+  }
+
   render() {
     if (!this.bestilling || !this.fullfortbest)
       return (
@@ -38,7 +43,7 @@ class AktiveBestillinger extends Component {
     );
     return (
       <div className="main">
-        <Tabs defaultActiveKey="aktiveBestillinger" id="bestillingTabs">
+        <Tabs defaultActiveKey="aktiveBestillinger" id="bestillingTabs"  onSelect={this.changeTab}>
           <Tab eventKey="aktiveBestillinger" title="Aktive bestillinger" className="doubleBr">
             {/* Visning av bestillinger som ikke har status som fullført */}
             <input
