@@ -28,7 +28,7 @@ class PakkeService {
       }
 
       success(results);
-      console.log(results);
+      console.log("getPakker", results);
     });
   }
 
@@ -40,7 +40,7 @@ class PakkeService {
       }
 
       success(results);
-      console.log(results);
+      console.log("getInnhold", results);
     });
   }
   getPakke(pakke_id, success) {

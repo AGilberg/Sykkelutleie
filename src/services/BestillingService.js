@@ -26,7 +26,7 @@ class BestillingService {
         for (let i = 0; i < varer.length; i++) {
           let vare = varer[i];
           switch (vare.kategori) {
-            case 'sykkel': //trenger bestillng_id og sykkel_id 
+            case 'sykkel': //trenger bestillng_id og sykkel_id
               for(let k = 0; k < vare.antall; k++){
                 connection.query(
                   'insert into INNHOLDSYKKEL (innholdsykkel_id, bestilling_id, sykkel_id) values (?,?,?)',
@@ -46,6 +46,15 @@ class BestillingService {
                 }
               );
               break;
+              case 'pakke':
+                connection.query(
+                  'insert into INNHOLDPAKKE (innholdpakke_id, bestilling_id, pakke_id) values (?,?, ?)',
+                  [null, best_id, vare.id],
+                  (error, results) => {
+                    if (error) return console.error(error);
+                  }
+                );
+                break;
             default:
               console.log('feil innhold i BestillingServive.js');
           }

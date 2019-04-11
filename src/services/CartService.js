@@ -20,6 +20,7 @@ class CartService{
   }
 
   getHandlekurv(){
+    console.log(this.handlekurv);
     return this.handlekurv;
   }
 
@@ -111,6 +112,7 @@ class CartService{
 
   addItem(item){//legg til et produkt i handlekurven
     this.handlekurv.push(item);
+    console.log(item);
   }
 }
 
