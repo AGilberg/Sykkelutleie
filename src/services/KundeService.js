@@ -20,6 +20,7 @@ class KundeService {
   }
 
   erKundeAnsatt(person_id, success) {
+    //sjeker om en kunde er ansatt
     connection.query('select * from ANSATT where person_id = ?', [person_id], (error, results) => {
       if (error) return console.log(error);
 
@@ -32,6 +33,7 @@ class KundeService {
   }
 
   harKundeAktiveBestillinger(person_id, success) {
+    //sjekker om en kunde har aktive bestillinger
     connection.query(
       'SELECT * FROM BESTILLING where person_id = ? and leie_slutt >= DATE(CURDATE())',
       [person_id],
