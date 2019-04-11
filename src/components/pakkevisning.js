@@ -22,37 +22,33 @@ class Pakkevisning extends Component {
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
     return (
-      // Detajler som viser en pakke
-      <div className="main">
-        <div className="brBottom">
-          <Card>
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-3">
-                  {this.pakke.map(pakke => (
-                    <img
-                      key={pakke.pakke_id}
-                      style={{ width: '250px', height: '250px', marginTop: '30px', marginLeft: '15px', opacity: 1.0 }}
-                      src={'images/pakker/' + pakke.pakkenavn + '.jpg'}
-                    />
-                  ))}
-                </div>
-                <div className="col-9">
-                  {' '}
-                  {this.pakke.map(pakke => (
-                    <h4 className="h4Style" key={pakke.pakke_id}>
-                      {pakke.pakkenavn}
-                    </h4>
-                  ))}
-                  <br />
-                  <div className="ramme">
-                    <ul style={{ listStyleType: 'none' }}>
-                      <h5>Pakkeinnhold: </h5>
-                      {this.pakke.map(pakke => (
-                        <li className="PrisText" key={pakke.pakke_id}>
-                          Pris: {pakke.pris} kr,-
-                        </li>
-                      ))}
+      <div>
+        <br />
+        <Card>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-3">
+                {this.pakke.map(pakke => (
+                  <img key={pakke.pakke_id}
+                    style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
+                    src={'images/pakker/' + pakke.pakkenavn + '.jpg'}
+                  />
+                ))}
+              </div>
+              <div className="col-9">
+                {' '}
+                {this.pakke.map(pakke => (
+                  <h4 key={pakke.pakke_id}>{pakke.pakkenavn}</h4>
+                ))}
+                <br />
+                <div className="ramme">
+                  <ul style={{ listStyleType: 'none' }}>
+                    <h5>Sykler: </h5>
+                    {this.pakkesykkel.map(pakkesykkel => (
+                      <li key={pakkesykkel.type_id}>
+                        {pakkesykkel.typenavn}, antall: {pakkesykkel.ant}
+                      </li>
+                    ))}
 
                     <br />
 

@@ -23,7 +23,7 @@ class ProduktSykkel extends Component {
       );
 
     return (
-      <div>
+      <div style={{ marginLeft: '20px' }}>
         {/* Visning av et enkelt produkt (sykler)*/}
         <br />
         <Card>
@@ -31,13 +31,13 @@ class ProduktSykkel extends Component {
             <div className="row">
               <div className="col-3">
                 <img
-                  style={{ width: '250px', height: '250px', marginTop: '30px', marginLeft: '15px', opacity: 1.0 }}
+                  style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
                   src={'images/sykler/' + this.klasse.klassenavn + '.jpg'}
                 />
               </div>
               <div className="col-9">
                 {' '}
-                <h4 className="h4Style">{this.type.typenavn}</h4>
+                <h4>{this.type.typenavn}</h4>
                 <div className="ramme">
                   <ul style={{ listStyleType: 'none' }}>
                     <h5>Produktinformasjon: </h5>
