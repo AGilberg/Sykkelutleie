@@ -16,7 +16,7 @@ class BestillingEdit extends Component {
   pakke = null;
 
   render() {
-    if (!this.bestill || !this.sykkel || !this.utstyr || this.pakke || !this.status) return null;
+    if (!this.bestill || !this.sykkel || !this.utstyr || !this.pakke || !this.status) return null;
 
     return (
       <div className="main">
@@ -129,8 +129,8 @@ class BestillingEdit extends Component {
                       <Card key={pakke.pakke_id}>
                         {pakke.pakkenavn} ({pakke.pris})
                         <br />
-                        <Button variant="danger" onClick={e => this.deletePakke(pakke.pakke_id)}>
-                          Slett
+                        <Button variant="grey">
+                          Kan ikke slette pakke
                         </Button>
                       </Card>
                     ))}
@@ -193,12 +193,6 @@ class BestillingEdit extends Component {
   }
   deleteuts(id) {
     bestillingService.deleteUtstyr(id);
-    {
-      history.push('/aktivebestillinger');
-    }
-  }
-  deletepakke(id) {
-    bestillingService.deletePakke(id);
     {
       history.push('/aktivebestillinger');
     }
