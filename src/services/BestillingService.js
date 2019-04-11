@@ -120,6 +120,13 @@ class BestillingService {
       if (error) return console.error(error);
     });
   }
+  deletePakke(innholdpakke_id) {
+    //Fjern Pakke fra en bestilling
+    connection.query('delete from INNHOLDPAKKE WHERE innholdpakke_id = ?', [innholdpakke_id], (error, results) => {
+      if (error) return console.error(error);
+      console.log(results);
+    });
+  }
 
   tilstander(success) {
     //endre statusen til en bestilling
@@ -158,6 +165,18 @@ class BestillingService {
     //Henter ut utstyr som er lagt inn i en bestilling
     connection.query(
       'select * from INNHOLDUTSTYR, UTSTYR where INNHOLDUTSTYR.bestilling_id=? and UTSTYR.utstyr_id = INNHOLDUTSTYR.utstyr_id',
+      [bestilling_id],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    );
+  }
+  getOrderContentsPakke(bestilling_id, success) {
+    //Henter ut utstyr som er lagt inn i en bestilling
+    connection.query(
+      'select * from INNHOLDPAKKE, PAKKE where INNHOLDPAKKE.bestilling_id=? and PAKKE.pakke_id = INNHOLDPAKKE.pakke_id',
       [bestilling_id],
       (error, results) => {
         if (error) return console.error(error);
