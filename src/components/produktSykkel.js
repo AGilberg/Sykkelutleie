@@ -196,7 +196,6 @@ class ProduktSykkel extends Component {
         pris: this.type.pris * this.antall,
         id: this.ledigeSykler.slice()
       };
-      console.log(produkt);
       cartService.addItem(produkt);
       varsel('Suksess!', 'Produktet ble lagt til i handlekurven.', 'vrsl-success');
       history.push('/sykkel');

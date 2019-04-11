@@ -58,7 +58,7 @@ class Kundesøk extends Component {
         <div id="kunderesultat" style={{ padding: '12px', margin: '5px' }}>
           <div>
             {kunder.map(kunde => (
-              <Card className="brBottom shadow boxColor" key={kunde.person_id}>
+              <Card className="brBottom shadow" key={kunde.person_id}>
                 <ul style={{ paddingTop: '15px' }}>
                   <li>Navn: {kunde.fornavn + ' ' + kunde.etternavn}</li>
                   <li>Mail: {kunde.mail}</li>
@@ -114,10 +114,8 @@ class Kundesøk extends Component {
   }
 
   slettKunde(kunde) {
-    console.log(kunde);
     confirmBox('Varsel', 'Ønsker du å slette ' + kunde.fornavn + ' ' + kunde.etternavn + '?', res => {
       if (res == 1) {
-        console.log('SLETT EN KUNDE!, lag funk');
         varsel('Suksess!', 'Kunden ble slettet', 'vrsl-success');
       }
     });

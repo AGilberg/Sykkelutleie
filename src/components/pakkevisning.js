@@ -22,6 +22,7 @@ class Pakkevisning extends Component {
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
     return (
+      // Detajler som viser en pakke
       <div className="main">
         <div className="brBottom">
           <Card>
@@ -125,6 +126,7 @@ class Pakkevisning extends Component {
   }
 
   add() {
+    /*Legg til i handlekurv*/
     if (this.sluttdato != null && this.avdeling != null) {
       this.pakkesykkel.map(sykkel => {
         let produkt = {

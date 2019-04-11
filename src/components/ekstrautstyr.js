@@ -98,7 +98,6 @@ class Ekstrautstyr extends Component {
   }
   mounted() {
     utstyrService.getUtstyr(utstyr => {
-      console.log("mounted");
       this.setState({ altUtstyr: utstyr });
     //  this.setState({ utstyr: utstyr });
       this.makeChange();
@@ -125,7 +124,6 @@ class Ekstrautstyr extends Component {
   }
 
   makeChange(){
-    console.log("makeChange");
     utstyrService.visKompatibel(this.valgtKomp, this.state.altUtstyr, utvalg1 => {
       utstyrService.visAvdeling(this.valgtAvdeling, utvalg1, utvalg2 => {
         utstyrService.sortUtstyrsok(this.valgtSortering, utvalg2, sortert => {

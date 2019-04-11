@@ -47,7 +47,6 @@ class Handlekurv extends Component {
 
   regBestilling() {
     let antVarer = this.state.handlekurv.length;
-    console.log(antVarer);
     if(this.startdato != null && this.kunde != null && antVarer > 0){
         bestillingService.addOrder(this.sum, this.rabatt);
     }else{
