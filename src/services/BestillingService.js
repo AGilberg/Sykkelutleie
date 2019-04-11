@@ -4,8 +4,7 @@ import varsel from './notifications.js';
 import { history } from '../index.js';
 
 class BestillingService {
-  addOrder(sum, rabatt) {
-    //legg til en ny bestilling i databasen
+  addOrder(sum, rabatt) {//legg til en ny bestilling i databasen
     let d = new Date();
     let dateStamp = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
 
@@ -17,8 +16,7 @@ class BestillingService {
     let status = cartService.getStatus().status_id; // FIXME: gjør det mulig å legge inn en status
     let varer = cartService.getHandlekurv();
 
-    connection.query(
-      //legg inn bestilling
+    connection.query(//legg inn bestilling
       'INSERT INTO BESTILLING (bestilling_id, bestillingsdato, person_id, gruppe_id, leie_start, leie_slutt, status_id, sum, beskrivelse, gittRabatt) VALUES (?,?,?,?,?,?,?,?,?,?)',
       [null, dateStamp, kunde, gruppe, start, slutt, status, sum, besk, rabatt],
       (error, results) => {
@@ -29,7 +27,7 @@ class BestillingService {
           let vare = varer[i];
           switch (vare.kategori) {
             case 'sykkel': //trenger bestillng_id og sykkel_id
-              for (let k = 0; k < vare.antall; k++) {
+              for(let k = 0; k < vare.antall; k++){
                 connection.query(
                   'insert into INNHOLDSYKKEL (innholdsykkel_id, bestilling_id, sykkel_id) values (?,?,?)',
                   [null, best_id, vare.id[k].sykkel_id],
@@ -48,15 +46,15 @@ class BestillingService {
                 }
               );
               break;
-            case 'pakke':
-              connection.query(
-                'insert into INNHOLDPAKKE (innholdpakke_id, bestilling_id, pakke_id) values (?,?, ?)',
-                [null, best_id, vare.id],
-                (error, results) => {
-                  if (error) return console.error(error);
-                }
-              );
-              break;
+              case 'pakke':
+                connection.query(
+                  'insert into INNHOLDPAKKE (innholdpakke_id, bestilling_id, pakke_id) values (?,?, ?)',
+                  [null, best_id, vare.id],
+                  (error, results) => {
+                    if (error) return console.error(error);
+                  }
+                );
+                break;
             default:
               console.log('feil innhold i BestillingServive.js');
           }
@@ -99,11 +97,8 @@ class BestillingService {
       if (error) return console.error(error);
       connection.query('delete from INNHOLDSYKKEL where bestilling_id = ?', [id], (error, results) => {
         if (error) return console.error(error);
-        connection.query('delete from INNHOLDPAKKE where bestilling_id = ?', [id], (error, results) => {
+        connection.query('delete from BESTILLING where bestilling_id = ?', [id], (error, results) => {
           if (error) return console.error(error);
-          connection.query('delete from BESTILLING where bestilling_id = ?', [id], (error, results) => {
-            if (error) return console.error(error);
-          });
         });
       });
     });

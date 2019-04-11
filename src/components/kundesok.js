@@ -96,7 +96,8 @@ class Kundesøk extends Component {
           </div>
         </div>
 
-        <div className="col-md-12 brBottom">
+        <br />
+        <div className="col-md-12">
           <Button.Light name="tilbake" onClick={this.tilbake}>
             Tilbake
           </Button.Light>

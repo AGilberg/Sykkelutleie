@@ -22,7 +22,7 @@ class SykkelID extends Component {
           name="id"
           type="number"
           placeholder="ID"
-          className="form-control input-md shadow kundeinput"
+          className="form-control input-md shadow"
           onChange={event => (this.sykkelid = event.target.value)}
           required
         />

@@ -38,24 +38,19 @@ class ProduktUtstyr extends Component {
                   <ul className="brBottom" style={{ listStyleType: 'none' }}>
                     <h5>Produktinformasjon: </h5>
                     <li className="PrisText">Pris: {this.utstyr.pris} kr,-</li>
-                    <li>
-                      <b>Lagerstatus: {this.utstyr.antall}</b>
-                    </li>
+                    <li>Lagerstatus: {this.utstyr.antall}</li>
                     <li>
                       <div className="input_div">
                         <input
                           type="number"
-                          className="kundeinput"
                           size="25"
                           value={this.antall}
                           id="count"
                           style={{ marginRight: '20px' }}
-                          onFocus={event => {
-                            event.target.value = null;
-                          }}
-                          onBlur={event => {
-                            if (event.target.value.length == 0) {
-                              this.endreAntall('', this.antall);
+                          onFocus={(event)=>{event.target.value = null;}}
+                          onBlur={(event)=>{
+                            if(event.target.value.length == 0){
+                              this.endreAntall('',this.antall);
                             }
                           }}
                           onChange={() => {
@@ -105,7 +100,7 @@ class ProduktUtstyr extends Component {
   mounted() {
     utstyrService.getUtstyrNavn(this.props.match.params.id, utstyr => {
       this.utstyr = utstyr;
-      if (this.utstyr.antall == 0) {
+      if(this.utstyr.antall == 0){
         this.antall = 0;
       }
     });
@@ -114,10 +109,10 @@ class ProduktUtstyr extends Component {
       this.avdeling = avdeling;
     });
 
-    if (cartService.getStartdato() == null) {
+    if(cartService.getStartdato() == null){
       varsel('OBS!', 'Leieperiode er ikke valgt', 'vrsl-danger');
     }
-    if (cartService.getAvdeling() == -1) {
+    if( cartService.getAvdeling() == -1){
       varsel('OBS!', 'Avdeling er ikke valgt', 'vrsl-danger');
     }
   }
@@ -126,8 +121,8 @@ class ProduktUtstyr extends Component {
     let max = this.utstyr.antall;
     switch (dir) {
       case 'pluss':
-        if (this.antall < max) {
-          this.antall++;
+        if(this.antall < max){
+            this.antall++;
         }
         break;
       case 'minus':
@@ -135,15 +130,16 @@ class ProduktUtstyr extends Component {
           this.antall--;
         }
         break;
-      default:
-        //dersom brukeren skriver inn tall manuelt
+      default://dersom brukeren skriver inn tall manuelt
         if (max == 0) {
           this.antall = 0;
-        } else if (inp < 1) {
+        }
+        else if(inp < 1){
           this.antall = 1;
-        } else if (inp > max) {
+
+        }else if(inp > max){
           this.antall = max;
-        } else {
+        }else{
           this.antall = inp;
         }
     }
@@ -154,7 +150,7 @@ class ProduktUtstyr extends Component {
   }
 
   add() {
-    if (cartService.getStartdato() != null && cartService.getAvdeling() != null && this.antall != 0) {
+    if(cartService.getStartdato() != null && cartService.getAvdeling() != null && this.antall != 0){
       let produkt = {
         kategori: 'utstyr',
         id: this.utstyr.utstyr_id,
@@ -165,14 +161,14 @@ class ProduktUtstyr extends Component {
       cartService.addItem(produkt);
       varsel('Suksess!', 'Produktet ble lagt til i handlekurven.', 'vrsl-success');
       history.push('/ekstrautstyr');
-    } else {
-      if (cartService.getStartdato() == null) {
+    }else{
+      if(cartService.getStartdato() == null){
         varsel('Feil!', 'Leieperiode er ikke valgt', 'vrsl-danger');
       }
-      if (cartService.getAvdeling() == -1) {
+      if( cartService.getAvdeling() == -1){
         varsel('Feil!', 'Avdeling er ikke valgt', 'vrsl-danger');
       }
-      if (this.antall == 0) {
+      if(this.antall == 0){
         varsel('Feil!', 'Du kan ikke legge til 0 varer', 'vrsl-danger');
       }
     }

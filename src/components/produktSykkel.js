@@ -62,7 +62,6 @@ class ProduktSykkel extends Component {
                           type="number"
                           size="25"
                           id="count"
-                          className="kundeinput"
                           value={this.antall}
                           style={{ marginRight: '20px' }}
                           onFocus={event => {

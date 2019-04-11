@@ -54,48 +54,45 @@ class Pakkevisning extends Component {
                         </li>
                       ))}
 
-                      <div className="borderShadow">
-                        {this.pakke.map(pakke => (
-                          <li key={pakke.pakke_id}>{pakke.beskrivelse}</li>
-                        ))}
-                      </div>
-                      <br />
-                      <h5>Sykler: </h5>
-                      {this.pakkesykkel.map(pakkesykkel => (
-                        <li key={pakkesykkel.type_id}>
-                          {pakkesykkel.typenavn}, antall: {pakkesykkel.ant}
-                        </li>
-                      ))}
+                    <br />
 
-                      <br />
+                    <h5>Utstyr: </h5>
+                    {this.pakkeutstyr.map(pakkeutstyr => (
+                      <li key={pakkeutstyr.utstyr_id}>
+                        {pakkeutstyr.navn}, antall: {pakkeutstyr.ant}
+                        <br />
+                      </li>
+                    ))}
 
-                      <h5>Utstyr: </h5>
-                      {this.pakkeutstyr.map(pakkeutstyr => (
-                        <li key={pakkeutstyr.utstyr_id}>
-                          {pakkeutstyr.navn}, antall: {pakkeutstyr.ant}
-                          <br />
-                        </li>
+                    <br />
+
+                    {this.pakke.map(pakke => (
+                      <li className="PrisText" key={pakke.pakke_id}>
+                        Pris: {pakke.pris} kr,-
+                      </li>
+                    ))}
+                    <br />
+                    <div className="borderShadow">
+                      {this.pakke.map(pakke => (
+                        <li key={pakke.pakke_id}>{pakke.beskrivelse}</li>
                       ))}
-                    </ul>
-                  </div>
-                  <br />
+                    </div>
+                  </ul>
                 </div>
+                <br />
               </div>
             </div>
-          </Card>
-        </div>
-
-        <div className="col-8 brBottom">
-          <Row>
-            <Column left>
-              <Button.Light onClick={this.back}>Tilbake</Button.Light>
-            </Column>
-
-            <Column right>
-              <Button.Success onClick={this.add}>Legg til bestilling</Button.Success>
-            </Column>
-          </Row>
-        </div>
+          </div>
+        </Card>
+        <br />
+        <Row>
+          <Column right>
+            <Button.Light onClick={this.back}>Tilbake</Button.Light>
+          </Column>
+          <Column left>
+            <Button.Success onClick={this.add}>Legg til i handlekurv</Button.Success>
+          </Column>
+        </Row>
       </div>
     );
   }
@@ -128,16 +125,15 @@ class Pakkevisning extends Component {
   }
 
   add() {
-    /*Legg til i handlekurv*/
     if (this.sluttdato != null && this.avdeling != null) {
       this.pakkesykkel.map(sykkel => {
         let produkt = {
           kategori: 'sykkel',
-          id: [{ sykkel_id: sykkel.type_id }],
+          id: [{sykkel_id: sykkel.type_id}],
           navn: sykkel.typenavn,
           antall: sykkel.ant,
           pris: 0
-        };
+        }
         cartService.addItem(produkt);
       });
       this.pakkeutstyr.map(utstyr => {
@@ -147,7 +143,7 @@ class Pakkevisning extends Component {
           navn: utstyr.navn,
           antall: utstyr.ant,
           pris: 0
-        };
+        }
         cartService.addItem(produkt);
       });
       this.pakke.map(pakke => {
@@ -156,9 +152,9 @@ class Pakkevisning extends Component {
           id: pakke.pakke_id,
           navn: pakke.pakkenavn,
           pris: pakke.pris
-        };
+        }
         cartService.addItem(valgtPakke);
-      });
+      })
       varsel('Suksess!', 'Pakken ble lagt til i handlekurven.', 'vrsl-success');
       history.push('/pakker');
     } else {
