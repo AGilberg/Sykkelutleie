@@ -15,9 +15,10 @@ class BestillingDetails extends Component {
   bestill = null;
   sykkel = null;
   utstyr = null;
+  pakke = null;
 
   render() {
-    if (!this.bestill || !this.sykkel || !this.utstyr)
+    if (!this.bestill || !this.sykkel || !this.utstyr || !this.pakke)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
@@ -100,6 +101,18 @@ class BestillingDetails extends Component {
                   </Row>
                 ))}
               </Column>
+              <Column>
+                <div className="brBottom">Pakke: </div>
+                {this.pakke.map(pakke => (
+                  <Row key={pakke.innholdpakke_id}>
+                    <ul>
+                      <li>
+                        {pakke.pakkenavn} ({pakke.pris})
+                      </li>
+                    </ul>
+                  </Row>
+                ))}
+              </Column>
             </Row>
             <div>
               <br />
@@ -135,6 +148,9 @@ class BestillingDetails extends Component {
     });
     bestillingService.getOrderContentsUtstyr(this.props.match.params.bestilling_id, utstyr => {
       this.utstyr = utstyr;
+    });
+    bestillingService.getOrderContentsPakke(this.props.match.params.bestilling_id, pakke => {
+      this.pakke = pakke;
     });
   }
 

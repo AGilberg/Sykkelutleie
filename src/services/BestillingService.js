@@ -26,7 +26,7 @@ class BestillingService {
         for (let i = 0; i < varer.length; i++) {
           let vare = varer[i];
           switch (vare.kategori) {
-            case 'sykkel': //trenger bestillng_id og sykkel_id 
+            case 'sykkel': //trenger bestillng_id og sykkel_id
               for(let k = 0; k < vare.antall; k++){
                 connection.query(
                   'insert into INNHOLDSYKKEL (innholdsykkel_id, bestilling_id, sykkel_id) values (?,?,?)',
@@ -148,6 +148,18 @@ class BestillingService {
     //Henter ut utstyr som er lagt inn i en bestilling
     connection.query(
       'select * from INNHOLDUTSTYR, UTSTYR where INNHOLDUTSTYR.bestilling_id=? and UTSTYR.utstyr_id = INNHOLDUTSTYR.utstyr_id',
+      [bestilling_id],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    );
+  }
+  getOrderContentsPakke(bestilling_id, success) {
+    //Henter ut utstyr som er lagt inn i en bestilling
+    connection.query(
+      'select * from INNHOLDPAKKE, PAKKE where INNHOLDPAKKE.bestilling_id=? and PAKKE.pakke_id = INNHOLDPAKKE.pakke_id',
       [bestilling_id],
       (error, results) => {
         if (error) return console.error(error);
