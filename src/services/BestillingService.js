@@ -97,8 +97,11 @@ class BestillingService {
       if (error) return console.error(error);
       connection.query('delete from INNHOLDSYKKEL where bestilling_id = ?', [id], (error, results) => {
         if (error) return console.error(error);
-        connection.query('delete from BESTILLING where bestilling_id = ?', [id], (error, results) => {
+        connection.query('delete from INNHOLDPAKKE where bestilling_id = ?', [id], (error, results) => {
           if (error) return console.error(error);
+          connection.query('delete from BESTILLING where bestilling_id = ?', [id], (error, results) => {
+            if (error) return console.error(error);
+          });
         });
       });
     });
