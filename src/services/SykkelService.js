@@ -100,6 +100,38 @@ class SykkelService {
       });
   }
 
+
+  getSykkelByID(sykkelid, success) {
+    connection.query(
+      'SELECT s.*, avd1.navn AS naa_navn, avd2.navn AS org_navn from SYKKEL s, AVDELING avd1, AVDELING avd2 where avd1.navn IN(SELECT avd1.navn where avd1.avdeling_id = s.naa_avdeling_id) AND s.sykkel_id = ? AND avd2.navn IN(SELECT avd2.navn where avd2.avdeling_id = s.avdeling_id)',
+      [sykkelid],
+      (error, results) => {
+        if (error) {
+          varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
+          return console.error(error);
+        }
+        if(results[0].info === null){
+          results[0].info = "";
+        }
+        success(results[0]);
+      }
+    );
+  }
+
+  updateSykkelByID(status, avdeling, sykkelid, info) {
+    connection.query(
+      'UPDATE SYKKEL SET status_id=?, naa_avdeling_id=?, info=? WHERE sykkel_id=?',
+      [status, avdeling, info, sykkelid],
+      (error, results) => {
+        if (error) {
+          varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
+          return console.error(error);
+        }
+        varsel('Suksess!', 'Sykkelen er oppdatert', 'vrsl-success');
+      }
+    );
+  }
+
   getSykkelSorteringer() {
     let options = [];
     options[0] = ['Alfabetisk A-Z', 'alfAZ'];

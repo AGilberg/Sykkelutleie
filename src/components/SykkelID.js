@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Card, List, Row, Column, Button, Form } from '../widgets';
-import { produktIDService } from '../services/ProduktIDService.js';
 import { sykkelService } from '../services/SykkelService.js';
 import { history } from '../index.js';
 import ReactLoading from 'react-loading';
@@ -58,14 +57,14 @@ class SykkelID extends Component {
 
                 <Row>
                   <Column>
-                    <div> Avdeling: {this.info.avdeling_id} </div>
-                    <Form.Label>Nå avdeling: </Form.Label>
+                    <div> Tilhører: {this.info.org_navn} </div>
+                    <Form.Label>Nåværende plassering: </Form.Label>
                     <br />
                     <select
                       className="brBottom kundeinput"
                       id="avdSel"
-                      value={this.info.avdeling_id}
-                      onChange={e => (this.info.avdeling_id = e.target.value)}
+                      value={this.info.naa_avdeling_id}
+                      onChange={e => (this.info.naa_avdeling_id = e.target.value)}
                     >
                       {this.avdeling.map(avdeling => (
                         <option key={avdeling.avdeling_id} value={avdeling.avdeling_id}>
@@ -73,8 +72,7 @@ class SykkelID extends Component {
                         </option>
                       ))}
                     </select>
-
-                    <div> Status: {this.info.status_id} </div>
+                    <br/>
                     <Form.Label>Status: </Form.Label>
                     <br />
                     <select
@@ -88,6 +86,17 @@ class SykkelID extends Component {
                         </option>
                       ))}
                     </select>
+                    <br/>
+                    <Form.Label>Info:</Form.Label>
+                    <br/>
+                    <textarea
+                      rows="4"
+                      cols="50"
+                      value={this.info.info}
+                      onChange={e => (this.info.info = e.target.value)}
+                    />
+
+                    <br />
                   </Column>
                 </Row>
               </div>
@@ -113,7 +122,7 @@ class SykkelID extends Component {
       varsel('OBS!', 'Ikke gyldig søk', 'vrsl-danger');
       return;
     }
-    produktIDService.getSykkelByID(id, success => {
+    sykkelService.getSykkelByID(id, success => {
       if (success === undefined) {
         this.info = null;
         varsel('OBS!', 'Ingen treff', 'vrsl-success');
@@ -130,7 +139,7 @@ class SykkelID extends Component {
   }
   oppdater() {
     if (this.info !== null) {
-      produktIDService.updateSykkelByID(this.info.status_id, this.info.avdeling_id, this.sykkelid);
+      sykkelService.updateSykkelByID(this.info.status_id, this.info.naa_avdeling_id, this.sykkelid, this.info.info);
     } else {
       varsel('Feil!', 'Ingen sykkel valgt', 'vrsl-danger');
     }
