@@ -19,9 +19,6 @@ class VareService {
       success(results);
     });
   }
-  getVare(metode, navn, sykkeltype) {
-    //søk etter en vare
-  }
   getSorteringer() {
     let options = [];
     options[0] = ['Alfabetisk A-Z', 'alfAZ'];
@@ -31,6 +28,7 @@ class VareService {
     return options;
   }
   getPakker(success) {
+    //Henter alt fra PAKKE
     connection.query('select * from PAKKE', (error, results) => {
       if (error) {
         varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
@@ -41,6 +39,7 @@ class VareService {
     });
   }
   getPakke(pakke_id, success) {
+    //henter alt fra en enkelt pakke
     connection.query('select * from PAKKE where PAKKE.pakke_id =?', [pakke_id], (error, results) => {
       if (error) {
         varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
@@ -51,6 +50,7 @@ class VareService {
     });
   }
   getPakkeinnhold(pakke_id, success) {
+    //henter alt innhold i en enkelt pakke
     connection.query('select * from PAKKEINNHOLD where PAKKEINNHOLD.pakke_id = ?', [pakke_id], (error, results) => {
       if (error) {
         varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
