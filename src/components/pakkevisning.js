@@ -124,6 +124,7 @@ class Pakkevisning extends Component {
     }
   }
 
+
   add() {
     if (this.sluttdato != null && this.avdeling != null) {
       this.pakkesykkel.map(sykkel => {

@@ -11,19 +11,18 @@ class Home extends Component {
       useURL: ''
     };
     this.urlArr = [];
-    this.urlArr[1] = 'https://www.yr.no/sted/Norge/Tr%c3%b8ndelag/Trondheim/Trondheim/ekstern_boks_tre_dager.html';//trøndelag
-    this.urlArr[2] = 'https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/ekstern_boks_tre_dager.html';//oslo
-    this.urlArr[3] = 'https://www.yr.no/sted/Norge/Svalbard/Isbj%c3%b8rnhamna/ekstern_boks_tre_dager.html';//isbjørn
-    }
+    this.urlArr[1] = 'https://www.yr.no/sted/Norge/Tr%c3%b8ndelag/Trondheim/Trondheim/ekstern_boks_tre_dager.html'; //trøndelag
+    this.urlArr[2] = 'https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/ekstern_boks_tre_dager.html'; //oslo
+    this.urlArr[3] = 'https://www.yr.no/sted/Norge/Svalbard/Isbj%c3%b8rnhamna/ekstern_boks_tre_dager.html'; //isbjørn
+  }
 
   mounted() {
     let id = cartService.getAvdeling();
-    if(id != -1 && id <= 3){
-        this.setState({ useURL: this.urlArr[id] });
-    }else{
-        this.setState({ useURL: this.urlArr[1] });
+    if (id != -1 && id <= 3) {
+      this.setState({ useURL: this.urlArr[id] });
+    } else {
+      this.setState({ useURL: this.urlArr[1] });
     }
-
   }
 
   render() {
@@ -36,9 +35,9 @@ class Home extends Component {
           <div style={{ margin: '50px' }}>
             <h5>Værmelding:</h5>
             <Row>
-              <div id="here" className="vaermelding brBottom">
+              <div id="here" className="vaermelding">
                 <Iframe height="300px" width="100%" url={this.state.useURL} sandbox="allow-scripts" />
-                <div className="coverWeather" >
+                <div className="coverWeather">
                   <div className="coverWeather2" />
                 </div>
               </div>
