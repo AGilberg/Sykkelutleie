@@ -21,7 +21,6 @@ class Pakkevisning extends Component {
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
-
     return (
       <div>
         <br />
@@ -30,7 +29,7 @@ class Pakkevisning extends Component {
             <div className="row">
               <div className="col-3">
                 {this.pakke.map(pakke => (
-                  <img
+                  <img key={pakke.pakke_id}
                     style={{ width: '200px', height: '200px', marginTop: '30px', marginRight: '15px' }}
                     src={'images/pakker/' + pakke.pakkenavn + '.jpg'}
                   />
@@ -46,7 +45,7 @@ class Pakkevisning extends Component {
                   <ul style={{ listStyleType: 'none' }}>
                     <h5>Sykler: </h5>
                     {this.pakkesykkel.map(pakkesykkel => (
-                      <li key={pakkesykkel.pakke_id}>
+                      <li key={pakkesykkel.type_id}>
                         {pakkesykkel.typenavn}, antall: {pakkesykkel.ant}
                       </li>
                     ))}
@@ -55,7 +54,7 @@ class Pakkevisning extends Component {
 
                     <h5>Utstyr: </h5>
                     {this.pakkeutstyr.map(pakkeutstyr => (
-                      <li key={pakkeutstyr.pakke_id}>
+                      <li key={pakkeutstyr.utstyr_id}>
                         {pakkeutstyr.navn}, antall: {pakkeutstyr.ant}
                         <br />
                       </li>
@@ -106,7 +105,6 @@ class Pakkevisning extends Component {
     pakkeService.getInnhold(this.props.match.params.pakkeinnhold_id, innhold => {
       this.innhold = innhold;
     });
-
     this.sluttdato = cartService.getSluttdato();
     this.startdato = cartService.getStartdato();
     this.avdeling = cartService.getAvdeling();
@@ -124,15 +122,35 @@ class Pakkevisning extends Component {
 
   add() {
     if (this.sluttdato != null && this.avdeling != null) {
-      let produkt = {
-        kategori: 'pakke',
-        id: this.pakkesykkel.type_id,
-        navn: this.pakkesykkel.typenavn,
-        pris: this.pakke.pris
-      };
-
-      console.log(produkt);
-      cartService.addItem(produkt);
+      this.pakkesykkel.map(sykkel => {
+        let produkt = {
+          kategori: 'sykkel',
+          id: [{sykkel_id: sykkel.type_id}],
+          navn: sykkel.typenavn,
+          antall: sykkel.ant,
+          pris: 0
+        }
+        cartService.addItem(produkt);
+      });
+      this.pakkeutstyr.map(utstyr => {
+        let produkt = {
+          kategori: 'utstyr',
+          id: utstyr.utstyr_id,
+          navn: utstyr.navn,
+          antall: utstyr.ant,
+          pris: 0
+        }
+        cartService.addItem(produkt);
+      });
+      this.pakke.map(pakke => {
+        let valgtPakke = {
+          kategori: 'pakke',
+          id: pakke.pakke_id,
+          navn: pakke.pakkenavn,
+          pris: pakke.pris
+        }
+        cartService.addItem(valgtPakke);
+      })
       varsel('Suksess!', 'Pakken ble lagt til i handlekurven.', 'vrsl-success');
       history.push('/pakker');
     } else {
@@ -143,6 +161,9 @@ class Pakkevisning extends Component {
         varsel('Feil!', 'Avdeling er ikke valgt', 'vrsl-danger');
       }
     }
+  }
+  back() {
+    history.push('/pakker');
   }
 }
 

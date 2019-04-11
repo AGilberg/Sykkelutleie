@@ -28,7 +28,6 @@ class PakkeService {
       }
 
       success(results);
-      console.log(results);
     });
   }
 
@@ -40,7 +39,6 @@ class PakkeService {
       }
 
       success(results);
-      console.log(results);
     });
   }
   getPakke(pakke_id, success) {
@@ -51,7 +49,6 @@ class PakkeService {
       }
 
       success(results);
-      console.log(results);
     });
   }
   getPakkeinnholdsykler(pakke_id, success) {
@@ -65,7 +62,6 @@ class PakkeService {
         }
 
         success(results);
-        console.log(results);
       }
     );
   }
@@ -80,7 +76,6 @@ class PakkeService {
         }
 
         success(results);
-        console.log(results);
       }
     );
   }

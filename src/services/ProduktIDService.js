@@ -16,7 +16,6 @@ class ProduktIDService {
     );
   }
   updateSykkelByID(status, avdeling, sykkelid) {
-    console.log(status, avdeling, sykkelid);
     connection.query(
       'UPDATE SYKKEL SET status_id=?, avdeling_id=? WHERE sykkel_id=?',
       [status, avdeling, sykkelid],
@@ -25,7 +24,6 @@ class ProduktIDService {
           varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
           return console.error(error);
         }
-        console.log(results);
         varsel('Suksess!', 'Sykkelen er oppdatert', 'vrsl-success');
       }
     );

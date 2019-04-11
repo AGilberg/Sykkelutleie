@@ -46,6 +46,15 @@ class BestillingService {
                 }
               );
               break;
+              case 'pakke':
+                connection.query(
+                  'insert into INNHOLDPAKKE (innholdpakke_id, bestilling_id, pakke_id) values (?,?, ?)',
+                  [null, best_id, vare.id],
+                  (error, results) => {
+                    if (error) return console.error(error);
+                  }
+                );
+                break;
             default:
               console.log('feil innhold i BestillingServive.js');
           }
@@ -99,7 +108,6 @@ class BestillingService {
     //Fjern en sykkel fra en bestilling
     connection.query('delete from INNHOLDSYKKEL WHERE innholdsykkel_id = ?', [innholdsykkel_id], (error, results) => {
       if (error) return console.error(error);
-      console.log(results);
     });
   }
 
@@ -107,7 +115,6 @@ class BestillingService {
     //Fjern utstyr fra en bestilling
     connection.query('delete from INNHOLDUTSTYR WHERE innholdutstyr_id = ?', [innholdutstyr_id], (error, results) => {
       if (error) return console.error(error);
-      console.log(results);
     });
   }
   deletePakke(innholdpakke_id) {
