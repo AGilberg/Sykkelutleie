@@ -24,7 +24,7 @@ class RegistrerKunde extends Component {
         {/*  Skjema for registrering av kunde.*/}
         <div>
           <Card>
-            <form className="form-horizontal ">
+            <form className="form-horizontal " onSubmit={this.add}>
               <fieldset>
                 <legend>Registrer kunde</legend>
                 {/* Navn */}
@@ -202,7 +202,7 @@ class RegistrerKunde extends Component {
                         <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
                       </Column>
                       <Column right>
-                        <input className="btn btn-success" type="submit" value="Registrer" onClick={this.add} />
+                        <input className="btn btn-success" type="submit" value="Registrer" />
                       </Column>
                     </Row>
                   </div>
