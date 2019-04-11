@@ -16,7 +16,7 @@ class BestillingEdit extends Component {
   pakke = null;
 
   render() {
-    if (!this.bestill || !this.sykkel || !this.utstyr || this.pakke || !this.status) return null;
+    if (!this.bestill || !this.sykkel || !this.utstyr || !this.pakke || !this.status) return null;
 
     return (
       <div className="main">
@@ -129,9 +129,7 @@ class BestillingEdit extends Component {
                       <Card key={pakke.pakke_id}>
                         {pakke.pakkenavn} ({pakke.pris})
                         <br />
-                        <Button variant="danger" onClick={e => this.deletePakke(pakke.pakke_id)}>
-                          Slett
-                        </Button>
+                        <Button.Light>Pakke kan ikke slettes</Button.Light>
                       </Card>
                     ))}
                   </Column>
