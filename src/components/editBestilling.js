@@ -13,9 +13,10 @@ class BestillingEdit extends Component {
   sykkel = null;
   utstyr = null;
   status = null;
+  pakke = null;
 
   render() {
-    if (!this.bestill || !this.sykkel || !this.utstyr || !this.status) return null;
+    if (!this.bestill || !this.sykkel || !this.utstyr || this.pakke || !this.status) return null;
 
     return (
       <div className="main">
@@ -116,6 +117,25 @@ class BestillingEdit extends Component {
                     ))}
                   </Column>
                 </Row>
+                <Row>
+                  <Column left>
+                    <div>Pakke:</div>
+                  </Column>
+                </Row>
+                <Row>
+                  {/* Slette Pakke fra bestillingen */}
+                  <Column left>
+                    {this.pakke.map(pakke => (
+                      <Card key={pakke.pakke_id}>
+                        {pakke.pakkenavn} ({pakke.pris})
+                        <br />
+                        <Button variant="danger" onClick={e => this.deletePakke(pakke.pakke_id)}>
+                          Slett
+                        </Button>
+                      </Card>
+                    ))}
+                  </Column>
+                </Row>
               </div>
             </div>
           </div>
@@ -149,13 +169,16 @@ class BestillingEdit extends Component {
     bestillingService.getOrderContentsUtstyr(this.props.match.params.bestilling_id, utstyr => {
       this.utstyr = utstyr;
     });
+    bestillingService.getOrderContentsPakke(this.props.match.params.bestilling_id, pakke => {
+      this.pakke = pakke;
+    });
     bestillingService.tilstander(status => {
       this.status = status;
     });
   }
 
   save() {
-    bestillingService.updateOrder(this.bestill, this.sykkel, this.utstyr, () => {});
+    bestillingService.updateOrder(this.bestill, this.sykkel, this.utstyr, this.pakke, () => {});
     history.push('/aktivebestillinger/');
   }
 
@@ -170,6 +193,12 @@ class BestillingEdit extends Component {
   }
   deleteuts(id) {
     bestillingService.deleteUtstyr(id);
+    {
+      history.push('/aktivebestillinger');
+    }
+  }
+  deletepakke(id) {
+    bestillingService.deletePakke(id);
     {
       history.push('/aktivebestillinger');
     }
