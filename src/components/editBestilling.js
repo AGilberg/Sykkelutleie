@@ -129,9 +129,7 @@ class BestillingEdit extends Component {
                       <Card key={pakke.pakke_id}>
                         {pakke.pakkenavn} ({pakke.pris})
                         <br />
-                        <Button variant="grey">
-                          Kan ikke slette pakke
-                        </Button>
+                        <Button.Light>Pakke kan ikke slettes</Button.Light>
                       </Card>
                     ))}
                   </Column>
@@ -193,6 +191,12 @@ class BestillingEdit extends Component {
   }
   deleteuts(id) {
     bestillingService.deleteUtstyr(id);
+    {
+      history.push('/aktivebestillinger');
+    }
+  }
+  deletepakke(id) {
+    bestillingService.deletePakke(id);
     {
       history.push('/aktivebestillinger');
     }
