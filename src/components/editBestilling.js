@@ -126,10 +126,10 @@ class BestillingEdit extends Component {
                   {/* Slette Pakke fra bestillingen */}
                   <Column left>
                     {this.pakke.map(pakke => (
-                      <Card key={pakke.pakke_id}>
+                      <Card key={pakke.innholdpakke_id}>
                         {pakke.pakkenavn} ({pakke.pris})
                         <br />
-                        <Button.Light>Pakke kan ikke slettes</Button.Light>
+                        <Button variant="light">Pakke kan ikke slettes</Button>
                       </Card>
                     ))}
                   </Column>
