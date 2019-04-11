@@ -202,7 +202,7 @@ class RegistrerKunde extends Component {
                         <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
                       </Column>
                       <Column right>
-                        <Button.Success onClick={this.add}>Registrer</Button.Success>
+                        <input className="btn btn-success" type="submit" value="Registrer" onClick={this.add} />
                       </Column>
                     </Row>
                   </div>
