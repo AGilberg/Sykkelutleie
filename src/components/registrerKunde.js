@@ -216,9 +216,6 @@ class RegistrerKunde extends Component {
   }
 
   add() {
-    /*
-    // FIXME: valiedering av data før innsending
-    */
     kundeService.addNewKunde(
       this.fornavn,
       this.etternavn,
