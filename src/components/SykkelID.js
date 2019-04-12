@@ -15,6 +15,7 @@ class SykkelID extends Component {
   standard = (
     <div>
       <h4>Sykkel ID: </h4>
+      <h5>Søk opp en sykkel etter ID for å endre status eller nåværende lokasjon</h5>
       <div className="brBottom">
         <input
           id="id"
