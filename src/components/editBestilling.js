@@ -24,27 +24,7 @@ class BestillingEdit extends Component {
 
   render() {
     if (!this.bestill || !this.state.sykkel || !this.state.utstyr || !this.state.pakke || !this.status) return null;
-    if (this.state.pakke.length != 0) {
-      return (
-        <div className="main">
-          <Card>
-            <div>
-              <h3>Kan ikke redigere pakkebestillinger</h3>
-            </div>
-          </Card>
-          <div>
-            <br />
-            <Row>
-              <Column left>
-                <Button variant="light" onClick={this.tilbake}>
-                  Tilbake
-                </Button>
-              </Column>
-            </Row>
-          </div>
-        </div>
-      );
-    }
+
     return (
       <div className="main">
         <Card>
@@ -135,6 +115,23 @@ class BestillingEdit extends Component {
                         <Button variant="danger" onClick={e => this.deleteuts(utstyr.innholdutstyr_id, utstyr.pris)}>
                           Slett
                         </Button>
+                      </Card>
+                    ))}
+                  </Column>
+                </Row>
+                <Row>
+                  <Column left>
+                    <div>Pakke:</div>
+                  </Column>
+                </Row>
+                <Row>
+                  {/* Slette utstyr fra bestillingen */}
+                  <Column left>
+                    {this.state.pakke.map(pakke => (
+                      <Card key={pakke.pakke_id}>
+                        {pakke.pakkenavn}
+                        <br />
+                        <div>(Kan ikke slette pakke)</div>
                       </Card>
                     ))}
                   </Column>
