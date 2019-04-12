@@ -18,8 +18,8 @@ app.on('ready', () => {
     width: 1024, height: 768, icon: __dirname + '/public/images/Icon.png', webPreferences: { nodeIntegration: true } });
 
   // Open Development Tools
-  mainWindow.openDevTools();
-
+  //mainWindow.openDevTools();
+  mainWindow.maximize();
   mainWindow.loadURL('file://' + __dirname + '/public/index.html');
 });
 
