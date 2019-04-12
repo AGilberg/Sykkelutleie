@@ -70,7 +70,8 @@ class SykkelService {
     );
   }
 
-  getLedigeSykler(type_id, start, slutt, avdeling_id, success){
+  getLedigeSykler(type_id, start, slutt, avdeling_id, success) {
+    //gir ledige sykkelid-er basert på sykkeltype
     let opptatt = [];
     let mulige = [];
     connection.query(
@@ -83,23 +84,25 @@ class SykkelService {
         connection.query(
           'SELECT sykkel_id FROM SYKKEL WHERE type_id = ? AND status_id = 1 AND avdeling_id = ? AND naa_avdeling_id = ?',
           [type_id, avdeling_id, avdeling_id],
-          (error,res2) => {
-          if (error) return console.error(error);
-          this.mulige = res2;
-          if(this.opptatt.length > 0){
-            for(let i = this.mulige.length -1; i >= 0 ; i--){//filtrer mulige sykler mot opptate sykler
-              for(let k = this.opptatt.length -1; k >=0; k-- ){
-                if(this.mulige[i].sykkel_id == this.opptatt[k].sykkel_id){
-                  this.mulige.splice(i,1);
+          (error, res2) => {
+            if (error) return console.error(error);
+            this.mulige = res2;
+            if (this.opptatt.length > 0) {
+              for (let i = this.mulige.length - 1; i >= 0; i--) {
+                //filtrer mulige sykler mot opptate sykler
+                for (let k = this.opptatt.length - 1; k >= 0; k--) {
+                  if (this.mulige[i].sykkel_id == this.opptatt[k].sykkel_id) {
+                    this.mulige.splice(i, 1);
+                  }
                 }
               }
             }
+            success(this.mulige); //retunere mulige sykkel_ider
           }
-          success(this.mulige);//retunere mulige sykkel_ider
-        });
-      });
+        );
+      }
+    );
   }
-
 
   getSykkelByID(sykkelid, success) {
     connection.query(
@@ -110,8 +113,8 @@ class SykkelService {
           varsel('Oops!', 'Det oppsto problemer med å hente data.', 'vrsl-danger');
           return console.error(error);
         }
-        if(results[0].info === null){
-          results[0].info = "";
+        if (results[0].info === null) {
+          results[0].info = '';
         }
         success(results[0]);
       }

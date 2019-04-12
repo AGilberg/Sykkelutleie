@@ -6,18 +6,18 @@ import { history } from '../index.js';
 import ReactLoading from 'react-loading';
 import { cartService } from '../services/CartService.js';
 import varsel from '../services/notifications.js';
+import { sykkelService } from '../services/SykkelService.js';
 
 class Pakkevisning extends Component {
   pakkesykkel = null;
   pakkeutstyr = null;
   pakke = null;
-  innhold = null;
   startdato = null;
   sluttdato = null;
   avdeling = null;
 
   render() {
-    if (!this.pakkesykkel || !this.pakkeutstyr || !this.pakke || !this.innhold)
+    if (!this.pakkesykkel || !this.pakkeutstyr || !this.pakke)
       return (
         <ReactLoading className="spinner fade-in" type="spinningBubbles" color="lightgrey" height="20%" width="20%" />
       );
@@ -59,8 +59,11 @@ class Pakkevisning extends Component {
                     </div>
                     <h5>Sykler: </h5>
                     {this.pakkesykkel.map(pakkesykkel => (
-                      <li key={pakkesykkel.type_id}>
-                        {pakkesykkel.typenavn}, antall: {pakkesykkel.ant}
+                      <li key={pakkesykkel.sykkelklasse_id}>
+                        {pakkesykkel.klassenavn}, antall: {pakkesykkel.ant}
+                        <ul>
+                          <li>{pakkesykkel.info}</li>
+                        </ul>
                       </li>
                     ))}
 
@@ -107,9 +110,7 @@ class Pakkevisning extends Component {
     pakkeService.getPakke(this.props.match.params.pakke_id, pakke => {
       this.pakke = pakke;
     });
-    pakkeService.getInnhold(this.props.match.params.pakkeinnhold_id, innhold => {
-      this.innhold = innhold;
-    });
+
     this.sluttdato = cartService.getSluttdato();
     this.startdato = cartService.getStartdato();
     this.avdeling = cartService.getAvdeling();
@@ -128,14 +129,34 @@ class Pakkevisning extends Component {
   add() {
     if (this.sluttdato != null && this.avdeling != null) {
       this.pakkesykkel.map(sykkel => {
-        let produkt = {
-          kategori: 'sykkel',
-          id: [{ sykkel_id: sykkel.type_id }],
-          navn: sykkel.typenavn,
-          antall: sykkel.ant,
-          pris: 0
-        };
-        cartService.addItem(produkt);
+        pakkeService.getOptimalSykkeltypeTilPakke(
+          sykkel.sykkelklasse_id,
+          this.startdato,
+          this.sluttdato,
+          this.avdeling,
+          sykkeltyper => {
+            sykkelService.getLedigeSykler(
+              sykkeltyper[0].type_id,
+              this.startdato,
+              this.sluttdato,
+              this.avdeling,
+              ledige => {
+                if (ledige.length == 0) {
+                  varsel('Feil!', 'Det er ikke nok ledige sykler', 'vrsl-danger');
+                } else {
+                  let produkt = {
+                    kategori: 'sykkel',
+                    navn: sykkel.klassenavn,
+                    antall: sykkel.ant,
+                    pris: 0,
+                    id: ledige.slice()
+                  };
+                  cartService.addItem(produkt);
+                }
+              }
+            );
+          }
+        );
       });
       this.pakkeutstyr.map(utstyr => {
         let produkt = {

@@ -47,19 +47,19 @@ class Handlekurv extends Component {
 
   regBestilling() {
     let antVarer = this.state.handlekurv.length;
-    if(this.startdato != null && this.kunde != null && antVarer > 0){
-        bestillingService.addOrder(this.sum, this.rabatt);
-    }else{
-      if(this.startdato == null){
+    if (this.startdato != null && this.kunde != null && antVarer > 0) {
+      bestillingService.addOrder(this.sum, this.rabatt);
+    } else {
+      if (this.startdato == null) {
         varsel('Feil!', 'Du må velge en periode', 'vrsl-danger');
       }
-      if(this.kunde == null){
+      if (this.kunde == null) {
         varsel('Feil!', 'Du må velge en kunde', 'vrsl-danger');
       }
-      if(antVarer <= 0){
+      if (antVarer <= 0) {
         varsel('Feil!', 'Du må legge til minst en vare', 'vrsl-danger');
       }
-      if(cartService.getAvdeling() == -1){
+      if (cartService.getAvdeling() == -1) {
         varsel('Feil!', 'Du har ikke valgt avdeling', 'vrsl-danger');
       }
     }
@@ -112,27 +112,25 @@ class Handlekurv extends Component {
         </div>
         <div className="col">
           <div>
-            <h6><b>Leieperiode:</b> { (
-              (this.startdato || this.sluttdato) != null
-              ?
-              "fra "+this.startdato+" til "+this.sluttdato + " antall dager: " + this.antDager
-              :
-              "NB! Det er ikke valgt en leieperiode for bestillingen enda."
-            ) }</h6>
+            <h6>
+              <b>Leieperiode:</b>{' '}
+              {(this.startdato || this.sluttdato) != null
+                ? 'fra ' + this.startdato + ' til ' + this.sluttdato + ' antall dager: ' + this.antDager
+                : 'NB! Det er ikke valgt en leieperiode for bestillingen enda.'}
+            </h6>
           </div>
           <div>
-            <h6><b>Kunde:</b> { (
-              this.kunde != null
-              ?
-              this.kunde.fornavn+" "+this.kunde.etternavn
-              :
-              "NB! Ingen kunde er tilknyttet bestillingen enda."
-            ) }</h6>
+            <h6>
+              <b>Kunde:</b>{' '}
+              {this.kunde != null
+                ? this.kunde.fornavn + ' ' + this.kunde.etternavn
+                : 'NB! Ingen kunde er tilknyttet bestillingen enda.'}
+            </h6>
           </div>
           Totalt: {this.sum} kr <br /> Rabatt:
           <input className="col-1" type="checkbox" onChange={this.updateRabatt} />
         </div>
-          <Button.Success onClick={this.regBestilling}>Register</Button.Success>
+        <Button.Success onClick={this.regBestilling}>Register</Button.Success>
       </div>
     );
   }
