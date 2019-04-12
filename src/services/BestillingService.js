@@ -58,7 +58,7 @@ class BestillingService {
               );
               break;
             default:
-              console.log('feil innhold i BestillingServive.js');
+              varsel('Feil!', 'Feil under registrering', 'vrsl-danger');
           }
         }
         cartService.dropOrder();

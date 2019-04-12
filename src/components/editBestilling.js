@@ -177,7 +177,6 @@ class BestillingEdit extends Component {
 
   updatePakke() {
     bestillingService.getOrderContentsPakke(this.props.match.params.bestilling_id, pakke => {
-      console.log(pakke);
       this.setState({ pakke: pakke });
     });
   }
