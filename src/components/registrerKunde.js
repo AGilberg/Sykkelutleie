@@ -24,7 +24,7 @@ class RegistrerKunde extends Component {
         {/*  Skjema for registrering av kunde.*/}
         <div>
           <Card>
-            <form className="form-horizontal " onSubmit={this.add}>
+            <form className="form-horizontal ">
               <fieldset>
                 <legend>Registrer kunde</legend>
                 {/* Navn */}
@@ -201,8 +201,8 @@ class RegistrerKunde extends Component {
                       <Column>
                         <Button.Light onClick={this.tilbake}>Tilbake</Button.Light>
                       </Column>
-                      <Column right>
-                        <input className="btn btn-success" type="submit" value="Registrer" />
+                      <Column>
+                        <Button.Success onClick={this.add}>Registrer</Button.Success>
                       </Column>
                     </Row>
                   </div>
@@ -216,9 +216,6 @@ class RegistrerKunde extends Component {
   }
 
   add() {
-    /*
-    // FIXME: valiedering av data før innsending
-    */
     kundeService.addNewKunde(
       this.fornavn,
       this.etternavn,
