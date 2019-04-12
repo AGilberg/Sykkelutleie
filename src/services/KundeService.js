@@ -33,9 +33,9 @@ class KundeService {
   }
 
   harKundeAktiveBestillinger(person_id, success) {
-    //sjekker om en kunde har aktive bestillinger
+    //sjekker om en kunde har bestillinger som ikke er fullført
     connection.query(
-      'SELECT * FROM BESTILLING where person_id = ? and leie_slutt >= DATE(CURDATE())',
+      'select * from BESTILLING where status_id != 9 and person_id = ?',
       [person_id],
       (error, results) => {
         if (error) return console.log(error);
