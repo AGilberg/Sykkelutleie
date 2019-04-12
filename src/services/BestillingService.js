@@ -71,15 +71,8 @@ class BestillingService {
   updateOrder(bestill, utstyr, sykkel, id) {
     //Funksjon for å lagre endringer på en bestilling
     connection.query(
-      'update BESTILLING set sum=?, status_id=?, beskrivelse=?, leie_start=?, leie_slutt=? where bestilling_id=?',
-      [
-        bestill.sum,
-        bestill.status_id,
-        bestill.beskrivelse,
-        bestill.leie_start,
-        bestill.leie_slutt,
-        bestill.bestilling_id
-      ],
+      'update BESTILLING set sum=?, status_id=?, beskrivelse=? where bestilling_id=?',
+      [bestill.sum, bestill.status_id, bestill.beskrivelse, bestill.bestilling_id],
       (error, results) => {
         if (error) return console.error(error);
         connection.query(

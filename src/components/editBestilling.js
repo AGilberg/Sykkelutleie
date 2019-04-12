@@ -29,17 +29,9 @@ class BestillingEdit extends Component {
               <div className="col-8">
                 <Form.Label>Startdato:</Form.Label>
 
-                <Form.Input
-                  type="date"
-                  value={this.bestill.leie_start}
-                  onChange={e => (this.bestill.leie_start = e.target.value)}
-                />
+                <div>{this.bestill.leie_start.toDateString()}</div>
                 <Form.Label>Sluttdato:</Form.Label>
-                <Form.Input
-                  type="date"
-                  value={this.bestill.leie_slutt}
-                  onChange={e => (this.bestill.leie_slutt = e.target.value)}
-                />
+                <div>{this.bestill.leie_slutt.toDateString()}</div>
                 <Form.Label>Fornavn:</Form.Label>
                 <Form.Input
                   type="text"
@@ -90,6 +82,8 @@ class BestillingEdit extends Component {
                       <Card key={sykkel.innholdsykkel_id}>
                         {sykkel.typenavn}
                         <br />
+                        Pris: {sykkel.pris}
+                        <br />
                         <Button variant="danger" onClick={e => this.deletesyk(sykkel.innholdsykkel_id)}>
                           Slett
                         </Button>
@@ -109,6 +103,8 @@ class BestillingEdit extends Component {
                     {this.utstyr.map(utstyr => (
                       <Card key={utstyr.utstyr_id}>
                         {utstyr.navn} ({utstyr.ant_utstyr})
+                        <br />
+                        Pr stk: {utstyr.pris} kr, Total: ({utstyr.pris * utstyr.ant_utstyr})
                         <br />
                         <Button variant="danger" onClick={e => this.deleteuts(utstyr.innholdutstyr_id)}>
                           Slett
