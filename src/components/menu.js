@@ -29,10 +29,10 @@ class Menu extends Component {
   }
 
   mounted() {
-    // if(!cartService.getIsLoggedInn()){// FIXME: legg til for å bruke innloggingen og utlogging, IKKE FJERN
-    //  document.getElementById("loginCover").classList.remove('js-hidden');
-    //   history.push('/login');
-    // }
+     if(!cartService.getIsLoggedInn()){// FIXME: legg til for å bruke innloggingen og utlogging, IKKE FJERN
+      document.getElementById("loginCover").classList.remove('js-hidden');
+       history.push('/login');
+     }
     sykkelService.getAvdelinger(avdelinger => {
       this.avdelinger = avdelinger;
     });
