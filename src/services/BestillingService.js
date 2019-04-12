@@ -68,18 +68,11 @@ class BestillingService {
     );
   }
 
-  updateOrder(bestill, utstyr, sykkel, id) {
+  updateOrder(bestill, utstyr, sykkel, pakke) {
     //Funksjon for å lagre endringer på en bestilling
     connection.query(
-      'update BESTILLING set sum=?, status_id=?, beskrivelse=?, leie_start=?, leie_slutt=? where bestilling_id=?',
-      [
-        bestill.sum,
-        bestill.status_id,
-        bestill.beskrivelse,
-        bestill.leie_start,
-        bestill.leie_slutt,
-        bestill.bestilling_id
-      ],
+      'update BESTILLING set sum=?, status_id=?, beskrivelse=? where bestilling_id=?',
+      [bestill.sum, bestill.status_id, bestill.beskrivelse, bestill.bestilling_id],
       (error, results) => {
         if (error) return console.error(error);
         connection.query(
@@ -120,13 +113,6 @@ class BestillingService {
     //Fjern utstyr fra en bestilling
     connection.query('delete from INNHOLDUTSTYR WHERE innholdutstyr_id = ?', [innholdutstyr_id], (error, results) => {
       if (error) return console.error(error);
-    });
-  }
-  deletePakke(innholdpakke_id) {
-    //Fjern Pakke fra en bestilling
-    connection.query('delete from INNHOLDPAKKE WHERE innholdpakke_id = ?', [innholdpakke_id], (error, results) => {
-      if (error) return console.error(error);
-      console.log(results);
     });
   }
 
