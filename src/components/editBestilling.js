@@ -108,6 +108,8 @@ class BestillingEdit extends Component {
                       <Card key={sykkel.innholdsykkel_id}>
                         {sykkel.typenavn}
                         <br />
+                        Pris: {sykkel.pris}
+                        <br />
                         <Button variant="danger" onClick={e => this.deletesyk(sykkel.innholdsykkel_id, sykkel.pris)}>
                           Slett
                         </Button>
@@ -127,6 +129,8 @@ class BestillingEdit extends Component {
                     {this.state.utstyr.map(utstyr => (
                       <Card key={utstyr.utstyr_id}>
                         {utstyr.navn} ({utstyr.ant_utstyr})
+                        <br />
+                        Pr stk: {utstyr.pris} kr, Total: ({utstyr.pris * utstyr.ant_utstyr})
                         <br />
                         <Button variant="danger" onClick={e => this.deleteuts(utstyr.innholdutstyr_id, utstyr.pris)}>
                           Slett
@@ -231,7 +235,7 @@ export { BestillingEdit };
   </Column>
 </Row>
 <Row>
-  Slette Pakke fra bestillingen 
+  Slette Pakke fra bestillingen
   <Column left>
     {this.state.pakke.map(pakke => (
       <Card key={pakke.innholdpakke_id}>
